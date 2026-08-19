@@ -157,6 +157,9 @@
 
     .grid{display:grid;gap:14px}
     .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    /* Layout clean: regras continuam ativas no JavaScript, mas não ocupam espaço na interface. */
+    #config.grid.two{grid-template-columns:1fr}
+    .rules-smart-panel{display:none !important}
     .card{
       position:relative;overflow:hidden;
       background:linear-gradient(180deg,rgba(17,36,57,.92),rgba(10,24,39,.92));
@@ -1091,7 +1094,7 @@ button,a,input,select,textarea{touch-action:manipulation}
         </div>
       </section>
 
-      <section class="card">
+      <section class="card rules-smart-panel">
         <div class="card-head">
           <div>
             <div class="card-kicker">Automação</div>
