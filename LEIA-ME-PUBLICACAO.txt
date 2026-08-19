@@ -1,13 +1,13 @@
-JB TORNEIOS PRO V4.5.1 — PWA CORRIGIDO
+JB TORNEIOS PRO V4.5.2
 
-Correção crítica:
-- o registro do Service Worker agora é inserido somente no final real do HTML;
-- o JavaScript da ferramenta não é mais quebrado;
-- botões, sorteio, autosave, súmulas e mata-mata permanecem funcionais.
+Correção da impressão do mata-mata:
+- cada fase fica em uma folha A4 separada;
+- Final não fica mais junto da Semifinal;
+- campos dos nomes das duplas ficaram maiores;
+- campos de placar também ficaram maiores;
+- cabeçalho com a logomarca permanece em todas as páginas;
+- a Final ganhou campos próprios para Campeões e Vice-campeões.
 
-Para atualizar o GitHub:
-substitua TODOS os arquivos do repositório pelos arquivos deste pacote.
-Depois faça um novo deploy no Render.
-
-Se o navegador mostrar a versão antiga:
-Ctrl+F5 no computador; no iPad/Safari, feche o app/site e abra novamente após o deploy.
+Para atualizar:
+Envie todos os arquivos deste pacote para o mesmo repositório GitHub, substituindo os atuais.
+O Render deve redeployar automaticamente.

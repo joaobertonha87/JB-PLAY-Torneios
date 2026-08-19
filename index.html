@@ -1110,7 +1110,7 @@ button,a,input,select,textarea{touch-action:manipulation}
         </div>
         <div class="print-note">
           As súmulas dos grupos incluem jogos, campos para placar e tabela de classificação.
-          A chave eliminatória em branco pode ser impressa antes mesmo de os resultados estarem concluídos.
+          A chave eliminatória em branco é impressa com cada fase em uma folha separada, com campos maiores para escrever os nomes das duplas.
         </div>
       </section>
     </div>
@@ -1926,12 +1926,19 @@ button,a,input,select,textarea{touch-action:manipulation}
       th,td{border:1px solid #999;padding:5px;text-align:center;height:25px}
       th{background:#eee;font-size:9px}
       td.name{text-align:left}
-      .rounds{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-items:start}
-      .round{border:1px solid #aaa;border-radius:5px;padding:7px}
-      .round h3{font-size:12px;margin:0 0 7px;text-align:center}
-      .ko{border:1px solid #bbb;border-radius:4px;padding:5px;margin:0 0 7px;break-inside:avoid}
-      .ko-row{display:grid;grid-template-columns:1fr 34px;gap:5px;align-items:center;padding:3px 0}
-      .ko-score{height:24px;border:1.5px solid #111;border-radius:3px}
+      .rounds{display:block}
+      .round-page{break-after:page;page-break-after:always}
+      .round-page:last-child{break-after:auto;page-break-after:auto}
+      .round{border:1.5px solid #111;border-radius:6px;padding:12px;min-height:240mm}
+      .round h3{font-size:18px;margin:0 0 12px;text-align:center;letter-spacing:.04em}
+      .ko{border:1px solid #999;border-radius:5px;padding:8px 10px;margin:0 0 12px;break-inside:avoid}
+      .ko-row{display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:8px;align-items:center;padding:6px 0}
+      .ko-name{
+        min-height:34px;border:1.5px solid #111;border-radius:4px;padding:7px 8px;
+        display:flex;align-items:center;font-size:12px;background:#fff
+      }
+      .ko-score{height:34px;border:1.5px solid #111;border-radius:4px}
+      .round-note{font-size:9px;color:#666;text-align:center;margin-bottom:10px}
       .notes{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
       .line{border-bottom:1px solid #555;height:25px}
       .footer{font-size:8px;color:#666;margin-top:8px;text-align:center}
@@ -2031,26 +2038,28 @@ button,a,input,select,textarea{touch-action:manipulation}
     }
 
     var tournament=esc(el('title').value||'Torneio Interno');
-    var columns=rounds.map(function(round){
-      return '<div class="round"><h3>'+esc(round.name)+'</h3>'+
-        round.matches.map(function(m){
-          return '<div class="ko">'+
-            '<div style="font-size:8px;color:#666;margin-bottom:2px">JOGO '+m.game+'</div>'+
-            '<div class="ko-row"><span>'+esc(m.a)+'</span><div class="ko-score"></div></div>'+
-            '<div class="ko-row"><span>'+esc(m.b)+'</span><div class="ko-score"></div></div>'+
-          '</div>';
-        }).join('')+
-      '</div>';
+    var columns=rounds.map(function(round,ri){
+      return '<section class="round-page">'+
+        '<div class="head"><div class="head-left">'+jbPrintLogo()+'<div><div class="brand">JB TORNEIOS</div><h1>'+tournament+'</h1><h2>'+esc(round.name).toUpperCase()+'</h2></div></div>'+
+        '<div class="meta">Data: ____/____/______<br>Organização: ____________________</div></div>'+
+        '<div class="round-note">Preencha à mão os nomes das duplas, placares e vencedores desta fase.</div>'+
+        '<div class="round"><h3>'+esc(round.name)+'</h3>'+
+          round.matches.map(function(m){
+            return '<div class="ko">'+
+              '<div style="font-size:9px;color:#666;margin-bottom:4px">JOGO '+m.game+'</div>'+
+              '<div class="ko-row"><div class="ko-name">'+esc(m.a)+'</div><div class="ko-score"></div></div>'+
+              '<div class="ko-row"><div class="ko-name">'+esc(m.b)+'</div><div class="ko-score"></div></div>'+
+            '</div>';
+          }).join('')+
+          (round.name==='Final'
+            ? '<div class="notes" style="margin-top:18px"><div><div class="line"></div><small>Campeões</small></div><div><div class="line"></div><small>Vice-campeões</small></div></div>'
+            : '')+
+        '</div>'+
+        '<div class="footer">JB Torneios Pro · João Bertonha Beach Tennis</div>'+
+      '</section>';
     }).join('');
 
-    var body='<section class="sheet">'+
-      '<div class="head"><div class="head-left">'+jbPrintLogo()+'<div><div class="brand">JB TORNEIOS</div><h1>'+tournament+'</h1><h2>CHAVE ELIMINATÓRIA — EM BRANCO</h2></div></div>'+
-      '<div class="meta">Data: ____/____/______<br>Organização: ____________________</div></div>'+
-      '<div class="sub">Preencha à mão os classificados, placares e vencedores. A chave foi dimensionada para '+size+' vagas.</div>'+
-      '<div class="rounds">'+columns+'</div>'+
-      '<div class="notes"><div><div class="line"></div><small>Campeões</small></div><div><div class="line"></div><small>Observações</small></div></div>'+
-      '<div class="footer">João Bertonha Beach Tennis · JB Torneios Pro</div>'+
-    '</section>';
+    var body=columns;
     printWindow('Mata-mata em branco — '+tournament,body);
   }
 
