@@ -21,3 +21,11 @@ MANTIDO
 ATUALIZAÇÃO
 Envie todos os arquivos para o mesmo repositório JB-PLAY-Torneios, substituindo os atuais.
 O Render fará novo deploy.
+
+
+NOVIDADES V6:
+- Várias categorias/torneios independentes no mesmo aplicativo.
+- Criar, alternar, duplicar e excluir categorias.
+- Sorteio completo de duplas + grupos.
+- Montagem manual das duplas e sorteio somente dos grupos.
+- Dados, placares e mata-mata salvos separadamente por categoria.

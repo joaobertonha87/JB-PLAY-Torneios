@@ -1,5 +1,5 @@
 
-const CACHE='jb-torneios-v5-multi-20260819';
+const CACHE='jb-torneios-v6-multi-manual-20260819';
 const APP_SHELL=[
   './','./index.html','./manifest.webmanifest',
   './jb-logo-lime.png','./jb-watermark-lime.png',

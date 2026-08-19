@@ -930,6 +930,22 @@ button,a,input,select,textarea{touch-action:manipulation}
 }
 </style>
 
+
+<style id="jb-v6-multi-manual">
+  .category-manager{margin:18px 0 22px}
+  .category-toolbar{display:grid;grid-template-columns:minmax(220px,1fr) auto auto auto;gap:10px;align-items:end}
+  .category-toolbar .field{margin:0}
+  .category-badge{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;background:rgba(214,255,0,.12);border:1px solid rgba(214,255,0,.28);font-weight:800;font-size:12px}
+  .manual-panel{display:none;margin-top:16px;padding:16px;border:1px solid rgba(148,163,184,.22);border-radius:16px;background:rgba(6,22,39,.42)}
+  .manual-panel.open{display:block}
+  .manual-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}
+  .manual-teams{display:grid;gap:8px;margin-top:12px}
+  .manual-team-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.045);border:1px solid rgba(148,163,184,.16)}
+  .manual-team-row b{color:#d6ff00}
+  .manual-help{font-size:12px;opacity:.8;margin:8px 0 0}
+  .mode-divider{height:1px;background:rgba(148,163,184,.18);margin:15px 0}
+  @media(max-width:760px){.category-toolbar{grid-template-columns:1fr 1fr}.category-toolbar .field{grid-column:1/-1}.manual-grid{grid-template-columns:1fr}.manual-grid button{width:100%}}
+</style>
 </head>
 
 <body>
@@ -993,12 +1009,35 @@ button,a,input,select,textarea{touch-action:manipulation}
     </section>
 
     <nav class="quick-nav" aria-label="Navegação rápida">
+      <a href="#categorias"><span class="nav-icon"></span>Categorias</a>
       <a href="#config"><span class="nav-icon"></span>Configuração</a>
       <a href="#duplas"><span class="nav-icon"></span>Duplas</a>
       <a href="#grupos"><span class="nav-icon"></span>Grupos</a>
       <a href="#mata-mata"><span class="nav-icon"></span>Mata-mata</a>
       <a href="#gestao-arquivos"><span class="nav-icon"></span>Salvar / PDF</a>
     </nav>
+
+    <section class="card category-manager" id="categorias">
+      <div class="card-head">
+        <div>
+          <div class="card-kicker">Gestão de categorias</div>
+          <h2>Múltiplos torneios / categorias</h2>
+          <p class="rule-copy">Crie e alterne entre várias categorias sem perder participantes, duplas, grupos, placares ou mata-mata de cada uma.</p>
+        </div>
+        <div class="icon-box">▦</div>
+      </div>
+      <div class="category-toolbar">
+        <div class="field">
+          <label for="tournamentSelector">Categoria / torneio atual</label>
+          <select id="tournamentSelector"></select>
+        </div>
+        <button id="newTournamentBtn" class="ok">+ Nova categoria</button>
+        <button id="duplicateTournamentBtn" class="secondary">Duplicar</button>
+        <button id="deleteTournamentBtn" class="danger">Excluir</button>
+      </div>
+      <div style="height:10px"></div>
+      <span class="category-badge">● <span id="activeTournamentLabel">Categoria atual</span></span>
+    </section>
 
     <div class="grid two" id="config">
       <section class="card">
@@ -1028,9 +1067,27 @@ button,a,input,select,textarea{touch-action:manipulation}
 
         <div class="actions">
           <button id="drawBtn">Sortear duplas e grupos</button>
+          <button id="manualTeamsBtn" class="secondary">Montar duplas manualmente</button>
           <button id="reshuffleBtn" class="warn">Sortear novamente</button>
           <button id="clearScoresBtn" class="secondary">Zerar placares</button>
-          <button id="clearBtn" class="danger">Limpar torneio</button>
+          <button id="clearBtn" class="danger">Limpar categoria</button>
+        </div>
+
+        <div id="manualTeamsPanel" class="manual-panel">
+          <div class="card-kicker">Modo manual</div>
+          <h3 style="margin:2px 0 6px">Monte as duplas e sorteie somente os grupos</h3>
+          <p class="manual-help">Os jogadores já usados deixam de aparecer como disponíveis. Você pode remover uma dupla e montar novamente antes de sortear os grupos.</p>
+          <div class="manual-grid">
+            <div class="field"><label for="manualPlayerA">Jogador 1</label><select id="manualPlayerA"></select></div>
+            <div class="field"><label for="manualPlayerB">Jogador 2</label><select id="manualPlayerB"></select></div>
+            <button id="addManualTeamBtn" class="ok">Adicionar dupla</button>
+          </div>
+          <div id="manualTeamsList" class="manual-teams"></div>
+          <div class="mode-divider"></div>
+          <div class="actions">
+            <button id="drawGroupsOnlyBtn">Sortear apenas os grupos</button>
+            <button id="clearManualTeamsBtn" class="secondary">Limpar duplas manuais</button>
+          </div>
         </div>
       </section>
 
@@ -1118,10 +1175,10 @@ button,a,input,select,textarea{touch-action:manipulation}
     <div class="section-title" id="duplas">
       <div class="title-wrap">
         <span class="title-line"></span>
-        <div><h2>Duplas sorteadas</h2><p>Formação automática a partir dos inscritos.</p></div>
+        <div><h2>Duplas</h2><p>Formadas automaticamente ou montadas manualmente.</p></div>
       </div>
     </div>
-    <div id="teamsArea" class="empty">Adicione os participantes e toque em “Sortear duplas e grupos”.</div>
+    <div id="teamsArea" class="empty">Adicione os participantes e escolha entre sorteio completo ou montagem manual das duplas.</div>
 
     <div class="section-title" id="grupos">
       <div class="title-wrap">
@@ -1152,7 +1209,7 @@ button,a,input,select,textarea{touch-action:manipulation}
 
     <div class="footer">
       João Bertonha Beach Tennis · JB Torneios Pro<br>
-      Otimizado para Safari, iPhone e iPad · autosave reforçado em LocalStorage + IndexedDB · backup manual disponível.
+      Otimizado para Safari, iPhone e iPad · múltiplas categorias · duplas manuais ou sorteadas · autosave reforçado em LocalStorage + IndexedDB.
     </div>
   </div>
 
@@ -1170,6 +1227,10 @@ button,a,input,select,textarea{touch-action:manipulation}
   const groupsArea = el('groupsArea');
   const knockoutArea = el('knockoutArea');
   const notice = el('notice');
+  const manualTeamsPanel = el('manualTeamsPanel');
+  let manualTeamsDraft = [];
+  let tournaments = {};
+  let activeTournamentId = null;
 
   let state = {
     teams: [],
@@ -1326,8 +1387,8 @@ button,a,input,select,textarea{touch-action:manipulation}
   function updateStats(){
     const n=getNames().length;
     el('countPlayers').textContent=n;
-    el('countTeams').textContent=Math.floor(n/2);
-    el('countGroups').textContent=groupSizes(Math.floor(n/2)).length;
+    el('countTeams').textContent=state.teams.length || manualTeamsDraft.length || Math.floor(n/2);
+    el('countGroups').textContent=state.groups.length || groupSizes(Math.floor(n/2)).length;
   }
 
   var memoryBackup = null;
@@ -1350,38 +1411,217 @@ button,a,input,select,textarea{touch-action:manipulation}
     }
   }
 
+  function currentTournamentSnapshot(){
+    return {
+      title: el('title').value || 'Torneio Interno',
+      participants: participants.value || '',
+      qualifiersPerGroup: el('qualifiersPerGroup').value || '2',
+      state: JSON.parse(JSON.stringify(state)),
+      manualTeamsDraft: JSON.parse(JSON.stringify(manualTeamsDraft || [])),
+      updatedAt: Date.now()
+    };
+  }
+
+  function ensureTournamentCollection(){
+    if(activeTournamentId && tournaments[activeTournamentId]) return;
+    const id='cat_'+Date.now();
+    activeTournamentId=id;
+    tournaments[id]={title:'Torneio Interno',participants:'',qualifiersPerGroup:'2',state:{teams:[],groups:[],knockout:null},manualTeamsDraft:[],updatedAt:Date.now()};
+  }
+
+  function renderTournamentSelector(){
+    ensureTournamentCollection();
+    const sel=el('tournamentSelector');
+    if(!sel) return;
+    sel.innerHTML=Object.keys(tournaments).map(id=>{
+      const t=tournaments[id];
+      return `<option value="${esc(id)}" ${id===activeTournamentId?'selected':''}>${esc(t.title||'Sem nome')}</option>`;
+    }).join('');
+    const active=tournaments[activeTournamentId];
+    if(el('activeTournamentLabel')) el('activeTournamentLabel').textContent=(active&&active.title)||'Categoria atual';
+  }
+
+  function applyTournamentById(id){
+    if(!tournaments[id]) return false;
+    activeTournamentId=id;
+    const data=tournaments[id];
+    el('title').value=data.title||'Torneio Interno';
+    participants.value=data.participants||'';
+    el('qualifiersPerGroup').value=data.qualifiersPerGroup||'2';
+    state=data.state||{teams:[],groups:[],knockout:null};
+    if(!state.teams) state.teams=[];
+    if(!state.groups) state.groups=[];
+    if(!state.knockout) state.knockout=null;
+    manualTeamsDraft=data.manualTeamsDraft||[];
+    renderTournamentSelector();
+    render();
+    renderManualTeamBuilder();
+    updateStats();
+    return true;
+  }
+
   function save(){
-    var now = Date.now();
-    var payload = JSON.stringify({
-      version: 4,
-      savedAt: now,
-      title: el('title').value,
-      participants: participants.value,
-      qualifiersPerGroup: el('qualifiersPerGroup').value,
-      state: state
+    var now=Date.now();
+    ensureTournamentCollection();
+    tournaments[activeTournamentId]=currentTournamentSnapshot();
+    var payload=JSON.stringify({
+      version:6,
+      savedAt:now,
+      activeTournamentId:activeTournamentId,
+      tournaments:tournaments
     });
-    storageSet('jb_torneio_v4_pro', payload);
-    storageSet('jb_torneio_v3_ios', payload);
+    storageSet('jb_torneios_v6_multi',payload);
+    storageSet('jb_torneio_v4_pro',payload);
     queueIndexedDBSave(payload);
+    renderTournamentSelector();
     updateAutoSaveStatus(now);
     return payload;
   }
 
+  function migrateLegacyData(data){
+    const id='cat_'+Date.now();
+    tournaments={};
+    tournaments[id]={
+      title:data.title||'Torneio Interno',
+      participants:data.participants||'',
+      qualifiersPerGroup:data.qualifiersPerGroup||'2',
+      state:data.state||{teams:[],groups:[],knockout:null},
+      manualTeamsDraft:[],updatedAt:data.savedAt||Date.now()
+    };
+    activeTournamentId=id;
+  }
+
   function load(){
     try{
-      var raw = storageGet('jb_torneio_v4_pro') || storageGet('jb_torneio_v3_ios') || storageGet('jb_torneio_v2') || storageGet('jb_torneio');
-      var data = raw ? JSON.parse(raw) : null;
-      if(!data) return;
-      el('title').value=data.title||'Torneio Interno';
-      participants.value=data.participants||'';
-      if(data.qualifiersPerGroup) el('qualifiersPerGroup').value=data.qualifiersPerGroup;
-      if(data.state){
-        state=data.state;
-        if(!state.knockout) state.knockout=null;
+      var raw=storageGet('jb_torneios_v6_multi') || storageGet('jb_torneio_v4_pro') || storageGet('jb_torneio_v3_ios') || storageGet('jb_torneio_v2') || storageGet('jb_torneio');
+      var data=raw?JSON.parse(raw):null;
+      if(data && data.version>=6 && data.tournaments){
+        tournaments=data.tournaments;
+        activeTournamentId=data.activeTournamentId && tournaments[data.activeTournamentId] ? data.activeTournamentId : Object.keys(tournaments)[0];
+      }else if(data && data.state){
+        migrateLegacyData(data);
+      }else{
+        ensureTournamentCollection();
       }
-      render();
-      updateStats();
-    }catch(e){}
+      applyTournamentById(activeTournamentId);
+    }catch(e){
+      tournaments={}; activeTournamentId=null; ensureTournamentCollection(); applyTournamentById(activeTournamentId);
+    }
+  }
+
+  function uniqueTournamentName(base){
+    const names=Object.values(tournaments).map(t=>(t.title||'').toLowerCase());
+    let name=base, n=2;
+    while(names.includes(name.toLowerCase())) name=base+' '+(n++);
+    return name;
+  }
+
+  function createTournament(){
+    save();
+    const suggested=uniqueTournamentName('Nova Categoria');
+    const name=(prompt('Nome da nova categoria/torneio:',suggested)||'').trim();
+    if(!name) return;
+    const id='cat_'+Date.now()+'_'+Math.random().toString(36).slice(2,7);
+    tournaments[id]={title:name,participants:'',qualifiersPerGroup:'2',state:{teams:[],groups:[],knockout:null},manualTeamsDraft:[],updatedAt:Date.now()};
+    activeTournamentId=id;
+    applyTournamentById(id);
+    save();
+    showNotice('Nova categoria criada. Você pode cadastrar participantes e organizar este torneio sem alterar os demais.',true);
+  }
+
+  function duplicateTournament(){
+    ensureTournamentCollection(); save();
+    const src=tournaments[activeTournamentId];
+    const id='cat_'+Date.now()+'_'+Math.random().toString(36).slice(2,7);
+    const copy=JSON.parse(JSON.stringify(src));
+    copy.title=uniqueTournamentName((src.title||'Categoria')+' - cópia');
+    copy.updatedAt=Date.now();
+    tournaments[id]=copy; activeTournamentId=id;
+    applyTournamentById(id); save();
+    showNotice('Categoria duplicada com todos os dados.',true);
+  }
+
+  function deleteTournament(){
+    ensureTournamentCollection();
+    const ids=Object.keys(tournaments);
+    if(ids.length<=1){ showNotice('Mantenha pelo menos uma categoria cadastrada.'); return; }
+    const name=tournaments[activeTournamentId].title||'esta categoria';
+    if(!confirm('Excluir "'+name+'" e todos os dados dela?')) return;
+    delete tournaments[activeTournamentId];
+    activeTournamentId=Object.keys(tournaments)[0];
+    applyTournamentById(activeTournamentId); save();
+    showNotice('Categoria excluída. As demais continuam salvas.',true);
+  }
+
+  function manualUsedPlayers(){
+    const used=new Set();
+    manualTeamsDraft.forEach(t=>(t.players||[]).forEach(p=>used.add(p)));
+    return used;
+  }
+
+  function renderManualTeamBuilder(){
+    const list=el('manualTeamsList'), a=el('manualPlayerA'), b=el('manualPlayerB');
+    if(!list||!a||!b) return;
+    const names=getNames(), used=manualUsedPlayers(), available=names.filter(n=>!used.has(n));
+    const opts='<option value="">Selecione...</option>'+available.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join('');
+    a.innerHTML=opts; b.innerHTML=opts;
+    if(!manualTeamsDraft.length){
+      list.innerHTML='<div class="empty" style="padding:12px">Nenhuma dupla manual montada ainda.</div>';
+    }else{
+      list.innerHTML=manualTeamsDraft.map((t,i)=>`<div class="manual-team-row"><span><b>Dupla ${i+1}</b> · ${esc(t.players[0])} / ${esc(t.players[1])}</span><button type="button" class="danger" style="padding:7px 10px" onclick="removeManualTeam(${i})">Remover</button></div>`).join('');
+    }
+  }
+
+  function addManualTeam(){
+    hideNotice();
+    const p1=el('manualPlayerA').value, p2=el('manualPlayerB').value;
+    if(!p1||!p2){ showNotice('Selecione os dois jogadores da dupla.'); return; }
+    if(p1===p2){ showNotice('Escolha dois jogadores diferentes.'); return; }
+    const used=manualUsedPlayers();
+    if(used.has(p1)||used.has(p2)){ showNotice('Um dos jogadores já está em outra dupla manual.'); return; }
+    manualTeamsDraft.push({id:manualTeamsDraft.length+1,players:[p1,p2]});
+    renderManualTeamBuilder(); save();
+  }
+
+  function removeManualTeam(index){
+    manualTeamsDraft.splice(index,1);
+    manualTeamsDraft.forEach((t,i)=>t.id=i+1);
+    renderManualTeamBuilder(); save();
+  }
+  window.removeManualTeam=removeManualTeam;
+
+  function clearManualTeams(){
+    manualTeamsDraft=[];
+    renderManualTeamBuilder(); save();
+  }
+
+  function drawGroupsFromTeams(teams){
+    const sizes=groupSizes(teams.length);
+    if(teams.length<3){ showNotice('Monte pelo menos 3 duplas para criar a fase de grupos.'); return false; }
+    if(sizes.some(s=>s<3)) showNotice('A quantidade de duplas não permite uma distribuição padrão. O sistema criou a melhor divisão possível.');
+    const shuffledTeams=shuffle(teams);
+    const groups=[]; let cursor=0;
+    sizes.forEach((size,idx)=>{
+      const gTeams=shuffledTeams.slice(cursor,cursor+size); cursor+=size;
+      const name=String.fromCharCode(65+idx);
+      groups.push({name,teams:gTeams,matches:makeRoundRobin(gTeams,name)});
+    });
+    state={teams:JSON.parse(JSON.stringify(teams)),groups,knockout:null};
+    render(); save(); return true;
+  }
+
+  function drawGroupsOnly(){
+    hideNotice();
+    const names=getNames();
+    if(names.length<6){ showNotice('Cadastre pelo menos 6 participantes para formar 3 duplas.'); return; }
+    if(names.length%2!==0){ showNotice('Há um número ímpar de inscritos. Ajuste a lista antes de montar todas as duplas.'); return; }
+    if(manualTeamsDraft.length!==names.length/2){
+      showNotice('Monte todas as '+(names.length/2)+' duplas antes de sortear apenas os grupos. Faltam '+((names.length/2)-manualTeamsDraft.length)+' dupla(s).'); return;
+    }
+    const used=manualUsedPlayers();
+    if(used.size!==names.length){ showNotice('Há participante sem dupla ou duplicado. Revise as duplas manuais.'); return; }
+    const teams=manualTeamsDraft.map((t,i)=>({id:i+1,players:[t.players[0],t.players[1]]}));
+    if(drawGroupsFromTeams(teams)) showNotice('Duplas mantidas como você montou. Apenas os grupos foram sorteados.',true);
   }
 
   function draw(){
@@ -1423,6 +1663,8 @@ button,a,input,select,textarea{touch-action:manipulation}
     });
 
     state={teams,groups,knockout:null};
+    manualTeamsDraft=[];
+    renderManualTeamBuilder();
     render();
     save();
   }
@@ -1825,21 +2067,20 @@ button,a,input,select,textarea{touch-action:manipulation}
 
   function applySnapshot(data){
     if(!data) return false;
-    el('title').value=data.title||'Torneio Interno';
-    participants.value=data.participants||'';
-    if(data.qualifiersPerGroup) el('qualifiersPerGroup').value=data.qualifiersPerGroup;
-    if(data.state){
-      state=data.state;
-      if(!state.knockout) state.knockout=null;
-    }
-    render();
-    updateStats();
+    if(data.version>=6 && data.tournaments){
+      tournaments=data.tournaments;
+      activeTournamentId=data.activeTournamentId && tournaments[data.activeTournamentId] ? data.activeTournamentId : Object.keys(tournaments)[0];
+      applyTournamentById(activeTournamentId);
+    }else if(data.state){
+      migrateLegacyData(data);
+      applyTournamentById(activeTournamentId);
+    }else return false;
     updateAutoSaveStatus(data.savedAt||Date.now());
     return true;
   }
 
   function restoreBestPersistentSnapshot(){
-    var localRaw=storageGet('jb_torneio_v4_pro') || storageGet('jb_torneio_v3_ios');
+    var localRaw=storageGet('jb_torneios_v6_multi') || storageGet('jb_torneio_v4_pro') || storageGet('jb_torneio_v3_ios');
     var localData=null;
     try{ localData=localRaw?JSON.parse(localRaw):null; }catch(e){}
     idbGet().then(function(idbRaw){
@@ -1847,7 +2088,7 @@ button,a,input,select,textarea{touch-action:manipulation}
       try{ idbData=idbRaw?JSON.parse(idbRaw):null; }catch(e){}
       if(idbData && (!localData || Number(idbData.savedAt||0)>Number(localData.savedAt||0))){
         applySnapshot(idbData);
-        storageSet('jb_torneio_v4_pro',JSON.stringify(idbData));
+        storageSet('jb_torneios_v6_multi',JSON.stringify(idbData));
       }else if(localData){
         updateAutoSaveStatus(localData.savedAt||Date.now());
       }else{
@@ -1878,8 +2119,8 @@ button,a,input,select,textarea{touch-action:manipulation}
     reader.onload=function(){
       try{
         var data=JSON.parse(reader.result);
-        if(!data || !data.state) throw new Error('Backup inválido');
-        if(!confirm('Restaurar este backup? O torneio atual será substituído.')) return;
+        if(!data || (!(data.version>=6 && data.tournaments) && !data.state)) throw new Error('Backup inválido');
+        if(!confirm('Restaurar este backup? As categorias atuais serão substituídas pelo conteúdo do arquivo.')) return;
         applySnapshot(data);
         save();
         showNotice('Backup restaurado com sucesso.',true);
@@ -2042,8 +2283,8 @@ button,a,input,select,textarea{touch-action:manipulation}
   });
 
 
-  participants.addEventListener('input',()=>{updateStats();save();});
-  el('title').addEventListener('input',()=>{renderKnockout();save();});
+  participants.addEventListener('input',()=>{ manualTeamsDraft=[]; state={teams:[],groups:[],knockout:null}; renderManualTeamBuilder(); render(); updateStats(); save(); });
+  el('title').addEventListener('input',()=>{renderKnockout();save();renderTournamentSelector();});
   el('qualifiersPerGroup').addEventListener('change',()=>{
     state.knockout=null;
     renderGroups();renderKnockout();save();
@@ -2064,9 +2305,31 @@ button,a,input,select,textarea{touch-action:manipulation}
     if(!confirm('Limpar participantes, duplas, grupos e todos os resultados?')) return;
     participants.value='';
     state={teams:[],groups:[],knockout:null};
+    manualTeamsDraft=[];
+    renderManualTeamBuilder();
     hideNotice();
     render();
     save();
+  });
+
+
+  el('tournamentSelector').addEventListener('change',function(){
+    save();
+    applyTournamentById(this.value);
+    save();
+  });
+  el('newTournamentBtn').addEventListener('click',createTournament);
+  el('duplicateTournamentBtn').addEventListener('click',duplicateTournament);
+  el('deleteTournamentBtn').addEventListener('click',deleteTournament);
+  el('manualTeamsBtn').addEventListener('click',function(){
+    manualTeamsPanel.classList.toggle('open');
+    renderManualTeamBuilder();
+  });
+  el('addManualTeamBtn').addEventListener('click',addManualTeam);
+  el('drawGroupsOnlyBtn').addEventListener('click',drawGroupsOnly);
+  el('clearManualTeamsBtn').addEventListener('click',function(){
+    if(manualTeamsDraft.length && !confirm('Limpar todas as duplas montadas manualmente?')) return;
+    clearManualTeams();
   });
 
 
