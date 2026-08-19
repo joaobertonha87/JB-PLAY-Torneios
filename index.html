@@ -2001,69 +2001,40 @@ button,a,input,select,textarea{touch-action:manipulation}
   }
 
   function printBlankKnockout(){
-    if(!state.groups.length){
-      showNotice('Faça o sorteio dos grupos antes de gerar a chave eliminatória em branco.');
-      return;
-    }
+    if(!state.groups.length){ showNotice('Faça o sorteio dos grupos antes de gerar a chave eliminatória em branco.'); return; }
     var qs=blankQualifiers();
-    if(qs.length<2){
-      showNotice('É necessário haver pelo menos 2 vagas classificatórias.');
-      return;
-    }
-    var size=nextPowerOfTwo(qs.length);
-    var slots=Array(size).fill(null);
+    if(qs.length<2){ showNotice('É necessário haver pelo menos 2 vagas classificatórias.'); return; }
+    var size=nextPowerOfTwo(qs.length), slots=Array(size).fill(null);
     qs.forEach(function(q,i){slots[i]=q.label;});
-    var rounds=[];
-    var first=[];
-    var l=0,r=size-1,gameNo=1;
-    while(l<r){
-      first.push({a:slots[l]||'BYE',b:slots[r]||'BYE',game:gameNo++});
-      l++;r--;
-    }
+    var rounds=[], first=[], l=0,r=size-1,gameNo=1;
+    while(l<r){ first.push({a:slots[l]||'BYE',b:slots[r]||'BYE',game:gameNo++}); l++;r--; }
     rounds.push({name:roundName(size),matches:first});
-    var prev=first;
-    var nextSize=size/2;
+    var prev=first, nextSize=size/2;
     while(nextSize>=2){
       var ms=[];
-      for(var i=0;i<nextSize/2;i++){
-        ms.push({
-          a:'Vencedor J'+prev[i*2].game,
-          b:'Vencedor J'+prev[i*2+1].game,
-          game:gameNo++
-        });
-      }
-      rounds.push({name:roundName(nextSize),matches:ms});
-      prev=ms;
-      nextSize/=2;
+      for(var i=0;i<nextSize/2;i++) ms.push({a:'Vencedor J'+prev[i*2].game,b:'Vencedor J'+prev[i*2+1].game,game:gameNo++});
+      rounds.push({name:roundName(nextSize),matches:ms}); prev=ms; nextSize/=2;
     }
-
     var tournament=esc(el('title').value||'Torneio Interno');
-    var columns=rounds.map(function(round,ri){
-      return '<section class="round-page">'+
-        '<div class="head"><div class="head-left">'+jbPrintLogo()+'<div><div class="brand">JB TORNEIOS</div><h1>'+tournament+'</h1><h2>'+esc(round.name).toUpperCase()+'</h2></div></div>'+
-        '<div class="meta">Data: ____/____/______<br>Organização: ____________________</div></div>'+
-        '<div class="round-note">Preencha à mão os nomes das duplas, placares e vencedores desta fase.</div>'+
-        '<div class="round"><h3>'+esc(round.name)+'</h3>'+
-          round.matches.map(function(m){
-            return '<div class="ko">'+
-              '<div style="font-size:9px;color:#666;margin-bottom:4px">JOGO '+m.game+'</div>'+
-              '<div class="ko-row"><div class="ko-name">'+esc(m.a)+'</div><div class="ko-score"></div></div>'+
-              '<div class="ko-row"><div class="ko-name">'+esc(m.b)+'</div><div class="ko-score"></div></div>'+
-            '</div>';
-          }).join('')+
-          (round.name==='Final'
-            ? '<div class="notes" style="margin-top:18px"><div><div class="line"></div><small>Campeões</small></div><div><div class="line"></div><small>Vice-campeões</small></div></div>'
-            : '')+
-        '</div>'+
-        '<div class="footer">JB Torneios Pro · João Bertonha Beach Tennis</div>'+
-      '</section>';
+    function matchCard(m,label){
+      return '<div class="premium-match"><div class="match-ribbon">'+esc(label)+'</div>'+
+        '<div class="premium-grid"><div class="pair"><span class="seed">1</span><div class="pair-name">'+esc(m.a)+'</div></div><div class="sets"><b>1º SET</b><i></i><b>2º SET</b><i></i><b>3º SET</b><i></i></div><div class="winner"><b>VENCEDOR</b><div></div></div></div>'+
+        '<div class="versus">×</div>'+
+        '<div class="premium-grid"><div class="pair"><span class="seed">2</span><div class="pair-name">'+esc(m.b)+'</div></div><div class="sets"><span></span><i></i><span></span><i></i><span></span><i></i></div><div class="winner"><span></span><div></div></div></div></div>';
+    }
+    var pages=rounds.map(function(round){
+      var isFinal=round.name==='Final';
+      var cards=round.matches.map(function(m,i){return matchCard(m,(isFinal?'FINAL':esc(round.name).toUpperCase()+' '+(i+1)));}).join('');
+      return '<section class="premium-page">'+
+        '<header class="premium-head"><div class="logo-panel">'+jbPrintLogo()+'</div><div class="title-panel"><div class="eyebrow">SÚMULA — MATA-MATA</div><h1>'+esc(round.name).toUpperCase()+'</h1><div class="phase">FASE: '+esc(round.name).toUpperCase()+'</div></div><div class="tournament-box"><b>TORNEIO</b><div>'+tournament+'</div><p>DATA: ____/____/______</p><p>CATEGORIA: __________________</p></div></header>'+
+        '<div class="game-meta">JOGO ____ &nbsp;&nbsp;&nbsp; HORÁRIO: __________________________</div>'+cards+
+        (isFinal?'<div class="final-fields"><div><b>CAMPEÃO(ÃS)</b><p></p><p></p></div><div><b>VICE-CAMPEÃO(ÃS)</b><p></p><p></p></div><div class="obs"><b>OBSERVAÇÕES</b><p></p><p></p><p></p><p></p></div></div>':'<div class="qual-fields"><div><b>CLASSIFICADOS PARA A PRÓXIMA FASE</b><p>VENCEDOR 1: _________________________________</p><p>VENCEDOR 2: _________________________________</p></div><div><b>OBSERVAÇÕES</b><p></p><p></p><p></p></div></div>')+
+        '<footer>JB Torneios Pro · João Bertonha Beach Tennis</footer></section>';
     }).join('');
-
-    var body=columns;
-    printWindow('Mata-mata em branco — '+tournament,body);
+    var premiumCss='<style>@page{size:A4 portrait;margin:8mm}.premium-page{height:281mm;page-break-after:always;break-after:page;border:1px solid #cbd5df;border-radius:5px;padding:0 8mm 6mm;position:relative;overflow:hidden}.premium-page:last-child{page-break-after:auto;break-after:auto}.premium-head{height:46mm;display:grid;grid-template-columns:42mm 1fr 55mm;gap:7mm;align-items:center;border-bottom:1px solid #ccd5df}.logo-panel{background:#071d38;height:46mm;margin-left:-8mm;width:48mm;display:flex;align-items:center;justify-content:center;border-radius:0 0 5px 0}.logo-panel .print-logo{width:42mm;height:36mm}.title-panel .eyebrow{font-size:17pt;font-weight:900;color:#071d38}.title-panel h1{font-size:25pt;color:#7faa00;margin:1mm 0}.phase{display:inline-block;background:#071d38;color:white;padding:2mm 6mm;border-radius:3px;font-weight:800}.tournament-box{border:1px solid #718096;border-radius:4px;overflow:hidden;font-size:8pt}.tournament-box b{display:block;background:#071d38;color:#d6ff00;padding:2mm}.tournament-box div,.tournament-box p{margin:0;padding:2mm 3mm;border-bottom:1px solid #d8dee5}.game-meta{margin:10mm 0 6mm;text-align:center;font-weight:700;color:#23364b}.premium-match{border-top:1px solid #aab5c0;margin:0 0 8mm;padding-top:0;break-inside:avoid}.match-ribbon{display:inline-block;background:#071d38;color:white;font-weight:900;padding:2mm 8mm;border-radius:0 0 5px 0;margin-bottom:4mm}.premium-grid{display:grid;grid-template-columns:1fr 64mm 28mm;gap:4mm;align-items:stretch}.pair{display:flex;align-items:center;gap:3mm}.seed{background:#071d38;color:white;padding:3mm;border-radius:3px;font-weight:900}.pair-name{height:13mm;flex:1;border:1px solid #a9b6c4;border-radius:3px;padding:3mm;font-size:10pt}.sets{display:grid;grid-template-columns:repeat(3,1fr);gap:2mm;align-items:center}.sets b{background:#071d38;color:white;font-size:7pt;text-align:center;padding:2mm 0;border-radius:3px}.sets i{height:10mm;border:1px solid #9aa9b8;border-radius:3px}.winner b{display:block;background:#071d38;color:#d6ff00;font-size:7pt;text-align:center;padding:2mm;border-radius:3px}.winner div{height:10mm;border:1px solid #9aa9b8;border-radius:3px;margin-top:2mm}.versus{text-align:center;font-size:14pt;font-weight:900;margin:-1mm 0 1mm}.qual-fields,.final-fields{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:8mm}.qual-fields>div,.final-fields>div{border:1px solid #a9b6c4;border-radius:4px;min-height:28mm;padding:0 5mm 4mm}.qual-fields b,.final-fields b{display:block;background:#071d38;color:#d6ff00;text-align:center;margin:0 -5mm 4mm;padding:2mm;border-radius:4px 4px 0 0}.qual-fields p,.final-fields p{height:7mm;border-bottom:1px solid #b7c1cb;margin:1mm 0}.final-fields{grid-template-columns:1fr 1.5fr}.final-fields .obs{grid-row:span 2}.premium-page footer{position:absolute;bottom:0;left:0;right:0;background:#071d38;color:#d6ff00;text-align:center;padding:2mm;font-size:8pt;font-weight:700}@media print{body{margin:0}.premium-page{box-shadow:none}}</style>';
+    printWindow('Mata-mata em branco — '+tournament,premiumCss+pages);
   }
-
-  // Salva também ao sair, mudar de aba ou suspender o Safari/PWA.
+// Salva também ao sair, mudar de aba ou suspender o Safari/PWA.
   window.addEventListener('pagehide',function(){ try{save();}catch(e){} });
   window.addEventListener('beforeunload',function(){ try{save();}catch(e){} });
   document.addEventListener('visibilitychange',function(){

@@ -1,13 +1,23 @@
-JB TORNEIOS PRO V4.5.2
+JB TORNEIOS PRO V5 — MÚLTIPLOS TORNEIOS / CATEGORIAS
 
-Correção da impressão do mata-mata:
-- cada fase fica em uma folha A4 separada;
-- Final não fica mais junto da Semifinal;
-- campos dos nomes das duplas ficaram maiores;
-- campos de placar também ficaram maiores;
-- cabeçalho com a logomarca permanece em todas as páginas;
-- a Final ganhou campos próprios para Campeões e Vice-campeões.
+NOVO
+- Área “Torneios e categorias”.
+- Crie Feminino, Masculino, Kids, Categoria A, B, C ou quantos torneios desejar.
+- Cada torneio salva SEPARADAMENTE: inscritos, duplas, grupos, placares, classificação e mata-mata.
+- Alternância instantânea pelo seletor “Torneio ativo”.
+- Renomear torneio.
+- Duplicar torneio.
+- Excluir torneio.
+- Último torneio aberto permanece selecionado ao reabrir.
 
-Para atualizar:
-Envie todos os arquivos deste pacote para o mesmo repositório GitHub, substituindo os atuais.
-O Render deve redeployar automaticamente.
+MANTIDO
+- PWA para iPad.
+- Autosave.
+- Backup/restauração.
+- Súmulas premium.
+- Mata-mata.
+- Identidade visual JB Play.
+
+ATUALIZAÇÃO
+Envie todos os arquivos para o mesmo repositório JB-PLAY-Torneios, substituindo os atuais.
+O Render fará novo deploy.
