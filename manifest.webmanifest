@@ -1,7 +1,7 @@
 {
   "name": "JB Torneios Pro",
   "short_name": "JB Torneios",
-  "description": "Gestão profissional de torneios de Beach Tennis com autosave, grupos, súmulas e mata-mata.",
+  "description": "Gestão profissional de torneios de Beach Tennis.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

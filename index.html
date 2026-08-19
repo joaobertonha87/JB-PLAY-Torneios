@@ -916,21 +916,12 @@ body{padding-left:235px!important}
 </style>
 
 
-<style id="jb-v45-pwa">
-html,body{
-  overscroll-behavior-y:none;
-  -webkit-text-size-adjust:100%;
-}
-body{
-  min-height:100dvh;
-}
-button,a,input,select,textarea{
-  touch-action:manipulation;
-}
+<style id="jb-v451-pwa">
+html,body{overscroll-behavior-y:none;-webkit-text-size-adjust:100%}
+body{min-height:100dvh}
+button,a,input,select,textarea{touch-action:manipulation}
 @supports(padding:max(0px)){
-  .app{
-    padding-bottom:max(96px,calc(76px + env(safe-area-inset-bottom)))!important;
-  }
+  .app{padding-bottom:max(96px,calc(76px + env(safe-area-inset-bottom)))!important}
 }
 @media(display-mode:standalone){
   .topbar{top:max(7px,env(safe-area-inset-top))!important}
@@ -1947,18 +1938,7 @@ button,a,input,select,textarea{
       @media print{.no-print{display:none}}
     `;
     w.document.open();
-    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'
-<script id="jb-v45-sw">
-if('serviceWorker' in navigator){
-  window.addEventListener('load',function(){
-    navigator.serviceWorker.register('./sw.js').catch(function(err){
-      console.warn('Service Worker não registrado:',err);
-    });
-  });
-}
-</script>
-
-</body></html>');
+    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'</body></html>');
     w.document.close();
     w.focus();
     setTimeout(function(){ w.print(); },350);
@@ -2161,5 +2141,16 @@ if('serviceWorker' in navigator){
     updateStats();
   })();
 </script>
+
+<script id="jb-v451-sw">
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('./sw.js').catch(function(err){
+      console.warn('Service Worker não registrado:',err);
+    });
+  });
+}
+</script>
+
 </body>
 </html>
