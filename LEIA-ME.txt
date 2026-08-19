@@ -1,0 +1,10 @@
+JB TORNEIOS PRO V4.4
+
+Ajustes:
+- corrigida a logomarca duplicada no banner;
+- mantida uma única marca d'água no banner;
+- logomarca João Bertonha adicionada às súmulas dos grupos;
+- logomarca adicionada à chave de mata-mata em branco;
+- cabeçalho de impressão padronizado com a identidade JB Play.
+
+Mantenha index.html, jb-logo-lime.png e jb-watermark-lime.png na mesma pasta.

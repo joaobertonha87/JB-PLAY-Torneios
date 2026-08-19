@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#07111c" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <title>JB Torneios Pro</title>
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-180.png">
+
+  <style>
+    :root{
+      --bg:#07111c;
+      --bg-2:#0a1624;
+      --panel:rgba(13,29,45,.86);
+      --panel-strong:#102237;
+      --panel-soft:rgba(16,34,55,.68);
+      --text:#f7fbff;
+      --muted:#8fa4ba;
+      --line:rgba(150,180,210,.16);
+      --line-strong:rgba(180,210,240,.24);
+      --accent:#c8ff33;
+      --accent-2:#18c8d8;
+      --accent-soft:rgba(200,255,51,.12);
+      --danger:#ff6479;
+      --warning:#ffd34d;
+      --ok:#57dc97;
+      --shadow:0 22px 60px rgba(0,0,0,.34);
+      --shadow-soft:0 12px 34px rgba(0,0,0,.22);
+      --radius-xl:28px;
+      --radius-lg:22px;
+      --radius-md:16px;
+    }
+
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 14% 0%, rgba(24,200,216,.11), transparent 27rem),
+        radial-gradient(circle at 92% 8%, rgba(200,255,51,.09), transparent 28rem),
+        linear-gradient(180deg,#06101a 0%,#091522 48%,#07111c 100%);
+      overflow-x:hidden;
+    }
+    body:before{
+      content:"";
+      position:fixed; inset:0; pointer-events:none; z-index:-1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size:34px 34px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.62),transparent 75%);
+    }
+
+    button,input,textarea,select{font:inherit;-webkit-appearance:none;appearance:none}
+    button{min-height:46px;-webkit-user-select:none;user-select:none}
+    input,textarea,select{touch-action:manipulation}
+
+    .app{
+      max-width:1240px;
+      margin:0 auto;
+      padding:
+        calc(16px + env(safe-area-inset-top))
+        calc(16px + env(safe-area-inset-right))
+        calc(96px + env(safe-area-inset-bottom))
+        calc(16px + env(safe-area-inset-left));
+    }
+
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding:12px 14px; margin-bottom:14px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(7,17,28,.78);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      box-shadow:0 12px 32px rgba(0,0,0,.2);
+    }
+    .brand-mini{display:flex;align-items:center;gap:11px;min-width:0}
+    .brand-mini img{width:58px;height:42px;object-fit:contain;opacity:.96;filter:drop-shadow(0 6px 12px rgba(0,0,0,.35))}
+    .brand-mini strong{display:block;font-size:15px;letter-spacing:.02em}
+    .brand-mini span{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+    .status-chip{
+      flex:0 0 auto; display:inline-flex; align-items:center; gap:7px;
+      border:1px solid rgba(200,255,51,.22);
+      color:#dfff8b; background:rgba(200,255,51,.08);
+      border-radius:999px; padding:8px 11px; font-size:11px; font-weight:800;
+    }
+    .status-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px rgba(200,255,51,.65)}
+
+    .hero{
+      position:relative; overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:var(--radius-xl);
+      min-height:250px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      background:
+        linear-gradient(115deg,rgba(8,22,35,.97) 0%,rgba(9,27,42,.88) 55%,rgba(8,24,36,.82) 100%);
+      margin-bottom:16px;
+    }
+    .hero:after{
+      content:""; position:absolute; width:420px; height:420px; right:-110px; top:-185px;
+      border-radius:50%; background:radial-gradient(circle,rgba(200,255,51,.20),rgba(24,200,216,.05) 42%,transparent 68%);
+      pointer-events:none;
+    }
+    .hero-watermark{
+      position:absolute; right:20px; bottom:-20px; width:min(54%,560px); opacity:.10;
+      pointer-events:none; transform:rotate(-1deg);
+      filter:drop-shadow(0 18px 32px rgba(0,0,0,.28));
+    }
+    .hero-content{position:relative;z-index:2;max-width:690px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      color:#dfff8b;font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:.14em;
+      border:1px solid rgba(200,255,51,.18);background:rgba(200,255,51,.07);
+      padding:8px 11px;border-radius:999px;margin-bottom:16px;
+    }
+    h1{font-size:clamp(34px,6vw,60px);line-height:.98;margin:0 0 10px;letter-spacing:-.045em}
+    .hero h1 span{color:var(--accent)}
+    .subtitle{color:#a8bad0;margin:0;line-height:1.6;max-width:640px;font-size:15px}
+    .hero-stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+    .metric{
+      min-width:118px;padding:12px 14px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.035);
+      backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)
+    }
+    .metric small{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+    .metric strong{display:block;font-size:22px;margin-top:3px}
+    .metric strong em{font-style:normal;color:var(--accent)}
+
+    .quick-nav{
+      display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0 18px;
+    }
+    .quick-nav a{
+      text-decoration:none;color:var(--text);font-weight:800;font-size:12px;
+      border:1px solid var(--line);border-radius:16px;padding:13px 12px;
+      background:linear-gradient(180deg,rgba(18,38,60,.88),rgba(12,26,42,.88));
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      box-shadow:var(--shadow-soft);
+      transition:.18s ease;
+    }
+    .quick-nav a:hover{border-color:rgba(200,255,51,.35);transform:translateY(-1px)}
+    .quick-nav a:active{transform:translateY(1px)}
+    .nav-icon{width:8px;height:8px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px rgba(200,255,51,.36)}
+
+    .grid{display:grid;gap:14px}
+    .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .card{
+      position:relative;overflow:hidden;
+      background:linear-gradient(180deg,rgba(17,36,57,.92),rgba(10,24,39,.92));
+      border:1px solid var(--line);
+      border-radius:var(--radius-lg);
+      padding:18px;
+      box-shadow:var(--shadow-soft);
+    }
+    .card:before{
+      content:"";position:absolute;left:0;top:0;width:100%;height:1px;
+      background:linear-gradient(90deg,transparent,rgba(200,255,51,.32),transparent);
+      opacity:.7;
+    }
+    .card h2{font-size:18px;margin:0 0 14px;letter-spacing:-.01em}
+    .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .card-kicker{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:#b8cadc;margin-bottom:5px}
+    .icon-box{
+      width:40px;height:40px;border-radius:13px;flex:0 0 auto;
+      display:grid;place-items:center;background:var(--accent-soft);
+      border:1px solid rgba(200,255,51,.16);color:var(--accent);font-size:18px
+    }
+
+    label{display:block;font-size:12px;color:var(--muted);margin-bottom:7px;font-weight:700}
+    input,textarea,select{
+      width:100%;color:var(--text);
+      background:rgba(5,16,28,.72);
+      border:1px solid var(--line-strong);
+      border-radius:14px;
+      padding:13px 14px;
+      font-size:16px;
+      outline:none;
+      transition:border-color .16s ease,box-shadow .16s ease,background .16s ease;
+    }
+    input:focus,textarea:focus,select:focus{
+      border-color:rgba(200,255,51,.48);
+      box-shadow:0 0 0 4px rgba(200,255,51,.07);
+      background:rgba(8,20,33,.92);
+    }
+    textarea{min-height:178px;resize:vertical;line-height:1.45}
+    select{background-image:linear-gradient(45deg,transparent 50%,#9eb3c9 50%),linear-gradient(135deg,#9eb3c9 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:36px}
+
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    button{
+      border:1px solid transparent;
+      border-radius:14px;
+      padding:12px 15px;
+      font-size:14px;
+      font-weight:900;
+      cursor:pointer;
+      touch-action:manipulation;
+      background:linear-gradient(135deg,#d7ff52,#aeea18);
+      color:#0b1500;
+      box-shadow:0 8px 22px rgba(174,234,24,.15);
+      transition:transform .16s ease,filter .16s ease,box-shadow .16s ease,border-color .16s ease;
+    }
+    button:hover{filter:brightness(1.03);box-shadow:0 10px 28px rgba(174,234,24,.22)}
+    button:active{transform:translateY(1px) scale(.995)}
+    button.secondary{background:#15283d;color:#f4f8fc;border-color:rgba(255,255,255,.08);box-shadow:none}
+    button.warn{background:linear-gradient(135deg,#ffe36f,#ffc83d);color:#201600;box-shadow:0 8px 22px rgba(255,200,61,.12)}
+    button.danger{background:linear-gradient(135deg,#ff7890,#f34e68);color:#fff;box-shadow:0 8px 22px rgba(243,78,104,.14)}
+    button.ok{background:linear-gradient(135deg,#77efa9,#43cf85);color:#06170d;box-shadow:0 8px 22px rgba(67,207,133,.14)}
+    button:disabled{opacity:.38;cursor:not-allowed;filter:saturate(.5);box-shadow:none}
+
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}
+    .pill{
+      min-width:0;background:rgba(5,16,28,.60);border:1px solid var(--line);border-radius:14px;
+      padding:10px 11px;font-size:11px;color:var(--muted);text-align:center
+    }
+    .pill b{display:block;color:#fff;font-size:20px;margin-top:2px}
+    .notice{
+      margin-top:12px;padding:12px 14px;border-radius:14px;
+      background:rgba(255,211,77,.08);border:1px solid rgba(255,211,77,.26);
+      color:#ffe69a;display:none;line-height:1.45;font-size:13px
+    }
+    .notice.success{background:rgba(87,220,151,.08);border-color:rgba(87,220,151,.28);color:#adf6cd}
+
+    .section-title{
+      display:flex;justify-content:space-between;align-items:center;gap:12px;
+      margin:28px 0 11px;scroll-margin-top:90px
+    }
+    .section-title h2{margin:0;font-size:22px;letter-spacing:-.02em}
+    .section-title p{margin:4px 0 0;color:var(--muted);font-size:12px}
+    .title-wrap{display:flex;align-items:center;gap:10px}
+    .title-line{width:4px;height:29px;border-radius:99px;background:linear-gradient(var(--accent),var(--accent-2));box-shadow:0 0 18px rgba(200,255,51,.28)}
+
+    .group-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+    .group,.round{
+      background:linear-gradient(180deg,rgba(16,34,55,.92),rgba(10,24,39,.92));
+      border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:var(--shadow-soft)
+    }
+    .group h3,.round h3{margin:0 0 11px;font-size:17px}
+    .team{
+      background:rgba(5,16,28,.62);border:1px solid rgba(255,255,255,.06);
+      border-radius:12px;padding:10px 12px;margin:8px 0;font-weight:750;font-size:13px
+    }
+    .matches{margin-top:13px}
+    .match{
+      padding:10px 0;border-top:1px solid rgba(255,255,255,.06);
+      display:grid;grid-template-columns:minmax(0,1fr) 58px 18px 58px minmax(0,1fr);
+      gap:7px;align-items:center;font-size:12px
+    }
+    .match .right{text-align:right}
+    .score{
+      text-align:center;padding:9px 4px;border-radius:10px;font-weight:950;
+      font-size:17px;min-width:0;background:#071521;
+      border-color:rgba(200,255,51,.18)
+    }
+    .score:disabled{opacity:.32}
+    .vs{text-align:center;color:var(--muted);font-weight:900}
+    .standings-wrap{overflow-x:auto;margin-top:12px;border-radius:12px;border:1px solid rgba(255,255,255,.055)}
+    table{width:100%;border-collapse:collapse;min-width:560px;background:rgba(5,16,28,.58)}
+    th,td{padding:9px 8px;border-bottom:1px solid rgba(255,255,255,.06);font-size:11px;text-align:center}
+    th{color:#8196ac;font-size:10px;text-transform:uppercase;letter-spacing:.06em;background:rgba(255,255,255,.02)}
+    td.team-name{text-align:left;font-weight:800;min-width:165px}
+    tr.qual td{background:rgba(200,255,51,.055)}
+    tr.qual td:first-child{color:var(--accent)}
+    .pos{font-weight:950}
+    .empty{
+      text-align:center;color:var(--muted);padding:34px 14px;
+      border:1px dashed rgba(146,176,205,.22);border-radius:18px;
+      background:rgba(10,24,39,.45);font-size:13px
+    }
+    .criteria{display:grid;gap:8px;margin-top:11px}
+    .criteria div{background:rgba(5,16,28,.58);border:1px solid rgba(255,255,255,.05);border-radius:11px;padding:10px 11px;color:var(--muted);font-size:12px}
+    .criteria b{color:var(--accent);margin-right:4px}
+    .rule-copy{color:var(--muted);margin-top:0;line-height:1.62;font-size:13px}
+    .rule-copy b{color:#fff}
+
+    .knockout-controls{display:flex;gap:10px;align-items:end;flex-wrap:wrap}
+    .knockout-controls .field{min-width:210px;flex:0 1 250px}
+    .bracket-rounds{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+    .ko-match{background:rgba(5,16,28,.58);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:10px;margin:9px 0}
+    .ko-row{display:grid;grid-template-columns:minmax(0,1fr) 54px;gap:8px;align-items:center;padding:5px 0}
+    .ko-team{font-size:12px;font-weight:750}
+    .bye{color:var(--muted);font-style:italic}
+    .winner{color:#b9ffce}
+    .champion{
+      margin-top:14px;
+      background:linear-gradient(135deg,rgba(200,255,51,.13),rgba(24,200,216,.10));
+      border:1px solid rgba(200,255,51,.28);
+      border-radius:22px;padding:24px;text-align:center;box-shadow:0 18px 42px rgba(0,0,0,.22)
+    }
+    .champion .cup{font-size:38px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.35))}
+    .champion h3{font-size:24px;margin:7px 0}
+    .small{font-size:11px;color:var(--muted);line-height:1.5}
+    .footer{
+      color:#70869c;font-size:11px;text-align:center;margin-top:28px;padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.06);line-height:1.6
+    }
+
+    .mobile-dock{display:none}
+
+    #pwaSplash{
+      position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
+      background:
+        radial-gradient(circle at 50% 36%,rgba(200,255,51,.10),transparent 16rem),
+        #07111c;
+      transition:opacity .32s ease,visibility .32s ease;
+    }
+    #pwaSplash.hide{opacity:0;visibility:hidden}
+    .pwaSplashCard{text-align:center;padding:28px}
+    .pwaLogo{
+      width:min(260px,72vw);height:150px;margin:0 auto 14px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .pwaLogo img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 18px 36px rgba(0,0,0,.38))}
+    .pwaSplashCard h2{margin:0;font-size:27px}
+    .pwaSplashCard p{margin:7px 0 0;color:#8298ae;font-size:12px}
+
+    @media (max-width:820px){
+      .grid.two{grid-template-columns:1fr}
+      .quick-nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .hero-watermark{width:78%;right:-90px;opacity:.075}
+    }
+
+    @media (max-width:650px){
+      .app{padding:10px 10px calc(88px + env(safe-area-inset-bottom))}
+      .topbar{top:7px;border-radius:16px;padding:10px 11px}
+      .brand-mini img{width:48px;height:34px}
+      .brand-mini span{display:none}
+      .status-chip{font-size:10px;padding:7px 9px}
+      .hero{padding:21px 18px;min-height:255px;border-radius:22px}
+      .hero h1{font-size:39px}
+      .subtitle{font-size:13px}
+      .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);width:100%;gap:7px}
+      .metric{min-width:0;padding:10px 9px}
+      .metric strong{font-size:19px}
+      .metric small{font-size:8px}
+      .quick-nav{margin:12px 0 14px;gap:8px}
+      .quick-nav a{padding:12px 8px;font-size:11px}
+      .card{padding:15px;border-radius:18px}
+      .stats{grid-template-columns:repeat(3,1fr)}
+      .actions button{flex:1 1 100%}
+      .match{grid-template-columns:1fr 48px 14px 48px 1fr;font-size:10px;gap:5px}
+      .score{font-size:16px;padding:8px 2px}
+      .section-title{align-items:flex-start;flex-direction:column;margin-top:25px}
+      .knockout-controls{width:100%}
+      .knockout-controls .field{min-width:0;flex:1 1 100%}
+      .knockout-controls button{flex:1 1 calc(50% - 5px);font-size:12px;padding-inline:9px}
+      .mobile-dock{
+        position:fixed;z-index:60;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));
+        display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:7px;
+        border:1px solid var(--line);border-radius:18px;background:rgba(7,17,28,.88);
+        backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 16px 34px rgba(0,0,0,.38)
+      }
+      .mobile-dock a{
+        min-height:46px;border-radius:12px;color:#91a6bb;text-decoration:none;font-size:9px;font-weight:800;
+        display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center
+      }
+      .mobile-dock a i{display:block;width:6px;height:6px;border-radius:50%;background:#597087}
+      .mobile-dock a:first-child{color:#e9ffc0;background:rgba(200,255,51,.08)}
+      .mobile-dock a:first-child i{background:var(--accent);box-shadow:0 0 10px rgba(200,255,51,.45)}
+    }
+  </style>
+
+<style id="jb-torneios-v4-theme">
+  :root{
+    --v4-bg:#071019;
+    --v4-panel:rgba(12,25,37,.92);
+    --v4-panel2:rgba(17,31,44,.86);
+    --v4-line:rgba(255,255,255,.10);
+    --v4-lime:#c9ff28;
+    --v4-lime2:#aee819;
+  }
+
+  body{padding-left:224px}
+  .app{
+    max-width:1540px !important;
+    margin:0 auto !important;
+    padding-top:14px !important;
+  }
+  .topbar{
+    background:linear-gradient(180deg,rgba(15,28,40,.93),rgba(8,17,25,.94)) !important;
+    border-color:var(--v4-line) !important;
+    border-radius:16px !important;
+  }
+  .hero{
+    min-height:220px !important;
+    border-radius:20px !important;
+    background:
+      linear-gradient(110deg,rgba(6,16,24,.98),rgba(8,28,40,.88) 55%,rgba(13,32,44,.74)) !important;
+  }
+  .hero h1{font-size:clamp(36px,5vw,58px)!important}
+  .hero h1 span,.eyebrow,.title-line,.criteria b{color:var(--v4-lime)!important}
+  .eyebrow{
+    border-color:rgba(201,255,40,.18)!important;
+    background:rgba(201,255,40,.06)!important;
+  }
+  .quick-nav{
+    grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  }
+  .quick-nav a{
+    background:linear-gradient(180deg,rgba(17,31,44,.94),rgba(9,19,28,.94)) !important;
+    border-color:var(--v4-line)!important;
+    border-radius:13px!important;
+  }
+  .quick-nav a:hover{border-color:rgba(201,255,40,.35)!important}
+  .nav-icon{background:var(--v4-lime)!important}
+  .card,.group,.round{
+    background:linear-gradient(180deg,rgba(15,29,42,.93),rgba(8,18,27,.95)) !important;
+    border-color:var(--v4-line)!important;
+    border-radius:17px!important;
+  }
+  button{
+    background:linear-gradient(135deg,#d8ff2d,#afe718)!important;
+  }
+  button.secondary{
+    background:#111f2d!important;color:#f5f7fa!important;
+    border-color:rgba(255,255,255,.10)!important;
+  }
+  button.warn{
+    background:linear-gradient(135deg,#ffe36d,#ffc43d)!important;
+  }
+  button.danger{
+    background:linear-gradient(135deg,#ff758c,#e84c67)!important;
+  }
+  button.ok{
+    background:linear-gradient(135deg,#9df4bd,#4fd48b)!important;
+  }
+  .status-chip{
+    border-color:rgba(201,255,40,.24)!important;
+    color:#e1ff96!important;
+    background:rgba(201,255,40,.07)!important;
+  }
+  .status-dot{background:var(--v4-lime)!important}
+
+  .jb-sidebar{
+    position:fixed;left:0;top:0;bottom:0;width:224px;z-index:80;
+    display:flex;flex-direction:column;
+    padding:14px 12px;
+    background:linear-gradient(180deg,rgba(15,29,42,.98),rgba(6,13,20,.99));
+    border-right:1px solid rgba(255,255,255,.09);
+    box-shadow:12px 0 34px rgba(0,0,0,.22);
+  }
+  .jb-side-brand{
+    min-height:118px;display:flex;flex-direction:column;justify-content:center;
+    border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:18px 15px;
+    background:
+      radial-gradient(circle at 70% 15%,rgba(201,255,40,.08),transparent 40%),
+      linear-gradient(180deg,rgba(18,33,46,.92),rgba(8,17,25,.94));
+    margin-bottom:14px;
+  }
+  .jb-side-brand strong{font-size:20px;letter-spacing:-.02em}
+  .jb-side-brand span{font-size:10px;color:#9baab6;letter-spacing:.12em;margin-top:5px}
+  .jb-side-section{font-size:9px;color:#758693;letter-spacing:.14em;padding:8px 9px 5px}
+  .jb-side-nav{display:grid;gap:5px}
+  .jb-side-nav a{
+    display:flex;align-items:center;gap:10px;text-decoration:none;color:#f2f6f8;
+    min-height:43px;padding:10px 12px;border-radius:12px;border:1px solid transparent;
+    font-size:12px;font-weight:800;
+  }
+  .jb-side-nav a:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.07)}
+  .jb-side-nav a.active{
+    color:#071018;background:linear-gradient(135deg,#d7ff2d,#afe819);
+    box-shadow:0 7px 22px rgba(201,255,40,.16);
+  }
+  .jb-side-icon{width:24px;text-align:center;font-size:17px}
+  .jb-side-foot{
+    margin-top:auto;border:1px solid rgba(255,255,255,.09);border-radius:15px;
+    padding:12px;background:rgba(10,20,29,.82)
+  }
+  .jb-side-foot small{display:block;color:#8797a3;font-size:9px;margin-bottom:5px}
+  .jb-side-foot b{color:var(--v4-lime);font-size:11px}
+
+  .save-panel{
+    display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:14px;margin:16px 0;
+  }
+  .save-status{
+    display:flex;align-items:center;gap:10px;padding:12px 13px;
+    border:1px solid rgba(87,220,151,.18);border-radius:13px;
+    background:rgba(87,220,151,.06);color:#baf7d4;font-size:12px;margin-top:12px;
+  }
+  .save-status i{width:8px;height:8px;border-radius:50%;background:#57dc97;box-shadow:0 0 12px rgba(87,220,151,.5)}
+  .management-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .management-actions button{width:100%;min-height:44px;font-size:12px;padding:10px}
+  .print-note{font-size:11px;color:#8fa4ba;line-height:1.5;margin-top:9px}
+
+  @media(max-width:1000px){
+    body{padding-left:78px}
+    .jb-sidebar{width:78px;padding:10px 7px}
+    .jb-side-brand{min-height:64px;padding:8px}
+    .jb-side-brand strong{font-size:14px;text-align:center}
+    .jb-side-brand span,.jb-side-section,.jb-side-nav a span:not(.jb-side-icon),.jb-side-foot{display:none}
+    .jb-side-nav a{justify-content:center;padding:9px}
+    .jb-side-icon{font-size:19px}
+    .save-panel{grid-template-columns:1fr}
+  }
+  @media(max-width:650px){
+    body{padding-left:0}
+    .jb-sidebar{display:none}
+    .quick-nav{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+    .management-actions{grid-template-columns:1fr}
+  }
+</style>
+
+
+<style id="jb-torneios-v42-visual">
+:root{
+  --jb-bg:#071019;
+  --jb-bg2:#0b1420;
+  --jb-panel:rgba(13,25,37,.90);
+  --jb-panel2:rgba(17,31,44,.84);
+  --jb-line:rgba(255,255,255,.10);
+  --jb-text:#f5f7fa;
+  --jb-muted:#95a3af;
+  --jb-lime:#c9ff28;
+  --jb-lime2:#a8e617;
+  --jb-shadow:0 18px 44px rgba(0,0,0,.30);
+}
+html,body{
+  background:
+    radial-gradient(circle at 15% 2%,rgba(201,255,40,.055),transparent 28%),
+    radial-gradient(circle at 92% 10%,rgba(84,229,255,.055),transparent 26%),
+    linear-gradient(160deg,#071019 0%,#0a1118 54%,#070d13 100%)!important;
+}
+body{padding-left:236px!important}
+.app{max-width:1500px!important;padding:14px 16px 90px!important}
+.jb-sidebar{
+  width:236px!important;
+  background:linear-gradient(180deg,rgba(15,29,42,.985),rgba(6,13,20,.995))!important;
+  border-right:1px solid rgba(255,255,255,.09)!important;
+}
+.jb-side-brand{
+  min-height:150px!important;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 72% 10%,rgba(201,255,40,.10),transparent 40%),
+    linear-gradient(180deg,rgba(17,31,44,.95),rgba(7,14,21,.98))!important;
+}
+.jb-side-brand:after{
+  content:"JB";
+  position:absolute;
+  right:-10px;
+  bottom:-26px;
+  font-size:112px;
+  font-weight:1000;
+  line-height:1;
+  color:rgba(201,255,40,.055);
+  transform:skewX(-10deg);
+  pointer-events:none;
+}
+.jb-side-brand strong{
+  font-size:21px!important;
+  color:#fff!important;
+}
+.jb-side-brand span{
+  color:#9caab5!important;
+}
+.jb-side-nav a{
+  min-height:46px!important;
+  border-radius:13px!important;
+  color:#f2f5f7!important;
+}
+.jb-side-nav a.active{
+  background:linear-gradient(135deg,#d8ff2d,#b6ef18)!important;
+  color:#071018!important;
+  box-shadow:0 8px 24px rgba(201,255,40,.18)!important;
+}
+.jb-side-icon{
+  width:26px!important;
+  height:26px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:8px!important;
+  background:rgba(255,255,255,.04)!important;
+  font-size:15px!important;
+}
+.jb-side-nav a.active .jb-side-icon{
+  background:rgba(7,16,24,.10)!important;
+}
+.topbar{
+  border-radius:17px!important;
+  background:linear-gradient(180deg,rgba(15,28,40,.94),rgba(8,17,25,.95))!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  box-shadow:0 14px 30px rgba(0,0,0,.22)!important;
+}
+.brand-mini strong{font-size:15px!important}
+.status-chip{
+  color:#dfff8b!important;
+  background:rgba(201,255,40,.07)!important;
+  border-color:rgba(201,255,40,.20)!important;
+}
+.status-dot{background:var(--jb-lime)!important}
+
+.hero{
+  min-height:240px!important;
+  border-radius:22px!important;
+  padding:30px 32px!important;
+  background:
+    linear-gradient(100deg,rgba(6,16,24,.98) 0%,rgba(7,26,38,.89) 54%,rgba(13,31,43,.72) 100%)!important;
+  box-shadow:var(--jb-shadow)!important;
+}
+.hero:before{
+  content:"JB";
+  position:absolute;
+  right:4%;
+  bottom:-32px;
+  font-size:190px;
+  font-weight:1000;
+  color:rgba(255,255,255,.025);
+  transform:skewX(-11deg);
+  pointer-events:none;
+}
+.hero-watermark{
+  opacity:.11!important;
+  width:min(44%,500px)!important;
+  right:3%!important;
+  bottom:-8%!important;
+}
+.eyebrow{
+  color:#dfff8b!important;
+  background:rgba(201,255,40,.07)!important;
+  border-color:rgba(201,255,40,.18)!important;
+}
+.hero h1 span{color:var(--jb-lime)!important}
+
+.quick-nav{gap:9px!important}
+.quick-nav a{
+  min-height:52px!important;
+  border-radius:14px!important;
+  background:linear-gradient(180deg,rgba(17,31,44,.94),rgba(9,19,28,.95))!important;
+  border-color:rgba(255,255,255,.09)!important;
+  box-shadow:0 10px 24px rgba(0,0,0,.18)!important;
+}
+.nav-icon{
+  width:10px!important;height:10px!important;border-radius:3px!important;
+  background:var(--jb-lime)!important;
+  box-shadow:0 0 12px rgba(201,255,40,.30)!important;
+}
+
+.card,.group,.round{
+  border-radius:18px!important;
+  background:linear-gradient(180deg,rgba(15,29,42,.94),rgba(8,18,27,.96))!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  box-shadow:0 14px 30px rgba(0,0,0,.22)!important;
+}
+.card:before{
+  background:linear-gradient(90deg,transparent,rgba(201,255,40,.25),transparent)!important;
+}
+.card-kicker{
+  color:#aebac3!important;
+}
+.icon-box{
+  width:42px!important;height:42px!important;border-radius:13px!important;
+  background:rgba(201,255,40,.07)!important;
+  border:1px solid rgba(201,255,40,.14)!important;
+  color:var(--jb-lime)!important;
+  font-size:17px!important;
+}
+
+button{
+  border-radius:12px!important;
+  box-shadow:none!important;
+}
+button:not(.secondary):not(.warn):not(.danger):not(.ok){
+  background:linear-gradient(135deg,#d8ff2d,#b1e918)!important;
+  color:#071018!important;
+}
+button.secondary{
+  background:#111e2a!important;
+  color:#f4f7f9!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+}
+button.ok{
+  background:linear-gradient(135deg,#9ef1bb,#52d48d)!important;
+  color:#06170d!important;
+}
+button.warn{
+  background:linear-gradient(135deg,#ffe16b,#ffc53d)!important;
+}
+button.danger{
+  background:linear-gradient(135deg,#ff748b,#e84d67)!important;
+}
+button:hover{filter:brightness(1.04)!important}
+
+input,textarea,select{
+  background:rgba(5,14,21,.82)!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  border-radius:12px!important;
+}
+input:focus,textarea:focus,select:focus{
+  border-color:rgba(201,255,40,.46)!important;
+  box-shadow:0 0 0 3px rgba(201,255,40,.07)!important;
+}
+
+.metric,.pill,.team,.criteria div,.ko-match{
+  background:rgba(7,15,22,.70)!important;
+  border-color:rgba(255,255,255,.07)!important;
+}
+.metric strong em,.criteria b,tr.qual td:first-child{color:var(--jb-lime)!important}
+.title-line{
+  background:linear-gradient(var(--jb-lime),#54e5ff)!important;
+  box-shadow:0 0 18px rgba(201,255,40,.20)!important;
+}
+.score{
+  background:#07131d!important;
+  border-color:rgba(201,255,40,.16)!important;
+}
+tr.qual td{background:rgba(201,255,40,.045)!important}
+
+.save-status{
+  background:rgba(201,255,40,.055)!important;
+  border-color:rgba(201,255,40,.16)!important;
+  color:#dfff9d!important;
+}
+.save-status i{
+  background:var(--jb-lime)!important;
+  box-shadow:0 0 12px rgba(201,255,40,.45)!important;
+}
+
+/* Premium iconography using compact symbols */
+#drawBtn::before{content:"⤨ ";font-size:16px}
+#reshuffleBtn::before{content:"↻ ";font-size:16px}
+#clearScoresBtn::before{content:"◌ ";font-size:15px}
+#clearBtn::before{content:"⌫ ";font-size:15px}
+#generateKO::before{content:"♛ ";font-size:15px}
+#resetKO::before{content:"↺ ";font-size:15px}
+#saveNowBtn::before{content:"✓ ";font-size:15px}
+#downloadBackupBtn::before{content:"⇩ ";font-size:15px}
+#restoreBackupBtn::before{content:"⇧ ";font-size:15px}
+#printGroupsBtn::before{content:"▤ ";font-size:15px}
+#printBlankKOBtn::before{content:"◇ ";font-size:15px}
+
+/* Remove emoji visual clutter from button text while keeping labels */
+#drawBtn,#reshuffleBtn,#clearScoresBtn,#clearBtn,#generateKO,#resetKO,#saveNowBtn,#downloadBackupBtn,#restoreBackupBtn,#printGroupsBtn,#printBlankKOBtn{
+  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+}
+
+/* watermark across main content */
+.app:before{
+  content:"JB";
+  position:fixed;
+  right:3%;
+  bottom:4%;
+  z-index:0;
+  font-size:min(22vw,280px);
+  font-weight:1000;
+  color:rgba(201,255,40,.025);
+  pointer-events:none;
+  transform:skewX(-10deg);
+}
+.app>*{position:relative;z-index:1}
+
+@media(max-width:1000px){
+  body{padding-left:78px!important}
+}
+@media(max-width:650px){
+  body{padding-left:0!important}
+  .app{padding:10px 10px calc(88px + env(safe-area-inset-bottom))!important}
+  .hero{min-height:220px!important;padding:22px 18px!important}
+  .hero:before{font-size:120px!important;right:-8%!important}
+}
+</style>
+
+
+<style id="jb-torneios-v43-exact-brand">
+/* ===== V4.3 — IDENTIDADE 100% JB PLAY ===== */
+.jb-side-brand-logo{
+  min-height:158px!important;
+  display:grid!important;
+  place-items:center!important;
+  padding:12px!important;
+}
+.jb-side-brand-logo:after{display:none!important}
+.jb-side-brand-logo img{
+  width:90%;
+  max-height:135px;
+  object-fit:contain;
+  background:transparent;
+  filter:drop-shadow(0 0 14px rgba(201,255,40,.16));
+}
+.brand-mini img{
+  width:58px!important;
+  height:42px!important;
+  object-fit:contain!important;
+  background:transparent!important;
+  filter:drop-shadow(0 0 8px rgba(201,255,40,.14))!important;
+}
+.hero-watermark{
+  width:min(48%,520px)!important;
+  opacity:.13!important;
+  filter:none!important;
+}
+.hero{
+  background:
+    linear-gradient(90deg,rgba(5,14,22,.97) 0%,rgba(6,20,31,.92) 52%,rgba(7,18,26,.75) 100%),
+    radial-gradient(circle at 82% 45%,rgba(201,255,40,.10),transparent 27%)!important;
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  right:4%;
+  bottom:-12%;
+  width:42%;
+  height:80%;
+  background:url('jb-watermark-lime.png') center/contain no-repeat;
+  opacity:.10;
+  pointer-events:none;
+  transform:none!important;
+}
+.hero:after{
+  content:"";
+  position:absolute;
+  right:3%;
+  top:-36%;
+  width:340px;
+  height:340px;
+  border-radius:50%;
+  border:42px solid rgba(255,255,255,.025);
+  background:none!important;
+  pointer-events:none;
+}
+.app:before{
+  content:"";
+  position:fixed;
+  right:2%;
+  bottom:2%;
+  width:min(34vw,420px);
+  height:min(34vw,420px);
+  background:url('jb-watermark-lime.png') center/contain no-repeat;
+  opacity:.035;
+  pointer-events:none;
+  transform:none!important;
+}
+.pwaLogo img{
+  max-width:100%!important;
+  max-height:100%!important;
+  object-fit:contain!important;
+  filter:drop-shadow(0 0 18px rgba(201,255,40,.18))!important;
+}
+
+/* Match JB Play dashboard geometry */
+.jb-sidebar{
+  width:235px!important;
+  padding:14px 12px!important;
+}
+body{padding-left:235px!important}
+.app{max-width:none!important;padding:12px 14px 90px!important}
+.topbar{
+  height:56px!important;
+  padding:10px 13px!important;
+}
+.hero{
+  min-height:235px!important;
+  padding:28px 32px!important;
+}
+.quick-nav{
+  margin:14px 0 16px!important;
+}
+.quick-nav a{
+  min-height:50px!important;
+}
+.card{
+  padding:16px!important;
+}
+.section-title{
+  margin-top:24px!important;
+}
+.group,.round{
+  border-radius:16px!important;
+}
+.mobile-dock{
+  background:rgba(7,17,28,.90)!important;
+  border-color:rgba(255,255,255,.10)!important;
+}
+@media(max-width:1000px){
+  body{padding-left:78px!important}
+}
+@media(max-width:650px){
+  body{padding-left:0!important}
+}
+</style>
+
+
+<style id="jb-torneios-v44-fix">
+/* V4.4 — correção da logo duplicada no banner */
+.hero:before{
+  display:none!important;
+  content:none!important;
+  background:none!important;
+}
+.hero-watermark{
+  display:block!important;
+  position:absolute!important;
+  right:3%!important;
+  bottom:-7%!important;
+  width:min(46%,500px)!important;
+  max-height:88%!important;
+  object-fit:contain!important;
+  opacity:.12!important;
+  filter:none!important;
+  pointer-events:none!important;
+  z-index:1!important;
+}
+.hero > *:not(.hero-watermark){position:relative;z-index:2}
+</style>
+
+
+<style id="jb-v45-pwa">
+html,body{
+  overscroll-behavior-y:none;
+  -webkit-text-size-adjust:100%;
+}
+body{
+  min-height:100dvh;
+}
+button,a,input,select,textarea{
+  touch-action:manipulation;
+}
+@supports(padding:max(0px)){
+  .app{
+    padding-bottom:max(96px,calc(76px + env(safe-area-inset-bottom)))!important;
+  }
+}
+@media(display-mode:standalone){
+  .topbar{top:max(7px,env(safe-area-inset-top))!important}
+  body{user-select:none;-webkit-user-select:none}
+  input,textarea{user-select:text;-webkit-user-select:text}
+}
+</style>
+
+</head>
+
+<body>
+
+  <aside class="jb-sidebar" aria-label="Menu JB Torneios Pro">
+    <div class="jb-side-brand jb-side-brand-logo">
+      <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
+    </div>
+    <div class="jb-side-section">GESTÃO</div>
+    <nav class="jb-side-nav">
+      <a class="active" href="#inicio"><span class="jb-side-icon">⌂</span><span>Início</span></a>
+      <a href="#config"><span class="jb-side-icon">◉</span><span>Configuração</span></a>
+      <a href="#duplas"><span class="jb-side-icon">◇</span><span>Duplas</span></a>
+      <a href="#grupos"><span class="jb-side-icon">▦</span><span>Grupos e súmulas</span></a>
+      <a href="#mata-mata"><span class="jb-side-icon">♛</span><span>Mata-mata</span></a>
+      <a href="#gestao-arquivos"><span class="jb-side-icon">⇩</span><span>Salvar / PDF</span></a>
+    </nav>
+    <div class="jb-side-foot">
+      <small>JB TORNEIOS</small>
+      <b>Foco • Organização • Resultados</b>
+    </div>
+  </aside>
+
+  <div id="pwaSplash" aria-hidden="true">
+    <div class="pwaSplashCard">
+      <div class="pwaLogo">
+        <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
+      </div>
+      <h2>JB Play</h2>
+      <p>Organizador inteligente de torneios internos</p>
+    </div>
+  </div>
+
+  <div class="app">
+    <header class="topbar">
+      <div class="brand-mini">
+        <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
+        <div>
+          <strong>JB Play</strong>
+          <span>João Bertonha · Beach Tennis</span>
+        </div>
+      </div>
+      <div class="status-chip"><span class="status-dot"></span> pronto para iPhone/iPad</div>
+    </header>
+
+    <section class="hero" id="inicio">
+      <img class="hero-watermark" src="jb-watermark-lime.png" alt="" aria-hidden="true">
+      <div class="hero-content">
+        <div class="eyebrow">JB Torneios Pro · Gestão de torneios</div>
+        <h1>Seu torneio, <span>mais profissional.</span></h1>
+        <p class="subtitle">
+          Sorteio automático de duplas e grupos, lançamento rápido de placares,
+          classificação em tempo real e mata-mata completo em uma interface otimizada para toque.
+        </p>
+        <div class="hero-stats">
+          <div class="metric"><small>Inscritos</small><strong id="heroPlayers">0</strong></div>
+          <div class="metric"><small>Duplas</small><strong id="heroTeams">0</strong></div>
+          <div class="metric"><small>Grupos</small><strong><em id="heroGroups">0</em></strong></div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="quick-nav" aria-label="Navegação rápida">
+      <a href="#config"><span class="nav-icon"></span>Configuração</a>
+      <a href="#duplas"><span class="nav-icon"></span>Duplas</a>
+      <a href="#grupos"><span class="nav-icon"></span>Grupos</a>
+      <a href="#mata-mata"><span class="nav-icon"></span>Mata-mata</a>
+      <a href="#gestao-arquivos"><span class="nav-icon"></span>Salvar / PDF</a>
+    </nav>
+
+    <div class="grid two" id="config">
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-kicker">Etapa 01</div>
+            <h2>Configuração do torneio</h2>
+          </div>
+          <div class="icon-box">⚙</div>
+        </div>
+
+        <label for="title">Nome do torneio</label>
+        <input id="title" value="Torneio Interno" />
+
+        <div style="height:11px"></div>
+
+        <label for="participants">Participantes — um nome por linha</label>
+        <textarea id="participants" placeholder="João&#10;Pedro&#10;Carlos&#10;Bruno"></textarea>
+
+        <div class="stats">
+          <span class="pill">Inscritos<b id="countPlayers">0</b></span>
+          <span class="pill">Duplas<b id="countTeams">0</b></span>
+          <span class="pill">Grupos<b id="countGroups">0</b></span>
+        </div>
+
+        <div id="notice" class="notice"></div>
+
+        <div class="actions">
+          <button id="drawBtn">Sortear duplas e grupos</button>
+          <button id="reshuffleBtn" class="warn">Sortear novamente</button>
+          <button id="clearScoresBtn" class="secondary">Zerar placares</button>
+          <button id="clearBtn" class="danger">Limpar torneio</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-kicker">Automação</div>
+            <h2>Regras inteligentes</h2>
+          </div>
+          <div class="icon-box">✦</div>
+        </div>
+
+        <p class="rule-copy">
+          Com <b>4 ou 5 duplas</b>, o sistema cria um <b>grupo único</b> em formato todos contra todos.
+          A partir de <b>6 duplas</b>, prioriza grupos de <b>3 duplas</b> e usa grupos de 4 apenas quando necessário.
+        </p>
+
+        <div class="team">4 duplas → 1 grupo único de 4 (todos contra todos)</div>
+        <div class="team">5 duplas → 1 grupo único de 5 (todos contra todos)</div>
+        <div class="team">6 duplas → 2 grupos de 3</div>
+        <div class="team">9 duplas → 3 grupos de 3</div>
+        <div class="team">10 duplas → 2 grupos de 3 + 1 grupo de 4</div>
+        <div class="team">11 duplas → 1 grupo de 3 + 2 grupos de 4</div>
+        <div class="team">12 duplas → 4 grupos de 3</div>
+
+        <div class="criteria">
+          <div><b>1º</b> Vitórias</div>
+          <div><b>2º</b> Saldo de games</div>
+          <div><b>3º</b> Games ganhos</div>
+          <div><b>4º</b> Confronto direto, quando o empate restante for entre duas duplas</div>
+        </div>
+      </section>
+    </div>
+
+
+    <div class="save-panel" id="gestao-arquivos">
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-kicker">Segurança</div>
+            <h2>Salvamento automático</h2>
+          </div>
+          <div class="icon-box">✓</div>
+        </div>
+        <p class="rule-copy">
+          Participantes, duplas, grupos, placares, classificação e mata-mata ficam salvos
+          automaticamente neste dispositivo. Ao reabrir a ferramenta, o último torneio é restaurado.
+        </p>
+        <div id="autoSaveStatus" class="save-status"><i></i><span>Preparando salvamento automático…</span></div>
+        <div class="actions">
+          <button id="saveNowBtn">Salvar agora</button>
+          <button id="downloadBackupBtn" class="secondary">Baixar backup</button>
+          <button id="restoreBackupBtn" class="secondary">Restaurar backup</button>
+          <input type="file" id="restoreBackupInput" accept="application/json,.json" hidden />
+        </div>
+        <div class="print-note">
+          O backup em arquivo JSON é recomendado antes de torneios importantes e permite restaurar
+          o evento mesmo em outro aparelho.
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-kicker">Impressão</div>
+            <h2>Súmulas e chaves em PDF</h2>
+          </div>
+          <div class="icon-box">▤</div>
+        </div>
+        <p class="rule-copy">
+          Gere folhas limpas para impressão. O navegador abrirá a visualização de impressão,
+          permitindo imprimir em papel ou escolher <b>Salvar como PDF</b>.
+        </p>
+        <div class="management-actions">
+          <button id="printGroupsBtn">Súmulas dos grupos</button>
+          <button id="printBlankKOBtn" class="secondary">Mata-mata em branco</button>
+        </div>
+        <div class="print-note">
+          As súmulas dos grupos incluem jogos, campos para placar e tabela de classificação.
+          A chave eliminatória em branco pode ser impressa antes mesmo de os resultados estarem concluídos.
+        </div>
+      </section>
+    </div>
+
+    <div class="section-title" id="duplas">
+      <div class="title-wrap">
+        <span class="title-line"></span>
+        <div><h2>Duplas sorteadas</h2><p>Formação automática a partir dos inscritos.</p></div>
+      </div>
+    </div>
+    <div id="teamsArea" class="empty">Adicione os participantes e toque em “Sortear duplas e grupos”.</div>
+
+    <div class="section-title" id="grupos">
+      <div class="title-wrap">
+        <span class="title-line"></span>
+        <div><h2>Fase de grupos</h2><p>Placares, classificação e critérios de desempate.</p></div>
+      </div>
+    </div>
+    <div id="groupsArea" class="empty">Os grupos, confrontos e classificação aparecerão aqui após o sorteio.</div>
+
+    <div class="section-title" id="mata-mata">
+      <div class="title-wrap">
+        <span class="title-line"></span>
+        <div><h2>Mata-mata</h2><p>Geração automática conforme a classificação.</p></div>
+      </div>
+      <div class="knockout-controls">
+        <div class="field">
+          <label for="qualifiersPerGroup">Classificados por grupo</label>
+          <select id="qualifiersPerGroup">
+            <option value="1">1 dupla por grupo</option>
+            <option value="2" selected>2 duplas por grupo</option>
+          </select>
+        </div>
+        <button id="generateKO" class="ok">Gerar mata-mata</button>
+        <button id="resetKO" class="secondary">Resetar</button>
+      </div>
+    </div>
+    <div id="knockoutArea" class="empty">Preencha todos os placares da fase de grupos e gere o mata-mata.</div>
+
+    <div class="footer">
+      João Bertonha Beach Tennis · JB Torneios Pro<br>
+      Otimizado para Safari, iPhone e iPad · autosave reforçado em LocalStorage + IndexedDB · backup manual disponível.
+    </div>
+  </div>
+
+  <nav class="mobile-dock" aria-label="Menu inferior">
+    <a href="#inicio"><i></i>Início</a>
+    <a href="#config"><i></i>Config</a>
+    <a href="#grupos"><i></i>Grupos</a>
+    <a href="#mata-mata"><i></i>Finais</a>
+  </nav>
+
+<script>
+  const el = id => document.getElementById(id);
+  const participants = el('participants');
+  const teamsArea = el('teamsArea');
+  const groupsArea = el('groupsArea');
+  const knockoutArea = el('knockoutArea');
+  const notice = el('notice');
+
+  let state = {
+    teams: [],
+    groups: [],
+    knockout: null
+  };
+
+  function showNotice(msg, success=false){
+    notice.textContent = msg;
+    notice.className = 'notice' + (success ? ' success' : '');
+    notice.style.display = 'block';
+  }
+  function hideNotice(){ notice.style.display='none'; }
+
+  function esc(s){
+    if(s === null || typeof s === 'undefined') s = '';
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function getNames(){
+    return participants.value.split(/\n+/).map(s=>s.trim()).filter(Boolean);
+  }
+
+  function shuffle(arr){
+    const a=[...arr];
+    for(let i=a.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [a[i],a[j]]=[a[j],a[i]];
+    }
+    return a;
+  }
+
+  function groupSizes(n){
+    if(n <= 0) return [];
+    let best=null;
+    for(let b=0;b<=Math.floor(n/4)+1;b++){
+      const rem=n-4*b;
+      if(rem>=0 && rem%3===0){
+        const a=rem/3;
+        if(!best || a>best.a || (a===best.a && b<best.b)) best={a,b};
+      }
+    }
+    if(best) return [...Array(best.a).fill(3), ...Array(best.b).fill(4)];
+    if(n===1) return [1];
+    if(n===2) return [2];
+    if(n===5) return [5];
+    if(n===8) return [4,4];
+    const sizes=[];
+    while(n>=3){
+      if(n===4){sizes.push(4);n=0;break;}
+      if(n===5){sizes.push(5);n=0;break;}
+      sizes.push(3); n-=3;
+    }
+    if(n>0) sizes.push(n);
+    return sizes;
+  }
+
+  function makeRoundRobin(teams, groupName){
+    const games=[];
+    let c=1;
+    for(let i=0;i<teams.length;i++){
+      for(let j=i+1;j<teams.length;j++){
+        games.push({
+          id:`${groupName}-${c++}`,
+          aId:teams[i].id,
+          bId:teams[j].id,
+          aScore:'',
+          bScore:''
+        });
+      }
+    }
+    return games;
+  }
+
+  function getTeam(id){
+    return state.teams.find(t=>t.id===id) || null;
+  }
+
+  function teamLabel(team){
+    return team ? team.players.join(' / ') : '—';
+  }
+
+  function isScored(m){
+    return m.aScore !== '' && m.bScore !== '' &&
+      Number.isFinite(Number(m.aScore)) && Number.isFinite(Number(m.bScore));
+  }
+
+  function isValidGroupScore(m){
+    return isScored(m) && Number(m.aScore) !== Number(m.bScore);
+  }
+
+  function groupStandings(group){
+    const rows = group.teams.map(t=>({
+      team:t, J:0, V:0, D:0, GP:0, GC:0, SG:0
+    }));
+
+    const byId = Object.fromEntries(rows.map(r=>[r.team.id,r]));
+
+    group.matches.forEach(m=>{
+      if(!isValidGroupScore(m)) return;
+      const a=byId[m.aId], b=byId[m.bId];
+      const sa=Number(m.aScore), sb=Number(m.bScore);
+      a.J++; b.J++;
+      a.GP += sa; a.GC += sb;
+      b.GP += sb; b.GC += sa;
+      if(sa>sb){ a.V++; b.D++; } else { b.V++; a.D++; }
+    });
+
+    rows.forEach(r=>r.SG=r.GP-r.GC);
+
+    // Critérios principais.
+    rows.sort((x,y)=>
+      y.V-x.V ||
+      y.SG-x.SG ||
+      y.GP-x.GP ||
+      x.team.id-y.team.id
+    );
+
+    // Confronto direto para empate exato entre 2 duplas nos 3 critérios principais.
+    let i=0;
+    while(i<rows.length){
+      let j=i+1;
+      while(j<rows.length &&
+        rows[j].V===rows[i].V &&
+        rows[j].SG===rows[i].SG &&
+        rows[j].GP===rows[i].GP) j++;
+
+      if(j-i===2){
+        const a=rows[i], b=rows[i+1];
+        const h2h=group.matches.find(m =>
+          (m.aId===a.team.id && m.bId===b.team.id) ||
+          (m.aId===b.team.id && m.bId===a.team.id)
+        );
+        if(h2h && isValidGroupScore(h2h)){
+          const sa=Number(h2h.aScore), sb=Number(h2h.bScore);
+          const winnerId = sa>sb ? h2h.aId : h2h.bId;
+          if(rows[i+1].team.id===winnerId){
+            [rows[i],rows[i+1]]=[rows[i+1],rows[i]];
+          }
+        }
+      }
+      i=j;
+    }
+    return rows;
+  }
+
+  function allGroupsComplete(){
+    if(!state.groups.length) return false;
+    return state.groups.every(g=>g.matches.every(isValidGroupScore));
+  }
+
+  function updateStats(){
+    const n=getNames().length;
+    el('countPlayers').textContent=n;
+    el('countTeams').textContent=Math.floor(n/2);
+    el('countGroups').textContent=groupSizes(Math.floor(n/2)).length;
+  }
+
+  var memoryBackup = null;
+
+  function storageSet(key, value){
+    try{
+      window.localStorage.setItem(key, value);
+      return true;
+    }catch(e){
+      memoryBackup = value;
+      return false;
+    }
+  }
+
+  function storageGet(key){
+    try{
+      return window.localStorage.getItem(key);
+    }catch(e){
+      return memoryBackup;
+    }
+  }
+
+  function save(){
+    var now = Date.now();
+    var payload = JSON.stringify({
+      version: 4,
+      savedAt: now,
+      title: el('title').value,
+      participants: participants.value,
+      qualifiersPerGroup: el('qualifiersPerGroup').value,
+      state: state
+    });
+    storageSet('jb_torneio_v4_pro', payload);
+    storageSet('jb_torneio_v3_ios', payload);
+    queueIndexedDBSave(payload);
+    updateAutoSaveStatus(now);
+    return payload;
+  }
+
+  function load(){
+    try{
+      var raw = storageGet('jb_torneio_v4_pro') || storageGet('jb_torneio_v3_ios') || storageGet('jb_torneio_v2') || storageGet('jb_torneio');
+      var data = raw ? JSON.parse(raw) : null;
+      if(!data) return;
+      el('title').value=data.title||'Torneio Interno';
+      participants.value=data.participants||'';
+      if(data.qualifiersPerGroup) el('qualifiersPerGroup').value=data.qualifiersPerGroup;
+      if(data.state){
+        state=data.state;
+        if(!state.knockout) state.knockout=null;
+      }
+      render();
+      updateStats();
+    }catch(e){}
+  }
+
+  function draw(){
+    hideNotice();
+    const names=getNames();
+
+    if(names.length<6){
+      showNotice('Insira pelo menos 6 participantes para formar 3 duplas.');
+      return;
+    }
+    if(names.length%2!==0){
+      showNotice('Há um número ímpar de inscritos. Remova um nome ou deixe um participante como reserva antes do sorteio.');
+      return;
+    }
+
+    const shuffled=shuffle(names);
+    const teams=[];
+    for(let i=0;i<shuffled.length;i+=2){
+      teams.push({id:i/2+1, players:[shuffled[i],shuffled[i+1]]});
+    }
+
+    const sizes=groupSizes(teams.length);
+    if(sizes.some(s=>s<3)){
+      showNotice('A quantidade de duplas não permite uma distribuição padrão. O sistema criou a melhor divisão possível.');
+    }
+
+    const shuffledTeams=shuffle(teams);
+    const groups=[];
+    let cursor=0;
+    sizes.forEach((size,idx)=>{
+      const gTeams=shuffledTeams.slice(cursor,cursor+size);
+      cursor+=size;
+      const name=String.fromCharCode(65+idx);
+      groups.push({
+        name,
+        teams:gTeams,
+        matches:makeRoundRobin(gTeams,name)
+      });
+    });
+
+    state={teams,groups,knockout:null};
+    render();
+    save();
+  }
+
+  function updateGroupScore(groupIndex, matchIndex, side, value, inputEl){
+    var m=state.groups[groupIndex].matches[matchIndex];
+    var clean=String(value).replace(/[^\d]/g,'');
+    m[side] = clean === '' ? '' : String(Math.min(99,Number(clean)));
+
+    if(inputEl && inputEl.value !== m[side]) inputEl.value = m[side];
+
+    state.knockout=null;
+    save();
+  }
+
+  function finishGroupScore(){
+    renderGroups();
+    renderKnockout();
+    save();
+  }
+
+  function clearScores(){
+    state.groups.forEach(g=>g.matches.forEach(m=>{m.aScore='';m.bScore='';}));
+    state.knockout=null;
+    hideNotice();
+    render();
+    save();
+  }
+
+  function seedQualifiers(){
+    const qpg=Number(el('qualifiersPerGroup').value);
+    const qualifiers=[];
+
+    state.groups.forEach(g=>{
+      const table=groupStandings(g);
+      for(let i=0;i<Math.min(qpg,table.length);i++){
+        const r=table[i];
+        qualifiers.push({
+          team:r.team,
+          group:g.name,
+          position:i+1,
+          winPct:r.J ? r.V/r.J : 0,
+          sgPerMatch:r.J ? r.SG/r.J : 0,
+          gpPerMatch:r.J ? r.GP/r.J : 0
+        });
+      }
+    });
+
+    // Campeões de grupo primeiro; depois segundos colocados.
+    qualifiers.sort((a,b)=>
+      a.position-b.position ||
+      b.winPct-a.winPct ||
+      b.sgPerMatch-a.sgPerMatch ||
+      b.gpPerMatch-a.gpPerMatch ||
+      a.group.localeCompare(b.group)
+    );
+
+    // Tenta evitar confrontos do mesmo grupo na primeira rodada:
+    // metade superior recebe metade inferior em ordem ajustada.
+    const n=qualifiers.length;
+    if(n>=4){
+      const top=qualifiers.slice(0,Math.ceil(n/2));
+      const bottom=qualifiers.slice(Math.ceil(n/2));
+      const ordered=[...top];
+      const used=new Set();
+
+      for(let i=0;i<top.length && i<bottom.length;i++){
+        let pick=-1;
+        for(let j=0;j<bottom.length;j++){
+          if(used.has(j)) continue;
+          if(bottom[j].group!==top[i].group){ pick=j; break; }
+        }
+        if(pick<0) pick=bottom.findIndex((_,j)=>!used.has(j));
+        if(pick>=0){
+          used.add(pick);
+          ordered.push(bottom[pick]);
+        }
+      }
+      bottom.forEach((x,j)=>{if(!used.has(j)) ordered.push(x)});
+      return ordered;
+    }
+    return qualifiers;
+  }
+
+  function nextPowerOfTwo(n){
+    let p=1;
+    while(p<n) p*=2;
+    return Math.max(2,p);
+  }
+
+  function roundName(size){
+    if(size===2) return 'Final';
+    if(size===4) return 'Semifinais';
+    if(size===8) return 'Quartas de final';
+    if(size===16) return 'Oitavas de final';
+    if(size===32) return '16 avos de final';
+    return `Fase com ${size} vagas`;
+  }
+
+  function buildFirstRound(qualifiers){
+    const size=nextPowerOfTwo(qualifiers.length);
+    const slots=Array(size).fill(null);
+
+    // Distribui byes aos melhores seeds e cruza melhores x piores.
+    for(let i=0;i<qualifiers.length;i++) slots[i]=qualifiers[i].team.id;
+
+    const pairings=[];
+    let l=0, r=size-1;
+    while(l<r){
+      pairings.push({
+        aId:slots[l],
+        bId:slots[r],
+        aScore:'',
+        bScore:''
+      });
+      l++; r--;
+    }
+    return {size,pairings};
+  }
+
+  function getKnockoutWinner(match){
+    if(match.aId && !match.bId) return match.aId;
+    if(!match.aId && match.bId) return match.bId;
+    if(!match.aId || !match.bId) return null;
+    if(match.aScore==='' || match.bScore==='') return null;
+    const a=Number(match.aScore), b=Number(match.bScore);
+    if(a===b) return null;
+    return a>b ? match.aId : match.bId;
+  }
+
+  function generateKnockout(){
+    hideNotice();
+    if(!state.groups.length){
+      showNotice('Primeiro faça o sorteio das duplas e dos grupos.');
+      return;
+    }
+    if(!allGroupsComplete()){
+      showNotice('Preencha todos os placares da fase de grupos sem empates antes de gerar o mata-mata.');
+      return;
+    }
+
+    const qualifiers=seedQualifiers();
+    if(qualifiers.length<2){
+      showNotice('É necessário ter pelo menos 2 duplas classificadas.');
+      return;
+    }
+
+    const first=buildFirstRound(qualifiers);
+    const rounds=[{
+      name:roundName(first.size),
+      size:first.size,
+      matches:first.pairings
+    }];
+
+    let size=first.size/2;
+    while(size>=2){
+      rounds.push({
+        name:roundName(size),
+        size,
+        matches:Array(size/2).fill(0).map(()=>({aId:null,bId:null,aScore:'',bScore:''}))
+      });
+      size/=2;
+    }
+
+    state.knockout={qualifiers,rounds,championId:null};
+    propagateKnockout(0);
+    renderKnockout();
+    save();
+    showNotice('Mata-mata gerado automaticamente com base na classificação dos grupos.', true);
+  }
+
+  function propagateKnockout(fromRound){
+    if(!state.knockout) return;
+    const rounds=state.knockout.rounds;
+
+    for(let r=Math.max(0,fromRound); r<rounds.length-1; r++){
+      const current=rounds[r];
+      const next=rounds[r+1];
+
+      for(let i=0;i<next.matches.length;i++){
+        const w1=getKnockoutWinner(current.matches[i*2]);
+        const w2=getKnockoutWinner(current.matches[i*2+1]);
+
+        const oldA=next.matches[i].aId, oldB=next.matches[i].bId;
+        next.matches[i].aId=w1;
+        next.matches[i].bId=w2;
+
+        if(oldA!==w1 || oldB!==w2){
+          next.matches[i].aScore='';
+          next.matches[i].bScore='';
+        }
+      }
+    }
+
+    const finalRound=rounds[rounds.length-1];
+    const finalMatch=finalRound.matches[0];
+    state.knockout.championId=getKnockoutWinner(finalMatch);
+  }
+
+  function updateKOScore(roundIndex, matchIndex, side, value, inputEl){
+    var match=state.knockout.rounds[roundIndex].matches[matchIndex];
+    var clean=String(value).replace(/[^\d]/g,'');
+    match[side]=clean==='' ? '' : String(Math.min(99,Number(clean)));
+    if(inputEl && inputEl.value !== match[side]) inputEl.value = match[side];
+    save();
+  }
+
+  function finishKOScore(roundIndex){
+    propagateKnockout(roundIndex);
+    renderKnockout();
+    save();
+  }
+
+  function renderTeams(){
+    if(!state.teams.length){
+      teamsArea.className='empty';
+      teamsArea.innerHTML='Adicione os participantes e toque em “Sortear duplas e grupos”.';
+      return;
+    }
+    teamsArea.className='group-wrap';
+    teamsArea.innerHTML=state.teams.map((t,i)=>`
+      <div class="group">
+        <h3>Dupla ${i+1}</h3>
+        <div class="team">${esc(t.players[0])} / ${esc(t.players[1])}</div>
+      </div>`).join('');
+  }
+
+  function renderGroups(){
+    if(!state.groups.length){
+      groupsArea.className='empty';
+      groupsArea.innerHTML='Os grupos, confrontos e classificação aparecerão aqui após o sorteio.';
+      return;
+    }
+
+    groupsArea.className='group-wrap';
+    const qpg=Number(el('qualifiersPerGroup').value);
+
+    groupsArea.innerHTML=state.groups.map((g,gi)=>{
+      const table=groupStandings(g);
+
+      const matchesHtml=g.matches.map((m,mi)=>{
+        const a=getTeam(m.aId), b=getTeam(m.bId);
+        return `
+          <div class="match">
+            <span class="right">${esc(teamLabel(a))}</span>
+            <input class="score" inputmode="numeric" pattern="[0-9]*" value="${esc(m.aScore)}"
+              aria-label="Placar ${esc(teamLabel(a))}"
+              oninput="updateGroupScore(${gi},${mi},'aScore',this.value,this)" onchange="finishGroupScore()" onblur="finishGroupScore()" />
+            <span class="vs">×</span>
+            <input class="score" inputmode="numeric" pattern="[0-9]*" value="${esc(m.bScore)}"
+              aria-label="Placar ${esc(teamLabel(b))}"
+              oninput="updateGroupScore(${gi},${mi},'bScore',this.value,this)" onchange="finishGroupScore()" onblur="finishGroupScore()" />
+            <span>${esc(teamLabel(b))}</span>
+          </div>`;
+      }).join('');
+
+      const standingsHtml=table.map((r,idx)=>`
+        <tr class="${idx<qpg?'qual':''}">
+          <td class="pos">${idx+1}</td>
+          <td class="team-name">${esc(teamLabel(r.team))}</td>
+          <td>${r.J}</td><td>${r.V}</td><td>${r.D}</td>
+          <td>${r.GP}</td><td>${r.GC}</td><td>${r.SG>0?'+':''}${r.SG}</td>
+        </tr>`).join('');
+
+      return `
+        <div class="group">
+          <h3>Grupo ${esc(g.name)} · ${g.teams.length} duplas</h3>
+          ${g.teams.map((t,i)=>`<div class="team">${i+1}. ${esc(teamLabel(t))}</div>`).join('')}
+
+          <div class="matches">
+            <div class="small" style="font-weight:900;margin-bottom:3px">PLACARES</div>
+            ${matchesHtml}
+          </div>
+
+          <div class="standings-wrap">
+            <table>
+              <thead>
+                <tr><th>#</th><th>Dupla</th><th>J</th><th>V</th><th>D</th><th>GP</th><th>GC</th><th>SG</th></tr>
+              </thead>
+              <tbody>${standingsHtml}</tbody>
+            </table>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function renderKnockout(){
+    if(!state.knockout){
+      knockoutArea.className='empty';
+      knockoutArea.innerHTML='Preencha todos os placares da fase de grupos e gere o mata-mata.';
+      return;
+    }
+
+    knockoutArea.className='';
+    const roundsHtml=state.knockout.rounds.map((round,ri)=>`
+      <div class="round">
+        <h3>${esc(round.name)}</h3>
+        ${round.matches.map((m,mi)=>{
+          const a=getTeam(m.aId), b=getTeam(m.bId);
+          const winnerId=getKnockoutWinner(m);
+          return `
+            <div class="ko-match">
+              <div class="ko-row">
+                <div class="ko-team ${!a?'bye':''} ${winnerId===m.aId?'winner':''}">
+                  ${a ? esc(teamLabel(a)) : 'BYE / aguardando'}
+                </div>
+                <input class="score" inputmode="numeric" pattern="[0-9]*"
+                  ${!a || !b ? 'disabled' : ''}
+                  value="${esc(m.aScore)}"
+                  oninput="updateKOScore(${ri},${mi},'aScore',this.value,this)" onchange="finishKOScore(${ri})" onblur="finishKOScore(${ri})" />
+              </div>
+              <div class="ko-row">
+                <div class="ko-team ${!b?'bye':''} ${winnerId===m.bId?'winner':''}">
+                  ${b ? esc(teamLabel(b)) : 'BYE / aguardando'}
+                </div>
+                <input class="score" inputmode="numeric" pattern="[0-9]*"
+                  ${!a || !b ? 'disabled' : ''}
+                  value="${esc(m.bScore)}"
+                  oninput="updateKOScore(${ri},${mi},'bScore',this.value,this)" onchange="finishKOScore(${ri})" onblur="finishKOScore(${ri})" />
+              </div>
+            </div>`;
+        }).join('')}
+      </div>
+    `).join('');
+
+    const champion=getTeam(state.knockout.championId);
+    knockoutArea.innerHTML=`
+      <div class="bracket-rounds">${roundsHtml}</div>
+      ${champion ? `
+        <div class="champion">
+          <div class="cup">🏆</div>
+          <div class="small">CAMPEÕES</div>
+          <h3>${esc(teamLabel(champion))}</h3>
+          <div class="small">${esc(el('title').value)}</div>
+        </div>` : ''}
+    `;
+  }
+
+  function render(){
+    updateStats();
+    renderTeams();
+    renderGroups();
+    renderKnockout();
+  }
+
+
+  // ===== JB TORNEIOS V4 — PERSISTÊNCIA REFORÇADA =====
+  var JB_DB_NAME='jb_torneios_pro_db';
+  var JB_DB_STORE='autosave';
+  var JB_DB_KEY='torneio_atual';
+  var idbTimer=null;
+
+  function updateAutoSaveStatus(ts){
+    var box=document.getElementById('autoSaveStatus');
+    if(!box) return;
+    var d=new Date(ts||Date.now());
+    var time=d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    box.innerHTML='<i></i><span>Salvo automaticamente às <b>'+esc(time)+'</b></span>';
+  }
+
+  function openTournamentDB(){
+    return new Promise(function(resolve,reject){
+      if(!('indexedDB' in window)){ reject(new Error('IndexedDB indisponível')); return; }
+      var req=indexedDB.open(JB_DB_NAME,1);
+      req.onupgradeneeded=function(){
+        var db=req.result;
+        if(!db.objectStoreNames.contains(JB_DB_STORE)) db.createObjectStore(JB_DB_STORE);
+      };
+      req.onsuccess=function(){ resolve(req.result); };
+      req.onerror=function(){ reject(req.error||new Error('Falha ao abrir banco local')); };
+    });
+  }
+
+  function idbPut(payload){
+    return openTournamentDB().then(function(db){
+      return new Promise(function(resolve,reject){
+        var tx=db.transaction(JB_DB_STORE,'readwrite');
+        tx.objectStore(JB_DB_STORE).put(payload,JB_DB_KEY);
+        tx.oncomplete=function(){ db.close(); resolve(); };
+        tx.onerror=function(){ db.close(); reject(tx.error); };
+      });
+    });
+  }
+
+  function idbGet(){
+    return openTournamentDB().then(function(db){
+      return new Promise(function(resolve,reject){
+        var tx=db.transaction(JB_DB_STORE,'readonly');
+        var req=tx.objectStore(JB_DB_STORE).get(JB_DB_KEY);
+        req.onsuccess=function(){ var v=req.result||null; db.close(); resolve(v); };
+        req.onerror=function(){ db.close(); reject(req.error); };
+      });
+    });
+  }
+
+  function queueIndexedDBSave(payload){
+    clearTimeout(idbTimer);
+    idbTimer=setTimeout(function(){ idbPut(payload).catch(function(){}); },180);
+  }
+
+  function applySnapshot(data){
+    if(!data) return false;
+    el('title').value=data.title||'Torneio Interno';
+    participants.value=data.participants||'';
+    if(data.qualifiersPerGroup) el('qualifiersPerGroup').value=data.qualifiersPerGroup;
+    if(data.state){
+      state=data.state;
+      if(!state.knockout) state.knockout=null;
+    }
+    render();
+    updateStats();
+    updateAutoSaveStatus(data.savedAt||Date.now());
+    return true;
+  }
+
+  function restoreBestPersistentSnapshot(){
+    var localRaw=storageGet('jb_torneio_v4_pro') || storageGet('jb_torneio_v3_ios');
+    var localData=null;
+    try{ localData=localRaw?JSON.parse(localRaw):null; }catch(e){}
+    idbGet().then(function(idbRaw){
+      var idbData=null;
+      try{ idbData=idbRaw?JSON.parse(idbRaw):null; }catch(e){}
+      if(idbData && (!localData || Number(idbData.savedAt||0)>Number(localData.savedAt||0))){
+        applySnapshot(idbData);
+        storageSet('jb_torneio_v4_pro',JSON.stringify(idbData));
+      }else if(localData){
+        updateAutoSaveStatus(localData.savedAt||Date.now());
+      }else{
+        updateAutoSaveStatus(Date.now());
+      }
+    }).catch(function(){
+      if(localData) updateAutoSaveStatus(localData.savedAt||Date.now());
+      else updateAutoSaveStatus(Date.now());
+    });
+  }
+
+  function downloadTournamentBackup(){
+    var payload=save();
+    var blob=new Blob([payload],{type:'application/json;charset=utf-8'});
+    var a=document.createElement('a');
+    var safe=(el('title').value||'torneio').replace(/[^\w\-]+/g,'_');
+    a.href=URL.createObjectURL(blob);
+    a.download='backup_'+safe+'.json';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },100);
+    showNotice('Backup do torneio baixado com sucesso.',true);
+  }
+
+  function restoreTournamentBackup(file){
+    if(!file) return;
+    var reader=new FileReader();
+    reader.onload=function(){
+      try{
+        var data=JSON.parse(reader.result);
+        if(!data || !data.state) throw new Error('Backup inválido');
+        if(!confirm('Restaurar este backup? O torneio atual será substituído.')) return;
+        applySnapshot(data);
+        save();
+        showNotice('Backup restaurado com sucesso.',true);
+      }catch(e){
+        showNotice('Não foi possível restaurar este arquivo de backup.');
+      }
+    };
+    reader.readAsText(file);
+  }
+
+
+  function jbPrintLogo(){
+    return '<img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis" class="print-logo">';
+  }
+
+  function printWindow(title,bodyHtml){
+    var w=window.open('','_blank');
+    if(!w){
+      showNotice('O navegador bloqueou a janela de impressão. Permita pop-ups para gerar o PDF.');
+      return;
+    }
+    var css=`
+      @page{size:A4;margin:12mm}
+      *{box-sizing:border-box}
+      body{font-family:Arial,Helvetica,sans-serif;color:#111;margin:0;background:#fff;font-size:11px}
+      h1{font-size:20px;margin:0 0 3px}
+      h2{font-size:15px;margin:0 0 8px}
+      .sub{font-size:10px;color:#555;margin-bottom:14px}
+      .sheet{break-inside:avoid;page-break-inside:avoid;margin:0 0 14px;padding:10px;border:1.5px solid #111;border-radius:6px}
+      .sheet.page{break-after:page;page-break-after:always}
+      .head{display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:2px solid #111;padding:7px 9px;margin-bottom:8px;background:#0b1722;color:#fff;border-radius:5px}
+      .head-left{display:flex;align-items:center;gap:10px;min-width:0}
+      .print-logo{width:82px;height:54px;object-fit:contain;flex:0 0 auto}
+      .brand{font-weight:900;letter-spacing:.08em;color:#c9ff28}
+      .head h1,.head h2{color:#fff}
+      .head .meta{color:#d5dde3}
+      .meta{font-size:9px;text-align:right;color:#444}
+      .teams{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;margin:7px 0 10px}
+      .team{border:1px solid #bbb;padding:5px 6px;border-radius:3px}
+      .match{display:grid;grid-template-columns:26px 1fr 36px 12px 36px 1fr 72px;gap:5px;align-items:center;border-top:1px solid #ddd;padding:6px 0}
+      .scorebox{height:27px;border:1.5px solid #111;border-radius:3px}
+      .courtbox{height:27px;border:1px solid #aaa;border-radius:3px}
+      table{width:100%;border-collapse:collapse;margin-top:8px}
+      th,td{border:1px solid #999;padding:5px;text-align:center;height:25px}
+      th{background:#eee;font-size:9px}
+      td.name{text-align:left}
+      .rounds{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-items:start}
+      .round{border:1px solid #aaa;border-radius:5px;padding:7px}
+      .round h3{font-size:12px;margin:0 0 7px;text-align:center}
+      .ko{border:1px solid #bbb;border-radius:4px;padding:5px;margin:0 0 7px;break-inside:avoid}
+      .ko-row{display:grid;grid-template-columns:1fr 34px;gap:5px;align-items:center;padding:3px 0}
+      .ko-score{height:24px;border:1.5px solid #111;border-radius:3px}
+      .notes{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+      .line{border-bottom:1px solid #555;height:25px}
+      .footer{font-size:8px;color:#666;margin-top:8px;text-align:center}
+      @media print{.no-print{display:none}}
+    `;
+    w.document.open();
+    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'
+<script id="jb-v45-sw">
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('./sw.js').catch(function(err){
+      console.warn('Service Worker não registrado:',err);
+    });
+  });
+}
+</script>
+
+</body></html>');
+    w.document.close();
+    w.focus();
+    setTimeout(function(){ w.print(); },350);
+  }
+
+  function printGroupSheets(){
+    if(!state.groups.length){
+      showNotice('Faça o sorteio das duplas e grupos antes de gerar as súmulas.');
+      return;
+    }
+    var tournament=esc(el('title').value||'Torneio Interno');
+    var generated=new Date().toLocaleString('pt-BR');
+    var sheets=state.groups.map(function(g,gi){
+      var teams=g.teams.map(function(t,i){
+        return '<div class="team"><b>'+(i+1)+'.</b> '+esc(teamLabel(t))+'</div>';
+      }).join('');
+      var matches=g.matches.map(function(m,mi){
+        var a=getTeam(m.aId),b=getTeam(m.bId);
+        return '<div class="match">'+
+          '<b>J'+(mi+1)+'</b>'+
+          '<span>'+esc(teamLabel(a))+'</span>'+
+          '<div class="scorebox"></div><span>×</span><div class="scorebox"></div>'+
+          '<span>'+esc(teamLabel(b))+'</span>'+
+          '<div class="courtbox"></div>'+
+        '</div>';
+      }).join('');
+      var standings=g.teams.map(function(t,i){
+        return '<tr><td>'+(i+1)+'</td><td class="name">'+esc(teamLabel(t))+'</td>'+
+          '<td></td><td></td><td></td><td></td><td></td><td></td></tr>';
+      }).join('');
+      return '<section class="sheet '+(gi<state.groups.length-1?'page':'')+'">'+
+        '<div class="head"><div class="head-left">'+jbPrintLogo()+'<div><div class="brand">JB TORNEIOS</div><h1>'+tournament+'</h1><h2>SÚMULA — GRUPO '+esc(g.name)+'</h2></div></div>'+
+        '<div class="meta">Data: ____/____/______<br>Responsável: ____________________<br>Gerado em '+esc(generated)+'</div></div>'+
+        '<div class="teams">'+teams+'</div>'+
+        '<div style="font-weight:900;margin:7px 0 3px">JOGOS — placar e quadra/horário</div>'+
+        matches+
+        '<table><thead><tr><th>#</th><th>Dupla</th><th>J</th><th>V</th><th>D</th><th>GP</th><th>GC</th><th>SG</th></tr></thead><tbody>'+standings+'</tbody></table>'+
+        '<div class="notes"><div><div class="line"></div><small>Assinatura / organização</small></div><div><div class="line"></div><small>Observações</small></div></div>'+
+        '<div class="footer">João Bertonha Beach Tennis · JB Torneios Pro</div>'+
+      '</section>';
+    }).join('');
+    printWindow('Súmulas dos Grupos — '+tournament,sheets);
+  }
+
+  function blankQualifiers(){
+    var qpg=Number(el('qualifiersPerGroup').value)||2;
+    var arr=[];
+    state.groups.forEach(function(g){
+      for(var p=1;p<=qpg;p++) arr.push({label:p+'º Grupo '+g.name,position:p,group:g.name});
+    });
+    arr.sort(function(a,b){return a.position-b.position || a.group.localeCompare(b.group);});
+    return arr;
+  }
+
+  function printBlankKnockout(){
+    if(!state.groups.length){
+      showNotice('Faça o sorteio dos grupos antes de gerar a chave eliminatória em branco.');
+      return;
+    }
+    var qs=blankQualifiers();
+    if(qs.length<2){
+      showNotice('É necessário haver pelo menos 2 vagas classificatórias.');
+      return;
+    }
+    var size=nextPowerOfTwo(qs.length);
+    var slots=Array(size).fill(null);
+    qs.forEach(function(q,i){slots[i]=q.label;});
+    var rounds=[];
+    var first=[];
+    var l=0,r=size-1,gameNo=1;
+    while(l<r){
+      first.push({a:slots[l]||'BYE',b:slots[r]||'BYE',game:gameNo++});
+      l++;r--;
+    }
+    rounds.push({name:roundName(size),matches:first});
+    var prev=first;
+    var nextSize=size/2;
+    while(nextSize>=2){
+      var ms=[];
+      for(var i=0;i<nextSize/2;i++){
+        ms.push({
+          a:'Vencedor J'+prev[i*2].game,
+          b:'Vencedor J'+prev[i*2+1].game,
+          game:gameNo++
+        });
+      }
+      rounds.push({name:roundName(nextSize),matches:ms});
+      prev=ms;
+      nextSize/=2;
+    }
+
+    var tournament=esc(el('title').value||'Torneio Interno');
+    var columns=rounds.map(function(round){
+      return '<div class="round"><h3>'+esc(round.name)+'</h3>'+
+        round.matches.map(function(m){
+          return '<div class="ko">'+
+            '<div style="font-size:8px;color:#666;margin-bottom:2px">JOGO '+m.game+'</div>'+
+            '<div class="ko-row"><span>'+esc(m.a)+'</span><div class="ko-score"></div></div>'+
+            '<div class="ko-row"><span>'+esc(m.b)+'</span><div class="ko-score"></div></div>'+
+          '</div>';
+        }).join('')+
+      '</div>';
+    }).join('');
+
+    var body='<section class="sheet">'+
+      '<div class="head"><div class="head-left">'+jbPrintLogo()+'<div><div class="brand">JB TORNEIOS</div><h1>'+tournament+'</h1><h2>CHAVE ELIMINATÓRIA — EM BRANCO</h2></div></div>'+
+      '<div class="meta">Data: ____/____/______<br>Organização: ____________________</div></div>'+
+      '<div class="sub">Preencha à mão os classificados, placares e vencedores. A chave foi dimensionada para '+size+' vagas.</div>'+
+      '<div class="rounds">'+columns+'</div>'+
+      '<div class="notes"><div><div class="line"></div><small>Campeões</small></div><div><div class="line"></div><small>Observações</small></div></div>'+
+      '<div class="footer">João Bertonha Beach Tennis · JB Torneios Pro</div>'+
+    '</section>';
+    printWindow('Mata-mata em branco — '+tournament,body);
+  }
+
+  // Salva também ao sair, mudar de aba ou suspender o Safari/PWA.
+  window.addEventListener('pagehide',function(){ try{save();}catch(e){} });
+  window.addEventListener('beforeunload',function(){ try{save();}catch(e){} });
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState==='hidden'){ try{save();}catch(e){} }
+  });
+
+
+  participants.addEventListener('input',()=>{updateStats();save();});
+  el('title').addEventListener('input',()=>{renderKnockout();save();});
+  el('qualifiersPerGroup').addEventListener('change',()=>{
+    state.knockout=null;
+    renderGroups();renderKnockout();save();
+  });
+  el('drawBtn').addEventListener('click',draw);
+  el('reshuffleBtn').addEventListener('click',draw);
+  el('clearScoresBtn').addEventListener('click',()=>{
+    if(!state.groups.length) return;
+    if(confirm('Zerar todos os placares da fase de grupos e do mata-mata?')) clearScores();
+  });
+  el('generateKO').addEventListener('click',generateKnockout);
+  el('resetKO').addEventListener('click',()=>{
+    state.knockout=null;
+    renderKnockout();
+    save();
+  });
+  el('clearBtn').addEventListener('click',()=>{
+    if(!confirm('Limpar participantes, duplas, grupos e todos os resultados?')) return;
+    participants.value='';
+    state={teams:[],groups:[],knockout:null};
+    hideNotice();
+    render();
+    save();
+  });
+
+
+  el('saveNowBtn').addEventListener('click',function(){
+    save();
+    showNotice('Torneio salvo neste dispositivo.',true);
+  });
+  el('downloadBackupBtn').addEventListener('click',downloadTournamentBackup);
+  el('restoreBackupBtn').addEventListener('click',function(){ el('restoreBackupInput').click(); });
+  el('restoreBackupInput').addEventListener('change',function(){
+    restoreTournamentBackup(this.files && this.files[0]);
+    this.value='';
+  });
+  el('printGroupsBtn').addEventListener('click',printGroupSheets);
+  el('printBlankKOBtn').addEventListener('click',printBlankKnockout);
+
+  load();
+  updateStats();
+  restoreBestPersistentSnapshot();
+</script>
+
+<script>
+(function(){
+  function hideSplash(){
+    var s=document.getElementById('pwaSplash');
+    if(s){ setTimeout(function(){ s.classList.add('hide'); }, 450); }
+  }
+  if(document.readyState==='complete'){ hideSplash(); }
+  else window.addEventListener('load', hideSplash);
+
+  if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')){
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('./sw.js').catch(function(){});
+    });
+  }
+})();
+</script>
+
+<script>
+  // Espelha os contadores principais no painel de destaque sem alterar a lógica existente.
+  (function(){
+    var originalUpdateStats = updateStats;
+    updateStats = function(){
+      originalUpdateStats();
+      var a=document.getElementById('countPlayers');
+      var b=document.getElementById('countTeams');
+      var c=document.getElementById('countGroups');
+      if(a) document.getElementById('heroPlayers').textContent=a.textContent;
+      if(b) document.getElementById('heroTeams').textContent=b.textContent;
+      if(c) document.getElementById('heroGroups').textContent=c.textContent;
+    };
+    updateStats();
+  })();
+</script>
+</body>
+</html>

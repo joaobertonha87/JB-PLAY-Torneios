@@ -1,0 +1,40 @@
+JB TORNEIOS PRO V4.5 — PWA PARA IPAD + RENDER
+
+CONTEÚDO DO PACOTE
+- index.html
+- jb-logo-lime.png
+- jb-watermark-lime.png
+- manifest.webmanifest
+- sw.js
+- icon-180.png
+- icon-192.png
+- icon-512.png
+- icon-maskable-512.png
+- _redirects
+- version.txt
+
+PUBLICAÇÃO NO RENDER
+Este projeto é 100% estático. No Render, crie um Static Site separado do JB Play.
+Conecte um repositório próprio, por exemplo: jb-torneios.
+Build Command: deixe vazio.
+Publish Directory: .
+Branch: main.
+
+IMPORTANTE
+- Não precisa de OPENAI_API_KEY.
+- Não precisa de server.js.
+- Não misture os arquivos com o repositório do JB Play.
+- Mantenha todos estes arquivos juntos na raiz do repositório.
+
+NO IPAD
+1. Abra a URL HTTPS publicada pelo Render no Safari.
+2. Toque em Compartilhar.
+3. Toque em Adicionar à Tela de Início.
+4. Abra o ícone JB Torneios pela Tela de Início.
+
+SALVAMENTO
+A ferramenta mantém o autosave local já criado, além do backup manual em JSON.
+Para torneios importantes, use "Baixar backup" antes de iniciar e também durante o evento.
+
+ATUALIZAÇÃO
+O Service Worker usa network-first para o HTML, reduzindo o risco de o iPad ficar preso em uma versão antiga.
