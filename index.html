@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.4.8.7 — correção estrutural de confrontos e placares */
+/* V7.4.8.9 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -1302,6 +1302,226 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
   }
   .jb-v7486-podium-card.first{
     grid-column:auto!important;
+  }
+}
+</style>
+
+
+<style id="jb-v7488-public-knockout">
+.v7488-public-section-title{
+  margin:28px 0 12px!important;
+  color:#071d38!important;
+  font-size:22px!important;
+}
+.v7488-public-knockout{
+  display:grid!important;
+  gap:14px!important;
+}
+.v7488-public-round{
+  background:#fff!important;
+  border:1px solid #dce5ee!important;
+  border-radius:16px!important;
+  padding:16px!important;
+}
+.v7488-public-round h4{
+  margin:0 0 12px!important;
+  color:#071d38!important;
+  font-size:17px!important;
+}
+.v7488-public-ko-match{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 100px minmax(0,1fr)!important;
+  gap:12px!important;
+  align-items:center!important;
+  padding:11px 0!important;
+  border-top:1px solid #edf1f4!important;
+}
+.v7488-public-ko-match:first-of-type{border-top:0!important}
+.v7488-public-ko-team{
+  color:#071d38!important;
+  font-weight:900!important;
+  overflow-wrap:anywhere!important;
+}
+.v7488-public-ko-score{
+  text-align:center!important;
+  color:#071d38!important;
+}
+.v7488-public-ko-score strong{
+  display:inline-block!important;
+  background:#0f5e99!important;
+  color:#fff!important;
+  border-radius:10px!important;
+  padding:8px 12px!important;
+  min-width:76px!important;
+}
+.v7488-public-round.third{border-color:#d8b07b!important;background:#fffaf4!important}
+.v7488-public-podium{
+  display:grid!important;
+  grid-template-columns:1.15fr 1fr 1fr!important;
+  gap:14px!important;
+}
+.v7488-public-place{
+  border-radius:16px!important;
+  padding:22px 16px!important;
+  text-align:center!important;
+  color:#fff!important;
+}
+.v7488-public-place.first{background:linear-gradient(135deg,#7fbe43,#5e9f31)!important}
+.v7488-public-place.second{background:linear-gradient(135deg,#73879a,#536779)!important}
+.v7488-public-place.third{background:linear-gradient(135deg,#aa7747,#82552f)!important}
+.v7488-public-place span{display:block!important;font-size:32px!important;margin-bottom:6px!important}
+.v7488-public-place small{display:block!important;font-weight:950!important;letter-spacing:.08em!important}
+.v7488-public-place b{display:block!important;font-size:18px!important;margin-top:8px!important;overflow-wrap:anywhere!important}
+@media(max-width:900px){
+  .v7488-public-podium{grid-template-columns:1fr 1fr!important}
+  .v7488-public-place.first{grid-column:1/-1!important}
+}
+@media(max-width:700px){
+  .v7488-public-ko-match{grid-template-columns:1fr!important;text-align:center!important}
+  .v7488-public-podium{grid-template-columns:1fr!important}
+  .v7488-public-place.first{grid-column:auto!important}
+}
+</style>
+
+
+<style id="jb-v7489-public-clean-layout">
+#v73PublicContent{display:grid!important;gap:22px!important}
+.v7489-section{
+  background:transparent!important;
+  margin:0!important;
+  padding:0!important;
+}
+.v7489-section.priority{
+  padding:16px!important;
+  background:linear-gradient(180deg,rgba(168,207,0,.10),rgba(168,207,0,.02))!important;
+  border:1px solid rgba(168,207,0,.28)!important;
+  border-radius:18px!important;
+}
+.v7489-section-head{
+  display:flex!important;
+  align-items:flex-end!important;
+  justify-content:space-between!important;
+  gap:14px!important;
+  margin:0 0 12px!important;
+}
+.v7489-section-head span{
+  display:block!important;
+  color:#89a400!important;
+  font-size:10px!important;
+  font-weight:950!important;
+  letter-spacing:.14em!important;
+}
+.v7489-section-head h3{
+  margin:3px 0 0!important;
+  color:#071d38!important;
+  font-size:22px!important;
+}
+.v7489-section-head>b{
+  min-width:34px!important;
+  height:34px!important;
+  padding:0 10px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:999px!important;
+  background:#0f5e99!important;
+  color:#fff!important;
+}
+.v7489-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
+}
+.v7489-match-card{
+  background:#fff!important;
+  border:1px solid #dce5ee!important;
+  border-radius:15px!important;
+  padding:14px!important;
+  color:#071d38!important;
+  min-width:0!important;
+}
+.v7489-match-card.live{border-color:#a8cf00!important;box-shadow:0 0 0 2px rgba(168,207,0,.08)}
+.v7489-match-card.done{background:#f8fafc!important}
+.v7489-match-top{
+  display:flex!important;
+  justify-content:space-between!important;
+  gap:10px!important;
+  align-items:center!important;
+  margin-bottom:12px!important;
+}
+.v7489-match-top small{
+  color:#778691!important;
+  font-size:10px!important;
+  text-align:right!important;
+}
+.v7489-badge{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:24px!important;
+  padding:0 9px!important;
+  border-radius:999px!important;
+  background:#0f5e99!important;
+  color:#fff!important;
+  font-size:9px!important;
+  font-weight:950!important;
+  letter-spacing:.08em!important;
+}
+.v7489-match-card.live .v7489-badge{background:#7da100!important}
+.v7489-match-card.done .v7489-badge{background:#6f7f8d!important}
+.v7489-match-main{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 88px minmax(0,1fr)!important;
+  gap:10px!important;
+  align-items:center!important;
+}
+.v7489-team{
+  font-weight:900!important;
+  font-size:15px!important;
+  line-height:1.28!important;
+  overflow-wrap:anywhere!important;
+}
+.v7489-score{
+  min-height:44px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+  border-radius:11px!important;
+  background:#0f5e99!important;
+  color:#fff!important;
+  font-weight:950!important;
+  font-size:17px!important;
+}
+.v7489-score.pending{background:#e9eef3!important;color:#7b8996!important}
+.v7489-match-foot{
+  margin-top:10px!important;
+  padding-top:9px!important;
+  border-top:1px solid #edf1f4!important;
+  color:#7b8996!important;
+  font-size:10px!important;
+  font-weight:800!important;
+}
+.v7489-empty{
+  background:#fff!important;
+  border:1px dashed #cdd8e1!important;
+  border-radius:14px!important;
+  padding:20px!important;
+  color:#7b8996!important;
+  text-align:center!important;
+}
+@media(max-width:900px){
+  .v7489-grid{grid-template-columns:1fr!important}
+}
+@media(max-width:700px){
+  .v7489-match-main{
+    grid-template-columns:1fr!important;
+    text-align:center!important;
+  }
+  .v7489-score{
+    width:100px!important;
+    justify-self:center!important;
+  }
+  .v7489-section-head{
+    align-items:center!important;
   }
 }
 </style>
@@ -3362,152 +3582,273 @@ if('serviceWorker' in navigator){
   window.v73AddThirdPlaceUI=function(){var host=document.getElementById('knockoutArea');if(!host)return;var old=document.getElementById('v73ThirdPlace');if(old)old.remove();v73SyncThirdToggle();var k=state.knockout||{},tp=k.thirdPlaceMatch;if(!k.thirdPlacePlayoff||!tp||!tp.aId||!tp.bId)return;var d=document.createElement('div');d.id='v73ThirdPlace';d.className='v73-third-match v7484-third-match';d.innerHTML='<div class="v7484-third-title">🥉 <b>Disputa de 3º lugar</b></div><div class="v7484-third-grid"><div class="v7484-third-team"><small>DUPLA A</small><strong>'+esc(teamName(tp.aId))+'</strong></div><input class="score v7484-third-score" aria-label="Placar da Dupla A" inputmode="numeric" value="'+esc(tp.aScore)+'" oninput="v73UpdateThird(\'aScore\',this.value,this)" onchange="v73FinishThird()" onblur="v73FinishThird()"><span class="v7484-third-vs">×</span><input class="score v7484-third-score" aria-label="Placar da Dupla B" inputmode="numeric" value="'+esc(tp.bScore)+'" oninput="v73UpdateThird(\'bScore\',this.value,this)" onchange="v73FinishThird()" onblur="v73FinishThird()"><div class="v7484-third-team"><small>DUPLA B</small><strong>'+esc(teamName(tp.bId))+'</strong></div></div>';var slot=document.getElementById('jbV7487ThirdSlot');(slot||host).appendChild(d);};
   window.v73RenderPodium=function(){var host=document.getElementById('v73Podium');if(!host)return;var k=state.knockout||{},c=k.championId,r=k.runnerUpId,t=k.thirdPlaceId,playoff=!!k.thirdPlacePlayoff;var msg=(c&&r&&t)?('Pódio definido'+(playoff?' · 3º lugar decidido em partida':' · 3º lugar automático pelo critério da semifinal')):(playoff?'O pódio será concluído após a final e a disputa de 3º lugar.':'Por padrão, o 3º lugar será a dupla que perder para o campeão na semifinal.');host.innerHTML='<div class="v73-podium-title"><span>RESULTADO OFICIAL</span><h2>'+esc((document.getElementById('title')||{}).value||'Torneio')+'</h2><p>'+esc(msg)+'</p></div><div class="v73-podium"><div class="v73-place second"><div class="v73-medal">🥈</div><span>VICE-CAMPEÃO</span><b>'+esc(teamName(r))+'</b></div><div class="v73-place first"><div class="v73-medal">🏆</div><span>CAMPEÃO</span><b>'+esc(teamName(c))+'</b></div><div class="v73-place third"><div class="v73-medal">🥉</div><span>3º LUGAR</span><b>'+esc(teamName(t))+'</b></div></div>';};
   function standings(){if(!state.groups||!state.groups.length)return '<div class="v73-public-card"><p>Grupos ainda não gerados.</p></div>';return state.groups.map(function(g){var tb=groupStandings(g);return '<div class="v73-public-card"><h3>Grupo '+esc(g.name)+'</h3>'+tb.map(function(x,i){return '<div class="v73-public-game"><b>'+(i+1)+'º · '+esc(teamLabel(x.team))+'</b><small>'+x.J+'J · '+x.V+'V · SG '+(x.SG>0?'+':'')+x.SG+'</small></div>';}).join('')+'</div>';}).join('');}
-  window.v73RenderPublic=function(){var host=document.getElementById('v73PublicContent'),sel=document.getElementById('v73TeamFilter'),ttl=document.getElementById('v73PublicTitle');if(!host)return;if(ttl)ttl.textContent=(document.getElementById('title')||{}).value||'Torneio';if(sel){var cur=sel.value;sel.innerHTML='<option value="">Todas as duplas</option>'+(state.teams||[]).map(function(t){return '<option value="'+esc(t.id)+'">'+esc(teamLabel(t))+'</option>';}).join('');sel.value=cur;}var filter=sel?sel.value:'',games=allGames().filter(function(x){return !filter||x.m.aId===filter||x.m.bId===filter;}),o=state.operations||{},up=games.filter(function(x){return !v7ValidScore(x.m)}).slice(0,10),done=games.filter(function(x){return v7ValidScore(x.m)}).slice(-10).reverse();host.innerHTML='<div class="v73-public-grid"><div class="v73-public-card"><h3>Próximos jogos</h3>'+(up.length?up.map(function(x){var st=(o.status&&o.status[x.key])||'waiting',lab=st==='playing'?'Em jogo':st==='called'?'Chamado':'Aguardando';return '<div class="v73-public-game"><b>'+esc(teamName(x.m.aId))+' × '+esc(teamName(x.m.bId))+'</b><small>Grupo '+esc(x.g.name)+(o.assignments&&o.assignments[x.key]?' · Quadra '+o.assignments[x.key]:'')+' · '+lab+'</small></div>';}).join(''):'<p>Nenhum jogo pendente.</p>')+'</div><div class="v73-public-card"><h3>Últimos resultados</h3>'+(done.length?done.map(function(x){return '<div class="v73-public-game"><b>'+esc(teamName(x.m.aId))+' '+esc(x.m.aScore)+' × '+esc(x.m.bScore)+' '+esc(teamName(x.m.bId))+'</b><small>Grupo '+esc(x.g.name)+'</small></div>';}).join(''):'<p>Sem resultados ainda.</p>')+'</div></div><h3 style="margin:20px 0 10px">Classificação</h3><div class="v73-public-grid">'+standings()+'</div>';};
-  var rk=window.renderKnockout;if(typeof rk==='function')window.renderKnockout=function(){var r=rk.apply(this,arguments);setTimeout(function(){v73SyncThirdToggle();v73AddThirdPlaceUI();v73RenderPodium();},0);return r;};
-  var rr=window.render;if(typeof rr==='function')window.render=function(){var r=rr.apply(this,arguments);setTimeout(function(){v73RenderPublic();v73RenderPodium();v73AddThirdPlaceUI();},0);return r;};
-  setTimeout(function(){v73SyncThirdToggle();v73RenderPublic();v73RenderPodium();v73AddThirdPlaceUI();},200);
-})();
-</script>
+  window.v73RenderPublic=function(){
+    var host=document.getElementById('v73PublicContent'),
+        sel=document.getElementById('v73TeamFilter'),
+        ttl=document.getElementById('v73PublicTitle');
+    if(!host)return;
 
-<script id="jb-torneios-personal-login">
-(function(){
-  'use strict';
-  var AUTH_KEY='jbtorneios-auth-v1';
-  var SESSION_KEY='jbtorneios-session-v1';
-  var authTitle=document.getElementById('jbAuthTitle');
-  var authSub=document.getElementById('jbAuthSub');
-  var authForm=document.getElementById('jbAuthForm');
-  var authUser=document.getElementById('jbAuthUser');
-  var authPass=document.getElementById('jbAuthPass');
-  var authRemember=document.getElementById('jbAuthRemember');
-  var authSubmit=document.getElementById('jbAuthSubmit');
-  var authError=document.getElementById('jbAuthError');
-  var authEye=document.getElementById('jbAuthEye');
-  var logoutBtn=document.getElementById('jbAuthLogout');
-  var setupMode=false;
+    if(ttl)ttl.textContent=(document.getElementById('title')||{}).value||'Torneio';
 
-  function safeGet(key, session){
-    try{return (session?sessionStorage:localStorage).getItem(key);}catch(e){return null;}
-  }
-  function safeSet(key,value,session){
-    try{(session?sessionStorage:localStorage).setItem(key,value);return true;}catch(e){return false;}
-  }
-  function safeRemove(key,session){
-    try{(session?sessionStorage:localStorage).removeItem(key);}catch(e){}
-  }
-  function getStoredAuth(){
-    try{var raw=safeGet(AUTH_KEY,false);return raw?JSON.parse(raw):null;}catch(e){return null;}
-  }
-  function fallbackHash(text){
-    var h=2166136261;
-    for(var i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619);}
-    return 'fallback-'+(h>>>0).toString(16);
-  }
-  function hashText(text){
-    if(window.crypto && window.crypto.subtle && window.TextEncoder){
-      try{
-        var data=new TextEncoder().encode(text);
-        return window.crypto.subtle.digest('SHA-256',data).then(function(buf){
-          return Array.prototype.map.call(new Uint8Array(buf),function(b){return b.toString(16).padStart(2,'0');}).join('');
-        }).catch(function(){return fallbackHash(text);});
-      }catch(e){}
+    if(sel){
+      var cur=sel.value;
+      sel.innerHTML='<option value="">Todas as duplas</option>'+
+        (state.teams||[]).map(function(t){
+          return '<option value="'+esc(t.id)+'">'+esc(teamLabel(t))+'</option>';
+        }).join('');
+      sel.value=cur;
     }
-    return Promise.resolve(fallbackHash(text));
-  }
-  function configureAuthScreen(){
-    var saved=getStoredAuth();
-    setupMode=!saved;
-    authError.textContent='';
-    if(setupMode){
-      authTitle.textContent='Crie seu primeiro acesso';
-      authSub.textContent='Escolha seu usuário e sua senha. Você fará isso somente uma vez neste navegador.';
-      authSubmit.textContent='CRIAR PRIMEIRO ACESSO';
-      authPass.autocomplete='new-password';
-      authUser.value='';
-      authUser.placeholder='Crie seu usuário';
-      authPass.placeholder='Crie sua senha';
-    }else{
-      authTitle.textContent='Acesso ao JB Torneios';
-      authSub.textContent='Digite seu usuário e senha para acessar a plataforma.';
-      authSubmit.textContent='ENTRAR';
-      authPass.autocomplete='current-password';
-      authUser.value=saved.user||'';
-      authUser.placeholder='Seu usuário';
-      authPass.placeholder='Sua senha';
-    }
-  }
-  function setLoggedIn(remember){
-    if(remember){safeSet(SESSION_KEY,'1',false);safeRemove(SESSION_KEY,true);}
-    else{safeSet(SESSION_KEY,'1',true);safeRemove(SESSION_KEY,false);}
-    document.body.classList.remove('jb-auth-locked');
-    authError.textContent='';
-  }
-  function hasSession(){return safeGet(SESSION_KEY,false)==='1'||safeGet(SESSION_KEY,true)==='1';}
-  function clearSession(){
-    safeRemove(SESSION_KEY,false);safeRemove(SESSION_KEY,true);
-    document.body.classList.add('jb-auth-locked');
-    authPass.value='';
-    configureAuthScreen();
-    setTimeout(function(){authUser.focus();},80);
-  }
 
-  if(!authForm || !authUser || !authPass || !authSubmit){return;}
-  if(authEye){authEye.addEventListener('click',function(){
-    authPass.type=authPass.type==='password'?'text':'password';
-    authEye.textContent=authPass.type==='password'?'◉':'◎';
-  });}
-  authForm.addEventListener('submit',function(e){
-    e.preventDefault();
-    authError.textContent='';
-    var user=authUser.value.trim();
-    var pass=authPass.value;
-    if(!user||!pass){authError.textContent='Preencha usuário e senha.';return;}
-    if(pass.length<4){authError.textContent='A senha precisa ter pelo menos 4 caracteres.';return;}
-    var wasSetup=setupMode;
-    authSubmit.disabled=true;
-    authSubmit.textContent=wasSetup?'CRIANDO...':'ENTRANDO...';
-    hashText(pass).then(function(passHash){
-      if(wasSetup){
-        var ok=safeSet(AUTH_KEY,JSON.stringify({user:user,passHash:passHash,createdAt:new Date().toISOString()}),false);
-        if(!ok){throw new Error('storage');}
-        setupMode=false;
-        setLoggedIn(authRemember.checked);
-      }else{
-        var saved=getStoredAuth();
-        if(saved && user===saved.user && passHash===saved.passHash){
-          setLoggedIn(authRemember.checked);
-        }else{
-          authError.textContent='Usuário ou senha incorretos.';
-          authPass.focus();authPass.select();
+    var filter=sel?sel.value:'';
+    var ops=state.operations||{};
+
+    function scoreDone(m){
+      if(!m)return false;
+      var a=String(m.aScore==null?'':m.aScore).trim(),
+          b=String(m.bScore==null?'':m.bScore).trim();
+      return a!==''&&b!==''&&Number(a)!==Number(b);
+    }
+
+    function teamVisible(aId,bId){
+      return !filter || aId===filter || bId===filter;
+    }
+
+    function matchCard(x,kind){
+      var a=x.aId?teamName(x.aId):'A definir';
+      var b=x.bId?teamName(x.bId):'A definir';
+      var done=x.done;
+      var score=done ? '<div class="v7489-score">'+esc(x.aScore)+' <span>×</span> '+esc(x.bScore)+'</div>' : '<div class="v7489-score pending">×</div>';
+      var badge=kind==='live'?'EM JOGO':kind==='next'?'PRÓXIMO':kind==='done'?'FINALIZADO':x.phase;
+      return '<div class="v7489-match-card '+kind+'">'+
+        '<div class="v7489-match-top"><span class="v7489-badge">'+esc(badge)+'</span><small>'+esc(x.meta||x.phase||'')+'</small></div>'+
+        '<div class="v7489-match-main">'+
+          '<div class="v7489-team">'+esc(a)+'</div>'+
+          score+
+          '<div class="v7489-team">'+esc(b)+'</div>'+
+        '</div>'+
+        (x.status?'<div class="v7489-match-foot">'+esc(x.status)+'</div>':'')+
+      '</div>';
+    }
+
+    var groupGames=allGames().filter(function(x){
+      return teamVisible(x.m.aId,x.m.bId);
+    }).map(function(x){
+      var st=(ops.status&&ops.status[x.key])||'waiting';
+      var lab=st==='playing'?'Em jogo':st==='called'?'Chamado':'Aguardando';
+      var court=(ops.assignments&&ops.assignments[x.key])?'Quadra '+ops.assignments[x.key]:'';
+      return {
+        type:'group',
+        phase:'Grupo '+x.g.name,
+        aId:x.m.aId,bId:x.m.bId,
+        aScore:x.m.aScore,bScore:x.m.bScore,
+        done:scoreDone(x.m),
+        status:lab,
+        meta:['Grupo '+x.g.name,court].filter(Boolean).join(' · ')
+      };
+    });
+
+    var koGames=[];
+    if(state.knockout&&state.knockout.rounds){
+      state.knockout.rounds.forEach(function(round,ri){
+        (round.matches||[]).forEach(function(match,mi){
+          if(!teamVisible(match.aId,match.bId))return;
+          koGames.push({
+            type:'ko',
+            phase:round.name,
+            aId:match.aId,bId:match.bId,
+            aScore:match.aScore,bScore:match.bScore,
+            done:scoreDone(match),
+            status:scoreDone(match)?'Finalizado':((match.aId&&match.bId)?'Aguardando':'A definir'),
+            meta:round.name
+          });
+        });
+      });
+
+      var tp=state.knockout.thirdPlaceMatch;
+      if(state.knockout.thirdPlacePlayoff&&tp&&teamVisible(tp.aId,tp.bId)){
+        koGames.push({
+          type:'third',
+          phase:'Disputa de 3º lugar',
+          aId:tp.aId,bId:tp.bId,
+          aScore:tp.aScore,bScore:tp.bScore,
+          done:scoreDone(tp),
+          status:scoreDone(tp)?'Finalizado':((tp.aId&&tp.bId)?'Aguardando':'A definir'),
+          meta:'Disputa de 3º lugar'
+        });
+      }
+    }
+
+    var allGamesPublic=groupGames.concat(koGames);
+    var live=allGamesPublic.filter(function(x){return !x.done && x.status==='Em jogo';});
+    var next=allGamesPublic.filter(function(x){return !x.done && x.aId&&x.bId && x.status!=='Em jogo';}).slice(0,8);
+    var results=allGamesPublic.filter(function(x){return x.done;}).slice(-12).reverse();
+
+    var liveHtml=live.length
+      ? '<div class="v7489-grid">'+live.map(function(x){return matchCard(x,'live');}).join('')+'</div>'
+      : '<div class="v7489-empty">Nenhuma partida em andamento.</div>';
+
+    var nextHtml=next.length
+      ? '<div class="v7489-grid">'+next.map(function(x){return matchCard(x,'next');}).join('')+'</div>'
+      : '<div class="v7489-empty">Nenhum próximo jogo definido.</div>';
+
+    var resultsHtml=results.length
+      ? '<div class="v7489-grid">'+results.map(function(x){return matchCard(x,'done');}).join('')+'</div>'
+      : '<div class="v7489-empty">Nenhum resultado lançado ainda.</div>';
+
+    var knockoutHtml='';
+    if(state.knockout&&state.knockout.rounds){
+      knockoutHtml='<section class="v7489-section"><div class="v7489-section-head"><div><span>MATA-MATA</span><h3>Chave eliminatória</h3></div></div><div class="v7488-public-knockout">'+
+        state.knockout.rounds.map(function(round){
+          var matches=(round.matches||[]).filter(function(match){return teamVisible(match.aId,match.bId);});
+          if(!matches.length)return '';
+          return '<div class="v7488-public-round"><h4>'+esc(round.name)+'</h4>'+
+            matches.map(function(match){
+              var d=scoreDone(match);
+              return '<div class="v7488-public-ko-match">'+
+                '<div class="v7488-public-ko-team">'+esc(match.aId?teamName(match.aId):'A definir')+'</div>'+
+                '<div class="v7488-public-ko-score">'+(d?'<strong>'+esc(match.aScore)+' × '+esc(match.bScore)+'</strong>':'<span>×</span>')+'</div>'+
+                '<div class="v7488-public-ko-team">'+esc(match.bId?teamName(match.bId):'A definir')+'</div>'+
+              '</div>';
+            }).join('')+
+          '</div>';
+        }).join('')+
+      '</div></section>';
+    }
+
+    var podiumHtml='';
+    if(state.knockout&&(state.knockout.championId||state.knockout.runnerUpId||state.knockout.thirdPlaceId)){
+      podiumHtml='<section class="v7489-section"><div class="v7489-section-head"><div><span>PÓDIO</span><h3>Resultado final</h3></div></div>'+
+        '<div class="v7488-public-podium">'+
+          '<div class="v7488-public-place first"><span>🏆</span><small>CAMPEÕES</small><b>'+esc(state.knockout.championId?teamName(state.knockout.championId):'A definir')+'</b></div>'+
+          '<div class="v7488-public-place second"><span>🥈</span><small>VICE-CAMPEÕES</small><b>'+esc(state.knockout.runnerUpId?teamName(state.knockout.runnerUpId):'A definir')+'</b></div>'+
+          '<div class="v7488-public-place third"><span>🥉</span><small>3º LUGAR</small><b>'+esc(state.knockout.thirdPlaceId?teamName(state.knockout.thirdPlaceId):'A definir')+'</b></div>'+
+        '</div></section>';
+    }
+
+    host.innerHTML=
+      '<section class="v7489-section priority"><div class="v7489-section-head"><div><span>AGORA</span><h3>Jogos em andamento</h3></div><b>'+live.length+'</b></div>'+liveHtml+'</section>'+
+      '<section class="v7489-section"><div class="v7489-section-head"><div><span>SEQUÊNCIA</span><h3>Próximos jogos</h3></div><b>'+next.length+'</b></div>'+nextHtml+'</section>'+
+      '<section class="v7489-section"><div class="v7489-section-head"><div><span>RESULTADOS</span><h3>Últimos jogos finalizados</h3></div><b>'+results.length+'</b></div>'+resultsHtml+'</section>'+
+      '<section class="v7489-section"><div class="v7489-section-head"><div><span>CLASSIFICAÇÃO</span><h3>Fase de grupos</h3></div></div><div class="v73-public-grid">'+standings()+'</div></section>'+
+      knockoutHtml+
+      podiumHtml;
+  };
+    });
+
+    // Mata-mata inteiro
+    var koGames=[];
+    if(state.knockout && state.knockout.rounds){
+      state.knockout.rounds.forEach(function(round,ri){
+        (round.matches||[]).forEach(function(match,mi){
+          if(!teamVisible(match.aId,match.bId))return;
+          koGames.push({
+            type:'ko',
+            phase:round.name,
+            roundIndex:ri,
+            matchIndex:mi,
+            aId:match.aId,bId:match.bId,
+            aScore:match.aScore,bScore:match.bScore,
+            done:scoreDone(match),
+            status:scoreDone(match)?'Finalizado':((match.aId&&match.bId)?'Aguardando':'A definir'),
+            meta:round.name
+          });
+        });
+      });
+
+      var tp=state.knockout.thirdPlaceMatch;
+      if(state.knockout.thirdPlacePlayoff && tp && teamVisible(tp.aId,tp.bId)){
+        koGames.push({
+          type:'third',
+          phase:'Disputa de 3º lugar',
+          aId:tp.aId,bId:tp.bId,
+          aScore:tp.aScore,bScore:tp.bScore,
+          done:scoreDone(tp),
+          status:scoreDone(tp)?'Finalizado':((tp.aId&&tp.bId)?'Aguardando':'A definir'),
+          meta:'Disputa de 3º lugar'
+        });
+      }
+    }
+
+    var allPublicGames=groupGames.concat(koGames);
+    var upcoming=allPublicGames.filter(function(x){
+      return !x.done && x.aId && x.bId;
+    }).slice(0,16);
+    var done=allPublicGames.filter(function(x){return x.done;}).slice(-20).reverse();
+
+    var upcomingHtml=upcoming.length
+      ? upcoming.map(function(x){
+          return publicGameRow(x.aId,x.bId,x.aScore,x.bScore,x.meta,x.status);
+        }).join('')
+      : '<p>Nenhum jogo pendente.</p>';
+
+    var doneHtml=done.length
+      ? done.map(function(x){
+          return publicGameRow(x.aId,x.bId,x.aScore,x.bScore,x.meta,'Finalizado');
+        }).join('')
+      : '<p>Sem resultados ainda.</p>';
+
+    var knockoutHtml='';
+    if(state.knockout && state.knockout.rounds){
+      knockoutHtml='<h3 class="v7488-public-section-title">Mata-mata</h3>'+
+        '<div class="v7488-public-knockout">'+
+        state.knockout.rounds.map(function(round){
+          var matches=(round.matches||[]).filter(function(match){
+            return teamVisible(match.aId,match.bId);
+          });
+          if(!matches.length)return '';
+          return '<div class="v7488-public-round">'+
+            '<h4>'+esc(round.name)+'</h4>'+
+            matches.map(function(match){
+              return '<div class="v7488-public-ko-match">'+
+                '<div class="v7488-public-ko-team">'+esc(match.aId?teamName(match.aId):'A definir')+'</div>'+
+                '<div class="v7488-public-ko-score">'+
+                  (scoreDone(match)?'<strong>'+esc(match.aScore)+' × '+esc(match.bScore)+'</strong>':'<span>×</span>')+
+                '</div>'+
+                '<div class="v7488-public-ko-team">'+esc(match.bId?teamName(match.bId):'A definir')+'</div>'+
+              '</div>';
+            }).join('')+
+          '</div>';
+        }).join('');
+
+      if(state.knockout.thirdPlacePlayoff && state.knockout.thirdPlaceMatch){
+        var tp2=state.knockout.thirdPlaceMatch;
+        if(teamVisible(tp2.aId,tp2.bId)){
+          knockoutHtml+='<div class="v7488-public-round third">'+
+            '<h4>🥉 Disputa de 3º lugar</h4>'+
+            '<div class="v7488-public-ko-match">'+
+              '<div class="v7488-public-ko-team">'+esc(tp2.aId?teamName(tp2.aId):'A definir')+'</div>'+
+              '<div class="v7488-public-ko-score">'+
+                (scoreDone(tp2)?'<strong>'+esc(tp2.aScore)+' × '+esc(tp2.bScore)+'</strong>':'<span>×</span>')+
+              '</div>'+
+              '<div class="v7488-public-ko-team">'+esc(tp2.bId?teamName(tp2.bId):'A definir')+'</div>'+
+            '</div>'+
+          '</div>';
         }
       }
-    }).catch(function(){
-      authError.textContent='Não foi possível salvar/validar o acesso neste navegador.';
-    }).then(function(){
-      authSubmit.disabled=false;
-      authSubmit.textContent=setupMode?'CRIAR PRIMEIRO ACESSO':'ENTRAR';
-    });
-  });
-  if(logoutBtn){logoutBtn.addEventListener('click',clearSession);}
-  configureAuthScreen();
-  if(hasSession()&&getStoredAuth()){document.body.classList.remove('jb-auth-locked');}
-  else{document.body.classList.add('jb-auth-locked');}
-})();
-</script>
+      knockoutHtml+='</div>';
 
-<style id="jb-v71-safety">
-.v71-roster-lock{margin-top:8px;padding:10px 12px;border-radius:12px;background:#fff6d8;border:1px solid #f3d26d;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:10px;font-weight:800;color:#705b00}.v71-roster-lock button{padding:8px 10px}.v71-alerts{display:grid;gap:7px;margin:10px 0}.v71-alert{display:flex;align-items:flex-start;gap:9px;padding:10px 12px;border-radius:12px;border:1px solid #e0e7ed;background:#fff;font-size:10px;color:#405262;font-weight:700}.v71-alert b{display:block;color:#071d38;margin-bottom:2px}.v71-alert.warn{background:#fff8e8;border-color:#f2d791}.v71-alert.ok{background:#f2fbf6;border-color:#bfe7ce}.v71-safety-actions{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}.v71-safety-actions button{font-size:10px}.v71-locked-textarea{background:#f3f5f7!important;color:#71808c!important;cursor:not-allowed}.v71-badge-safe{display:inline-flex;align-items:center;gap:5px;background:#e7f6ed;color:#167343;border-radius:999px;padding:5px 8px;font-size:9px;font-weight:900}
-@media(max-width:650px){.v71-roster-lock{align-items:flex-start;flex-direction:column}.v71-safety-actions{display:grid;grid-template-columns:1fr}.v71-safety-actions button{width:100%}}
-</style>
-<script id="jb-v71-safety-script">
-(function(){
-  window.v71CreateSafetyBackup=function(reason){
-    try{
-      ensureTournamentCollection();
-      var snap=currentTournamentSnapshot(); snap.reason=reason||'alteração importante'; snap.backupAt=Date.now();
-      localStorage.setItem('jb_v71_safety_'+activeTournamentId,JSON.stringify(snap));
-      return true;
-    }catch(e){return false;}
+      var c=state.knockout.championId?teamName(state.knockout.championId):'A definir';
+      var r=state.knockout.runnerUpId?teamName(state.knockout.runnerUpId):'A definir';
+      var t=state.knockout.thirdPlaceId?teamName(state.knockout.thirdPlaceId):'A definir';
+
+      if(state.knockout.championId || state.knockout.runnerUpId || state.knockout.thirdPlaceId){
+        knockoutHtml+='<h3 class="v7488-public-section-title">Pódio</h3>'+
+          '<div class="v7488-public-podium">'+
+            '<div class="v7488-public-place first"><span>🏆</span><small>CAMPEÕES</small><b>'+esc(c)+'</b></div>'+
+            '<div class="v7488-public-place second"><span>🥈</span><small>VICE-CAMPEÕES</small><b>'+esc(r)+'</b></div>'+
+            '<div class="v7488-public-place third"><span>🥉</span><small>3º LUGAR</small><b>'+esc(t)+'</b></div>'+
+          '</div>';
+      }
+    }
+
+    host.innerHTML=
+      '<div class="v73-public-grid">'+
+        '<div class="v73-public-card"><h3>Próximos jogos</h3>'+upcomingHtml+'</div>'+
+        '<div class="v73-public-card"><h3>Últimos resultados</h3>'+doneHtml+'</div>'+
+      '</div>'+
+      '<h3 style="margin:20px 0 10px">Classificação</h3>'+
+      '<div class="v73-public-grid">'+standings()+'</div>'+
+      knockoutHtml;
   };
   window.v71RestoreSafetyBackup=function(){
     try{
