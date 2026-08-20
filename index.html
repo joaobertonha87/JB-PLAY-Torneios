@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.4.8.3 — correção estrutural de confrontos e placares */
+/* V7.4.8.4 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -1149,6 +1149,80 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 #v73ThirdPlayoffState{font-size:11px;letter-spacing:.08em;color:#637282}
 .v7483-third-button.is-on #v73ThirdPlayoffState{color:#648000}
 @media(max-width:720px){.v7483-third-button{width:100%!important;min-width:0!important}}
+</style>
+
+
+<style id="jb-v7484-third-names-fix">
+.v7484-third-match{
+  background:#fff!important;
+  color:#071d38!important;
+}
+.v7484-third-title{
+  color:#071d38!important;
+  font-size:16px!important;
+  margin-bottom:14px!important;
+}
+.v7484-third-grid{
+  display:grid!important;
+  grid-template-columns:minmax(190px,1fr) 68px 28px 68px minmax(190px,1fr)!important;
+  gap:12px!important;
+  align-items:center!important;
+}
+.v7484-third-team{
+  min-width:0!important;
+  padding:12px 14px!important;
+  border:1px solid #dce5ee!important;
+  border-radius:12px!important;
+  background:#f7fafc!important;
+}
+.v7484-third-team small{
+  display:block!important;
+  color:#7b8996!important;
+  font-size:9px!important;
+  font-weight:900!important;
+  letter-spacing:.12em!important;
+  margin-bottom:4px!important;
+}
+.v7484-third-team strong{
+  display:block!important;
+  color:#071d38!important;
+  font-size:15px!important;
+  line-height:1.3!important;
+  font-weight:900!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+}
+.v7484-third-score{
+  width:68px!important;
+  min-width:68px!important;
+  height:52px!important;
+  text-align:center!important;
+  color:#071d38!important;
+  background:#fff!important;
+  border:2px solid #b8c6d3!important;
+  border-radius:12px!important;
+  font-weight:950!important;
+}
+.v7484-third-vs{
+  color:#071d38!important;
+  font-weight:950!important;
+  text-align:center!important;
+  font-size:18px!important;
+}
+@media(max-width:900px){
+  .v7484-third-grid{
+    grid-template-columns:1fr 68px 28px 68px 1fr!important;
+    gap:8px!important;
+  }
+}
+@media(max-width:700px){
+  .v7484-third-grid{
+    grid-template-columns:1fr 1fr!important;
+  }
+  .v7484-third-team{grid-column:1/-1!important;text-align:center!important}
+  .v7484-third-score{justify-self:center!important}
+  .v7484-third-vs{display:none!important}
+}
 </style>
 
 </head>
@@ -3172,7 +3246,7 @@ if('serviceWorker' in navigator){
   };
   window.v73UpdateThird=function(side,value,input){var tp=state.knockout&&state.knockout.thirdPlaceMatch;if(!tp)return;var clean=String(value).replace(/[^\d]/g,'');tp[side]=clean===''?'':String(Math.min(99,Number(clean)));if(input)input.value=tp[side];save();};
   window.v73FinishThird=function(){var tp=state.knockout&&state.knockout.thirdPlaceMatch;if(!tp||!state.knockout.thirdPlacePlayoff)return;state.knockout.thirdPlaceId=getKnockoutWinner(tp);save();v73RenderPodium();v73AddThirdPlaceUI();};
-  window.v73AddThirdPlaceUI=function(){var host=document.getElementById('knockoutArea');if(!host)return;var old=document.getElementById('v73ThirdPlace');if(old)old.remove();v73SyncThirdToggle();var k=state.knockout||{},tp=k.thirdPlaceMatch;if(!k.thirdPlacePlayoff||!tp||!tp.aId||!tp.bId)return;var d=document.createElement('div');d.id='v73ThirdPlace';d.className='v73-third-match';d.innerHTML='<b>🥉 Disputa de 3º lugar</b><div class="match"><span class="right">'+esc(teamName(tp.aId))+'</span><input class="score" inputmode="numeric" value="'+esc(tp.aScore)+'" oninput="v73UpdateThird(\'aScore\',this.value,this)" onchange="v73FinishThird()" onblur="v73FinishThird()"><span class="vs">×</span><input class="score" inputmode="numeric" value="'+esc(tp.bScore)+'" oninput="v73UpdateThird(\'bScore\',this.value,this)" onchange="v73FinishThird()" onblur="v73FinishThird()"><span>'+esc(teamName(tp.bId))+'</span></div>';host.appendChild(d);};
+  window.v73AddThirdPlaceUI=function(){var host=document.getElementById('knockoutArea');if(!host)return;var old=document.getElementById('v73ThirdPlace');if(old)old.remove();v73SyncThirdToggle();var k=state.knockout||{},tp=k.thirdPlaceMatch;if(!k.thirdPlacePlayoff||!tp||!tp.aId||!tp.bId)return;var d=document.createElement('div');d.id='v73ThirdPlace';d.className='v73-third-match v7484-third-match';d.innerHTML='<div class="v7484-third-title">🥉 <b>Disputa de 3º lugar</b></div><div class="v7484-third-grid"><div class="v7484-third-team"><small>DUPLA A</small><strong>'+esc(teamName(tp.aId))+'</strong></div><input class="score v7484-third-score" aria-label="Placar da Dupla A" inputmode="numeric" value="'+esc(tp.aScore)+'" oninput="v73UpdateThird(\'aScore\',this.value,this)" onchange="v73FinishThird()" onblur="v73FinishThird()"><span class="v7484-third-vs">×</span><input class="score v7484-third-score" aria-label="Placar da Dupla B" inputmode="numeric" value="'+esc(tp.bScore)+'" oninput="v73UpdateThird(\'bScore\',this.value,this)" onchange="v73FinishThird()" onblur="v73FinishThird()"><div class="v7484-third-team"><small>DUPLA B</small><strong>'+esc(teamName(tp.bId))+'</strong></div></div>';host.appendChild(d);};
   window.v73RenderPodium=function(){var host=document.getElementById('v73Podium');if(!host)return;var k=state.knockout||{},c=k.championId,r=k.runnerUpId,t=k.thirdPlaceId,playoff=!!k.thirdPlacePlayoff;var msg=(c&&r&&t)?('Pódio definido'+(playoff?' · 3º lugar decidido em partida':' · 3º lugar automático pelo critério da semifinal')):(playoff?'O pódio será concluído após a final e a disputa de 3º lugar.':'Por padrão, o 3º lugar será a dupla que perder para o campeão na semifinal.');host.innerHTML='<div class="v73-podium-title"><span>RESULTADO OFICIAL</span><h2>'+esc((document.getElementById('title')||{}).value||'Torneio')+'</h2><p>'+esc(msg)+'</p></div><div class="v73-podium"><div class="v73-place second"><div class="v73-medal">🥈</div><span>VICE-CAMPEÃO</span><b>'+esc(teamName(r))+'</b></div><div class="v73-place first"><div class="v73-medal">🏆</div><span>CAMPEÃO</span><b>'+esc(teamName(c))+'</b></div><div class="v73-place third"><div class="v73-medal">🥉</div><span>3º LUGAR</span><b>'+esc(teamName(t))+'</b></div></div>';};
   function standings(){if(!state.groups||!state.groups.length)return '<div class="v73-public-card"><p>Grupos ainda não gerados.</p></div>';return state.groups.map(function(g){var tb=groupStandings(g);return '<div class="v73-public-card"><h3>Grupo '+esc(g.name)+'</h3>'+tb.map(function(x,i){return '<div class="v73-public-game"><b>'+(i+1)+'º · '+esc(teamLabel(x.team))+'</b><small>'+x.J+'J · '+x.V+'V · SG '+(x.SG>0?'+':'')+x.SG+'</small></div>';}).join('')+'</div>';}).join('');}
   window.v73RenderPublic=function(){var host=document.getElementById('v73PublicContent'),sel=document.getElementById('v73TeamFilter'),ttl=document.getElementById('v73PublicTitle');if(!host)return;if(ttl)ttl.textContent=(document.getElementById('title')||{}).value||'Torneio';if(sel){var cur=sel.value;sel.innerHTML='<option value="">Todas as duplas</option>'+(state.teams||[]).map(function(t){return '<option value="'+esc(t.id)+'">'+esc(teamLabel(t))+'</option>';}).join('');sel.value=cur;}var filter=sel?sel.value:'',games=allGames().filter(function(x){return !filter||x.m.aId===filter||x.m.bId===filter;}),o=state.operations||{},up=games.filter(function(x){return !v7ValidScore(x.m)}).slice(0,10),done=games.filter(function(x){return v7ValidScore(x.m)}).slice(-10).reverse();host.innerHTML='<div class="v73-public-grid"><div class="v73-public-card"><h3>Próximos jogos</h3>'+(up.length?up.map(function(x){var st=(o.status&&o.status[x.key])||'waiting',lab=st==='playing'?'Em jogo':st==='called'?'Chamado':'Aguardando';return '<div class="v73-public-game"><b>'+esc(teamName(x.m.aId))+' × '+esc(teamName(x.m.bId))+'</b><small>Grupo '+esc(x.g.name)+(o.assignments&&o.assignments[x.key]?' · Quadra '+o.assignments[x.key]:'')+' · '+lab+'</small></div>';}).join(''):'<p>Nenhum jogo pendente.</p>')+'</div><div class="v73-public-card"><h3>Últimos resultados</h3>'+(done.length?done.map(function(x){return '<div class="v73-public-game"><b>'+esc(teamName(x.m.aId))+' '+esc(x.m.aScore)+' × '+esc(x.m.bScore)+' '+esc(teamName(x.m.bId))+'</b><small>Grupo '+esc(x.g.name)+'</small></div>';}).join(''):'<p>Sem resultados ainda.</p>')+'</div></div><h3 style="margin:20px 0 10px">Classificação</h3><div class="v73-public-grid">'+standings()+'</div>';};
