@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.4.9.0 — correção estrutural de confrontos e placares */
+/* V7.4.9.1 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -3728,6 +3728,205 @@ if('serviceWorker' in navigator){
 .v72-phase-ready{margin:12px 0;padding:13px;border:1px solid #bfe7ce;background:#f1fbf5;border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:10px}.v72-phase-ready b{font-size:12px;color:#0b6e3d}.v72-phase-ready small{display:block;margin-top:3px;color:#52636f;font-size:9px;font-weight:700}
 @media(max-width:650px){.v72-command-head{align-items:flex-start;flex-direction:column}.v72-recommend{grid-template-columns:1fr}.v72-recommend button{width:100%}.v72-qitem{grid-template-columns:26px 1fr}.v72-qitem small{grid-column:2;text-align:left}.v72-phase-ready{align-items:flex-start;flex-direction:column}.v72-phase-ready button{width:100%}}
 </style>
+<script id="jb-torneios-personal-login">
+(function(){
+  'use strict';
+  var AUTH_KEY='jbtorneios-auth-v1';
+  var SESSION_KEY='jbtorneios-session-v1';
+  var authTitle=document.getElementById('jbAuthTitle');
+  var authSub=document.getElementById('jbAuthSub');
+  var authForm=document.getElementById('jbAuthForm');
+  var authUser=document.getElementById('jbAuthUser');
+  var authPass=document.getElementById('jbAuthPass');
+  var authRemember=document.getElementById('jbAuthRemember');
+  var authSubmit=document.getElementById('jbAuthSubmit');
+  var authError=document.getElementById('jbAuthError');
+  var authEye=document.getElementById('jbAuthEye');
+  var logoutBtn=document.getElementById('jbAuthLogout');
+  var setupMode=false;
+
+  function safeGet(key, session){
+    try{return (session?sessionStorage:localStorage).getItem(key);}catch(e){return null;}
+  }
+  function safeSet(key,value,session){
+    try{(session?sessionStorage:localStorage).setItem(key,value);return true;}catch(e){return false;}
+  }
+  function safeRemove(key,session){
+    try{(session?sessionStorage:localStorage).removeItem(key);}catch(e){}
+  }
+  function getStoredAuth(){
+    try{var raw=safeGet(AUTH_KEY,false);return raw?JSON.parse(raw):null;}catch(e){return null;}
+  }
+  function fallbackHash(text){
+    var h=2166136261;
+    for(var i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619);}
+    return 'fallback-'+(h>>>0).toString(16);
+  }
+  function hashText(text){
+    if(window.crypto && window.crypto.subtle && window.TextEncoder){
+      try{
+        var data=new TextEncoder().encode(text);
+        return window.crypto.subtle.digest('SHA-256',data).then(function(buf){
+          return Array.prototype.map.call(new Uint8Array(buf),function(b){return b.toString(16).padStart(2,'0');}).join('');
+        }).catch(function(){return fallbackHash(text);});
+      }catch(e){}
+    }
+    return Promise.resolve(fallbackHash(text));
+  }
+  function configureAuthScreen(){
+    var saved=getStoredAuth();
+    setupMode=!saved;
+    authError.textContent='';
+    if(setupMode){
+      authTitle.textContent='Crie seu primeiro acesso';
+      authSub.textContent='Escolha seu usuário e sua senha. Você fará isso somente uma vez neste navegador.';
+      authSubmit.textContent='CRIAR PRIMEIRO ACESSO';
+      authPass.autocomplete='new-password';
+      authUser.value='';
+      authUser.placeholder='Crie seu usuário';
+      authPass.placeholder='Crie sua senha';
+    }else{
+      authTitle.textContent='Acesso ao JB Torneios';
+      authSub.textContent='Digite seu usuário e senha para acessar a plataforma.';
+      authSubmit.textContent='ENTRAR';
+      authPass.autocomplete='current-password';
+      authUser.value=saved.user||'';
+      authUser.placeholder='Seu usuário';
+      authPass.placeholder='Sua senha';
+    }
+  }
+  function setLoggedIn(remember){
+    if(remember){safeSet(SESSION_KEY,'1',false);safeRemove(SESSION_KEY,true);}
+    else{safeSet(SESSION_KEY,'1',true);safeRemove(SESSION_KEY,false);}
+    document.body.classList.remove('jb-auth-locked');
+    authError.textContent='';
+  }
+  function hasSession(){return safeGet(SESSION_KEY,false)==='1'||safeGet(SESSION_KEY,true)==='1';}
+  function clearSession(){
+    safeRemove(SESSION_KEY,false);safeRemove(SESSION_KEY,true);
+    document.body.classList.add('jb-auth-locked');
+    authPass.value='';
+    configureAuthScreen();
+    setTimeout(function(){authUser.focus();},80);
+  }
+
+  if(!authForm || !authUser || !authPass || !authSubmit){return;}
+  if(authEye){authEye.addEventListener('click',function(){
+    authPass.type=authPass.type==='password'?'text':'password';
+    authEye.textContent=authPass.type==='password'?'◉':'◎';
+  });}
+  authForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    authError.textContent='';
+    var user=authUser.value.trim();
+    var pass=authPass.value;
+    if(!user||!pass){authError.textContent='Preencha usuário e senha.';return;}
+    if(pass.length<4){authError.textContent='A senha precisa ter pelo menos 4 caracteres.';return;}
+    var wasSetup=setupMode;
+    authSubmit.disabled=true;
+    authSubmit.textContent=wasSetup?'CRIANDO...':'ENTRANDO...';
+    hashText(pass).then(function(passHash){
+      if(wasSetup){
+        var ok=safeSet(AUTH_KEY,JSON.stringify({user:user,passHash:passHash,createdAt:new Date().toISOString()}),false);
+        if(!ok){throw new Error('storage');}
+        setupMode=false;
+        setLoggedIn(authRemember.checked);
+      }else{
+        var saved=getStoredAuth();
+        if(saved && user===saved.user && passHash===saved.passHash){
+          setLoggedIn(authRemember.checked);
+        }else{
+          authError.textContent='Usuário ou senha incorretos.';
+          authPass.focus();authPass.select();
+        }
+      }
+    }).catch(function(){
+      authError.textContent='Não foi possível salvar/validar o acesso neste navegador.';
+    }).then(function(){
+      authSubmit.disabled=false;
+      authSubmit.textContent=setupMode?'CRIAR PRIMEIRO ACESSO':'ENTRAR';
+    });
+  });
+  if(logoutBtn){logoutBtn.addEventListener('click',clearSession);}
+  configureAuthScreen();
+  if(hasSession()&&getStoredAuth()){document.body.classList.remove('jb-auth-locked');}
+  else{document.body.classList.add('jb-auth-locked');}
+})();
+</script>
+
+<script id="jb-v71-safety-script">
+(function(){
+  window.v71CreateSafetyBackup=function(reason){
+    try{
+      ensureTournamentCollection();
+      var snap=currentTournamentSnapshot(); snap.reason=reason||'alteração importante'; snap.backupAt=Date.now();
+      localStorage.setItem('jb_v71_safety_'+activeTournamentId,JSON.stringify(snap));
+      return true;
+    }catch(e){return false;}
+  };
+  window.v71RestoreSafetyBackup=function(){
+    try{
+      var raw=localStorage.getItem('jb_v71_safety_'+activeTournamentId);
+      if(!raw){ showNotice('Ainda não existe backup de segurança para esta categoria.'); return; }
+      if(!confirm('Restaurar o último backup de segurança desta categoria? Os dados atuais serão substituídos.')) return;
+      var d=JSON.parse(raw);
+      el('title').value=d.title||'Torneio Interno'; participants.value=d.participants||''; el('qualifiersPerGroup').value=d.qualifiersPerGroup||'2'; if(el('matchFormat'))el('matchFormat').value=d.matchFormat||'standard6';
+      state=d.state||{teams:[],groups:[],knockout:null}; manualTeamsDraft=d.manualTeamsDraft||[]; renderManualTeamBuilder(); render(); updateStats(); save(); v71UpdateRosterLock(); v71RenderAlerts();
+      showNotice('Backup de segurança restaurado.',true);
+    }catch(e){ showNotice('Não foi possível restaurar o backup de segurança.'); }
+  };
+  window.v71CommitUndo=function(entry){
+    if(!entry) return;
+    try{
+      var key='jb_v71_undo_'+activeTournamentId, arr=JSON.parse(localStorage.getItem(key)||'[]');
+      arr.push(entry); if(arr.length>20) arr=arr.slice(-20); localStorage.setItem(key,JSON.stringify(arr));
+    }catch(e){}
+  };
+  window.v71UndoLastScore=function(){
+    try{
+      var key='jb_v71_undo_'+activeTournamentId, arr=JSON.parse(localStorage.getItem(key)||'[]');
+      if(!arr.length){ showNotice('Não há placar recente para desfazer.'); return; }
+      var u=arr.pop();
+      if(u.type==='group' && state.groups[u.groupIndex] && state.groups[u.groupIndex].matches[u.matchIndex]){
+        var m=state.groups[u.groupIndex].matches[u.matchIndex]; m.aScore=u.aScore; m.bScore=u.bScore; state.knockout=null;
+      }else if(u.type==='ko' && state.knockout && state.knockout.rounds[u.roundIndex] && state.knockout.rounds[u.roundIndex].matches[u.matchIndex]){
+        var km=state.knockout.rounds[u.roundIndex].matches[u.matchIndex]; km.aScore=u.aScore; km.bScore=u.bScore; propagateKnockout(Math.max(0,u.roundIndex));
+      }else{ showNotice('O placar não pode mais ser desfeito porque a estrutura do torneio mudou.'); return; }
+      localStorage.setItem(key,JSON.stringify(arr)); render(); save(); v71RenderAlerts(); showNotice('Última alteração de placar desfeita.',true);
+    }catch(e){ showNotice('Não foi possível desfazer o último placar.'); }
+  };
+  window.v71ReleaseFinishedCourts=function(){
+    try{var ops=v7EnsureOps(); v7AllGroupGames().forEach(function(x){if(v7ValidScore(x.m) && ops.assignments[x.key]) delete ops.assignments[x.key];});}catch(e){}
+  };
+  window.v71UpdateRosterLock=function(){
+    var locked=!!((state.teams&&state.teams.length)||(state.groups&&state.groups.length));
+    var ta=document.getElementById('participants'), bar=document.getElementById('v71RosterLockBar');
+    if(ta){ta.readOnly=locked;ta.classList.toggle('v71-locked-textarea',locked);} if(bar)bar.style.display=locked?'flex':'none';
+  };
+  window.v71RenderAlerts=function(){
+    var root=document.getElementById('v71Alerts'); if(!root) return;
+    var alerts=[], ops=v7EnsureOps(), all=v7AllGroupGames();
+    var active=all.filter(function(x){return !v7ValidScore(x.m)&&ops.assignments[x.key]});
+    var waiting=all.filter(function(x){return !v7ValidScore(x.m)&&!ops.assignments[x.key]});
+    var usedCourts={}; active.forEach(function(x){usedCourts[ops.assignments[x.key]]=true;});
+    var free=Math.max(0,ops.courtCount-Object.keys(usedCourts).length);
+    if(active.length) alerts.push('<div class="v71-alert ok"><span>●</span><div><b>'+active.length+' jogo(s) em andamento</b>'+free+' quadra(s) livre(s) neste momento.</div></div>');
+    else if(all.length && waiting.length) alerts.push('<div class="v71-alert warn"><span>!</span><div><b>Nenhum jogo em quadra</b>Há '+waiting.length+' partida(s) aguardando. Use “Chamar melhores jogos”.</div></div>');
+    var groupPending=[];(state.groups||[]).forEach(function(g){var n=(g.matches||[]).filter(function(m){return !v7ValidScore(m)}).length;if(n)groupPending.push('Grupo '+g.name+': '+n);});
+    if(groupPending.length) alerts.push('<div class="v71-alert"><span>▤</span><div><b>Resultados pendentes</b>'+groupPending.join(' · ')+'</div></div>');
+    if(state.groups&&state.groups.length && all.length && all.every(function(x){return v7ValidScore(x.m)}) && !state.knockout) alerts.push('<div class="v71-alert ok"><span>✓</span><div><b>Fase de grupos concluída</b>O mata-mata já pode ser gerado.</div></div>');
+    root.innerHTML=alerts.join('');
+  };
+  var btn=document.getElementById('v71UnlockRosterBtn'); if(btn) btn.addEventListener('click',function(){
+    if(!confirm('Reabrir inscrições apagará duplas, grupos, quadras e resultados desta categoria. Um backup de segurança será criado antes. Deseja continuar?')) return;
+    v71CreateSafetyBackup('reabrir inscrições'); state={teams:[],groups:[],knockout:null}; manualTeamsDraft=[]; renderManualTeamBuilder(); render(); save(); v71UpdateRosterLock(); showNotice('Inscrições reabertas. O estado anterior ficou salvo no backup de segurança.',true);
+  });
+  var originalRender=window.render; if(typeof originalRender==='function'){ window.render=function(){ var r=originalRender.apply(this,arguments); setTimeout(function(){v71UpdateRosterLock();v71RenderAlerts();},0); return r; }; }
+  var originalApply=window.applyTournamentById; if(typeof originalApply==='function'){ window.applyTournamentById=function(id){var r=originalApply(id);setTimeout(function(){v71UpdateRosterLock();v71RenderAlerts();},0);return r;}; }
+  setTimeout(function(){v71UpdateRosterLock();v71RenderAlerts();},100);
+})();
+</script>
+
 <script id="jb-v72-smart-courts-script">
 (function(){
   var REST_DEFAULT=5;
