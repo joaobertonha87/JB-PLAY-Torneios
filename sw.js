@@ -1,5 +1,5 @@
 
-const CACHE='jb-torneios-v6-clean-layout-20260819';
+const CACHE='jb-torneios-v6-2-category-switch-20260819';
 const APP_SHELL=[
   './','./index.html','./manifest.webmanifest',
   './jb-logo-lime.png','./jb-watermark-lime.png',

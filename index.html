@@ -1224,6 +1224,7 @@ button,a,input,select,textarea{touch-action:manipulation}
   </nav>
 
 <script>
+  // JB Torneios Pro V6.2 — correção de alternância entre categorias
   const el = id => document.getElementById(id);
   const participants = el('participants');
   const teamsArea = el('teamsArea');
@@ -2317,9 +2318,19 @@ button,a,input,select,textarea{touch-action:manipulation}
 
 
   el('tournamentSelector').addEventListener('change',function(){
+    // Guarda a categoria escolhida ANTES de salvar. O save() redesenha o seletor
+    // e, sem esta cópia, o navegador voltava visualmente para a categoria anterior.
+    const targetTournamentId=this.value;
+    if(!targetTournamentId || targetTournamentId===activeTournamentId) return;
+
+    // Salva o estado da categoria que está sendo deixada.
+    ensureTournamentCollection();
+    tournaments[activeTournamentId]=currentTournamentSnapshot();
+
+    // Troca para a categoria escolhida e carrega todos os dados independentes dela.
+    applyTournamentById(targetTournamentId);
     save();
-    applyTournamentById(this.value);
-    save();
+    hideNotice();
   });
   el('newTournamentBtn').addEventListener('click',createTournament);
   el('duplicateTournamentBtn').addEventListener('click',duplicateTournament);
