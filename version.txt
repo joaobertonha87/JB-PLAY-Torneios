@@ -1,1 +1,1 @@
-JB Torneios Pro V6.2 — correção de alternância entre categorias + layout clean + duplas manuais
+JB Torneios Pro V6.3 — login pessoal + categorias múltiplas + duplas manuais + correção de alternância

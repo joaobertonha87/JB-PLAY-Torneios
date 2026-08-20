@@ -948,10 +948,49 @@ button,a,input,select,textarea{touch-action:manipulation}
   .manual-help{font-size:12px;opacity:.8;margin:8px 0 0}
   .mode-divider{height:1px;background:rgba(148,163,184,.18);margin:15px 0}
   @media(max-width:760px){.category-toolbar{grid-template-columns:1fr 1fr}.category-toolbar .field{grid-column:1/-1}.manual-grid{grid-template-columns:1fr}.manual-grid button{width:100%}}
+
+/* ===== JB TORNEIOS PRO • ACESSO PESSOAL ===== */
+body.jb-auth-locked .app{filter:blur(10px);pointer-events:none;user-select:none;transform:scale(.995)}
+body.jb-auth-locked{overflow:hidden}
+.jb-auth-screen{position:fixed;inset:0;z-index:10050;display:none;align-items:center;justify-content:center;padding:22px;background:radial-gradient(circle at 16% 4%,rgba(24,200,216,.18),transparent 28rem),radial-gradient(circle at 88% 8%,rgba(200,255,51,.14),transparent 30rem),linear-gradient(180deg,rgba(3,10,16,.97),rgba(3,8,13,.995))}
+body.jb-auth-locked .jb-auth-screen{display:flex}
+.jb-auth-card{width:min(430px,100%);border:1px solid rgba(255,255,255,.12);border-radius:26px;padding:28px 26px 24px;background:linear-gradient(180deg,rgba(13,29,45,.97),rgba(6,14,21,.985));box-shadow:0 28px 90px rgba(0,0,0,.48);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.jb-auth-logo{display:flex;justify-content:center;margin:0 auto 16px}.jb-auth-logo img{width:190px;max-height:118px;object-fit:contain;filter:drop-shadow(0 0 18px rgba(200,255,51,.14))}
+.jb-auth-kicker{text-align:center;color:var(--accent);font-weight:900;letter-spacing:.18em;font-size:10px;margin-bottom:7px}.jb-auth-title{text-align:center;font-size:25px;font-weight:950;letter-spacing:-.02em;margin:0}
+.jb-auth-sub{text-align:center;color:var(--muted);font-size:12px;line-height:1.5;margin:8px auto 22px;max-width:330px}.jb-auth-field{display:grid;gap:7px;margin:12px 0}
+.jb-auth-field label{font-size:10px;color:var(--muted);font-weight:850;letter-spacing:.08em;text-transform:uppercase}.jb-auth-input-wrap{display:flex;align-items:center;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:#09141e;overflow:hidden}
+.jb-auth-input-wrap:focus-within{border-color:rgba(200,255,51,.58);box-shadow:0 0 0 3px rgba(200,255,51,.07)}.jb-auth-input-wrap span{width:43px;text-align:center;color:#84929e;font-size:16px}
+.jb-auth-input{width:100%;height:47px;border:0;outline:0;background:transparent;color:#fff;padding:0 12px 0 0;font-size:15px}.jb-auth-eye{width:48px!important;cursor:pointer;color:#aeb9c2!important;user-select:none}
+.jb-auth-check{display:flex;align-items:center;gap:9px;color:#a4b0b9;font-size:12px;margin:14px 0 17px}.jb-auth-check input{appearance:auto;-webkit-appearance:auto;accent-color:#c8ff33;width:16px;height:16px}
+.jb-auth-btn{width:100%;height:49px;border:0;border-radius:14px;background:linear-gradient(135deg,#d7ff22,#b4eb17);color:#071018;font-weight:950;font-size:14px;cursor:pointer;box-shadow:0 10px 28px rgba(200,255,51,.15)}
+.jb-auth-btn:active{transform:translateY(1px)}.jb-auth-error{min-height:18px;margin:10px 0 0;text-align:center;color:#ff8d8d;font-size:11px;font-weight:750}.jb-auth-foot{text-align:center;color:#70808b;font-size:10px;margin-top:17px}
+.jb-auth-logout{position:fixed;right:calc(16px + env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:80;border:1px solid rgba(180,210,240,.20);border-radius:999px;background:rgba(7,17,28,.90);color:#d9e4ed;padding:10px 16px;min-height:42px;font-weight:850;box-shadow:0 10px 28px rgba(0,0,0,.28);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);cursor:pointer}
+.jb-auth-logout:hover{border-color:rgba(200,255,51,.42);color:var(--accent)}body.jb-auth-locked .jb-auth-logout{display:none}
+@media(max-width:650px){.jb-auth-card{padding:22px 18px 20px;border-radius:22px}.jb-auth-logo img{width:160px}.jb-auth-title{font-size:22px}.jb-auth-logout{right:12px;bottom:calc(12px + env(safe-area-inset-bottom));padding:9px 13px}}
+
 </style>
 </head>
 
-<body>
+<body class="jb-auth-locked">
+
+<div class="jb-auth-screen" id="jbAuthScreen" aria-modal="true" role="dialog">
+  <div class="jb-auth-card">
+    <div class="jb-auth-logo"><img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis"></div>
+    <div class="jb-auth-kicker">JB TORNEIOS PRO</div>
+    <h1 class="jb-auth-title" id="jbAuthTitle">Acesso ao JB Torneios</h1>
+    <p class="jb-auth-sub" id="jbAuthSub">Entre para acessar sua plataforma de organização de torneios.</p>
+    <form id="jbAuthForm" autocomplete="on">
+      <div class="jb-auth-field"><label for="jbAuthUser">Usuário</label><div class="jb-auth-input-wrap"><span>●</span><input class="jb-auth-input" id="jbAuthUser" name="username" autocomplete="username" required placeholder="Seu usuário"></div></div>
+      <div class="jb-auth-field"><label for="jbAuthPass">Senha</label><div class="jb-auth-input-wrap"><span>◆</span><input class="jb-auth-input" id="jbAuthPass" name="password" type="password" autocomplete="current-password" required placeholder="Sua senha"><span class="jb-auth-eye" id="jbAuthEye" title="Mostrar senha">◉</span></div></div>
+      <label class="jb-auth-check"><input id="jbAuthRemember" type="checkbox" checked> Manter conectado neste dispositivo</label>
+      <button class="jb-auth-btn" type="submit" id="jbAuthSubmit">ENTRAR</button>
+      <div class="jb-auth-error" id="jbAuthError"></div>
+    </form>
+    <div class="jb-auth-foot">Acesso pessoal • João Bertonha Beach Tennis</div>
+  </div>
+</div>
+<button class="jb-auth-logout" id="jbAuthLogout" type="button" title="Sair do JB Torneios">↪ Sair</button>
+
 
   <aside class="jb-sidebar" aria-label="Menu JB Torneios Pro">
     <div class="jb-side-brand jb-side-brand-logo">
@@ -2190,7 +2229,27 @@ button,a,input,select,textarea{touch-action:manipulation}
       @media print{.no-print{display:none}}
     `;
     w.document.open();
-    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'</body></html>');
+    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'
+<script id="jb-torneios-personal-login">
+(function(){
+  const AUTH_KEY='jbtorneios-auth-v1', SESSION_KEY='jbtorneios-session-v1';
+  const authTitle=document.getElementById('jbAuthTitle'),authSub=document.getElementById('jbAuthSub'),authForm=document.getElementById('jbAuthForm'),authUser=document.getElementById('jbAuthUser'),authPass=document.getElementById('jbAuthPass'),authRemember=document.getElementById('jbAuthRemember'),authSubmit=document.getElementById('jbAuthSubmit'),authError=document.getElementById('jbAuthError'),authEye=document.getElementById('jbAuthEye'),logoutBtn=document.getElementById('jbAuthLogout');
+  let setupMode=false;
+  function getStoredAuth(){try{return JSON.parse(localStorage.getItem(AUTH_KEY)||'null')}catch(e){return null}}
+  async function hashText(text){if(window.crypto&&crypto.subtle){const data=new TextEncoder().encode(text);const buf=await crypto.subtle.digest('SHA-256',data);return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('')}let h=2166136261;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619)}return 'fallback-'+(h>>>0).toString(16)}
+  function setLoggedIn(remember){try{if(remember){localStorage.setItem(SESSION_KEY,'1');sessionStorage.removeItem(SESSION_KEY)}else{sessionStorage.setItem(SESSION_KEY,'1');localStorage.removeItem(SESSION_KEY)}}catch(e){}document.body.classList.remove('jb-auth-locked');authError.textContent=''}
+  function configureAuthScreen(){const saved=getStoredAuth();setupMode=!saved;if(setupMode){authTitle.textContent='Crie seu acesso';authSub.textContent='Primeiro acesso: escolha seu usuário e uma senha para proteger o JB Torneios neste dispositivo.';authSubmit.textContent='CRIAR ACESSO';authPass.autocomplete='new-password';if(!authUser.value)authUser.value='joao'}else{authTitle.textContent='Acesso ao JB Torneios';authSub.textContent='Entre para acessar sua plataforma de organização de torneios.';authSubmit.textContent='ENTRAR';authPass.autocomplete='current-password';if(!authUser.value)authUser.value=saved.user||''}}
+  function hasSession(){try{return localStorage.getItem(SESSION_KEY)==='1'||sessionStorage.getItem(SESSION_KEY)==='1'}catch(e){return false}}
+  function clearSession(){try{localStorage.removeItem(SESSION_KEY);sessionStorage.removeItem(SESSION_KEY)}catch(e){}document.body.classList.add('jb-auth-locked');authPass.value='';authError.textContent='';configureAuthScreen();setTimeout(()=>authUser.focus(),100)}
+  authEye.addEventListener('click',()=>{authPass.type=authPass.type==='password'?'text':'password';authEye.textContent=authPass.type==='password'?'◉':'◎'});
+  authForm.addEventListener('submit',async(e)=>{e.preventDefault();authError.textContent='';const user=authUser.value.trim(),pass=authPass.value;if(!user||!pass){authError.textContent='Preencha usuário e senha.';return}if(pass.length<4){authError.textContent='Use uma senha com pelo menos 4 caracteres.';return}authSubmit.disabled=true;authSubmit.textContent=setupMode?'CRIANDO...':'ENTRANDO...';try{const passHash=await hashText(pass);if(setupMode){localStorage.setItem(AUTH_KEY,JSON.stringify({user,passHash,createdAt:new Date().toISOString()}));setupMode=false;setLoggedIn(authRemember.checked)}else{const saved=getStoredAuth();if(saved&&user===saved.user&&passHash===saved.passHash){setLoggedIn(authRemember.checked)}else{authError.textContent='Usuário ou senha incorretos.';authPass.select()}}}catch(err){authError.textContent='Não foi possível validar o acesso neste navegador.'}authSubmit.disabled=false;authSubmit.textContent=setupMode?'CRIAR ACESSO':'ENTRAR'});
+  logoutBtn.addEventListener('click',clearSession);
+  configureAuthScreen();
+  if(hasSession()&&getStoredAuth())document.body.classList.remove('jb-auth-locked');else document.body.classList.add('jb-auth-locked');
+})();
+</script>
+
+</body></html>');
     w.document.close();
     w.focus();
     setTimeout(function(){ w.print(); },350);
