@@ -2229,27 +2229,7 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
       @media print{.no-print{display:none}}
     `;
     w.document.open();
-    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'
-<script id="jb-torneios-personal-login">
-(function(){
-  const AUTH_KEY='jbtorneios-auth-v1', SESSION_KEY='jbtorneios-session-v1';
-  const authTitle=document.getElementById('jbAuthTitle'),authSub=document.getElementById('jbAuthSub'),authForm=document.getElementById('jbAuthForm'),authUser=document.getElementById('jbAuthUser'),authPass=document.getElementById('jbAuthPass'),authRemember=document.getElementById('jbAuthRemember'),authSubmit=document.getElementById('jbAuthSubmit'),authError=document.getElementById('jbAuthError'),authEye=document.getElementById('jbAuthEye'),logoutBtn=document.getElementById('jbAuthLogout');
-  let setupMode=false;
-  function getStoredAuth(){try{return JSON.parse(localStorage.getItem(AUTH_KEY)||'null')}catch(e){return null}}
-  async function hashText(text){if(window.crypto&&crypto.subtle){const data=new TextEncoder().encode(text);const buf=await crypto.subtle.digest('SHA-256',data);return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('')}let h=2166136261;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619)}return 'fallback-'+(h>>>0).toString(16)}
-  function setLoggedIn(remember){try{if(remember){localStorage.setItem(SESSION_KEY,'1');sessionStorage.removeItem(SESSION_KEY)}else{sessionStorage.setItem(SESSION_KEY,'1');localStorage.removeItem(SESSION_KEY)}}catch(e){}document.body.classList.remove('jb-auth-locked');authError.textContent=''}
-  function configureAuthScreen(){const saved=getStoredAuth();setupMode=!saved;if(setupMode){authTitle.textContent='Crie seu acesso';authSub.textContent='Primeiro acesso: escolha seu usuário e uma senha para proteger o JB Torneios neste dispositivo.';authSubmit.textContent='CRIAR ACESSO';authPass.autocomplete='new-password';if(!authUser.value)authUser.value='joao'}else{authTitle.textContent='Acesso ao JB Torneios';authSub.textContent='Entre para acessar sua plataforma de organização de torneios.';authSubmit.textContent='ENTRAR';authPass.autocomplete='current-password';if(!authUser.value)authUser.value=saved.user||''}}
-  function hasSession(){try{return localStorage.getItem(SESSION_KEY)==='1'||sessionStorage.getItem(SESSION_KEY)==='1'}catch(e){return false}}
-  function clearSession(){try{localStorage.removeItem(SESSION_KEY);sessionStorage.removeItem(SESSION_KEY)}catch(e){}document.body.classList.add('jb-auth-locked');authPass.value='';authError.textContent='';configureAuthScreen();setTimeout(()=>authUser.focus(),100)}
-  authEye.addEventListener('click',()=>{authPass.type=authPass.type==='password'?'text':'password';authEye.textContent=authPass.type==='password'?'◉':'◎'});
-  authForm.addEventListener('submit',async(e)=>{e.preventDefault();authError.textContent='';const user=authUser.value.trim(),pass=authPass.value;if(!user||!pass){authError.textContent='Preencha usuário e senha.';return}if(pass.length<4){authError.textContent='Use uma senha com pelo menos 4 caracteres.';return}authSubmit.disabled=true;authSubmit.textContent=setupMode?'CRIANDO...':'ENTRANDO...';try{const passHash=await hashText(pass);if(setupMode){localStorage.setItem(AUTH_KEY,JSON.stringify({user,passHash,createdAt:new Date().toISOString()}));setupMode=false;setLoggedIn(authRemember.checked)}else{const saved=getStoredAuth();if(saved&&user===saved.user&&passHash===saved.passHash){setLoggedIn(authRemember.checked)}else{authError.textContent='Usuário ou senha incorretos.';authPass.select()}}}catch(err){authError.textContent='Não foi possível validar o acesso neste navegador.'}authSubmit.disabled=false;authSubmit.textContent=setupMode?'CRIAR ACESSO':'ENTRAR'});
-  logoutBtn.addEventListener('click',clearSession);
-  configureAuthScreen();
-  if(hasSession()&&getStoredAuth())document.body.classList.remove('jb-auth-locked');else document.body.classList.add('jb-auth-locked');
-})();
-</script>
-
-</body></html>');
+    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'</body></html>');
     w.document.close();
     w.focus();
     setTimeout(function(){ w.print(); },350);
@@ -2466,6 +2446,124 @@ if('serviceWorker' in navigator){
     });
   });
 }
+</script>
+\n<script id="jb-torneios-personal-login">
+(function(){
+  'use strict';
+  var AUTH_KEY='jbtorneios-auth-v2';
+  var SESSION_KEY='jbtorneios-session-v2';
+  var authTitle=document.getElementById('jbAuthTitle');
+  var authSub=document.getElementById('jbAuthSub');
+  var authForm=document.getElementById('jbAuthForm');
+  var authUser=document.getElementById('jbAuthUser');
+  var authPass=document.getElementById('jbAuthPass');
+  var authRemember=document.getElementById('jbAuthRemember');
+  var authSubmit=document.getElementById('jbAuthSubmit');
+  var authError=document.getElementById('jbAuthError');
+  var authEye=document.getElementById('jbAuthEye');
+  var logoutBtn=document.getElementById('jbAuthLogout');
+  var setupMode=false;
+
+  if(!authForm || !authUser || !authPass || !authSubmit){ return; }
+
+  function getStoredAuth(){
+    try { return JSON.parse(localStorage.getItem(AUTH_KEY)||'null'); }
+    catch(e){ return null; }
+  }
+  function hashText(text){
+    if(window.crypto && window.crypto.subtle && window.TextEncoder){
+      return window.crypto.subtle.digest('SHA-256',new TextEncoder().encode(text)).then(function(buf){
+        return Array.prototype.map.call(new Uint8Array(buf),function(b){return b.toString(16).padStart(2,'0');}).join('');
+      }).catch(function(){ return fallbackHash(text); });
+    }
+    return Promise.resolve(fallbackHash(text));
+  }
+  function fallbackHash(text){
+    var h=2166136261;
+    for(var i=0;i<text.length;i++){ h^=text.charCodeAt(i); h=Math.imul(h,16777619); }
+    return 'fallback-'+(h>>>0).toString(16);
+  }
+  function hasSession(){
+    try { return localStorage.getItem(SESSION_KEY)==='1' || sessionStorage.getItem(SESSION_KEY)==='1'; }
+    catch(e){ return false; }
+  }
+  function configure(){
+    var saved=getStoredAuth();
+    setupMode=!saved;
+    authError.textContent='';
+    if(setupMode){
+      authTitle.textContent='Crie seu primeiro acesso';
+      authSub.textContent='Escolha seu usuário e sua senha. Este cadastro é feito somente neste dispositivo.';
+      authSubmit.textContent='CRIAR PRIMEIRO ACESSO';
+      authPass.setAttribute('autocomplete','new-password');
+      authUser.value='';
+      authPass.value='';
+    } else {
+      authTitle.textContent='Acesso ao JB Torneios';
+      authSub.textContent='Digite seu usuário e sua senha para entrar.';
+      authSubmit.textContent='ENTRAR';
+      authPass.setAttribute('autocomplete','current-password');
+      if(!authUser.value) authUser.value=saved.user||'';
+    }
+  }
+  function unlock(remember){
+    try{
+      if(remember){ localStorage.setItem(SESSION_KEY,'1'); sessionStorage.removeItem(SESSION_KEY); }
+      else { sessionStorage.setItem(SESSION_KEY,'1'); localStorage.removeItem(SESSION_KEY); }
+    }catch(e){}
+    document.body.classList.remove('jb-auth-locked');
+    authError.textContent='';
+  }
+  function lock(){
+    try{ localStorage.removeItem(SESSION_KEY); sessionStorage.removeItem(SESSION_KEY); }catch(e){}
+    document.body.classList.add('jb-auth-locked');
+    authPass.value='';
+    configure();
+    setTimeout(function(){ authUser.focus(); },100);
+  }
+
+  if(authEye){
+    authEye.addEventListener('click',function(){
+      authPass.type=authPass.type==='password'?'text':'password';
+      authEye.textContent=authPass.type==='password'?'◉':'◎';
+    });
+  }
+
+  authForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    var user=authUser.value.trim();
+    var pass=authPass.value;
+    authError.textContent='';
+    if(!user || !pass){ authError.textContent='Preencha usuário e senha.'; return; }
+    if(pass.length<4){ authError.textContent='A senha precisa ter pelo menos 4 caracteres.'; return; }
+    authSubmit.disabled=true;
+    authSubmit.textContent=setupMode?'CRIANDO...':'ENTRANDO...';
+
+    hashText(pass).then(function(passHash){
+      if(setupMode){
+        try{
+          localStorage.setItem(AUTH_KEY,JSON.stringify({user:user,passHash:passHash,createdAt:new Date().toISOString()}));
+          setupMode=false;
+          unlock(authRemember.checked);
+        }catch(err){ authError.textContent='Não foi possível salvar o acesso neste navegador.'; }
+      }else{
+        var saved=getStoredAuth();
+        if(saved && user===saved.user && passHash===saved.passHash){ unlock(authRemember.checked); }
+        else { authError.textContent='Usuário ou senha incorretos.'; authPass.select(); }
+      }
+    }).catch(function(){
+      authError.textContent='Não foi possível validar o acesso neste navegador.';
+    }).finally(function(){
+      authSubmit.disabled=false;
+      authSubmit.textContent=setupMode?'CRIAR PRIMEIRO ACESSO':'ENTRAR';
+    });
+  });
+
+  if(logoutBtn) logoutBtn.addEventListener('click',lock);
+  configure();
+  if(hasSession() && getStoredAuth()) document.body.classList.remove('jb-auth-locked');
+  else document.body.classList.add('jb-auth-locked');
+})();
 </script>
 
 </body>
