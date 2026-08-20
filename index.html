@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.4.8.4 — correção estrutural de confrontos e placares */
+/* V7.4.8.5 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -1223,6 +1223,18 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
   .v7484-third-score{justify-self:center!important}
   .v7484-third-vs{display:none!important}
 }
+</style>
+
+
+<style id="jb-v7485-third-final-fix">
+.v7485-third-final{background:#fff!important;color:#071d38!important;border:1px solid #dce5ee!important}
+.v7485-third-head{color:#071d38!important;margin-bottom:12px!important;font-size:16px!important}
+.v7485-third-row{display:grid!important;grid-template-columns:minmax(210px,1fr) 110px 150px minmax(210px,1fr)!important;gap:12px!important;align-items:center!important}
+.v7485-third-name{background:#f7fafc!important;border:1px solid #dce5ee!important;border-radius:12px!important;padding:12px 14px!important;min-width:0!important}
+.v7485-third-name small{display:block!important;color:#71808f!important;font-size:9px!important;letter-spacing:.12em!important;font-weight:900!important;margin-bottom:4px!important}
+.v7485-third-name strong{display:block!important;color:#071d38!important;font-size:15px!important;font-weight:950!important;line-height:1.3!important;white-space:normal!important;overflow-wrap:anywhere!important}
+@media(max-width:900px){.v7485-third-row{grid-template-columns:1fr 100px 130px 1fr!important;gap:8px!important}}
+@media(max-width:700px){.v7485-third-row{grid-template-columns:1fr!important}.v7485-third-row>*{justify-self:stretch!important;text-align:center!important}.v7485-third-row .jb-score-pill{justify-self:center!important}.v7485-third-row button{width:100%!important}}
 </style>
 
 </head>
@@ -3724,7 +3736,7 @@ setTimeout(init,250);
   // Wrap Smart Court rendering: replace legacy score inputs with structured button after its render.
   var oldRG=window.renderGames;window.renderGames=function(){oldRG();document.querySelectorAll('#gamesArea .jb-v7-game-card').forEach(function(card){var id=card.id||'',mm=id.match(/^game-G(\d+)M(\d+)$/);if(!mm)return;var gi=Number(mm[1]),mi=Number(mm[2]),m=state.groups[gi].matches[mi],row=card.querySelector('.jb-v7-match-row');if(row)row.innerHTML='<strong>'+esc(teamLabel(getTeam(m.aId)))+'</strong><span class="jb-score-pill">'+esc(jbScoreText(m))+'</span><button type="button" class="secondary jb-score-edit" onclick="jbOpenScore(\'group\','+gi+','+mi+')">'+(v7ValidScore(m)?'Editar placar':'Lançar placar')+'</button><strong>'+esc(teamLabel(getTeam(m.bId)))+'</strong>'})};
   var oldRK=window.renderKnockout;window.renderKnockout=function(){oldRK();if(!state.knockout)return;var rounds=document.querySelectorAll('#knockoutArea .round');rounds.forEach(function(rd,ri){rd.querySelectorAll('.ko-match').forEach(function(km,mi){var m=state.knockout.rounds[ri].matches[mi];if(!m||!m.aId||!m.bId)return;km.innerHTML='<div class="jb-score-summary"><strong>'+esc(teamLabel(getTeam(m.aId)))+'</strong><span class="jb-score-pill">'+esc(jbScoreText(m))+'</span><button type="button" class="secondary" onclick="jbOpenScore(\'ko\','+ri+','+mi+')">'+(v7ValidScore(m)?'Editar':'Lançar placar')+'</button><strong>'+esc(teamLabel(getTeam(m.bId)))+'</strong></div>'})});if(window.v73AddThirdPlaceUI)window.v73AddThirdPlaceUI()};
-  window.v73AddThirdPlaceUI=function(){var host=document.getElementById('knockoutArea');if(!host||!state.knockout)return;var old=document.getElementById('v73ThirdPlace');if(old)old.remove();var tp=state.knockout.thirdPlaceMatch;if(!state.knockout.thirdPlacePlayoff||!tp||!tp.aId||!tp.bId)return;var d=document.createElement('div');d.id='v73ThirdPlace';d.className='v73-third-match';d.innerHTML='<b>🥉 Disputa de 3º lugar</b><div class="jb-score-summary"><strong>'+esc(teamLabel(getTeam(tp.aId)))+'</strong><span class="jb-score-pill">'+esc(jbScoreText(tp))+'</span><button type="button" class="secondary" onclick="jbOpenScore(\'third\',0,0)">'+(v7ValidScore(tp)?'Editar':'Lançar placar')+'</button><strong>'+esc(teamLabel(getTeam(tp.bId)))+'</strong></div>';host.appendChild(d)};
+  window.v73AddThirdPlaceUI=function(){var host=document.getElementById('knockoutArea');if(!host||!state.knockout)return;var old=document.getElementById('v73ThirdPlace');if(old)old.remove();var tp=state.knockout.thirdPlaceMatch;if(!state.knockout.thirdPlacePlayoff||!tp||!tp.aId||!tp.bId)return;var aTeam=getTeam(tp.aId),bTeam=getTeam(tp.bId);var aName=aTeam?teamLabel(aTeam):'Dupla A';var bName=bTeam?teamLabel(bTeam):'Dupla B';var d=document.createElement('div');d.id='v73ThirdPlace';d.className='v73-third-match v7485-third-final';d.innerHTML='<div class="v7485-third-head">🥉 <b>Disputa de 3º lugar</b></div><div class="v7485-third-row"><div class="v7485-third-name"><small>DUPLA A</small><strong>'+esc(aName)+'</strong></div><span class="jb-score-pill">'+esc(jbScoreText(tp))+'</span><button type="button" class="secondary" onclick="jbOpenScore(\'third\',0,0)">'+(v7ValidScore(tp)?'Editar placar':'Lançar placar')+'</button><div class="v7485-third-name"><small>DUPLA B</small><strong>'+esc(bName)+'</strong></div></div>';host.appendChild(d)};
   // Public results use the full formatted score.
   var oldPub=window.v73RenderPublic;if(oldPub)window.v73RenderPublic=function(){oldPub();document.querySelectorAll('#v73PublicContent .v73-public-game').forEach(function(){/* retained; refreshed by normal render */})};
   var mf=document.getElementById('matchFormat');if(mf)mf.addEventListener('change',function(){var has=(state.groups&&state.groups.some(function(g){return(g.matches||[]).some(v7ValidScore)}))||state.knockout;if(has&&!confirm('Alterar o formato agora apagará todos os placares da categoria para evitar resultados incompatíveis. Continuar?')){this.value=(tournaments[activeTournamentId]&&tournaments[activeTournamentId].matchFormat)||'standard6';return}if(has){state.groups.forEach(function(g){g.matches.forEach(function(m){m.aScore='';m.bScore='';m.scoreData=null})});state.knockout=null}save();render();showNotice('Formato de partida atualizado para esta categoria.',true)});
