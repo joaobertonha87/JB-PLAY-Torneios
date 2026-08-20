@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.4.8 — correção estrutural de confrontos e placares */
+/* V7.4.8.1 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -2190,28 +2190,24 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
     const size=nextPowerOfTwo(qualifiers.length);
     const blank=(aId,bId)=>({aId:aId||null,bId:bId||null,aScore:'',bScore:''});
 
-    // Dois grupos classificando duas duplas:
-    // semifinal 1 = 1º A x 2º B
-    // semifinal 2 = 1º B x 2º A
+    // Dois grupos, duas duplas classificadas por grupo:
+    // Semi 1 = 1º A x 2º B | Semi 2 = 1º B x 2º A.
     if(qualifiers.length===4){
       const groups=[...new Set(qualifiers.map(q=>q.group))];
       if(groups.length===2){
         const ga=qualifiers.filter(q=>q.group===groups[0]).sort((a,b)=>a.position-b.position);
         const gb=qualifiers.filter(q=>q.group===groups[1]).sort((a,b)=>a.position-b.position);
         if(ga.length===2 && gb.length===2){
-          return {
-            size:4,
-            pairings:[
-              blank(ga[0].team.id,gb[1].team.id),
-              blank(gb[0].team.id,ga[1].team.id)
-            ]
-          };
+          return {size:4,pairings:[
+            blank(ga[0].team.id,gb[1].team.id),
+            blank(gb[0].team.id,ga[1].team.id)
+          ]};
         }
       }
     }
 
-    // Demais formatos: evita reencontro do mesmo grupo na primeira rodada
-    // sempre que existir combinação possível.
+    // Outros formatos: evita reencontro do mesmo grupo na primeira rodada
+    // sempre que houver uma combinação intergrupos possível.
     const items=qualifiers.slice();
     const byeCount=Math.max(0,size-items.length);
     const pairings=[];
@@ -2220,30 +2216,16 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
     function solve(pool,acc){
       if(!pool.length) return acc.slice();
-      if(pool.length===1){
-        acc.push(blank(pool[0].team.id,null));
-        return acc.slice();
-      }
-
+      if(pool.length===1){ acc.push(blank(pool[0].team.id,null)); return acc.slice(); }
       const first=pool[0];
       const candidates=[];
       for(let i=1;i<pool.length;i++){
         const q=pool[i];
-        candidates.push({
-          i,
-          q,
-          same:q.group===first.group,
+        candidates.push({i,q,same:q.group===first.group,
           positionPenalty:Math.abs((first.position||1)-(q.position||1)),
-          seedDistance:Math.abs(qualifiers.indexOf(first)-qualifiers.indexOf(q))
-        });
+          seedDistance:Math.abs(qualifiers.indexOf(first)-qualifiers.indexOf(q))});
       }
-
-      candidates.sort((a,b)=>
-        Number(a.same)-Number(b.same) ||
-        a.positionPenalty-b.positionPenalty ||
-        b.seedDistance-a.seedDistance
-      );
-
+      candidates.sort((a,b)=>Number(a.same)-Number(b.same) || a.positionPenalty-b.positionPenalty || b.seedDistance-a.seedDistance);
       const hasCross=candidates.some(c=>!c.same);
       for(const c of candidates){
         if(hasCross && c.same) continue;
@@ -2253,8 +2235,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
         if(solved) return solved;
         acc.pop();
       }
-
-      // fallback somente se matematicamente inevitável
+      // fallback somente quando o reencontro for inevitável
       for(const c of candidates){
         const rest=pool.filter((_,idx)=>idx!==0 && idx!==c.i);
         acc.push(blank(first.team.id,c.q.team.id));
@@ -2264,7 +2245,6 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
       }
       return null;
     }
-
     pairings.push(...(solve(items,[])||[]));
     while(pairings.length<size/2) pairings.push(blank(null,null));
     return {size,pairings};
@@ -2784,28 +2764,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
       @media print{.no-print{display:none}}
     `;
     w.document.open();
-    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'
-<style id="jb-v748-windows-scroll-fix">
-html{overflow-y:auto!important;height:auto!important;scrollbar-gutter:stable}
-body{overflow-y:visible!important;height:auto!important;min-height:100vh!important;overscroll-behavior-y:auto!important}
-.app,.jb-page,.jb-app-main,.app-shell{overflow-y:visible!important;height:auto!important;max-height:none!important}
-</style>
-<script id="jb-v748-windows-wheel-fix">
-(function(){
-  if(!window.matchMedia || !window.matchMedia('(pointer:fine)').matches) return;
-  document.addEventListener('wheel',function(e){
-    if(e.ctrlKey || e.metaKey) return;
-    var t=e.target;
-    if(t && t.closest && t.closest('.jb-score-dialog,.jb-auth-card,textarea,select,input')) return;
-    if(Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
-    if(document.body.classList.contains('jb-auth-locked')) return;
-    e.preventDefault();
-    window.scrollBy(0,e.deltaY);
-  },{passive:false});
-})();
-</script>
-
-</body></html>');
+    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'</body></html>');
     w.document.close();
     w.focus();
     setTimeout(function(){ w.print(); },350);
@@ -3612,5 +3571,25 @@ setTimeout(init,250);
 })();
 </script>
 
+
+<style id="jb-v7481-windows-scroll-fix">
+html{overflow-y:auto!important;height:auto!important;scrollbar-gutter:stable}
+body{overflow-y:visible!important;height:auto!important;min-height:100vh!important;overscroll-behavior-y:auto!important}
+.app,.jb-page,.jb-app-main,.app-shell{overflow-y:visible!important;height:auto!important;max-height:none!important}
+</style>
+<script id="jb-v7481-windows-wheel-fix">
+(function(){
+  if(!window.matchMedia || !window.matchMedia('(pointer:fine)').matches) return;
+  document.addEventListener('wheel',function(e){
+    if(e.ctrlKey || e.metaKey) return;
+    var t=e.target;
+    if(t && t.closest && t.closest('.jb-score-dialog,.jb-auth-card,textarea,select,input')) return;
+    if(Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+    if(document.body.classList.contains('jb-auth-locked')) return;
+    e.preventDefault();
+    window.scrollBy(0,e.deltaY);
+  },{passive:false});
+})();
+</script>
 </body>
 </html>
