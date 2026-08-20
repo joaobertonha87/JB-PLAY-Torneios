@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.4.8.9 — correção estrutural de confrontos e placares */
+/* V7.4.9.0 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -1384,145 +1384,40 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 </style>
 
 
-<style id="jb-v7489-public-clean-layout">
-#v73PublicContent{display:grid!important;gap:22px!important}
-.v7489-section{
-  background:transparent!important;
-  margin:0!important;
-  padding:0!important;
+<style id="jb-v7490-public-clarity">
+#v73PublicContent>.v73-public-grid:first-child{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:22px!important;align-items:start!important;margin-top:18px!important
 }
-.v7489-section.priority{
-  padding:16px!important;
-  background:linear-gradient(180deg,rgba(168,207,0,.10),rgba(168,207,0,.02))!important;
-  border:1px solid rgba(168,207,0,.28)!important;
-  border-radius:18px!important;
+#v73PublicContent>.v73-public-grid:first-child>.v73-public-card{
+  background:#fff!important;border:1px solid #dbe5ed!important;border-radius:18px!important;
+  padding:20px!important;box-shadow:0 8px 24px rgba(6,32,55,.08)!important;min-width:0!important
 }
-.v7489-section-head{
-  display:flex!important;
-  align-items:flex-end!important;
-  justify-content:space-between!important;
-  gap:14px!important;
-  margin:0 0 12px!important;
+#v73PublicContent>.v73-public-grid:first-child>.v73-public-card h3{
+  margin:0 0 16px!important;padding-bottom:12px!important;border-bottom:2px solid #edf2f5!important;
+  color:#0b3151!important;font-size:22px!important
 }
-.v7489-section-head span{
-  display:block!important;
-  color:#89a400!important;
-  font-size:10px!important;
-  font-weight:950!important;
-  letter-spacing:.14em!important;
+#v73PublicContent>.v73-public-grid:first-child>.v73-public-card:first-child h3:before{
+  content:"SEQUÊNCIA";display:block;color:#8aaa00;font-size:10px;letter-spacing:.14em;margin-bottom:4px
 }
-.v7489-section-head h3{
-  margin:3px 0 0!important;
-  color:#071d38!important;
-  font-size:22px!important;
+#v73PublicContent>.v73-public-grid:first-child>.v73-public-card:last-child h3:before{
+  content:"RESULTADOS";display:block;color:#0f72b8;font-size:10px;letter-spacing:.14em;margin-bottom:4px
 }
-.v7489-section-head>b{
-  min-width:34px!important;
-  height:34px!important;
-  padding:0 10px!important;
-  display:grid!important;
-  place-items:center!important;
-  border-radius:999px!important;
-  background:#0f5e99!important;
-  color:#fff!important;
+#v73PublicContent .v73-public-row{
+  margin:0 0 10px!important;padding:13px!important;border-radius:12px!important;
+  border:1px solid #e5ebf0!important;background:#f8fafc!important
 }
-.v7489-grid{
-  display:grid!important;
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  gap:12px!important;
+#v73PublicContent>.v73-public-grid:first-child>.v73-public-card:first-child .v73-public-row{
+  border-left:4px solid #a8cf00!important
 }
-.v7489-match-card{
-  background:#fff!important;
-  border:1px solid #dce5ee!important;
-  border-radius:15px!important;
-  padding:14px!important;
-  color:#071d38!important;
-  min-width:0!important;
+#v73PublicContent>.v73-public-grid:first-child>.v73-public-card:last-child .v73-public-row{
+  border-left:4px solid #0f72b8!important
 }
-.v7489-match-card.live{border-color:#a8cf00!important;box-shadow:0 0 0 2px rgba(168,207,0,.08)}
-.v7489-match-card.done{background:#f8fafc!important}
-.v7489-match-top{
-  display:flex!important;
-  justify-content:space-between!important;
-  gap:10px!important;
-  align-items:center!important;
-  margin-bottom:12px!important;
-}
-.v7489-match-top small{
-  color:#778691!important;
-  font-size:10px!important;
-  text-align:right!important;
-}
-.v7489-badge{
-  display:inline-flex!important;
-  align-items:center!important;
-  min-height:24px!important;
-  padding:0 9px!important;
-  border-radius:999px!important;
-  background:#0f5e99!important;
-  color:#fff!important;
-  font-size:9px!important;
-  font-weight:950!important;
-  letter-spacing:.08em!important;
-}
-.v7489-match-card.live .v7489-badge{background:#7da100!important}
-.v7489-match-card.done .v7489-badge{background:#6f7f8d!important}
-.v7489-match-main{
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) 88px minmax(0,1fr)!important;
-  gap:10px!important;
-  align-items:center!important;
-}
-.v7489-team{
-  font-weight:900!important;
-  font-size:15px!important;
-  line-height:1.28!important;
-  overflow-wrap:anywhere!important;
-}
-.v7489-score{
-  min-height:44px!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  gap:6px!important;
-  border-radius:11px!important;
-  background:#0f5e99!important;
-  color:#fff!important;
-  font-weight:950!important;
-  font-size:17px!important;
-}
-.v7489-score.pending{background:#e9eef3!important;color:#7b8996!important}
-.v7489-match-foot{
-  margin-top:10px!important;
-  padding-top:9px!important;
-  border-top:1px solid #edf1f4!important;
-  color:#7b8996!important;
-  font-size:10px!important;
-  font-weight:800!important;
-}
-.v7489-empty{
-  background:#fff!important;
-  border:1px dashed #cdd8e1!important;
-  border-radius:14px!important;
-  padding:20px!important;
-  color:#7b8996!important;
-  text-align:center!important;
+#v73PublicContent .v7488-public-section-title{
+  margin:28px 0 12px!important;padding-top:18px!important;border-top:1px solid rgba(255,255,255,.18)!important
 }
 @media(max-width:900px){
-  .v7489-grid{grid-template-columns:1fr!important}
-}
-@media(max-width:700px){
-  .v7489-match-main{
-    grid-template-columns:1fr!important;
-    text-align:center!important;
-  }
-  .v7489-score{
-    width:100px!important;
-    justify-self:center!important;
-  }
-  .v7489-section-head{
-    align-items:center!important;
-  }
+ #v73PublicContent>.v73-public-grid:first-child{grid-template-columns:1fr!important}
 }
 </style>
 
@@ -3613,29 +3508,27 @@ if('serviceWorker' in navigator){
       return !filter || aId===filter || bId===filter;
     }
 
-    function matchCard(x,kind){
-      var a=x.aId?teamName(x.aId):'A definir';
-      var b=x.bId?teamName(x.bId):'A definir';
-      var done=x.done;
-      var score=done ? '<div class="v7489-score">'+esc(x.aScore)+' <span>×</span> '+esc(x.bScore)+'</div>' : '<div class="v7489-score pending">×</div>';
-      var badge=kind==='live'?'EM JOGO':kind==='next'?'PRÓXIMO':kind==='done'?'FINALIZADO':x.phase;
-      return '<div class="v7489-match-card '+kind+'">'+
-        '<div class="v7489-match-top"><span class="v7489-badge">'+esc(badge)+'</span><small>'+esc(x.meta||x.phase||'')+'</small></div>'+
-        '<div class="v7489-match-main">'+
-          '<div class="v7489-team">'+esc(a)+'</div>'+
-          score+
-          '<div class="v7489-team">'+esc(b)+'</div>'+
-        '</div>'+
-        (x.status?'<div class="v7489-match-foot">'+esc(x.status)+'</div>':'')+
+    function publicGameRow(aId,bId,aScore,bScore,meta,status){
+      var a=aId?teamName(aId):'A definir';
+      var b=bId?teamName(bId):'A definir';
+      var finished=String(aScore==null?'':aScore)!=='' && String(bScore==null?'':bScore)!=='' && Number(aScore)!==Number(bScore);
+      var title=finished
+        ? esc(a)+' '+esc(aScore)+' × '+esc(bScore)+' '+esc(b)
+        : esc(a)+' × '+esc(b);
+      return '<div class="v73-public-game">'+
+        '<b>'+title+'</b>'+
+        '<small>'+esc(meta)+(status?' · '+esc(status):'')+'</small>'+
       '</div>';
     }
 
+    // Fase de grupos
     var groupGames=allGames().filter(function(x){
       return teamVisible(x.m.aId,x.m.bId);
     }).map(function(x){
-      var st=(ops.status&&ops.status[x.key])||'waiting';
+      var key=x.key;
+      var st=(ops.status&&ops.status[key])||'waiting';
       var lab=st==='playing'?'Em jogo':st==='called'?'Chamado':'Aguardando';
-      var court=(ops.assignments&&ops.assignments[x.key])?'Quadra '+ops.assignments[x.key]:'';
+      var court=(ops.assignments&&ops.assignments[key])?' · Quadra '+ops.assignments[key]:'';
       return {
         type:'group',
         phase:'Grupo '+x.g.name,
@@ -3643,96 +3536,8 @@ if('serviceWorker' in navigator){
         aScore:x.m.aScore,bScore:x.m.bScore,
         done:scoreDone(x.m),
         status:lab,
-        meta:['Grupo '+x.g.name,court].filter(Boolean).join(' · ')
+        meta:'Grupo '+x.g.name+court
       };
-    });
-
-    var koGames=[];
-    if(state.knockout&&state.knockout.rounds){
-      state.knockout.rounds.forEach(function(round,ri){
-        (round.matches||[]).forEach(function(match,mi){
-          if(!teamVisible(match.aId,match.bId))return;
-          koGames.push({
-            type:'ko',
-            phase:round.name,
-            aId:match.aId,bId:match.bId,
-            aScore:match.aScore,bScore:match.bScore,
-            done:scoreDone(match),
-            status:scoreDone(match)?'Finalizado':((match.aId&&match.bId)?'Aguardando':'A definir'),
-            meta:round.name
-          });
-        });
-      });
-
-      var tp=state.knockout.thirdPlaceMatch;
-      if(state.knockout.thirdPlacePlayoff&&tp&&teamVisible(tp.aId,tp.bId)){
-        koGames.push({
-          type:'third',
-          phase:'Disputa de 3º lugar',
-          aId:tp.aId,bId:tp.bId,
-          aScore:tp.aScore,bScore:tp.bScore,
-          done:scoreDone(tp),
-          status:scoreDone(tp)?'Finalizado':((tp.aId&&tp.bId)?'Aguardando':'A definir'),
-          meta:'Disputa de 3º lugar'
-        });
-      }
-    }
-
-    var allGamesPublic=groupGames.concat(koGames);
-    var live=allGamesPublic.filter(function(x){return !x.done && x.status==='Em jogo';});
-    var next=allGamesPublic.filter(function(x){return !x.done && x.aId&&x.bId && x.status!=='Em jogo';}).slice(0,8);
-    var results=allGamesPublic.filter(function(x){return x.done;}).slice(-12).reverse();
-
-    var liveHtml=live.length
-      ? '<div class="v7489-grid">'+live.map(function(x){return matchCard(x,'live');}).join('')+'</div>'
-      : '<div class="v7489-empty">Nenhuma partida em andamento.</div>';
-
-    var nextHtml=next.length
-      ? '<div class="v7489-grid">'+next.map(function(x){return matchCard(x,'next');}).join('')+'</div>'
-      : '<div class="v7489-empty">Nenhum próximo jogo definido.</div>';
-
-    var resultsHtml=results.length
-      ? '<div class="v7489-grid">'+results.map(function(x){return matchCard(x,'done');}).join('')+'</div>'
-      : '<div class="v7489-empty">Nenhum resultado lançado ainda.</div>';
-
-    var knockoutHtml='';
-    if(state.knockout&&state.knockout.rounds){
-      knockoutHtml='<section class="v7489-section"><div class="v7489-section-head"><div><span>MATA-MATA</span><h3>Chave eliminatória</h3></div></div><div class="v7488-public-knockout">'+
-        state.knockout.rounds.map(function(round){
-          var matches=(round.matches||[]).filter(function(match){return teamVisible(match.aId,match.bId);});
-          if(!matches.length)return '';
-          return '<div class="v7488-public-round"><h4>'+esc(round.name)+'</h4>'+
-            matches.map(function(match){
-              var d=scoreDone(match);
-              return '<div class="v7488-public-ko-match">'+
-                '<div class="v7488-public-ko-team">'+esc(match.aId?teamName(match.aId):'A definir')+'</div>'+
-                '<div class="v7488-public-ko-score">'+(d?'<strong>'+esc(match.aScore)+' × '+esc(match.bScore)+'</strong>':'<span>×</span>')+'</div>'+
-                '<div class="v7488-public-ko-team">'+esc(match.bId?teamName(match.bId):'A definir')+'</div>'+
-              '</div>';
-            }).join('')+
-          '</div>';
-        }).join('')+
-      '</div></section>';
-    }
-
-    var podiumHtml='';
-    if(state.knockout&&(state.knockout.championId||state.knockout.runnerUpId||state.knockout.thirdPlaceId)){
-      podiumHtml='<section class="v7489-section"><div class="v7489-section-head"><div><span>PÓDIO</span><h3>Resultado final</h3></div></div>'+
-        '<div class="v7488-public-podium">'+
-          '<div class="v7488-public-place first"><span>🏆</span><small>CAMPEÕES</small><b>'+esc(state.knockout.championId?teamName(state.knockout.championId):'A definir')+'</b></div>'+
-          '<div class="v7488-public-place second"><span>🥈</span><small>VICE-CAMPEÕES</small><b>'+esc(state.knockout.runnerUpId?teamName(state.knockout.runnerUpId):'A definir')+'</b></div>'+
-          '<div class="v7488-public-place third"><span>🥉</span><small>3º LUGAR</small><b>'+esc(state.knockout.thirdPlaceId?teamName(state.knockout.thirdPlaceId):'A definir')+'</b></div>'+
-        '</div></section>';
-    }
-
-    host.innerHTML=
-      '<section class="v7489-section priority"><div class="v7489-section-head"><div><span>AGORA</span><h3>Jogos em andamento</h3></div><b>'+live.length+'</b></div>'+liveHtml+'</section>'+
-      '<section class="v7489-section"><div class="v7489-section-head"><div><span>SEQUÊNCIA</span><h3>Próximos jogos</h3></div><b>'+next.length+'</b></div>'+nextHtml+'</section>'+
-      '<section class="v7489-section"><div class="v7489-section-head"><div><span>RESULTADOS</span><h3>Últimos jogos finalizados</h3></div><b>'+results.length+'</b></div>'+resultsHtml+'</section>'+
-      '<section class="v7489-section"><div class="v7489-section-head"><div><span>CLASSIFICAÇÃO</span><h3>Fase de grupos</h3></div></div><div class="v73-public-grid">'+standings()+'</div></section>'+
-      knockoutHtml+
-      podiumHtml;
-  };
     });
 
     // Mata-mata inteiro
