@@ -977,13 +977,13 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
   <div class="jb-auth-card">
     <div class="jb-auth-logo"><img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis"></div>
     <div class="jb-auth-kicker">JB TORNEIOS PRO</div>
-    <h1 class="jb-auth-title" id="jbAuthTitle">Acesso ao JB Torneios</h1>
-    <p class="jb-auth-sub" id="jbAuthSub">Entre para acessar sua plataforma de organização de torneios.</p>
+    <h1 class="jb-auth-title" id="jbAuthTitle">Crie seu primeiro acesso</h1>
+    <p class="jb-auth-sub" id="jbAuthSub">Escolha seu usuário e sua senha. Você fará isso somente uma vez neste navegador.</p>
     <form id="jbAuthForm" autocomplete="on">
       <div class="jb-auth-field"><label for="jbAuthUser">Usuário</label><div class="jb-auth-input-wrap"><span>●</span><input class="jb-auth-input" id="jbAuthUser" name="username" autocomplete="username" required placeholder="Seu usuário"></div></div>
       <div class="jb-auth-field"><label for="jbAuthPass">Senha</label><div class="jb-auth-input-wrap"><span>◆</span><input class="jb-auth-input" id="jbAuthPass" name="password" type="password" autocomplete="current-password" required placeholder="Sua senha"><span class="jb-auth-eye" id="jbAuthEye" title="Mostrar senha">◉</span></div></div>
       <label class="jb-auth-check"><input id="jbAuthRemember" type="checkbox" checked> Manter conectado neste dispositivo</label>
-      <button class="jb-auth-btn" type="submit" id="jbAuthSubmit">ENTRAR</button>
+      <button class="jb-auth-btn" type="submit" id="jbAuthSubmit">CRIAR PRIMEIRO ACESSO</button>
       <div class="jb-auth-error" id="jbAuthError"></div>
     </form>
     <div class="jb-auth-foot">Acesso pessoal • João Bertonha Beach Tennis</div>
@@ -2447,11 +2447,13 @@ if('serviceWorker' in navigator){
   });
 }
 </script>
-\n<script id="jb-torneios-personal-login">
+
+
+<script id="jb-torneios-personal-login">
 (function(){
   'use strict';
-  var AUTH_KEY='jbtorneios-auth-v2';
-  var SESSION_KEY='jbtorneios-session-v2';
+  var AUTH_KEY='jbtorneios-auth-v1';
+  var SESSION_KEY='jbtorneios-session-v1';
   var authTitle=document.getElementById('jbAuthTitle');
   var authSub=document.getElementById('jbAuthSub');
   var authForm=document.getElementById('jbAuthForm');
@@ -2464,107 +2466,113 @@ if('serviceWorker' in navigator){
   var logoutBtn=document.getElementById('jbAuthLogout');
   var setupMode=false;
 
-  if(!authForm || !authUser || !authPass || !authSubmit){ return; }
-
-  function getStoredAuth(){
-    try { return JSON.parse(localStorage.getItem(AUTH_KEY)||'null'); }
-    catch(e){ return null; }
+  function safeGet(key, session){
+    try{return (session?sessionStorage:localStorage).getItem(key);}catch(e){return null;}
   }
-  function hashText(text){
-    if(window.crypto && window.crypto.subtle && window.TextEncoder){
-      return window.crypto.subtle.digest('SHA-256',new TextEncoder().encode(text)).then(function(buf){
-        return Array.prototype.map.call(new Uint8Array(buf),function(b){return b.toString(16).padStart(2,'0');}).join('');
-      }).catch(function(){ return fallbackHash(text); });
-    }
-    return Promise.resolve(fallbackHash(text));
+  function safeSet(key,value,session){
+    try{(session?sessionStorage:localStorage).setItem(key,value);return true;}catch(e){return false;}
+  }
+  function safeRemove(key,session){
+    try{(session?sessionStorage:localStorage).removeItem(key);}catch(e){}
+  }
+  function getStoredAuth(){
+    try{var raw=safeGet(AUTH_KEY,false);return raw?JSON.parse(raw):null;}catch(e){return null;}
   }
   function fallbackHash(text){
     var h=2166136261;
-    for(var i=0;i<text.length;i++){ h^=text.charCodeAt(i); h=Math.imul(h,16777619); }
+    for(var i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619);}
     return 'fallback-'+(h>>>0).toString(16);
   }
-  function hasSession(){
-    try { return localStorage.getItem(SESSION_KEY)==='1' || sessionStorage.getItem(SESSION_KEY)==='1'; }
-    catch(e){ return false; }
+  function hashText(text){
+    if(window.crypto && window.crypto.subtle && window.TextEncoder){
+      try{
+        var data=new TextEncoder().encode(text);
+        return window.crypto.subtle.digest('SHA-256',data).then(function(buf){
+          return Array.prototype.map.call(new Uint8Array(buf),function(b){return b.toString(16).padStart(2,'0');}).join('');
+        }).catch(function(){return fallbackHash(text);});
+      }catch(e){}
+    }
+    return Promise.resolve(fallbackHash(text));
   }
-  function configure(){
+  function configureAuthScreen(){
     var saved=getStoredAuth();
     setupMode=!saved;
     authError.textContent='';
     if(setupMode){
       authTitle.textContent='Crie seu primeiro acesso';
-      authSub.textContent='Escolha seu usuário e sua senha. Este cadastro é feito somente neste dispositivo.';
+      authSub.textContent='Escolha seu usuário e sua senha. Você fará isso somente uma vez neste navegador.';
       authSubmit.textContent='CRIAR PRIMEIRO ACESSO';
-      authPass.setAttribute('autocomplete','new-password');
+      authPass.autocomplete='new-password';
       authUser.value='';
-      authPass.value='';
-    } else {
+      authUser.placeholder='Crie seu usuário';
+      authPass.placeholder='Crie sua senha';
+    }else{
       authTitle.textContent='Acesso ao JB Torneios';
-      authSub.textContent='Digite seu usuário e sua senha para entrar.';
+      authSub.textContent='Digite seu usuário e senha para acessar a plataforma.';
       authSubmit.textContent='ENTRAR';
-      authPass.setAttribute('autocomplete','current-password');
-      if(!authUser.value) authUser.value=saved.user||'';
+      authPass.autocomplete='current-password';
+      authUser.value=saved.user||'';
+      authUser.placeholder='Seu usuário';
+      authPass.placeholder='Sua senha';
     }
   }
-  function unlock(remember){
-    try{
-      if(remember){ localStorage.setItem(SESSION_KEY,'1'); sessionStorage.removeItem(SESSION_KEY); }
-      else { sessionStorage.setItem(SESSION_KEY,'1'); localStorage.removeItem(SESSION_KEY); }
-    }catch(e){}
+  function setLoggedIn(remember){
+    if(remember){safeSet(SESSION_KEY,'1',false);safeRemove(SESSION_KEY,true);}
+    else{safeSet(SESSION_KEY,'1',true);safeRemove(SESSION_KEY,false);}
     document.body.classList.remove('jb-auth-locked');
     authError.textContent='';
   }
-  function lock(){
-    try{ localStorage.removeItem(SESSION_KEY); sessionStorage.removeItem(SESSION_KEY); }catch(e){}
+  function hasSession(){return safeGet(SESSION_KEY,false)==='1'||safeGet(SESSION_KEY,true)==='1';}
+  function clearSession(){
+    safeRemove(SESSION_KEY,false);safeRemove(SESSION_KEY,true);
     document.body.classList.add('jb-auth-locked');
     authPass.value='';
-    configure();
-    setTimeout(function(){ authUser.focus(); },100);
+    configureAuthScreen();
+    setTimeout(function(){authUser.focus();},80);
   }
 
-  if(authEye){
-    authEye.addEventListener('click',function(){
-      authPass.type=authPass.type==='password'?'text':'password';
-      authEye.textContent=authPass.type==='password'?'◉':'◎';
-    });
-  }
-
+  if(!authForm || !authUser || !authPass || !authSubmit){return;}
+  if(authEye){authEye.addEventListener('click',function(){
+    authPass.type=authPass.type==='password'?'text':'password';
+    authEye.textContent=authPass.type==='password'?'◉':'◎';
+  });}
   authForm.addEventListener('submit',function(e){
     e.preventDefault();
+    authError.textContent='';
     var user=authUser.value.trim();
     var pass=authPass.value;
-    authError.textContent='';
-    if(!user || !pass){ authError.textContent='Preencha usuário e senha.'; return; }
-    if(pass.length<4){ authError.textContent='A senha precisa ter pelo menos 4 caracteres.'; return; }
+    if(!user||!pass){authError.textContent='Preencha usuário e senha.';return;}
+    if(pass.length<4){authError.textContent='A senha precisa ter pelo menos 4 caracteres.';return;}
+    var wasSetup=setupMode;
     authSubmit.disabled=true;
-    authSubmit.textContent=setupMode?'CRIANDO...':'ENTRANDO...';
-
+    authSubmit.textContent=wasSetup?'CRIANDO...':'ENTRANDO...';
     hashText(pass).then(function(passHash){
-      if(setupMode){
-        try{
-          localStorage.setItem(AUTH_KEY,JSON.stringify({user:user,passHash:passHash,createdAt:new Date().toISOString()}));
-          setupMode=false;
-          unlock(authRemember.checked);
-        }catch(err){ authError.textContent='Não foi possível salvar o acesso neste navegador.'; }
+      if(wasSetup){
+        var ok=safeSet(AUTH_KEY,JSON.stringify({user:user,passHash:passHash,createdAt:new Date().toISOString()}),false);
+        if(!ok){throw new Error('storage');}
+        setupMode=false;
+        setLoggedIn(authRemember.checked);
       }else{
         var saved=getStoredAuth();
-        if(saved && user===saved.user && passHash===saved.passHash){ unlock(authRemember.checked); }
-        else { authError.textContent='Usuário ou senha incorretos.'; authPass.select(); }
+        if(saved && user===saved.user && passHash===saved.passHash){
+          setLoggedIn(authRemember.checked);
+        }else{
+          authError.textContent='Usuário ou senha incorretos.';
+          authPass.focus();authPass.select();
+        }
       }
     }).catch(function(){
-      authError.textContent='Não foi possível validar o acesso neste navegador.';
-    }).finally(function(){
+      authError.textContent='Não foi possível salvar/validar o acesso neste navegador.';
+    }).then(function(){
       authSubmit.disabled=false;
       authSubmit.textContent=setupMode?'CRIAR PRIMEIRO ACESSO':'ENTRAR';
     });
   });
-
-  if(logoutBtn) logoutBtn.addEventListener('click',lock);
-  configure();
-  if(hasSession() && getStoredAuth()) document.body.classList.remove('jb-auth-locked');
-  else document.body.classList.add('jb-auth-locked');
+  if(logoutBtn){logoutBtn.addEventListener('click',clearSession);}
+  configureAuthScreen();
+  if(hasSession()&&getStoredAuth()){document.body.classList.remove('jb-auth-locked');}
+  else{document.body.classList.add('jb-auth-locked');}
 })();
 </script>
-
 </body>
 </html>

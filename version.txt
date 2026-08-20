@@ -1,1 +1,1 @@
-JB Torneios Pro V6.3.1 — correção do primeiro acesso/login + categorias múltiplas + duplas manuais + alternância
+JB Torneios Pro V6.3.2 — login corrigido e validado + categorias múltiplas + duplas manuais + alternância

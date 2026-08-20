@@ -1,5 +1,5 @@
 
-const CACHE='jb-torneios-v6-3-1-login-fix-20260819';
+const CACHE='jb-torneios-v6-3-2-login-corrigido-20260819';
 const APP_SHELL=[
   './','./index.html','./manifest.webmanifest',
   './jb-logo-lime.png','./jb-watermark-lime.png',
