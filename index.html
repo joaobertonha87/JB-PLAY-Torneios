@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.4.8.1 — correção estrutural de confrontos e placares */
+/* V7.4.8.3 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -1126,6 +1126,29 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
     text-align:right !important;
   }
 }
+</style>
+
+
+<style id="jb-v7483-third-toggle-fix">
+.v7483-third-button{
+  appearance:none;-webkit-appearance:none;width:auto;min-width:340px;
+  border:1px solid #dce5ee!important;background:#fff!important;color:#071d38!important;
+  display:flex!important;align-items:center!important;gap:12px!important;text-align:left!important;
+  cursor:pointer!important;position:relative!important;z-index:5!important;pointer-events:auto!important;
+  padding:10px 12px!important;border-radius:12px!important;min-height:58px!important;
+}
+.v7483-third-button:hover{border-color:#b7d82d!important;box-shadow:0 5px 16px rgba(7,29,56,.08)}
+.v7483-third-button.is-on{background:#f7ffd9!important;border-color:#a8cf00!important}
+.v7483-switch{width:44px;height:24px;flex:0 0 44px;border-radius:999px;background:#cbd5df;padding:3px;transition:.18s}
+.v7483-switch i{display:block;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.24);transition:.18s}
+.v7483-third-button.is-on .v7483-switch{background:#a8cf00}
+.v7483-third-button.is-on .v7483-switch i{transform:translateX(20px)}
+.v7483-third-copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:2px}
+.v7483-third-copy b{font-size:12px;color:#071d38}
+.v7483-third-copy small{font-size:9px;color:#7b8996;white-space:normal}
+#v73ThirdPlayoffState{font-size:11px;letter-spacing:.08em;color:#637282}
+.v7483-third-button.is-on #v73ThirdPlayoffState{color:#648000}
+@media(max-width:720px){.v7483-third-button{width:100%!important;min-width:0!important}}
 </style>
 
 </head>
@@ -1541,10 +1564,12 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
             <option value="2" selected>2 duplas por grupo</option>
           </select>
         </div>
-        <label class="v73-third-toggle" title="Desativado por padrão: o 3º lugar será a dupla que perdeu para o campeão na semifinal.">
-          <input type="checkbox" id="v73ThirdPlayoff" onchange="v73ToggleThirdPlayoff(this.checked)">
-          <span><b>Disputar 3º lugar</b><small>Desativado: 3º = perdedor da semifinal contra o campeão</small></span>
-        </label>
+        <button type="button" id="v73ThirdPlayoffCard" class="v73-third-toggle v7483-third-button" onclick="v7483ToggleThirdFromCard()" aria-pressed="false" title="Desativado por padrão: o 3º lugar será a dupla que perdeu para o campeão na semifinal.">
+          <span class="v7483-switch" aria-hidden="true"><i></i></span>
+          <span class="v7483-third-copy"><b>Disputar 3º lugar</b><small id="v73ThirdPlayoffHelp">Desativado: 3º = perdedor da semifinal contra o campeão</small></span>
+          <strong id="v73ThirdPlayoffState">OFF</strong>
+        </button>
+        <input type="checkbox" id="v73ThirdPlayoff" hidden aria-hidden="true">
         <button id="generateKO" class="ok">Gerar mata-mata</button>
         <button id="resetKO" class="secondary">Resetar</button>
       </div>
@@ -3109,8 +3134,42 @@ if('serviceWorker' in navigator){
 (function(){
   function teamName(id){var t=getTeam(id);return t?teamLabel(t):'A definir';}
   function allGames(){return window.v7AllGroupGames?v7AllGroupGames():[];}
-  window.v73SyncThirdToggle=function(){var cb=document.getElementById('v73ThirdPlayoff');if(cb)cb.checked=!!(state.knockout&&state.knockout.thirdPlacePlayoff);};
-  window.v73ToggleThirdPlayoff=function(enabled){if(!state.knockout){showNotice('Gere o mata-mata antes de alterar a disputa de 3º lugar.');v73SyncThirdToggle();return;}state.knockout.thirdPlacePlayoff=!!enabled;propagateKnockout(Math.max(0,state.knockout.rounds.length-2));save();renderKnockout();v73RenderPodium();showNotice(enabled?'Disputa de 3º lugar ativada.':'3º lugar automático: perdedor da semifinal contra o campeão.',true);};
+  window.v73SyncThirdToggle=function(){
+    var enabled=!!(state.knockout&&state.knockout.thirdPlacePlayoff);
+    var cb=document.getElementById('v73ThirdPlayoff');
+    var card=document.getElementById('v73ThirdPlayoffCard');
+    var label=document.getElementById('v73ThirdPlayoffState');
+    var help=document.getElementById('v73ThirdPlayoffHelp');
+    if(cb)cb.checked=enabled;
+    if(card){
+      card.classList.toggle('is-on',enabled);
+      card.setAttribute('aria-pressed',enabled?'true':'false');
+    }
+    if(label)label.textContent=enabled?'ON':'OFF';
+    if(help)help.textContent=enabled?'Ativado: os perdedores das semifinais disputam o 3º lugar.':'Desativado: 3º = perdedor da semifinal contra o campeão';
+  };
+  window.v73ToggleThirdPlayoff=function(enabled){
+    if(!state.knockout){
+      showNotice('Gere o mata-mata antes de alterar a disputa de 3º lugar.');
+      v73SyncThirdToggle();
+      return;
+    }
+    state.knockout.thirdPlacePlayoff=!!enabled;
+    if(!state.knockout.thirdPlaceMatch) state.knockout.thirdPlaceMatch={aId:null,bId:null,aScore:'',bScore:''};
+    propagateKnockout(Math.max(0,state.knockout.rounds.length-2));
+    save();
+    renderKnockout();
+    v73RenderPodium();
+    v73SyncThirdToggle();
+    showNotice(enabled?'Disputa de 3º lugar ativada.':'3º lugar automático: perdedor da semifinal contra o campeão.',true);
+  };
+  window.v7483ToggleThirdFromCard=function(){
+    if(!state.knockout){
+      showNotice('Gere o mata-mata antes de ativar a disputa de 3º lugar.');
+      return;
+    }
+    v73ToggleThirdPlayoff(!state.knockout.thirdPlacePlayoff);
+  };
   window.v73UpdateThird=function(side,value,input){var tp=state.knockout&&state.knockout.thirdPlaceMatch;if(!tp)return;var clean=String(value).replace(/[^\d]/g,'');tp[side]=clean===''?'':String(Math.min(99,Number(clean)));if(input)input.value=tp[side];save();};
   window.v73FinishThird=function(){var tp=state.knockout&&state.knockout.thirdPlaceMatch;if(!tp||!state.knockout.thirdPlacePlayoff)return;state.knockout.thirdPlaceId=getKnockoutWinner(tp);save();v73RenderPodium();v73AddThirdPlaceUI();};
   window.v73AddThirdPlaceUI=function(){var host=document.getElementById('knockoutArea');if(!host)return;var old=document.getElementById('v73ThirdPlace');if(old)old.remove();v73SyncThirdToggle();var k=state.knockout||{},tp=k.thirdPlaceMatch;if(!k.thirdPlacePlayoff||!tp||!tp.aId||!tp.bId)return;var d=document.createElement('div');d.id='v73ThirdPlace';d.className='v73-third-match';d.innerHTML='<b>🥉 Disputa de 3º lugar</b><div class="match"><span class="right">'+esc(teamName(tp.aId))+'</span><input class="score" inputmode="numeric" value="'+esc(tp.aScore)+'" oninput="v73UpdateThird(\'aScore\',this.value,this)" onchange="v73FinishThird()" onblur="v73FinishThird()"><span class="vs">×</span><input class="score" inputmode="numeric" value="'+esc(tp.bScore)+'" oninput="v73UpdateThird(\'bScore\',this.value,this)" onchange="v73FinishThird()" onblur="v73FinishThird()"><span>'+esc(teamName(tp.bId))+'</span></div>';host.appendChild(d);};
@@ -3513,6 +3572,34 @@ setTimeout(init,250);
 <style>
 .jb-match-format-field{margin:12px 0 2px}.jb-score-summary{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}.jb-score-summary strong{min-width:120px}.jb-score-pill{font-weight:1000;background:#071d38;color:#d6ff00;border-radius:10px;padding:8px 12px;min-width:94px;text-align:center}.jb-score-edit{padding:8px 11px!important}.jb-score-modal{position:fixed;inset:0;background:rgba(2,12,25,.82);z-index:100000;display:none;align-items:center;justify-content:center;padding:18px}.jb-score-modal.open{display:flex}.jb-score-dialog{width:min(720px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:18px;padding:18px;box-shadow:0 28px 80px rgba(0,0,0,.35)}.jb-score-dialog h2{margin:0 0 4px}.jb-score-format{font-weight:900;color:#566575;margin-bottom:14px}.jb-set-card{border:1px solid #d8e0e8;border-radius:14px;padding:13px;margin:10px 0;background:#f8fafc}.jb-set-card h3{margin:0 0 10px;font-size:14px;text-transform:uppercase}.jb-score-grid{display:grid;grid-template-columns:1fr 86px 30px 86px 1fr;align-items:center;gap:8px}.jb-score-grid input{font-size:22px;text-align:center;font-weight:1000}.jb-tb-row{display:grid;grid-template-columns:1fr 110px 30px 110px 1fr;align-items:center;gap:8px;margin-top:8px}.jb-tb-row input{text-align:center;font-weight:900}.jb-score-help{font-size:12px;color:#667684;margin-top:6px}.jb-score-error{display:none;background:#fff0f0;border:1px solid #efb6b6;color:#991b1b;border-radius:10px;padding:10px;margin:10px 0;font-weight:800}.jb-score-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:14px}@media(max-width:650px){.jb-score-grid{grid-template-columns:1fr 64px 20px 64px 1fr}.jb-tb-row{grid-template-columns:1fr 76px 20px 76px 1fr}.jb-score-dialog{padding:14px}.jb-score-grid strong{font-size:12px}}
 </style>
+<style id="jb-v7482-score-team-confirmation">
+#jbScoreTeams{margin:10px 0 16px}
+#jbScoreTeams .jb-score-confirm{
+  display:grid;grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr);
+  gap:12px;align-items:stretch
+}
+#jbScoreTeams .jb-score-team-card{
+  border:2px solid #dfe7ee;border-radius:14px;padding:12px 14px;background:#f8fafc;
+  min-width:0;text-align:center
+}
+#jbScoreTeams .jb-score-team-card small{
+  display:block;font-size:10px;font-weight:1000;letter-spacing:.08em;text-transform:uppercase;
+  color:#718096;margin-bottom:5px
+}
+#jbScoreTeams .jb-score-team-card strong{
+  display:block;color:#071d38!important;font-size:17px!important;line-height:1.25;
+  overflow-wrap:anywhere;word-break:normal
+}
+#jbScoreTeams .jb-score-versus{
+  display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:1000;color:#071d38
+}
+.jb-set-card .jb-score-grid strong{color:#071d38!important;overflow-wrap:anywhere;line-height:1.2}
+@media(max-width:650px){
+  #jbScoreTeams .jb-score-confirm{grid-template-columns:1fr}
+  #jbScoreTeams .jb-score-versus{height:22px}
+  #jbScoreTeams .jb-score-team-card strong{font-size:15px!important}
+}
+</style>
 <div id="jbScoreModal" class="jb-score-modal" aria-hidden="true"><div class="jb-score-dialog"><h2>Lançar placar</h2><div id="jbScoreFormat" class="jb-score-format"></div><div id="jbScoreTeams"></div><div id="jbScoreFields"></div><div id="jbScoreError" class="jb-score-error"></div><div class="jb-score-actions"><button type="button" class="secondary" onclick="jbCloseScoreModal()">Cancelar</button><button type="button" class="danger" onclick="jbClearCurrentScore()">Limpar placar</button><button type="button" class="ok" onclick="jbSaveCurrentScore()">Confirmar resultado</button></div></div></div>
 <script>
 (function(){
@@ -3553,7 +3640,7 @@ setTimeout(init,250);
     var bw=rows.slice().sort(function(a,b){return b.V-a.V}),fin=[],i=0;while(i<bw.length){var j=i+1;while(j<bw.length&&bw[j].V===bw[i].V)j++;var t=bw.slice(i,j);fin=fin.concat(t.length>1?resolve(t,0):t);i=j}return fin;
   };
   function setCard(label,i,d){var x=d.sets[i]||{};return '<div class="jb-set-card"><h3>'+label+'</h3><div class="jb-score-grid"><strong>'+esc(teamLabel(getTeam(ctx.m.aId)))+'</strong><input id="jbs'+i+'a" inputmode="numeric" value="'+esc(x.a)+'"><b>×</b><input id="jbs'+i+'b" inputmode="numeric" value="'+esc(x.b)+'"><strong>'+esc(teamLabel(getTeam(ctx.m.bId)))+'</strong></div><div class="jb-tb-row"><span></span><input id="jbs'+i+'at" inputmode="numeric" placeholder="TB A" value="'+esc(x.aTb)+'"><b>×</b><input id="jbs'+i+'bt" inputmode="numeric" placeholder="TB B" value="'+esc(x.bTb)+'"><span></span></div><div class="jb-score-help">Preencha o tie-break somente quando o set terminar 7×6 ou 6×7. Tie-break: primeiro a 7, com 2 pontos de diferença.</div></div>'}
-  window.jbOpenScore=function(type,a,b){var m;if(type==='group')m=state.groups[a].matches[b];else if(type==='ko')m=state.knockout.rounds[a].matches[b];else m=state.knockout.thirdPlaceMatch;ctx={type:type,a:a,b:b,m:m};var d=ensureData(m),f=fmt();document.getElementById('jbScoreFormat').textContent=f==='pro3'?'Categoria PRO · melhor de 3 sets · 1×1 = super tie-break até 10':'Padrão · 1 set até 6 games · 6×6 = tie-break até 7';document.getElementById('jbScoreTeams').innerHTML='<div class="jb-score-summary"><strong>'+esc(teamLabel(getTeam(m.aId)))+'</strong><span>×</span><strong>'+esc(teamLabel(getTeam(m.bId)))+'</strong></div>';var h=setCard('Set 1',0,d);if(f==='pro3'){h+=setCard('Set 2',1,d);var st=d.superTb||{};h+='<div class="jb-set-card"><h3>Super tie-break — somente se ficar 1×1 em sets</h3><div class="jb-score-grid"><strong>'+esc(teamLabel(getTeam(m.aId)))+'</strong><input id="jbstba" inputmode="numeric" value="'+esc(st.a)+'"><b>×</b><input id="jbstbb" inputmode="numeric" value="'+esc(st.b)+'"><strong>'+esc(teamLabel(getTeam(m.bId)))+'</strong></div><div class="jb-score-help">Primeiro a 10 pontos, com 2 pontos de diferença.</div></div>'}document.getElementById('jbScoreFields').innerHTML=h;document.getElementById('jbScoreError').style.display='none';document.getElementById('jbScoreModal').classList.add('open')};
+  window.jbOpenScore=function(type,a,b){var m;if(type==='group')m=state.groups[a].matches[b];else if(type==='ko')m=state.knockout.rounds[a].matches[b];else m=state.knockout.thirdPlaceMatch;ctx={type:type,a:a,b:b,m:m};var d=ensureData(m),f=fmt();document.getElementById('jbScoreFormat').textContent=f==='pro3'?'Categoria PRO · melhor de 3 sets · 1×1 = super tie-break até 10':'Padrão · 1 set até 6 games · 6×6 = tie-break até 7';document.getElementById('jbScoreTeams').innerHTML='<div class="jb-score-confirm"><div class="jb-score-team-card"><small>Dupla A</small><strong>'+esc(teamLabel(getTeam(m.aId)))+'</strong></div><div class="jb-score-versus">×</div><div class="jb-score-team-card"><small>Dupla B</small><strong>'+esc(teamLabel(getTeam(m.bId)))+'</strong></div></div>';var h=setCard('Set 1',0,d);if(f==='pro3'){h+=setCard('Set 2',1,d);var st=d.superTb||{};h+='<div class="jb-set-card"><h3>Super tie-break — somente se ficar 1×1 em sets</h3><div class="jb-score-grid"><strong>'+esc(teamLabel(getTeam(m.aId)))+'</strong><input id="jbstba" inputmode="numeric" value="'+esc(st.a)+'"><b>×</b><input id="jbstbb" inputmode="numeric" value="'+esc(st.b)+'"><strong>'+esc(teamLabel(getTeam(m.bId)))+'</strong></div><div class="jb-score-help">Primeiro a 10 pontos, com 2 pontos de diferença.</div></div>'}document.getElementById('jbScoreFields').innerHTML=h;document.getElementById('jbScoreError').style.display='none';document.getElementById('jbScoreModal').classList.add('open')};
   window.jbCloseScoreModal=function(){document.getElementById('jbScoreModal').classList.remove('open');ctx=null};
   function val(id){var e=document.getElementById(id);return e?String(e.value||'').replace(/[^0-9]/g,''):''}
   window.jbSaveCurrentScore=function(){if(!ctx)return;var m=ctx.m,d={format:fmt(),sets:[{a:val('jbs0a'),b:val('jbs0b'),aTb:val('jbs0at'),bTb:val('jbs0bt')},{a:val('jbs1a'),b:val('jbs1b'),aTb:val('jbs1at'),bTb:val('jbs1bt')}],superTb:{a:val('jbstba'),b:val('jbstbb')}};m.scoreData=d;var rr=result(m),er=document.getElementById('jbScoreError');if(!rr.valid){er.textContent=fmt()==='pro3'?'Placar incompleto ou inválido. Use sets válidos até 6 games; em 6×6, tie-break. Se ficar 1×1, informe o super tie-break até 10.':'Placar inválido. O set deve terminar 6×0–4, 7×5 ou 7×6 com tie-break válido.';er.style.display='block';return}m.aScore=String(fmt()==='pro3'?rr.setsA:(d.sets[0].a));m.bScore=String(fmt()==='pro3'?rr.setsB:(d.sets[0].b));if(ctx.type==='group'){state.knockout=null;v71ReleaseFinishedCourts&&v71ReleaseFinishedCourts()}else if(ctx.type==='ko'){propagateKnockout(ctx.a)}else{if(state.knockout)state.knockout.thirdPlaceId=rr.winner===1?m.aId:m.bId}save();jbCloseScoreModal();render();if(window.v71RenderAlerts)v71RenderAlerts();if(window.v73RenderPodium)v73RenderPodium()};
