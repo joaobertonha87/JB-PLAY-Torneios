@@ -1017,6 +1017,117 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 @media(max-width:640px){.dashboard-grid,.stats-grid,.cards-grid,.grid{grid-template-columns:1fr!important}h1{font-size:clamp(1.45rem,7vw,2rem)!important}h2{font-size:clamp(1.2rem,6vw,1.6rem)!important}button,.btn{width:100%}}
 </style>
 
+
+<style id="jb-v747-score-layout-fix">
+/* V7.4.7 — correção estrutural de confrontos e placares */
+#jbPageGroups .match {
+  display:grid !important;
+  grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
+  gap:12px !important;
+  align-items:center !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+#jbPageGroups .match > * { min-width:0 !important; }
+#jbPageGroups .match > span:first-child,
+#jbPageGroups .match > span:last-child {
+  overflow-wrap:anywhere !important;
+  line-height:1.25 !important;
+}
+#jbPageGroups .match .jb-score-pill {
+  justify-self:center !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+#jbPageGroups .match .jb-score-edit {
+  justify-self:stretch !important;
+  width:100% !important;
+  min-width:0 !important;
+  white-space:nowrap !important;
+  font-size:11px !important;
+  padding:9px 8px !important;
+}
+
+#gamesArea .jb-v7-match-row {
+  display:grid !important;
+  grid-template-columns:minmax(180px,1fr) 112px 138px minmax(180px,1fr) !important;
+  gap:12px !important;
+  align-items:center !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+#gamesArea .jb-v7-match-row > * { min-width:0 !important; }
+#gamesArea .jb-v7-match-row strong {
+  overflow-wrap:anywhere !important;
+  line-height:1.25 !important;
+}
+#gamesArea .jb-v7-match-row .jb-score-pill {
+  justify-self:center !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+#gamesArea .jb-v7-match-row .jb-score-edit {
+  justify-self:stretch !important;
+  width:100% !important;
+  min-width:0 !important;
+  white-space:nowrap !important;
+  font-size:11px !important;
+  padding:9px 8px !important;
+}
+
+/* Windows notebooks e iPad landscape */
+@media (max-width:1180px) {
+  #jbPageGroups .match {
+    grid-template-columns:minmax(140px,1fr) 96px 110px minmax(140px,1fr) !important;
+    gap:8px !important;
+  }
+  #gamesArea .jb-v7-match-row {
+    grid-template-columns:minmax(140px,1fr) 96px 118px minmax(140px,1fr) !important;
+    gap:8px !important;
+  }
+  #jbPageGroups .match .jb-score-edit,
+  #gamesArea .jb-v7-match-row .jb-score-edit {
+    font-size:10px !important;
+    padding:8px 6px !important;
+  }
+}
+
+/* iPad portrait / split screen: 3 linhas, sem qualquer sobreposição */
+@media (max-width:900px) {
+  #jbPageGroups .match,
+  #gamesArea .jb-v7-match-row {
+    grid-template-columns:minmax(0,1fr) minmax(94px,120px) !important;
+    grid-template-rows:auto auto auto !important;
+    gap:8px 10px !important;
+    padding:12px 0 !important;
+  }
+  #jbPageGroups .match > :nth-child(1),
+  #gamesArea .jb-v7-match-row > :nth-child(1) {
+    grid-column:1 / -1 !important;
+    grid-row:1 !important;
+    text-align:left !important;
+  }
+  #jbPageGroups .match > :nth-child(2),
+  #gamesArea .jb-v7-match-row > :nth-child(2) {
+    grid-column:1 !important;
+    grid-row:2 !important;
+    width:100% !important;
+  }
+  #jbPageGroups .match > :nth-child(3),
+  #gamesArea .jb-v7-match-row > :nth-child(3) {
+    grid-column:2 !important;
+    grid-row:2 !important;
+    width:100% !important;
+  }
+  #jbPageGroups .match > :nth-child(4),
+  #gamesArea .jb-v7-match-row > :nth-child(4) {
+    grid-column:1 / -1 !important;
+    grid-row:3 !important;
+    text-align:right !important;
+  }
+}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
