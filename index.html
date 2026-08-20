@@ -2594,35 +2594,7 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
       @media print{.no-print{display:none}}
     `;
     w.document.open();
-    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'
-<script id="jb-v744-logo-picker-fix">
-(function(){
-  function initLogoPicker(){
-    if (typeof setupEventBranding === 'function') {
-      setupEventBranding();
-      return;
-    }
-    var choose=document.getElementById('eventLogoChooseBtn');
-    var file=document.getElementById('eventLogoFile');
-    if(choose && file && !choose.dataset.logoPickerBound){
-      choose.dataset.logoPickerBound='1';
-      choose.addEventListener('click', function(ev){
-        ev.preventDefault();
-        ev.stopPropagation();
-        file.click();
-      });
-    }
-  }
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded', initLogoPicker, {once:true});
-  } else {
-    initLogoPicker();
-  }
-  setTimeout(initLogoPicker, 500);
-})();
-</script>
-
-</body></html>');
+    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'</body></html>');
     w.document.close();
     w.focus();
     setTimeout(function(){ w.print(); },350);
@@ -2795,6 +2767,7 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
   el('printGroupsBtn').addEventListener('click',printGroupSheets);
   el('printBlankKOBtn').addEventListener('click',printBlankKnockout);
 
+  setupEventBranding();
   load();
   updateStats();
   restoreBestPersistentSnapshot();
