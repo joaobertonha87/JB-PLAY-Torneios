@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.4.9.1 — correção estrutural de confrontos e placares */
+/* V7.6.0 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -1421,6 +1421,140 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 }
 </style>
 
+
+<style id="jb-v750-theme-editor-style">
+:root{
+  --jb-theme-primary:#0f5e99;
+  --jb-theme-accent:#c9ff00;
+  --jb-theme-bg:#0d3958;
+  --jb-theme-card:#ffffff;
+  --jb-theme-text:#ffffff;
+  --jb-theme-text-dark:#071d38;
+}
+
+/* Tema aplicado sobre a interface principal */
+body{background:var(--jb-theme-bg)!important;color:var(--jb-theme-text)!important}
+.jb-sidebar,.topbar,.jb-side-brand,.jb-side-foot{background:color-mix(in srgb,var(--jb-theme-bg) 86%,#000 14%)!important}
+.jb-side-nav a.active,
+.jb-side-nav a:hover,
+.quick-nav a:hover,
+.mobile-dock a.active{background:var(--jb-theme-accent)!important;color:var(--jb-theme-text-dark)!important}
+.ok,.jb-auth-btn,.btn-primary,#generateKO{
+  background:var(--jb-theme-accent)!important;
+  color:var(--jb-theme-text-dark)!important;
+  border-color:var(--jb-theme-accent)!important;
+}
+.secondary,.btn-secondary{border-color:color-mix(in srgb,var(--jb-theme-primary) 55%,#fff 45%)!important}
+.hero,.jb-dash-hero,.section-title,.round,.group,.panel,.card{
+  border-color:color-mix(in srgb,var(--jb-theme-primary) 55%,#fff 25%)!important;
+}
+.hero,.jb-dash-hero{background:linear-gradient(135deg,var(--jb-theme-bg),var(--jb-theme-primary))!important}
+.jb-page h2,.jb-page h3,.group h3,.round h3,.v73-public-card h3{color:var(--jb-theme-text)!important}
+.jb-page .card,.jb-page .panel,.jb-theme-card,.v73-public-card{
+  background:var(--jb-theme-card)!important;
+  color:var(--jb-theme-text-dark)!important;
+}
+.jb-page .card h3,.jb-page .panel h3,.jb-theme-card h3,.v73-public-card h3{
+  color:var(--jb-theme-text-dark)!important;
+}
+
+/* Editor visual */
+.jb-theme-editor{display:grid;gap:18px}
+.jb-theme-card{
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  padding:20px;
+}
+.jb-theme-card-head span{
+  font-size:10px;font-weight:950;letter-spacing:.14em;color:#7f9400;
+}
+.jb-theme-card-head h3{margin:4px 0 16px}
+.jb-theme-presets{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:10px;
+}
+.jb-theme-presets button{
+  min-height:52px;border-radius:14px;border:1px solid #dbe4ea;
+  background:#f7fafc;color:#071d38;font-weight:900;cursor:pointer
+}
+.jb-theme-fields{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px
+}
+.jb-theme-fields label{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 14px;border:1px solid #dbe4ea;border-radius:12px;background:#f8fafc;
+  font-weight:800
+}
+.jb-theme-fields input[type=color]{
+  width:54px;height:38px;border:0;background:transparent;padding:0;cursor:pointer
+}
+.jb-theme-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.jb-theme-preview{
+  border-radius:20px;padding:22px;background:linear-gradient(135deg,var(--jb-theme-bg),var(--jb-theme-primary));
+}
+.jb-theme-preview-card{
+  max-width:520px;border-radius:18px;padding:22px;background:var(--jb-theme-card);
+  color:var(--jb-theme-text-dark);box-shadow:0 10px 30px rgba(0,0,0,.12)
+}
+.jb-theme-preview-card span{font-size:10px;font-weight:950;letter-spacing:.14em;color:var(--jb-theme-primary)}
+.jb-theme-preview-card h3{color:var(--jb-theme-text-dark)!important;margin:6px 0}
+.jb-theme-preview-card button{
+  margin-top:10px;border:0;border-radius:12px;padding:12px 18px;
+  background:var(--jb-theme-accent);color:var(--jb-theme-text-dark);font-weight:950
+}
+@media(max-width:1000px){
+  .jb-theme-presets{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .jb-theme-fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .jb-theme-presets,.jb-theme-fields{grid-template-columns:1fr}
+}
+</style>
+
+
+<style id="jb-v760-pro">
+:root{--pro-r:18px;--pro-shadow:0 16px 42px rgba(2,18,31,.14)}
+body{background:radial-gradient(circle at 80% 0,color-mix(in srgb,var(--jb-theme-primary) 35%,transparent),transparent 32%),var(--jb-theme-bg)!important}
+.jb-sidebar{border-right:1px solid rgba(255,255,255,.1)!important;box-shadow:12px 0 35px rgba(0,0,0,.1)}
+.jb-side-nav a{border-radius:12px!important;margin:3px 8px!important;transition:.18s ease}
+.jb-side-nav a:hover{transform:translateX(2px)}
+.card,.panel,.group,.round,.category-manager,.v74-cloud-card{border-radius:var(--pro-r)!important;box-shadow:var(--pro-shadow)!important}
+.jb-access-card{border-radius:16px!important;min-height:116px!important;transition:.18s ease!important}
+.jb-access-card:hover{transform:translateY(-2px)}
+button,input,select,textarea{border-radius:12px!important}
+.jb-page-head{padding-bottom:14px!important;border-bottom:1px solid rgba(255,255,255,.1)}
+#jbPagePublico .jb-page-head,#jbPagePublico>.v73-public-head,#jbPagePublico>.v73-athlete-filter{display:none!important}
+#jbPagePublico{max-width:1500px}
+.v760-shell{display:grid;gap:18px}
+.v760-hero{padding:26px;border-radius:24px;background:linear-gradient(125deg,color-mix(in srgb,var(--jb-theme-bg) 88%,#000 12%),var(--jb-theme-primary));border:1px solid rgba(255,255,255,.14);box-shadow:0 22px 55px rgba(0,0,0,.18)}
+.v760-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.v760-kicker{font-size:10px;font-weight:950;letter-spacing:.16em;color:var(--jb-theme-accent)}
+.v760-hero h2{font-size:clamp(26px,3vw,42px);line-height:1.05;margin:5px 0;color:#fff!important}
+.v760-hero p{margin:0;color:rgba(255,255,255,.7)}
+.v760-live{padding:9px 12px;border:1px solid rgba(255,255,255,.18);border-radius:999px;font-size:10px;font-weight:950;color:#fff}
+.v760-live:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--jb-theme-accent);margin-right:8px}
+.v760-progress-head{display:flex;justify-content:space-between;margin:22px 0 7px;color:rgba(255,255,255,.75);font-size:11px;font-weight:850}
+.v760-track{height:7px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden}.v760-bar{height:100%;background:var(--jb-theme-accent);border-radius:99px}
+.v760-metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.v760-metric{padding:16px;border-radius:17px;background:var(--jb-theme-card);color:var(--jb-theme-text-dark);border:1px solid rgba(0,0,0,.06)}
+.v760-metric small{display:block;font-size:10px;font-weight:900;letter-spacing:.07em;text-transform:uppercase;opacity:.55}.v760-metric b{display:block;font-size:25px;margin-top:7px}.v760-metric em{display:block;font-size:10px;font-style:normal;opacity:.58;margin-top:4px}
+.v760-filter{padding:15px 17px;border-radius:17px;background:var(--jb-theme-card);color:var(--jb-theme-text-dark)}.v760-filter label{margin:0;font-size:11px;font-weight:900}.v760-filter select{margin-top:6px!important}
+#v73PublicContent>.v73-public-grid{gap:14px!important}
+#v73PublicContent .v73-public-card{border-radius:18px!important;padding:18px!important;background:var(--jb-theme-card)!important;color:var(--jb-theme-text-dark)!important;box-shadow:none!important}
+#v73PublicContent .v73-public-card h3{color:var(--jb-theme-text-dark)!important;font-size:18px!important;border-bottom:1px solid rgba(0,0,0,.07);padding-bottom:12px}
+#v73PublicContent .v73-public-game{padding:13px 4px!important;border-bottom:1px solid rgba(0,0,0,.07)!important}
+#v73PublicContent .v73-public-game b{display:block;font-size:13px;line-height:1.35}
+#v73PublicContent .v73-public-game small{display:block;margin-top:5px;font-size:10px;opacity:.58}
+#v73PublicContent>.v7488-public-section-title,#v73PublicContent>h3{font-size:19px!important;margin:22px 0 10px!important;color:var(--jb-theme-text)!important}
+#v73PublicContent>.v73-public-grid:nth-of-type(2),#v73PublicContent>.v7488-public-knockout,#v73PublicContent>.v7488-public-podium{padding:18px;border-radius:18px;background:var(--jb-theme-card);color:var(--jb-theme-text-dark)}
+#v73PublicContent .v7488-public-knockout{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+#v73PublicContent .v7488-public-round{border-radius:15px!important;box-shadow:none!important}
+#v73PublicContent .v7488-public-place{border-radius:17px!important}
+@media(max-width:950px){.v760-metrics{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:650px){.v760-hero{padding:20px}.v760-top{display:block}.v760-live{display:inline-block;margin-top:14px}.v760-metrics{grid-template-columns:repeat(2,1fr)}}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
@@ -1457,6 +1591,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
       <a href="#jogos" data-page-link="jogos"><span class="jb-side-icon">▤</span><span>Jogos / placares</span></a>
       <a href="#mata-mata" data-page-link="mata"><span class="jb-side-icon">♛</span><span>Mata-mata</span></a>
       <a href="#publico" data-page-link="publico"><span class="jb-side-icon">◎</span><span>Portal público</span></a>
+      <a href="#aparencia" data-page-link="aparencia"><span class="jb-side-icon">◐</span><span>Aparência</span></a>
       <a href="#nuvem" data-page-link="nuvem"><span class="jb-side-icon">☁</span><span>Nuvem / compartilhar</span></a>
       <a href="#podio" data-page-link="podio"><span class="jb-side-icon">🏆</span><span>Pódio</span></a>
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">⇩</span><span>Salvar / PDF</span></a>
@@ -1780,7 +1915,66 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
       <div id="v7LiveQueue" class="jb-v7-queue"></div>
     </section>
 
-    <section class="jb-page" id="jbPagePublico" data-page="publico">
+    
+    <section class="jb-page" id="jbPageAparencia" data-page="aparencia">
+      <div class="jb-page-head">
+        <div>
+          <h2>Aparência</h2>
+          <p>Personalize as cores da ferramenta sem alterar a identidade do torneio.</p>
+        </div>
+        <button class="jb-back" type="button" data-open-page="dashboard">← Painel</button>
+      </div>
+
+      <div class="jb-theme-editor">
+        <div class="jb-theme-card">
+          <div class="jb-theme-card-head">
+            <div>
+              <span>TEMAS PRONTOS</span>
+              <h3>Escolha um visual</h3>
+            </div>
+          </div>
+          <div class="jb-theme-presets">
+            <button type="button" data-jb-theme="jb">Azul JB</button>
+            <button type="button" data-jb-theme="darkgold">Preto / Dourado</button>
+            <button type="button" data-jb-theme="lightlime">Branco / Lima</button>
+            <button type="button" data-jb-theme="navy">Azul Escuro</button>
+            <button type="button" data-jb-theme="graygreen">Cinza / Verde</button>
+          </div>
+        </div>
+
+        <div class="jb-theme-card">
+          <div class="jb-theme-card-head">
+            <div>
+              <span>PERSONALIZADO</span>
+              <h3>Monte seu próprio tema</h3>
+            </div>
+          </div>
+          <div class="jb-theme-fields">
+            <label>Cor principal <input type="color" id="jbThemePrimary" value="#0f5e99"></label>
+            <label>Cor de destaque <input type="color" id="jbThemeAccent" value="#c9ff00"></label>
+            <label>Fundo <input type="color" id="jbThemeBg" value="#0d3958"></label>
+            <label>Cards <input type="color" id="jbThemeCard" value="#ffffff"></label>
+            <label>Texto claro <input type="color" id="jbThemeText" value="#ffffff"></label>
+            <label>Texto escuro <input type="color" id="jbThemeTextDark" value="#071d38"></label>
+          </div>
+          <div class="jb-theme-actions">
+            <button type="button" class="ok" id="jbThemeApplyCustom">Aplicar tema personalizado</button>
+            <button type="button" class="secondary" id="jbThemeReset">Restaurar Azul JB</button>
+          </div>
+        </div>
+
+        <div class="jb-theme-preview">
+          <div class="jb-theme-preview-card">
+            <span>PRÉVIA</span>
+            <h3>JB Torneios Pro</h3>
+            <p>As mudanças aparecem imediatamente e ficam salvas neste dispositivo.</p>
+            <button type="button">Botão de exemplo</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section class="jb-page" id="jbPagePublico" data-page="publico">
       <div class="jb-page-head"><div><h2>Portal Público</h2><p>Visualização somente leitura para atletas e público.</p></div><button class="jb-back" type="button" data-open-page="dashboard">← Painel</button></div>
       <div class="v73-public-head"><div><span>CONSULTA DO TORNEIO</span><h3 id="v73PublicTitle">Torneio</h3><small>Quando publicado na nuvem, esta tela atualiza automaticamente em outros aparelhos.</small></div></div>
       <div class="v73-athlete-filter"><label>Meus jogos / dupla <select id="v73TeamFilter" onchange="v73RenderPublic()"><option value="">Todas as duplas</option></select></label></div>
@@ -3344,7 +3538,7 @@ if('serviceWorker' in navigator){
     document.querySelectorAll('.jb-page').forEach(function(v){v.classList.toggle('active',v.dataset.page===page)});
     document.querySelectorAll('[data-page-link]').forEach(function(a){a.classList.toggle('active',a.dataset.pageLink===page)});
     if(pushHash!==false){
-      var hashes={dashboard:'inicio',inscritos:'inscritos',duplas:'duplas',grupos:'grupos',jogos:'jogos',mata:'mata-mata',evento:'evento',publico:'publico',nuvem:'nuvem',podio:'podio',arquivos:'gestao-arquivos'};
+      var hashes={dashboard:'inicio',inscritos:'inscritos',duplas:'duplas',grupos:'grupos',jogos:'jogos',mata:'mata-mata',evento:'evento',publico:'publico',aparencia:'aparencia',nuvem:'nuvem',podio:'podio',arquivos:'gestao-arquivos'};
       try{history.replaceState(null,'','#'+(hashes[page]||'inicio'));}catch(e){}
     }
     if(page==='dashboard') syncDashboard(); if(page==='evento'&&window.v7RenderEvent) window.v7RenderEvent(); if(page==='publico'&&window.v73RenderPublic) window.v73RenderPublic(); if(page==='podio'&&window.v73RenderPodium) window.v73RenderPodium(); if(page==='mata'&&window.v73SyncThirdToggle) window.v73SyncThirdToggle();
@@ -4210,5 +4404,140 @@ body{overflow-y:visible!important;height:auto!important;min-height:100vh!importa
   },{passive:false});
 })();
 </script>
+
+<script id="jb-v750-theme-editor">
+(function(){
+  var KEY='jb_v750_theme';
+
+  var presets={
+    jb:{
+      primary:'#0f5e99',accent:'#c9ff00',bg:'#0d3958',card:'#ffffff',text:'#ffffff',textDark:'#071d38'
+    },
+    darkgold:{
+      primary:'#3f3420',accent:'#d6b45f',bg:'#111111',card:'#1b1b1b',text:'#ffffff',textDark:'#f5e8c8'
+    },
+    lightlime:{
+      primary:'#7fa400',accent:'#c9ff00',bg:'#eef3f6',card:'#ffffff',text:'#071d38',textDark:'#071d38'
+    },
+    navy:{
+      primary:'#0c3157',accent:'#5bbcff',bg:'#061b31',card:'#ffffff',text:'#ffffff',textDark:'#071d38'
+    },
+    graygreen:{
+      primary:'#4d6b61',accent:'#9ad85b',bg:'#263430',card:'#ffffff',text:'#ffffff',textDark:'#173028'
+    }
+  };
+
+  function safeParse(v){try{return JSON.parse(v)}catch(e){return null}}
+  function setVar(name,val){document.documentElement.style.setProperty(name,val)}
+  function apply(theme,save){
+    if(!theme)return;
+    setVar('--jb-theme-primary',theme.primary);
+    setVar('--jb-theme-accent',theme.accent);
+    setVar('--jb-theme-bg',theme.bg);
+    setVar('--jb-theme-card',theme.card);
+    setVar('--jb-theme-text',theme.text);
+    setVar('--jb-theme-text-dark',theme.textDark);
+    syncInputs(theme);
+    if(save!==false){
+      try{localStorage.setItem(KEY,JSON.stringify(theme));}catch(e){}
+    }
+  }
+
+  function syncInputs(t){
+    var map={
+      jbThemePrimary:t.primary,
+      jbThemeAccent:t.accent,
+      jbThemeBg:t.bg,
+      jbThemeCard:t.card,
+      jbThemeText:t.text,
+      jbThemeTextDark:t.textDark
+    };
+    Object.keys(map).forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.value=map[id];
+    });
+  }
+
+  function customTheme(){
+    function val(id,fallback){
+      var el=document.getElementById(id);
+      return el&&el.value?el.value:fallback;
+    }
+    return {
+      primary:val('jbThemePrimary','#0f5e99'),
+      accent:val('jbThemeAccent','#c9ff00'),
+      bg:val('jbThemeBg','#0d3958'),
+      card:val('jbThemeCard','#ffffff'),
+      text:val('jbThemeText','#ffffff'),
+      textDark:val('jbThemeTextDark','#071d38')
+    };
+  }
+
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-jb-theme]');
+    if(b){
+      var name=b.getAttribute('data-jb-theme');
+      if(presets[name])apply(presets[name],true);
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var saved=null;
+    try{saved=safeParse(localStorage.getItem(KEY)||'');}catch(e){}
+    apply(saved||presets.jb,false);
+
+    var applyBtn=document.getElementById('jbThemeApplyCustom');
+    if(applyBtn)applyBtn.addEventListener('click',function(){
+      apply(customTheme(),true);
+      if(window.showNotice)showNotice('Tema personalizado aplicado.',true);
+    });
+
+    var resetBtn=document.getElementById('jbThemeReset');
+    if(resetBtn)resetBtn.addEventListener('click',function(){
+      apply(presets.jb,true);
+      if(window.showNotice)showNotice('Tema Azul JB restaurado.',true);
+    });
+
+    ['jbThemePrimary','jbThemeAccent','jbThemeBg','jbThemeCard','jbThemeText','jbThemeTextDark'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('input',function(){apply(customTheme(),false);});
+    });
+  });
+})();
+</script>
+
+
+<script id="jb-v760-public-dashboard">
+(function(){
+function install(){
+ if(typeof window.v73RenderPublic!=="function")return;
+ var base=window.v73RenderPublic;
+ window.v73RenderPublic=function(){
+   base();
+   var host=document.getElementById("v73PublicContent"), sel=document.getElementById("v73TeamFilter");
+   if(!host)return;
+   document.querySelectorAll(".v760-shell").forEach(function(x){x.remove()});
+   var groupTotal=0,groupDone=0,live=0;
+   function done(m){return m&&String(m.aScore==null?"":m.aScore)!==""&&String(m.bScore==null?"":m.bScore)!==""&&Number(m.aScore)!==Number(m.bScore)}
+   (state.groups||[]).forEach(function(g){(g.matches||[]).forEach(function(m){groupTotal++;if(done(m))groupDone++})});
+   var koTotal=0,koDone=0;
+   if(state.knockout&&state.knockout.rounds)(state.knockout.rounds||[]).forEach(function(r){(r.matches||[]).forEach(function(m){koTotal++;if(done(m))koDone++})});
+   if(state.knockout&&state.knockout.thirdPlacePlayoff&&state.knockout.thirdPlaceMatch){koTotal++;if(done(state.knockout.thirdPlaceMatch))koDone++}
+   var ops=state.operations||{}; if(ops.status)Object.keys(ops.status).forEach(function(k){if(ops.status[k]==="playing")live++});
+   var total=groupTotal+koTotal,finished=groupDone+koDone,pending=Math.max(0,total-finished),pct=total?Math.round(finished/total*100):0;
+   var phase=state.knockout?(state.knockout.championId?"Concluído":"Mata-mata"):"Fase de grupos";
+   var title=(document.getElementById("title")||{}).value||"Torneio";
+   var shell=document.createElement("div");shell.className="v760-shell";
+   shell.innerHTML='<section class="v760-hero"><div class="v760-top"><div><div class="v760-kicker">PAINEL OFICIAL · JB TORNEIOS PRO</div><h2>'+esc(title)+'</h2><p>Acompanhe o torneio em tempo real: jogos, resultados, classificação e mata-mata.</p></div><div class="v760-live">ANDAMENTO DO TORNEIO</div></div><div class="v760-progress-head"><span>Progresso geral</span><b>'+pct+'% concluído</b></div><div class="v760-track"><div class="v760-bar" style="width:'+pct+'%"></div></div></section>'+
+   '<div class="v760-metrics"><div class="v760-metric"><small>Fase atual</small><b style="font-size:18px">'+esc(phase)+'</b><em>Status da competição</em></div><div class="v760-metric"><small>Jogos</small><b>'+total+'</b><em>Total programado</em></div><div class="v760-metric"><small>Finalizados</small><b>'+finished+'</b><em>Placares confirmados</em></div><div class="v760-metric"><small>Em quadra</small><b>'+live+'</b><em>Jogos em andamento</em></div><div class="v760-metric"><small>Pendentes</small><b>'+pending+'</b><em>Aguardando conclusão</em></div></div>'+
+   '<div class="v760-filter"><label>CONSULTAR UMA DUPLA<select id="v760Filter"><option value="">Todas as duplas</option>'+(state.teams||[]).map(function(t){return '<option value="'+esc(t.id)+'"'+(sel&&sel.value===t.id?' selected':'')+'>'+esc(teamLabel(t))+'</option>'}).join("")+'</select></label></div>';
+   host.parentNode.insertBefore(shell,host);
+   var ns=document.getElementById("v760Filter");if(ns)ns.addEventListener("change",function(){if(sel)sel.value=ns.value;window.v73RenderPublic()});
+ };
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",install);else install();
+})();
+</script>
+
 </body>
 </html>
