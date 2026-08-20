@@ -969,6 +969,38 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
 @media(max-width:650px){.jb-auth-card{padding:22px 18px 20px;border-radius:22px}.jb-auth-logo img{width:160px}.jb-auth-title{font-size:22px}.jb-auth-logout{right:12px;bottom:calc(12px + env(safe-area-inset-bottom));padding:9px 13px}}
 
 </style>
+
+<style id="jb-v64-clean-navigation">
+  .jb-page{display:none;animation:jbPageIn .18s ease}
+  .jb-page.active{display:block}
+  @keyframes jbPageIn{from{opacity:.25;transform:translateY(5px)}to{opacity:1;transform:none}}
+  .jb-page-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:20px 0 12px}
+  .jb-page-head h2{margin:0;font-size:22px}.jb-page-head p{margin:4px 0 0;color:var(--muted);font-size:12px}
+  .jb-back{background:transparent!important;color:var(--ink)!important;border:1px solid var(--line)!important;box-shadow:none!important;white-space:nowrap}
+  .jb-access-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0 22px}
+  .jb-access-card{appearance:none;-webkit-appearance:none;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:18px;padding:18px;min-height:126px;box-shadow:0 8px 24px rgba(7,29,56,.06);cursor:pointer;transition:.18s ease;position:relative;overflow:hidden}
+  .jb-access-card:hover,.jb-access-card:active{transform:translateY(-2px);border-color:#9dbd18}
+  .jb-access-card .ico{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:#071d38;color:#d6ff00;font-size:20px;margin-bottom:16px}
+  .jb-access-card b{display:block;font-size:16px;margin-bottom:5px}.jb-access-card small{color:var(--muted);line-height:1.35}
+  .jb-access-card em{position:absolute;right:14px;top:14px;font-style:normal;font-size:11px;font-weight:900;color:#789000;background:#eff8d7;padding:5px 8px;border-radius:999px}
+  .jb-view-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:10px 0 18px}
+  .jb-view-summary .card{padding:16px}.jb-view-summary small{display:block;color:var(--muted);font-weight:800}.jb-view-summary strong{font-size:26px;color:#071d38}
+  #jbPageDashboard .category-manager{margin-top:0}
+  #jbPageGroups .matches{display:none}
+  .jb-games-group{margin-bottom:14px}.jb-games-group h3{margin:0 0 8px}.jb-games-group .match{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin:7px 0}
+  .quick-nav{display:none!important}
+  .jb-side-nav a,.mobile-dock a{cursor:pointer}
+  @media(max-width:900px){.jb-access-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.jb-view-summary{grid-template-columns:1fr 1fr 1fr}}
+  @media(max-width:560px){.jb-access-grid{grid-template-columns:1fr 1fr;gap:9px}.jb-access-card{padding:14px;min-height:112px;border-radius:15px}.jb-access-card .ico{width:36px;height:36px;margin-bottom:12px}.jb-page-head{align-items:flex-start}.jb-page-head h2{font-size:19px}.jb-view-summary{gap:7px}.jb-view-summary .card{padding:11px}.jb-view-summary strong{font-size:21px}}
+</style>
+
+
+<style id="jb-v74-cloud-style">
+.v74-cloud-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.v74-cloud-card{background:#fff;border:1px solid #dfe7ed;border-radius:18px;padding:16px;box-shadow:0 10px 26px rgba(8,29,49,.06)}.v74-share-card{grid-column:1/-1}.v74-cloud-title{display:flex;align-items:center;gap:10px;margin-bottom:14px}.v74-cloud-title>span{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:#071d38;color:#d6ff00;font-weight:950}.v74-cloud-title b{display:block;color:#071d38;font-size:14px}.v74-cloud-title small{display:block;color:#6b7a87;margin-top:2px}.v74-cloud-card label{display:grid;gap:6px;margin:10px 0;color:#334a5d;font-size:10px;font-weight:900}.v74-cloud-card input[type=text],.v74-cloud-card input[type=url],.v74-cloud-card textarea{width:100%;border:1px solid #cdd8e0;border-radius:10px;padding:10px 11px;background:#fbfcfd;color:#10283d;font:inherit;box-sizing:border-box}.v74-cloud-card textarea{resize:vertical}.v74-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}.v74-actions button{font-size:10px}.v74-status{margin-top:12px;border-radius:11px;padding:10px 12px;display:flex;justify-content:space-between;gap:10px;align-items:center}.v74-status b{font-size:10px}.v74-status small{font-size:9px;text-align:right}.v74-status.offline{background:#f4f6f8;color:#607080}.v74-status.connecting{background:#fff8e4;color:#826400}.v74-status.online{background:#eefaf3;color:#176e42}.v74-status.error{background:#fff0f0;color:#a22}.v74-check{display:flex!important;grid-template-columns:auto 1fr!important;align-items:center!important;gap:8px!important}.v74-check input{width:16px;height:16px}.v74-sync-row{display:flex;justify-content:space-between;gap:10px;margin-top:12px;padding-top:10px;border-top:1px solid #e8edf1;font-size:10px;color:#607080}.v74-sync-row b{color:#10283d}.v74-qr{margin:14px auto 2px;min-height:150px;border:1px dashed #c8d3dc;border-radius:14px;display:grid;place-items:center;background:#fbfcfd;color:#71818e;text-align:center;padding:12px}.v74-qr img{width:180px;height:180px;border-radius:10px;background:#fff;padding:8px}.v74-note{margin-top:14px;border-radius:14px;padding:12px 14px;background:#071d38;color:#fff;display:flex;gap:12px;align-items:flex-start}.v74-note b{color:#d6ff00;white-space:nowrap}.v74-note span{font-size:10px;line-height:1.5}.v74-public-only .jb-sidebar,.v74-public-only .jb-auth-logout,.v74-public-only .topbar,.v74-public-only .jb-page-head .jb-back{display:none!important}.v74-public-only .app-shell,.v74-public-only .jb-app-main{margin-left:0!important;padding-left:0!important}.v74-public-only .jb-page{display:none!important}.v74-public-only #jbPagePublico{display:block!important;max-width:1100px;margin:0 auto;padding:18px}.v74-public-banner{background:#071d38;color:#fff;padding:11px 14px;border-radius:13px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;align-items:center}.v74-public-banner b{color:#d6ff00}.v74-public-banner small{opacity:.8}.v74-public-sync{font-size:9px;font-weight:900}.v74-public-sync.ok{color:#94efb7}.v74-public-sync.wait{color:#ffd56a}.v74-public-sync.err{color:#ff9797}
+@media(max-width:760px){.v74-cloud-grid{grid-template-columns:1fr}.v74-share-card{grid-column:auto}.v74-actions{display:grid;grid-template-columns:1fr}.v74-actions button{width:100%}.v74-public-only #jbPagePublico{padding:10px}}
+</style>
+
+<style id="jb-v741-event-branding">.event-brand-field{margin-top:12px;border:1px solid #d9e2e8;border-radius:14px;padding:12px;background:#f8fafb}.event-brand-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.event-logo-preview{width:86px;height:64px;border:1px dashed #b9c7d1;border-radius:12px;background:#fff;display:grid;place-items:center;overflow:hidden;color:#7b8c99;font-size:9px;font-weight:900;text-align:center;padding:5px}.event-logo-preview img{width:100%;height:100%;object-fit:contain}.event-brand-actions{display:flex;gap:8px;flex-wrap:wrap}.event-brand-help{font-size:9px;color:#6d7d89;line-height:1.45;margin-top:7px}.jb-event-logo-dash{width:94px;height:76px;object-fit:contain;border-radius:14px;background:#fff;padding:7px;border:1px solid rgba(255,255,255,.18);display:none;flex:0 0 auto}.jb-dash-hero.has-event-logo{gap:18px}.print-logo-placeholder{display:block;width:1px;height:1px}.event-brand-name{font-size:9px;font-weight:900;color:#071d38;margin-top:4px;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}@media(max-width:650px){.jb-event-logo-dash{width:70px;height:58px}.event-logo-preview{width:74px;height:56px}}</style>
 </head>
 
 <body class="jb-auth-locked">
@@ -998,12 +1030,16 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
     </div>
     <div class="jb-side-section">GESTÃO</div>
     <nav class="jb-side-nav">
-      <a class="active" href="#inicio"><span class="jb-side-icon">⌂</span><span>Início</span></a>
-      <a href="#config"><span class="jb-side-icon">◉</span><span>Configuração</span></a>
-      <a href="#duplas"><span class="jb-side-icon">◇</span><span>Duplas</span></a>
-      <a href="#grupos"><span class="jb-side-icon">▦</span><span>Grupos e súmulas</span></a>
-      <a href="#mata-mata"><span class="jb-side-icon">♛</span><span>Mata-mata</span></a>
-      <a href="#gestao-arquivos"><span class="jb-side-icon">⇩</span><span>Salvar / PDF</span></a>
+      <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">⌂</span><span>Início</span></a>
+      <a href="#inscritos" data-page-link="inscritos"><span class="jb-side-icon">◉</span><span>Inscritos</span></a>
+      <a href="#duplas" data-page-link="duplas"><span class="jb-side-icon">◇</span><span>Duplas</span></a>
+      <a href="#grupos" data-page-link="grupos"><span class="jb-side-icon">▦</span><span>Grupos</span></a>
+      <a href="#jogos" data-page-link="jogos"><span class="jb-side-icon">▤</span><span>Jogos / placares</span></a>
+      <a href="#mata-mata" data-page-link="mata"><span class="jb-side-icon">♛</span><span>Mata-mata</span></a>
+      <a href="#publico" data-page-link="publico"><span class="jb-side-icon">◎</span><span>Portal público</span></a>
+      <a href="#nuvem" data-page-link="nuvem"><span class="jb-side-icon">☁</span><span>Nuvem / compartilhar</span></a>
+      <a href="#podio" data-page-link="podio"><span class="jb-side-icon">🏆</span><span>Pódio</span></a>
+      <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">⇩</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
       <small>JB TORNEIOS</small>
@@ -1059,6 +1095,51 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
       <a href="#gestao-arquivos"><span class="nav-icon"></span>Salvar / PDF</a>
     </nav>
 
+    <section class="jb-page active" id="jbPageDashboard" data-page="dashboard">
+      <div class="jb-dash-hero" id="jbDashHero">
+        <img id="jbEventLogoDash" class="jb-event-logo-dash" alt="Logo do evento / arena">
+        <div class="jb-dash-hero-main">
+          <span class="jb-dash-kicker">TORNEIO ATUAL</span>
+          <h2 id="dashTournamentName">Torneio Interno</h2>
+          <div class="jb-dash-status-row">
+            <span class="jb-dash-status" id="dashStatus"><i></i> Preparando torneio</span>
+            <span class="jb-dash-category" id="dashCategoryName">Categoria atual</span>
+          </div>
+        </div>
+        <button class="jb-dash-primary" type="button" data-open-page="inscritos">Gerenciar torneio <span>→</span></button>
+      </div>
+
+      <div class="jb-dash-metrics">
+        <button type="button" class="jb-metric-card" data-open-page="inscritos"><span>Inscritos</span><strong id="dashPlayers">0</strong><small>participantes</small></button>
+        <button type="button" class="jb-metric-card" data-open-page="duplas"><span>Duplas</span><strong id="dashTeams">0</strong><small>formadas</small></button>
+        <button type="button" class="jb-metric-card" data-open-page="grupos"><span>Grupos</span><strong id="dashGroups">0</strong><small>na categoria</small></button>
+        <button type="button" class="jb-metric-card jb-metric-wide" data-open-page="jogos"><span>Jogos</span><strong><b id="dashGamesDone">0</b><em>/</em><b id="dashGamesTotal">0</b></strong><small id="dashGamesCaption">aguardando sorteio</small></button>
+      </div>
+
+      <div class="jb-dash-progress-card">
+        <div class="jb-dash-progress-copy"><div><span>Andamento da fase de grupos</span><b id="dashProgressText">0% concluído</b></div><strong id="dashProgressPercent">0%</strong></div>
+        <div class="jb-dash-progress"><i id="dashProgressBar"></i></div>
+      </div>
+
+      <div class="jb-v7-assistant">
+        <div class="jb-v7-assistant-icon">✦</div>
+        <div class="jb-v7-assistant-copy"><span>ASSISTENTE DO ORGANIZADOR</span><h3 id="v7AssistTitle">Preparando o torneio</h3><p id="v7AssistText">Cadastre os participantes para começar.</p></div>
+        <button type="button" id="v7AssistAction" data-open-page="inscritos">Próxima ação <b>→</b></button>
+      </div>
+
+      <div class="jb-dashboard-section-head"><div><span>ACESSO RÁPIDO</span><h3>Áreas do torneio</h3></div><small>Toque em uma área para abrir</small></div>
+      <div class="jb-access-grid jb-access-grid-v65">
+        <button class="jb-access-card" type="button" data-open-page="inscritos"><span class="ico">♙</span><b>Inscritos</b><small>Cadastro, configurações e sorteio.</small><em id="accessPlayers">0</em><i class="jb-card-arrow">→</i></button>
+        <button class="jb-access-card" type="button" data-open-page="duplas"><span class="ico">◇</span><b>Duplas</b><small>Duplas sorteadas ou montadas.</small><em id="accessTeams">0</em><i class="jb-card-arrow">→</i></button>
+        <button class="jb-access-card" type="button" data-open-page="grupos"><span class="ico">▦</span><b>Grupos</b><small>Composição e classificação.</small><em id="accessGroups">0</em><i class="jb-card-arrow">→</i></button>
+        <button class="jb-access-card" type="button" data-open-page="jogos"><span class="ico">▤</span><b>Jogos / Placares</b><small id="accessGamesText">Lance os resultados da fase de grupos.</small><em id="accessGames">0/0</em><i class="jb-card-arrow">→</i></button>
+        <button class="jb-access-card" type="button" data-open-page="mata"><span class="ico">♛</span><b>Mata-mata</b><small id="accessKnockoutText">Aguardando classificação dos grupos.</small><em id="accessKnockout">AGUARDANDO</em><i class="jb-card-arrow">→</i></button>
+        <button class="jb-access-card jb-event-access" type="button" data-open-page="evento"><span class="ico">◫</span><b>Modo Evento</b><small>Quadras, jogos em andamento e próximos jogos.</small><em>AO VIVO</em><i class="jb-card-arrow">→</i></button>
+        <button class="jb-access-card" type="button" data-open-page="publico"><span class="ico">◎</span><b>Portal Público</b><small>Classificação, próximos jogos e consulta por dupla.</small><em>ONLINE</em><i class="jb-card-arrow">→</i></button>
+        <button class="jb-access-card" type="button" data-open-page="nuvem"><span class="ico">☁</span><b>Nuvem / Compartilhar</b><small>Sincronização, link público e QR Code.</small><em id="v74CloudBadge">OFFLINE</em><i class="jb-card-arrow">→</i></button>
+        <button class="jb-access-card" type="button" data-open-page="podio"><span class="ico">🏆</span><b>Pódio</b><small>Campeão, vice-campeão e terceiro lugar.</small><em>FINAL</em><i class="jb-card-arrow">→</i></button>
+        <button class="jb-access-card" type="button" data-open-page="arquivos"><span class="ico">⇩</span><b>Salvar / PDF</b><small>Backup, súmulas e impressão.</small><em>ARQUIVOS</em><i class="jb-card-arrow">→</i></button>
+      </div>
     <section class="card category-manager" id="categorias">
       <div class="card-head">
         <div>
@@ -1080,7 +1161,10 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
       <div style="height:10px"></div>
       <span class="category-badge">● <span id="activeTournamentLabel">Categoria atual</span></span>
     </section>
+    </section>
 
+    <section class="jb-page" id="jbPageInscritos" data-page="inscritos">
+      <div class="jb-page-head"><div><h2>Inscritos e configuração</h2><p>Cadastre os participantes e organize o sorteio.</p></div><button class="jb-back" type="button" data-open-page="dashboard">← Painel</button></div>
     <div class="grid two" id="config">
       <section class="card">
         <div class="card-head">
@@ -1093,11 +1177,22 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
 
         <label for="title">Nome do torneio</label>
         <input id="title" value="Torneio Interno" />
+        <div class="event-brand-field"><label>Logo do evento / arena <small style="font-weight:700;color:#7a8995">(opcional)</small></label><div class="event-brand-row"><div class="event-logo-preview" id="eventLogoPreview"><span>SEM LOGO</span></div><div><div class="event-brand-actions"><button type="button" id="eventLogoChooseBtn" class="secondary">Escolher logomarca</button><button type="button" id="eventLogoRemoveBtn" class="danger" style="display:none">Remover logo</button></div><div class="event-brand-name" id="eventLogoName">Nenhuma imagem selecionada</div><div class="event-brand-help">PNG, JPG ou WEBP. Esta logo pertence somente a esta categoria e será usada no painel e nas súmulas impressas.</div></div></div><input id="eventLogoFile" type="file" accept="image/png,image/jpeg,image/webp" style="display:none"></div>
 
         <div style="height:11px"></div>
 
+        <div class="field jb-match-format-field">
+          <label for="matchFormat">Formato das partidas</label>
+          <select id="matchFormat">
+            <option value="standard6">Padrão — 1 set até 6 games (6×6 tie-break até 7)</option>
+            <option value="pro3">PRO — melhor de 3 (1×1 = super tie-break até 10)</option>
+          </select>
+          <small class="event-brand-help">O formato vale para a categoria inteira, incluindo fase de grupos e mata-mata.</small>
+        </div>
+
         <label for="participants">Participantes — um nome por linha</label>
         <textarea id="participants" placeholder="João&#10;Pedro&#10;Carlos&#10;Bruno"></textarea>
+        <div id="v71RosterLockBar" class="v71-roster-lock" style="display:none"><span>🔒 Inscrições protegidas enquanto o torneio está em andamento.</span><button id="v71UnlockRosterBtn" type="button" class="warn">Reabrir inscrições</button></div>
 
         <div class="stats">
           <span class="pill">Inscritos<b id="countPlayers">0</b></span>
@@ -1156,15 +1251,20 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
         <div class="team">12 duplas → 4 grupos de 3</div>
 
         <div class="criteria">
-          <div><b>1º</b> Vitórias</div>
-          <div><b>2º</b> Saldo de games</div>
-          <div><b>3º</b> Games ganhos</div>
-          <div><b>4º</b> Confronto direto, quando o empate restante for entre duas duplas</div>
+          <div><b>Empate entre 2 duplas</b> Confronto direto</div>
+          <div><b>3+ duplas · 1º</b> Saldo de sets</div>
+          <div><b>3+ duplas · 2º</b> Saldo de games</div>
+          <div><b>3+ duplas · 3º</b> Aproveitamento (%) de sets</div>
+          <div><b>3+ duplas · 4º</b> Aproveitamento (%) de games</div>
+          <div><b>Persistindo empate</b> Sorteio automático</div>
+          <div><b>Regra LetzPlay</b> Se restarem apenas 2 duplas empatadas em qualquer etapa, vale o confronto direto</div>
         </div>
       </section>
     </div>
+    </section>
 
-
+    <section class="jb-page" id="jbPageArquivos" data-page="arquivos">
+      <div class="jb-page-head"><div><h2>Salvar e imprimir</h2><p>Backup, súmulas e arquivos do torneio.</p></div><button class="jb-back" type="button" data-open-page="dashboard">← Painel</button></div>
     <div class="save-panel" id="gestao-arquivos">
       <section class="card">
         <div class="card-head">
@@ -1213,7 +1313,10 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
         </div>
       </section>
     </div>
+    </section>
 
+    <section class="jb-page" id="jbPageDuplas" data-page="duplas">
+      <div class="jb-page-head"><div><h2>Duplas</h2><p>Duplas formadas para a categoria atual.</p></div><button class="jb-back" type="button" data-open-page="dashboard">← Painel</button></div>
     <div class="section-title" id="duplas">
       <div class="title-wrap">
         <span class="title-line"></span>
@@ -1221,15 +1324,83 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
       </div>
     </div>
     <div id="teamsArea" class="empty">Adicione os participantes e escolha entre sorteio completo ou montagem manual das duplas.</div>
+    </section>
 
+    <section class="jb-page" id="jbPageGroups" data-page="grupos">
+      <div class="jb-page-head"><div><h2>Grupos e classificação</h2><p>Visualização limpa dos grupos e da tabela.</p></div><button class="jb-back" type="button" data-open-page="dashboard">← Painel</button></div>
     <div class="section-title" id="grupos">
       <div class="title-wrap">
         <span class="title-line"></span>
         <div><h2>Fase de grupos</h2><p>Placares, classificação e critérios de desempate.</p></div>
       </div>
     </div>
-    <div id="groupsArea" class="empty">Os grupos, confrontos e classificação aparecerão aqui após o sorteio.</div>
+    <div id="groupsArea" class="empty">Os grupos e a classificação aparecerão aqui após o sorteio.</div>
+    </section>
 
+    <section class="jb-page" id="jbPageJogos" data-page="jogos">
+      <div class="jb-page-head"><div><h2>Central de Jogos</h2><p>Organize quadras, acompanhe a fila e lance os placares.</p></div><button class="jb-back" type="button" data-open-page="dashboard">← Painel</button></div>
+      <div class="jb-v7-game-toolbar">
+        <div><span>QUADRAS ATIVAS</span><select id="v7CourtCount" onchange="v7SetCourtCount(this.value)"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></div>
+        <button type="button" onclick="v7AutoAssignCourts()">Chamar melhores jogos</button>
+        <button type="button" class="secondary" data-open-page="evento">Abrir Modo Evento</button>
+      </div>
+      <div id="v7GamesSummary" class="jb-v7-games-summary"></div>
+      <div id="v71Alerts" class="v71-alerts"></div>
+      <div class="v71-safety-actions"><button type="button" class="secondary" onclick="v71UndoLastScore()">↶ Desfazer último placar</button><button type="button" class="secondary" onclick="v71RestoreSafetyBackup()">Restaurar último backup de segurança</button></div>
+      <div id="gamesArea" class="empty">Os jogos aparecerão aqui após o sorteio dos grupos.</div>
+    </section>
+
+    <section class="jb-page" id="jbPageEvento" data-page="evento">
+      <div class="jb-page-head"><div><h2>Modo Evento</h2><p>Painel operacional para usar durante o torneio.</p></div><button class="jb-back" type="button" data-open-page="dashboard">← Painel</button></div>
+      <div class="jb-v7-live-head"><div><span>TORNEIO AO VIVO</span><h2 id="v7LiveTitle">Torneio Interno</h2></div><div class="jb-v7-live-clock" id="v7LiveClock">--:--</div></div>
+      <div class="jb-v7-live-metrics"><div><span>Em quadra</span><b id="v7LivePlaying">0</b></div><div><span>Na fila</span><b id="v7LiveWaiting">0</b></div><div><span>Finalizados</span><b id="v7LiveDone">0</b></div></div>
+      <div class="jb-dashboard-section-head"><div><span>AGORA</span><h3>Jogos em andamento</h3></div></div>
+      <div id="v7LiveCourts" class="jb-v7-live-grid"></div>
+      <div class="jb-dashboard-section-head"><div><span>PRÓXIMOS</span><h3>Fila de jogos</h3></div></div>
+      <div id="v7LiveQueue" class="jb-v7-queue"></div>
+    </section>
+
+    <section class="jb-page" id="jbPagePublico" data-page="publico">
+      <div class="jb-page-head"><div><h2>Portal Público</h2><p>Visualização somente leitura para atletas e público.</p></div><button class="jb-back" type="button" data-open-page="dashboard">← Painel</button></div>
+      <div class="v73-public-head"><div><span>CONSULTA DO TORNEIO</span><h3 id="v73PublicTitle">Torneio</h3><small>Quando publicado na nuvem, esta tela atualiza automaticamente em outros aparelhos.</small></div></div>
+      <div class="v73-athlete-filter"><label>Meus jogos / dupla <select id="v73TeamFilter" onchange="v73RenderPublic()"><option value="">Todas as duplas</option></select></label></div>
+      <div id="v73PublicContent"></div>
+    </section>
+
+    <section class="jb-page" id="jbPageNuvem" data-page="nuvem">
+      <div class="jb-page-head"><div><h2>Nuvem / Compartilhar</h2><p>Sincronização online da categoria atual com funcionamento local de segurança.</p></div><button class="jb-back" type="button" data-open-page="dashboard">← Painel</button></div>
+      <div class="v74-cloud-grid">
+        <div class="v74-cloud-card">
+          <div class="v74-cloud-title"><span>1</span><div><b>Conexão com a nuvem</b><small>Supabase — dados continuam salvos localmente mesmo offline</small></div></div>
+          <label>URL do projeto Supabase<input id="v74SupabaseUrl" type="url" placeholder="https://seu-projeto.supabase.co" autocomplete="off"></label>
+          <label>Chave pública (anon key)<textarea id="v74SupabaseKey" rows="3" placeholder="Cole a anon key do projeto"></textarea></label>
+          <div class="v74-actions"><button type="button" onclick="v74SaveCloudConfig()">Salvar e conectar</button><button type="button" class="secondary" onclick="v74TestCloud()">Testar conexão</button></div>
+          <div id="v74CloudStatus" class="v74-status offline"><b>OFFLINE LOCAL</b><small>Nenhuma nuvem configurada.</small></div>
+        </div>
+        <div class="v74-cloud-card">
+          <div class="v74-cloud-title"><span>2</span><div><b>Publicar categoria atual</b><small>Gera um código público exclusivo para atletas e público</small></div></div>
+          <label>Código público<input id="v74ShareId" type="text" readonly placeholder="Será criado ao publicar"></label>
+          <label class="v74-check"><input id="v74AutoSync" type="checkbox" checked onchange="v74ToggleAutoSync(this.checked)"> Sincronizar automaticamente alterações do torneio</label>
+          <div class="v74-actions"><button type="button" onclick="v74PublishNow()">☁ Publicar / sincronizar agora</button><button type="button" class="secondary" onclick="v74PullNow()">↓ Baixar versão da nuvem</button></div>
+          <div class="v74-sync-row"><span>Última sincronização</span><b id="v74LastSync">—</b></div>
+        </div>
+        <div class="v74-cloud-card v74-share-card">
+          <div class="v74-cloud-title"><span>3</span><div><b>Link público do torneio</b><small>Somente leitura — não mostra controles do organizador</small></div></div>
+          <input id="v74PublicLink" type="text" readonly placeholder="Publique o torneio para gerar o link">
+          <div class="v74-actions"><button type="button" onclick="v74CopyPublicLink()">Copiar link</button><button type="button" class="secondary" onclick="v74OpenPublicLink()">Abrir portal</button></div>
+          <div id="v74QrWrap" class="v74-qr"><div>QR Code aparecerá após a publicação.</div></div>
+        </div>
+      </div>
+      <div class="v74-note"><b>Modo resiliente</b><span>Se a internet cair, o JB Torneios continua salvando tudo neste aparelho. Quando a conexão voltar, as alterações podem ser sincronizadas novamente.</span></div>
+    </section>
+
+    <section class="jb-page" id="jbPagePodio" data-page="podio">
+      <div class="jb-page-head"><div><h2>Pódio Final</h2><p>Campeão, vice-campeão e terceiro lugar da categoria.</p></div><button class="jb-back" type="button" data-open-page="dashboard">← Painel</button></div>
+      <div id="v73Podium" class="v73-podium-wrap"></div>
+    </section>
+
+    <section class="jb-page" id="jbPageMata" data-page="mata">
+      <div class="jb-page-head"><div><h2>Mata-mata</h2><p>Chave eliminatória da categoria atual.</p></div><button class="jb-back" type="button" data-open-page="dashboard">← Painel</button></div>
     <div class="section-title" id="mata-mata">
       <div class="title-wrap">
         <span class="title-line"></span>
@@ -1243,11 +1414,16 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
             <option value="2" selected>2 duplas por grupo</option>
           </select>
         </div>
+        <label class="v73-third-toggle" title="Desativado por padrão: o 3º lugar será a dupla que perdeu para o campeão na semifinal.">
+          <input type="checkbox" id="v73ThirdPlayoff" onchange="v73ToggleThirdPlayoff(this.checked)">
+          <span><b>Disputar 3º lugar</b><small>Desativado: 3º = perdedor da semifinal contra o campeão</small></span>
+        </label>
         <button id="generateKO" class="ok">Gerar mata-mata</button>
         <button id="resetKO" class="secondary">Resetar</button>
       </div>
     </div>
     <div id="knockoutArea" class="empty">Preencha todos os placares da fase de grupos e gere o mata-mata.</div>
+    </section>
 
     <div class="footer">
       João Bertonha Beach Tennis · JB Torneios Pro<br>
@@ -1256,22 +1432,25 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
   </div>
 
   <nav class="mobile-dock" aria-label="Menu inferior">
-    <a href="#inicio"><i></i>Início</a>
-    <a href="#config"><i></i>Config</a>
-    <a href="#grupos"><i></i>Grupos</a>
-    <a href="#mata-mata"><i></i>Finais</a>
+    <a href="#inicio" data-page-link="dashboard"><i></i>Início</a>
+    <a href="#inscritos" data-page-link="inscritos"><i></i>Inscritos</a>
+    <a href="#jogos" data-page-link="jogos"><i></i>Jogos</a>
+    <a href="#evento" data-page-link="evento"><i></i>Evento</a>
   </nav>
 
 <script>
-  // JB Torneios Pro V6.2 — correção de alternância entre categorias
+  // JB Torneios Pro V7.2 — Smart Court Manager
   const el = id => document.getElementById(id);
   const participants = el('participants');
   const teamsArea = el('teamsArea');
   const groupsArea = el('groupsArea');
+  const gamesArea = el('gamesArea');
   const knockoutArea = el('knockoutArea');
   const notice = el('notice');
   const manualTeamsPanel = el('manualTeamsPanel');
   let manualTeamsDraft = [];
+  let eventLogoData = "";
+  let eventLogoName = "";
   let tournaments = {};
   let activeTournamentId = null;
 
@@ -1369,7 +1548,10 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
 
   function groupStandings(group){
     const rows = group.teams.map(t=>({
-      team:t, J:0, V:0, D:0, GP:0, GC:0, SG:0
+      team:t, J:0, V:0, D:0,
+      SP:0, SC:0, SS:0,
+      GP:0, GC:0, SG:0,
+      setPct:0, gamePct:0
     }));
 
     const byId = Object.fromEntries(rows.map(r=>[r.team.id,r]));
@@ -1381,45 +1563,99 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
       a.J++; b.J++;
       a.GP += sa; a.GC += sb;
       b.GP += sb; b.GC += sa;
-      if(sa>sb){ a.V++; b.D++; } else { b.V++; a.D++; }
+
+      // A fase de grupos atual usa set único: cada partida concluída
+      // equivale a 1 set ganho pelo vencedor e 1 set perdido pelo adversário.
+      if(sa>sb){
+        a.V++; b.D++;
+        a.SP++; b.SC++;
+      } else {
+        b.V++; a.D++;
+        b.SP++; a.SC++;
+      }
     });
 
-    rows.forEach(r=>r.SG=r.GP-r.GC);
+    rows.forEach(r=>{
+      r.SS=r.SP-r.SC;
+      r.SG=r.GP-r.GC;
+      const setsPlayed=r.SP+r.SC;
+      const gamesPlayed=r.GP+r.GC;
+      r.setPct=setsPlayed ? r.SP/setsPlayed : 0;
+      r.gamePct=gamesPlayed ? r.GP/gamesPlayed : 0;
+    });
 
-    // Critérios principais.
-    rows.sort((x,y)=>
-      y.V-x.V ||
-      y.SG-x.SG ||
-      y.GP-x.GP ||
-      x.team.id-y.team.id
-    );
+    function directWinner(a,b){
+      const h2h=group.matches.find(m =>
+        (m.aId===a.team.id && m.bId===b.team.id) ||
+        (m.aId===b.team.id && m.bId===a.team.id)
+      );
+      if(!h2h || !isValidGroupScore(h2h)) return null;
+      return Number(h2h.aScore)>Number(h2h.bScore) ? h2h.aId : h2h.bId;
+    }
 
-    // Confronto direto para empate exato entre 2 duplas nos 3 critérios principais.
-    let i=0;
-    while(i<rows.length){
-      let j=i+1;
-      while(j<rows.length &&
-        rows[j].V===rows[i].V &&
-        rows[j].SG===rows[i].SG &&
-        rows[j].GP===rows[i].GP) j++;
+    function stableLotValue(row){
+      // Sorteio automático estável: evita a classificação "piscar" a cada renderização.
+      // Mistura grupo + dupla em um hash determinístico para desempatar o último critério.
+      const text=String(group.id||group.name||'G')+'|'+String(row.team.id);
+      let h=2166136261;
+      for(let i=0;i<text.length;i++){
+        h^=text.charCodeAt(i);
+        h=Math.imul(h,16777619);
+      }
+      return h>>>0;
+    }
 
-      if(j-i===2){
-        const a=rows[i], b=rows[i+1];
-        const h2h=group.matches.find(m =>
-          (m.aId===a.team.id && m.bId===b.team.id) ||
-          (m.aId===b.team.id && m.bId===a.team.id)
-        );
-        if(h2h && isValidGroupScore(h2h)){
-          const sa=Number(h2h.aScore), sb=Number(h2h.bScore);
-          const winnerId = sa>sb ? h2h.aId : h2h.bId;
-          if(rows[i+1].team.id===winnerId){
-            [rows[i],rows[i+1]]=[rows[i+1],rows[i]];
-          }
+    function resolveTied(list, criterionIndex){
+      if(list.length<=1) return list.slice();
+
+      // Regra LetzPlay: sempre que o empate se reduzir a duas duplas,
+      // a definição volta imediatamente para o confronto direto.
+      if(list.length===2){
+        const winnerId=directWinner(list[0],list[1]);
+        if(winnerId){
+          return list[0].team.id===winnerId ? list.slice() : [list[1],list[0]];
         }
       }
+
+      const criteria=[
+        r=>r.SS,       // saldo de sets
+        r=>r.SG,       // saldo de games
+        r=>r.setPct,   // aproveitamento de sets
+        r=>r.gamePct   // aproveitamento de games
+      ];
+
+      if(criterionIndex>=criteria.length){
+        return list.slice().sort((a,b)=>stableLotValue(b)-stableLotValue(a));
+      }
+
+      const metric=criteria[criterionIndex];
+      const ordered=list.slice().sort((a,b)=>metric(b)-metric(a));
+      const out=[];
+      let i=0;
+      while(i<ordered.length){
+        let j=i+1;
+        const v=metric(ordered[i]);
+        while(j<ordered.length && Math.abs(metric(ordered[j])-v)<1e-12) j++;
+        const subgroup=ordered.slice(i,j);
+        out.push(...(subgroup.length>1 ? resolveTied(subgroup,criterionIndex+1) : subgroup));
+        i=j;
+      }
+      return out;
+    }
+
+    // A pontuação/campanha é primeiro separada pelo número de vitórias.
+    // O regulamento LetzPlay entra somente entre duplas empatadas na campanha.
+    const byWins=rows.slice().sort((a,b)=>b.V-a.V);
+    const final=[];
+    let i=0;
+    while(i<byWins.length){
+      let j=i+1;
+      while(j<byWins.length && byWins[j].V===byWins[i].V) j++;
+      const tied=byWins.slice(i,j);
+      final.push(...(tied.length>1 ? resolveTied(tied,0) : tied));
       i=j;
     }
-    return rows;
+    return final;
   }
 
   function allGroupsComplete(){
@@ -1459,8 +1695,11 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
       title: el('title').value || 'Torneio Interno',
       participants: participants.value || '',
       qualifiersPerGroup: el('qualifiersPerGroup').value || '2',
+      matchFormat: (el('matchFormat')&&el('matchFormat').value) || 'standard6',
       state: JSON.parse(JSON.stringify(state)),
       manualTeamsDraft: JSON.parse(JSON.stringify(manualTeamsDraft || [])),
+      eventLogoData: eventLogoData || '',
+      eventLogoName: eventLogoName || '',
       updatedAt: Date.now()
     };
   }
@@ -1469,7 +1708,7 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
     if(activeTournamentId && tournaments[activeTournamentId]) return;
     const id='cat_'+Date.now();
     activeTournamentId=id;
-    tournaments[id]={title:'Torneio Interno',participants:'',qualifiersPerGroup:'2',state:{teams:[],groups:[],knockout:null},manualTeamsDraft:[],updatedAt:Date.now()};
+    tournaments[id]={title:'Torneio Interno',participants:'',qualifiersPerGroup:'2',matchFormat:'standard6',state:{teams:[],groups:[],knockout:null},manualTeamsDraft:[],eventLogoData:'',eventLogoName:'',updatedAt:Date.now()};
   }
 
   function renderTournamentSelector(){
@@ -1491,11 +1730,15 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
     el('title').value=data.title||'Torneio Interno';
     participants.value=data.participants||'';
     el('qualifiersPerGroup').value=data.qualifiersPerGroup||'2';
+    if(el('matchFormat')) el('matchFormat').value=data.matchFormat||'standard6';
     state=data.state||{teams:[],groups:[],knockout:null};
     if(!state.teams) state.teams=[];
     if(!state.groups) state.groups=[];
     if(!state.knockout) state.knockout=null;
     manualTeamsDraft=data.manualTeamsDraft||[];
+    eventLogoData=data.eventLogoData||'';
+    eventLogoName=data.eventLogoName||'';
+    renderEventBranding();
     renderTournamentSelector();
     render();
     renderManualTeamBuilder();
@@ -1528,8 +1771,9 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
       title:data.title||'Torneio Interno',
       participants:data.participants||'',
       qualifiersPerGroup:data.qualifiersPerGroup||'2',
+      matchFormat:data.matchFormat||'standard6',
       state:data.state||{teams:[],groups:[],knockout:null},
-      manualTeamsDraft:[],updatedAt:data.savedAt||Date.now()
+      manualTeamsDraft:[],eventLogoData:data.eventLogoData||'',eventLogoName:data.eventLogoName||'',updatedAt:data.savedAt||Date.now()
     };
     activeTournamentId=id;
   }
@@ -1565,11 +1809,11 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
     const name=(prompt('Nome da nova categoria/torneio:',suggested)||'').trim();
     if(!name) return;
     const id='cat_'+Date.now()+'_'+Math.random().toString(36).slice(2,7);
-    tournaments[id]={title:name,participants:'',qualifiersPerGroup:'2',state:{teams:[],groups:[],knockout:null},manualTeamsDraft:[],updatedAt:Date.now()};
+    tournaments[id]={title:name,participants:'',qualifiersPerGroup:'2',matchFormat:'standard6',state:{teams:[],groups:[],knockout:null},manualTeamsDraft:[],eventLogoData:'',eventLogoName:'',updatedAt:Date.now()};
     activeTournamentId=id;
     applyTournamentById(id);
     save();
-    showNotice('Nova categoria criada. Você pode cadastrar participantes e organizar este torneio sem alterar os demais.',true);
+    showNotice('Nova categoria criada. Se desejar, escolha agora a logomarca da arena/evento.',true); setTimeout(function(){var f=el('eventLogoFile');if(f)f.click();},180);
   }
 
   function duplicateTournament(){
@@ -1655,6 +1899,7 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
 
   function drawGroupsOnly(){
     hideNotice();
+    if((state.groups&&state.groups.length)||state.knockout){ if(!confirm('Esta ação recriará os grupos e apagará placares/classificação atuais. Deseja continuar?')) return; v71CreateSafetyBackup('sortear grupos novamente'); }
     const names=getNames();
     if(names.length<6){ showNotice('Cadastre pelo menos 6 participantes para formar 3 duplas.'); return; }
     if(names.length%2!==0){ showNotice('Há um número ímpar de inscritos. Ajuste a lista antes de montar todas as duplas.'); return; }
@@ -1669,6 +1914,7 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
 
   function draw(){
     hideNotice();
+    if((state.groups&&state.groups.length)||state.knockout){ if(!confirm('Este sorteio substituirá duplas, grupos, quadras e placares atuais. Deseja continuar?')) return; v71CreateSafetyBackup('novo sorteio'); }
     const names=getNames();
 
     if(names.length<6){
@@ -1714,6 +1960,9 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
 
   function updateGroupScore(groupIndex, matchIndex, side, value, inputEl){
     var m=state.groups[groupIndex].matches[matchIndex];
+    if(!window.__v71PendingUndo || window.__v71PendingUndo.key!==('G:'+groupIndex+':'+matchIndex)){
+      window.__v71PendingUndo={type:'group',key:'G:'+groupIndex+':'+matchIndex,groupIndex:groupIndex,matchIndex:matchIndex,aScore:m.aScore,bScore:m.bScore,ts:Date.now()};
+    }
     var clean=String(value).replace(/[^\d]/g,'');
     m[side] = clean === '' ? '' : String(Math.min(99,Number(clean)));
 
@@ -1724,9 +1973,12 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
   }
 
   function finishGroupScore(){
+    if(window.__v71PendingUndo && window.__v71PendingUndo.type==='group'){ v71CommitUndo(window.__v71PendingUndo); window.__v71PendingUndo=null; }
+    v71ReleaseFinishedCourts();
     renderGroups();
     renderKnockout();
     save();
+    v71RenderAlerts();
   }
 
   function clearScores(){
@@ -1872,7 +2124,7 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
       size/=2;
     }
 
-    state.knockout={qualifiers,rounds,championId:null};
+    state.knockout={qualifiers,rounds,championId:null,runnerUpId:null,thirdPlaceId:null,thirdPlacePlayoff:false,thirdPlaceMatch:{aId:null,bId:null,aScore:'',bScore:''}};
     propagateKnockout(0);
     renderKnockout();
     save();
@@ -1905,10 +2157,25 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
     const finalRound=rounds[rounds.length-1];
     const finalMatch=finalRound.matches[0];
     state.knockout.championId=getKnockoutWinner(finalMatch);
+    state.knockout.runnerUpId=null;
+    if(state.knockout.championId && finalMatch.aId && finalMatch.bId) state.knockout.runnerUpId=state.knockout.championId===finalMatch.aId?finalMatch.bId:finalMatch.aId;
+    if(typeof state.knockout.thirdPlacePlayoff!=='boolean') state.knockout.thirdPlacePlayoff=false;
+    if(!state.knockout.thirdPlaceMatch) state.knockout.thirdPlaceMatch={aId:null,bId:null,aScore:'',bScore:''};
+    if(rounds.length>=2){
+      const semi=rounds[rounds.length-2], losers=[]; let loserToChampion=null;
+      (semi.matches||[]).slice(0,2).forEach(m=>{ const w=getKnockoutWinner(m); if(w&&m.aId&&m.bId){ const loser=w===m.aId?m.bId:m.aId; losers.push(loser); if(state.knockout.championId&&w===state.knockout.championId) loserToChampion=loser; }});
+      const tp=state.knockout.thirdPlaceMatch, oldA=tp.aId, oldB=tp.bId; tp.aId=losers[0]||null; tp.bId=losers[1]||null;
+      if(oldA!==tp.aId||oldB!==tp.bId){tp.aScore='';tp.bScore='';}
+      state.knockout.thirdPlaceId=state.knockout.thirdPlacePlayoff?getKnockoutWinner(tp):loserToChampion;
+    }else{ state.knockout.thirdPlaceId=null; }
+    if(window.v73RenderPodium) window.v73RenderPodium();
   }
 
   function updateKOScore(roundIndex, matchIndex, side, value, inputEl){
     var match=state.knockout.rounds[roundIndex].matches[matchIndex];
+    if(!window.__v71PendingUndo || window.__v71PendingUndo.key!==('K:'+roundIndex+':'+matchIndex)){
+      window.__v71PendingUndo={type:'ko',key:'K:'+roundIndex+':'+matchIndex,roundIndex:roundIndex,matchIndex:matchIndex,aScore:match.aScore,bScore:match.bScore,ts:Date.now()};
+    }
     var clean=String(value).replace(/[^\d]/g,'');
     match[side]=clean==='' ? '' : String(Math.min(99,Number(clean)));
     if(inputEl && inputEl.value !== match[side]) inputEl.value = match[side];
@@ -1916,9 +2183,11 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
   }
 
   function finishKOScore(roundIndex){
+    if(window.__v71PendingUndo && window.__v71PendingUndo.type==='ko'){ v71CommitUndo(window.__v71PendingUndo); window.__v71PendingUndo=null; }
     propagateKnockout(roundIndex);
     renderKnockout();
     save();
+    v71RenderAlerts();
   }
 
   function renderTeams(){
@@ -1938,7 +2207,8 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
   function renderGroups(){
     if(!state.groups.length){
       groupsArea.className='empty';
-      groupsArea.innerHTML='Os grupos, confrontos e classificação aparecerão aqui após o sorteio.';
+      groupsArea.innerHTML='Os grupos e a classificação aparecerão aqui após o sorteio.';
+      renderGames();
       return;
     }
 
@@ -1977,11 +2247,6 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
           <h3>Grupo ${esc(g.name)} · ${g.teams.length} duplas</h3>
           ${g.teams.map((t,i)=>`<div class="team">${i+1}. ${esc(teamLabel(t))}</div>`).join('')}
 
-          <div class="matches">
-            <div class="small" style="font-weight:900;margin-bottom:3px">PLACARES</div>
-            ${matchesHtml}
-          </div>
-
           <div class="standings-wrap">
             <table>
               <thead>
@@ -1992,7 +2257,96 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
           </div>
         </div>`;
     }).join('');
+    renderGames();
   }
+
+  function v7ValidScore(m){ if(!m)return false; var a=String(m.aScore==null?'':m.aScore).trim(),b=String(m.bScore==null?'':m.bScore).trim(); if(a===''||b==='')return false; var na=Number(a),nb=Number(b); return Number.isFinite(na)&&Number.isFinite(nb)&&na!==nb; }
+  function v7EnsureOps(){
+    if(!state.operations) state.operations={courtCount:2,assignments:{}};
+    if(!state.operations.assignments) state.operations.assignments={};
+    if(!state.operations.courtCount) state.operations.courtCount=2;
+    return state.operations;
+  }
+  function v7GameKey(gi,mi){ return 'G'+gi+'M'+mi; }
+  function v7SetCourtCount(v){
+    var ops=v7EnsureOps(); ops.courtCount=Math.max(1,Math.min(8,Number(v)||2)); save(); renderGames(); v7RenderEvent();
+  }
+  function v7SetGameCourt(gi,mi,v){
+    var ops=v7EnsureOps(),key=v7GameKey(gi,mi),m=state.groups[gi].matches[mi];
+    if(v7ValidScore(m)){ showNotice('Este jogo já foi finalizado. Desfaça o placar se precisar alterar a quadra.'); renderGames(); return; }
+    if(!v){ delete ops.assignments[key]; save(); renderGames(); v7RenderEvent(); v71RenderAlerts(); return; }
+    var court=Number(v), conflict=null, teamConflict=null;
+    var activeTeams={};
+    v7AllGroupGames().forEach(function(x){
+      if(x.key===key || v7ValidScore(x.m) || !ops.assignments[x.key]) return;
+      if(Number(ops.assignments[x.key])===court) conflict=x;
+      activeTeams[x.m.aId]=x; activeTeams[x.m.bId]=x;
+    });
+    if(activeTeams[m.aId]||activeTeams[m.bId]) teamConflict=activeTeams[m.aId]||activeTeams[m.bId];
+    if(conflict){ showNotice('A Quadra '+court+' já possui um jogo em andamento. Finalize ou retire o jogo atual antes de usar essa quadra.'); renderGames(); return; }
+    if(teamConflict){ showNotice('Uma das duplas deste confronto já está marcada em outra quadra. O sistema bloqueou a duplicidade.'); renderGames(); return; }
+    ops.assignments[key]=court; save(); renderGames(); v7RenderEvent(); v71RenderAlerts();
+  }
+  function v7AllGroupGames(){
+    var list=[]; (state.groups||[]).forEach(function(g,gi){(g.matches||[]).forEach(function(m,mi){list.push({g:g,gi:gi,m:m,mi:mi,key:v7GameKey(gi,mi)});});}); return list;
+  }
+  function v7AutoAssignCourts(){
+    var ops=v7EnsureOps(), games=v7AllGroupGames();
+    var occupied={}, activeTeams={};
+    games.forEach(function(x){ if(!v7ValidScore(x.m) && ops.assignments[x.key]){ occupied[ops.assignments[x.key]]=true; activeTeams[x.m.aId]=true; activeTeams[x.m.bId]=true; } });
+    games.forEach(function(x){
+      if(v7ValidScore(x.m) || ops.assignments[x.key]) return;
+      if(activeTeams[x.m.aId]||activeTeams[x.m.bId]) return;
+      for(var c=1;c<=ops.courtCount;c++){ if(!occupied[c]){ops.assignments[x.key]=c;occupied[c]=true;activeTeams[x.m.aId]=true;activeTeams[x.m.bId]=true;break;} }
+    });
+    save(); renderGames(); v7RenderEvent(); v71RenderAlerts(); if(window.jbSyncDashboard) window.jbSyncDashboard();
+  }
+  window.v7SetCourtCount=v7SetCourtCount; window.v7SetGameCourt=v7SetGameCourt; window.v7AutoAssignCourts=v7AutoAssignCourts;
+
+  function renderGames(){
+    if(!gamesArea) return;
+    var ops=v7EnsureOps(), cc=document.getElementById('v7CourtCount'); if(cc) cc.value=String(ops.courtCount);
+    if(!state.groups.length){
+      gamesArea.className='empty'; gamesArea.innerHTML='Os jogos aparecerão aqui após o sorteio dos grupos.';
+      var sm=document.getElementById('v7GamesSummary'); if(sm) sm.innerHTML=''; v7RenderEvent(); return;
+    }
+    var all=v7AllGroupGames(), done=all.filter(function(x){return v7ValidScore(x.m)}).length;
+    var playing=all.filter(function(x){return !v7ValidScore(x.m)&&ops.assignments[x.key]}).length;
+    var waiting=all.length-done-playing;
+    var sm=document.getElementById('v7GamesSummary'); if(sm) sm.innerHTML='<div><span>Finalizados</span><b>'+done+'</b></div><div><span>Em quadra</span><b>'+playing+'</b></div><div><span>Aguardando</span><b>'+waiting+'</b></div><div><span>Total</span><b>'+all.length+'</b></div>';
+    gamesArea.className='jb-v7-games-list';
+    gamesArea.innerHTML=state.groups.map(function(g,gi){
+      var matches=g.matches.map(function(m,mi){
+        var a=getTeam(m.aId),b=getTeam(m.bId),key=v7GameKey(gi,mi),court=ops.assignments[key]||'',finished=v7ValidScore(m);
+        var status=finished?'Finalizado':(court?'Em jogo':'Aguardando');
+        var options='<option value="">Fila</option>'; for(var c=1;c<=ops.courtCount;c++) options+='<option value="'+c+'" '+(Number(court)===c?'selected':'')+'>Quadra '+c+'</option>';
+        return '<div class="jb-v7-game-card '+(finished?'done':court?'playing':'waiting')+'">'+
+          '<div class="jb-v7-game-meta"><span>Grupo '+esc(g.name)+' · Jogo '+(mi+1)+'</span><b>'+status+'</b></div>'+
+          '<div class="jb-v7-match-row"><strong>'+esc(teamLabel(a))+'</strong><input class="score" inputmode="numeric" value="'+esc(m.aScore)+'" oninput="updateGroupScore('+gi+','+mi+',\'aScore\',this.value,this)" onchange="finishGroupScore()" onblur="finishGroupScore()"><i>×</i><input class="score" inputmode="numeric" value="'+esc(m.bScore)+'" oninput="updateGroupScore('+gi+','+mi+',\'bScore\',this.value,this)" onchange="finishGroupScore()" onblur="finishGroupScore()"><strong>'+esc(teamLabel(b))+'</strong></div>'+
+          '<div class="jb-v7-game-foot"><select onchange="v7SetGameCourt('+gi+','+mi+',this.value)" '+(finished?'disabled':'')+'>'+options+'</select><span>'+(finished?'Resultado confirmado':court?'Quadra '+court+' em andamento':'Aguardando liberação de quadra')+'</span></div>'+
+        '</div>';
+      }).join('');
+      return '<section class="jb-v7-group-games"><h3>Grupo '+esc(g.name)+'</h3>'+matches+'</section>';
+    }).join('');
+    v7RenderEvent();
+  }
+
+  function v7RenderEvent(){
+    var root=document.getElementById('v7LiveCourts'); if(!root) return;
+    var ops=v7EnsureOps(),all=v7AllGroupGames();
+    var active=all.filter(function(x){return !v7ValidScore(x.m)&&ops.assignments[x.key]}).sort(function(a,b){return ops.assignments[a.key]-ops.assignments[b.key]});
+    var waiting=all.filter(function(x){return !v7ValidScore(x.m)&&!ops.assignments[x.key]});
+    var done=all.filter(function(x){return v7ValidScore(x.m)});
+    setTextSafe('v7LiveTitle',(el('title').value||'Torneio Interno')); setTextSafe('v7LivePlaying',active.length);setTextSafe('v7LiveWaiting',waiting.length);setTextSafe('v7LiveDone',done.length);
+    var cards=[]; for(var c=1;c<=ops.courtCount;c++){
+      var x=active.find(function(y){return Number(ops.assignments[y.key])===c;});
+      if(x){var a=getTeam(x.m.aId),b=getTeam(x.m.bId);cards.push('<div class="jb-v7-court active"><span>QUADRA '+c+'</span><b>'+esc(teamLabel(a))+'</b><i>×</i><b>'+esc(teamLabel(b))+'</b><small>Grupo '+esc(x.g.name)+'</small></div>');}
+      else cards.push('<div class="jb-v7-court free"><span>QUADRA '+c+'</span><b>Disponível</b><small>Pronta para o próximo jogo</small></div>');
+    } root.innerHTML=cards.join('');
+    var q=document.getElementById('v7LiveQueue'); if(q) q.innerHTML=waiting.length?waiting.slice(0,8).map(function(x,i){var a=getTeam(x.m.aId),b=getTeam(x.m.bId);return '<div><span>'+(i+1)+'</span><b>'+esc(teamLabel(a))+' <i>×</i> '+esc(teamLabel(b))+'</b><small>Grupo '+esc(x.g.name)+'</small></div>';}).join(''):'<div class="empty">Nenhum jogo aguardando.</div>';
+  }
+  function setTextSafe(id,v){var n=document.getElementById(id);if(n)n.textContent=v;}
+  window.v7RenderEvent=v7RenderEvent;
 
   function renderKnockout(){
     if(!state.knockout){
@@ -2175,8 +2529,19 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
   }
 
 
+  function renderEventBranding(){
+    var preview=el('eventLogoPreview'), remove=el('eventLogoRemoveBtn'), name=el('eventLogoName'), dash=el('jbEventLogoDash'), hero=el('jbDashHero');
+    if(preview) preview.innerHTML=eventLogoData?'<img src="'+esc(eventLogoData)+'" alt="Logo do evento / arena">':'<span>SEM LOGO</span>';
+    if(remove) remove.style.display=eventLogoData?'inline-flex':'none';
+    if(name) name.textContent=eventLogoData?(eventLogoName||'Logomarca do evento'):'Nenhuma imagem selecionada';
+    if(dash){if(eventLogoData){dash.src=eventLogoData;dash.style.display='block';if(hero)hero.classList.add('has-event-logo')}else{dash.removeAttribute('src');dash.style.display='none';if(hero)hero.classList.remove('has-event-logo')}}
+  }
+  function resizeEventLogo(file,done){var r=new FileReader();r.onload=function(){var i=new Image();i.onload=function(){var sc=Math.min(1,900/i.width,500/i.height),w=Math.max(1,Math.round(i.width*sc)),h=Math.max(1,Math.round(i.height*sc)),c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(i,0,0,w,h);var type=file.type==='image/jpeg'?'image/jpeg':'image/png';done(c.toDataURL(type,type==='image/jpeg'?0.9:undefined))};i.onerror=function(){showNotice('Não foi possível ler esta imagem.')};i.src=r.result};r.readAsDataURL(file)}
+  function setupEventBranding(){var choose=el('eventLogoChooseBtn'),file=el('eventLogoFile'),remove=el('eventLogoRemoveBtn');if(choose&&file)choose.addEventListener('click',function(){file.click()});if(file)file.addEventListener('change',function(){var f=file.files&&file.files[0];if(!f)return;if(!/^image\/(png|jpeg|webp)$/i.test(f.type)){showNotice('Use uma imagem PNG, JPG ou WEBP.');file.value='';return}if(f.size>5*1024*1024){showNotice('A logomarca deve ter no máximo 5 MB.');file.value='';return}resizeEventLogo(f,function(data){eventLogoData=data;eventLogoName=f.name||'Logomarca do evento';renderEventBranding();save();showNotice('Logomarca do evento salva nesta categoria.',true)});file.value=''});if(remove)remove.addEventListener('click',function(){if(!eventLogoData)return;if(!confirm('Remover a logomarca desta categoria? As súmulas passarão a ser impressas sem logo.'))return;eventLogoData='';eventLogoName='';renderEventBranding();save();showNotice('Logomarca removida desta categoria.',true)});renderEventBranding()}
+
   function jbPrintLogo(){
-    return '<img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis" class="print-logo">';
+    if(eventLogoData) return '<img src="'+esc(eventLogoData)+'" alt="Logo do evento / arena" class="print-logo">';
+    return '<span class="print-logo-placeholder" aria-hidden="true"></span>';
   }
 
   function printWindow(title,bodyHtml){
@@ -2261,14 +2626,14 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
           '<td></td><td></td><td></td><td></td><td></td><td></td></tr>';
       }).join('');
       return '<section class="sheet '+(gi<state.groups.length-1?'page':'')+'">'+
-        '<div class="head"><div class="head-left">'+jbPrintLogo()+'<div><div class="brand">JB TORNEIOS</div><h1>'+tournament+'</h1><h2>SÚMULA — GRUPO '+esc(g.name)+'</h2></div></div>'+
+        '<div class="head"><div class="head-left">'+jbPrintLogo()+'<div><div class="brand">SÚMULA OFICIAL</div><h1>'+tournament+'</h1><h2>SÚMULA — GRUPO '+esc(g.name)+'</h2></div></div>'+
         '<div class="meta">Data: ____/____/______<br>Responsável: ____________________<br>Gerado em '+esc(generated)+'</div></div>'+
         '<div class="teams">'+teams+'</div>'+
         '<div style="font-weight:900;margin:7px 0 3px">JOGOS — placar e quadra/horário</div>'+
         matches+
         '<table><thead><tr><th>#</th><th>Dupla</th><th>J</th><th>V</th><th>D</th><th>GP</th><th>GC</th><th>SG</th></tr></thead><tbody>'+standings+'</tbody></table>'+
         '<div class="notes"><div><div class="line"></div><small>Assinatura / organização</small></div><div><div class="line"></div><small>Observações</small></div></div>'+
-        '<div class="footer">João Bertonha Beach Tennis · JB Torneios Pro</div>'+
+        '<div class="footer">Súmula oficial · '+tournament+'</div>'+
       '</section>';
     }).join('');
     printWindow('Súmulas dos Grupos — '+tournament,sheets);
@@ -2313,7 +2678,7 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
         '<header class="premium-head"><div class="logo-panel">'+jbPrintLogo()+'</div><div class="title-panel"><div class="eyebrow">SÚMULA — MATA-MATA</div><h1>'+esc(round.name).toUpperCase()+'</h1><div class="phase">FASE: '+esc(round.name).toUpperCase()+'</div></div><div class="tournament-box"><b>TORNEIO</b><div>'+tournament+'</div><p>DATA: ____/____/______</p><p>CATEGORIA: __________________</p></div></header>'+
         '<div class="game-meta">JOGO ____ &nbsp;&nbsp;&nbsp; HORÁRIO: __________________________</div>'+cards+
         (isFinal?'<div class="final-fields"><div><b>CAMPEÃO(ÃS)</b><p></p><p></p></div><div><b>VICE-CAMPEÃO(ÃS)</b><p></p><p></p></div><div class="obs"><b>OBSERVAÇÕES</b><p></p><p></p><p></p><p></p></div></div>':'<div class="qual-fields"><div><b>CLASSIFICADOS PARA A PRÓXIMA FASE</b><p>VENCEDOR 1: _________________________________</p><p>VENCEDOR 2: _________________________________</p></div><div><b>OBSERVAÇÕES</b><p></p><p></p><p></p></div></div>')+
-        '<footer>JB Torneios Pro · João Bertonha Beach Tennis</footer></section>';
+        '<footer>Súmula oficial · '+tournament+'</footer></section>';
     }).join('');
     var premiumCss='<style>@page{size:A4 portrait;margin:8mm}.premium-page{height:281mm;page-break-after:always;break-after:page;border:1px solid #cbd5df;border-radius:5px;padding:0 8mm 6mm;position:relative;overflow:hidden}.premium-page:last-child{page-break-after:auto;break-after:auto}.premium-head{height:46mm;display:grid;grid-template-columns:42mm 1fr 55mm;gap:7mm;align-items:center;border-bottom:1px solid #ccd5df}.logo-panel{background:#071d38;height:46mm;margin-left:-8mm;width:48mm;display:flex;align-items:center;justify-content:center;border-radius:0 0 5px 0}.logo-panel .print-logo{width:42mm;height:36mm}.title-panel .eyebrow{font-size:17pt;font-weight:900;color:#071d38}.title-panel h1{font-size:25pt;color:#7faa00;margin:1mm 0}.phase{display:inline-block;background:#071d38;color:white;padding:2mm 6mm;border-radius:3px;font-weight:800}.tournament-box{border:1px solid #718096;border-radius:4px;overflow:hidden;font-size:8pt}.tournament-box b{display:block;background:#071d38;color:#d6ff00;padding:2mm}.tournament-box div,.tournament-box p{margin:0;padding:2mm 3mm;border-bottom:1px solid #d8dee5}.game-meta{margin:10mm 0 6mm;text-align:center;font-weight:700;color:#23364b}.premium-match{border-top:1px solid #aab5c0;margin:0 0 8mm;padding-top:0;break-inside:avoid}.match-ribbon{display:inline-block;background:#071d38;color:white;font-weight:900;padding:2mm 8mm;border-radius:0 0 5px 0;margin-bottom:4mm}.premium-grid{display:grid;grid-template-columns:1fr 64mm 28mm;gap:4mm;align-items:stretch}.pair{display:flex;align-items:center;gap:3mm}.seed{background:#071d38;color:white;padding:3mm;border-radius:3px;font-weight:900}.pair-name{height:13mm;flex:1;border:1px solid #a9b6c4;border-radius:3px;padding:3mm;font-size:10pt}.sets{display:grid;grid-template-columns:repeat(3,1fr);gap:2mm;align-items:center}.sets b{background:#071d38;color:white;font-size:7pt;text-align:center;padding:2mm 0;border-radius:3px}.sets i{height:10mm;border:1px solid #9aa9b8;border-radius:3px}.winner b{display:block;background:#071d38;color:#d6ff00;font-size:7pt;text-align:center;padding:2mm;border-radius:3px}.winner div{height:10mm;border:1px solid #9aa9b8;border-radius:3px;margin-top:2mm}.versus{text-align:center;font-size:14pt;font-weight:900;margin:-1mm 0 1mm}.qual-fields,.final-fields{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:8mm}.qual-fields>div,.final-fields>div{border:1px solid #a9b6c4;border-radius:4px;min-height:28mm;padding:0 5mm 4mm}.qual-fields b,.final-fields b{display:block;background:#071d38;color:#d6ff00;text-align:center;margin:0 -5mm 4mm;padding:2mm;border-radius:4px 4px 0 0}.qual-fields p,.final-fields p{height:7mm;border-bottom:1px solid #b7c1cb;margin:1mm 0}.final-fields{grid-template-columns:1fr 1.5fr}.final-fields .obs{grid-row:span 2}.premium-page footer{position:absolute;bottom:0;left:0;right:0;background:#071d38;color:#d6ff00;text-align:center;padding:2mm;font-size:8pt;font-weight:700}@media print{body{margin:0}.premium-page{box-shadow:none}}</style>';
     printWindow('Mata-mata em branco — '+tournament,premiumCss+pages);
@@ -2326,7 +2691,7 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
   });
 
 
-  participants.addEventListener('input',()=>{ manualTeamsDraft=[]; state={teams:[],groups:[],knockout:null}; renderManualTeamBuilder(); render(); updateStats(); save(); });
+  participants.addEventListener('input',()=>{ if((state.teams&&state.teams.length)||(state.groups&&state.groups.length)){ var snap=tournaments[activeTournamentId]; if(snap) participants.value=snap.participants||''; showNotice('Inscrições protegidas. Use “Reabrir inscrições” para alterar os participantes sem risco de apagar o torneio.'); return; } manualTeamsDraft=[]; state={teams:[],groups:[],knockout:null}; renderManualTeamBuilder(); render(); updateStats(); save(); });
   el('title').addEventListener('input',()=>{renderKnockout();save();renderTournamentSelector();});
   el('qualifiersPerGroup').addEventListener('change',()=>{
     state.knockout=null;
@@ -2336,16 +2701,19 @@ body.jb-auth-locked .jb-auth-screen{display:flex}
   el('reshuffleBtn').addEventListener('click',draw);
   el('clearScoresBtn').addEventListener('click',()=>{
     if(!state.groups.length) return;
-    if(confirm('Zerar todos os placares da fase de grupos e do mata-mata?')) clearScores();
+    if(confirm('Zerar TODOS os placares da fase de grupos e do mata-mata? Um backup de segurança será criado antes.')){ v71CreateSafetyBackup('zerar placares'); clearScores(); }
   });
   el('generateKO').addEventListener('click',generateKnockout);
   el('resetKO').addEventListener('click',()=>{
+    if(state.knockout && !confirm('Remover a chave atual do mata-mata? Um backup de segurança será criado.')) return;
+    if(state.knockout) v71CreateSafetyBackup('remover mata-mata');
     state.knockout=null;
     renderKnockout();
     save();
   });
   el('clearBtn').addEventListener('click',()=>{
-    if(!confirm('Limpar participantes, duplas, grupos e todos os resultados?')) return;
+    if(!confirm('Limpar TODA a categoria, incluindo participantes, grupos, quadras e resultados? Um backup de segurança será criado.')) return;
+    v71CreateSafetyBackup('limpar categoria');
     participants.value='';
     state={teams:[],groups:[],knockout:null};
     manualTeamsDraft=[];
@@ -2448,6 +2816,141 @@ if('serviceWorker' in navigator){
 }
 </script>
 
+
+
+<style id="jb-v65-dashboard-profissional">
+  .jb-dash-hero{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 26px;margin:18px 0 14px;border-radius:22px;background:linear-gradient(135deg,#071d38 0%,#0a294b 100%);box-shadow:0 18px 50px rgba(7,29,56,.16);position:relative;overflow:hidden}
+  .jb-dash-hero:after{content:"";position:absolute;right:-45px;top:-70px;width:220px;height:220px;border-radius:50%;background:rgba(200,255,51,.08)}
+  .jb-dash-hero-main{position:relative;z-index:1;min-width:0}.jb-dash-kicker{display:block;color:#c8ff33;font-size:10px;font-weight:950;letter-spacing:.16em;margin-bottom:7px}.jb-dash-hero h2{color:#fff;font-size:28px;line-height:1.1;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:650px}.jb-dash-status-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}.jb-dash-status,.jb-dash-category{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.07);color:#dce8f4;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:800}.jb-dash-status i{width:7px;height:7px;border-radius:50%;background:#c8ff33;box-shadow:0 0 0 4px rgba(200,255,51,.10)}
+  .jb-dash-primary{position:relative;z-index:1;flex:0 0 auto;border:0;border-radius:13px;background:#c8ff33;color:#071d38;padding:13px 16px;font-weight:950;cursor:pointer;box-shadow:0 8px 22px rgba(200,255,51,.14)}.jb-dash-primary span{margin-left:8px}
+  .jb-dash-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 10px}.jb-metric-card{appearance:none;text-align:left;border:1px solid #dce5ee;background:#fff;border-radius:18px;padding:17px 18px;cursor:pointer;transition:.18s ease;box-shadow:0 7px 24px rgba(25,52,78,.055)}.jb-metric-card:hover{transform:translateY(-2px);border-color:#bdd659;box-shadow:0 12px 28px rgba(25,52,78,.09)}.jb-metric-card span{display:block;color:#718096;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.jb-metric-card strong{display:flex;align-items:baseline;gap:3px;color:#071d38;font-size:31px;line-height:1;margin:8px 0 6px;font-weight:950}.jb-metric-card strong b{font:inherit}.jb-metric-card strong em{font-size:15px;color:#a1afbc;font-style:normal}.jb-metric-card small{color:#8b99a8;font-size:10px;font-weight:700}
+  .jb-dash-progress-card{border:1px solid #dce5ee;background:#fff;border-radius:17px;padding:15px 17px;margin:0 0 19px;box-shadow:0 7px 24px rgba(25,52,78,.045)}.jb-dash-progress-copy{display:flex;justify-content:space-between;align-items:end;gap:12px}.jb-dash-progress-copy>div span{display:block;color:#607182;font-size:10px;font-weight:850}.jb-dash-progress-copy>div b{display:block;color:#071d38;font-size:13px;margin-top:3px}.jb-dash-progress-copy>strong{font-size:17px;color:#071d38}.jb-dash-progress{height:7px;border-radius:999px;background:#edf2f6;overflow:hidden;margin-top:11px}.jb-dash-progress i{display:block;height:100%;width:0;background:#9dcc13;border-radius:inherit;transition:width .35s ease}
+  .jb-dashboard-section-head{display:flex;justify-content:space-between;align-items:end;gap:14px;margin:0 1px 10px}.jb-dashboard-section-head span{font-size:9px;color:#8a9aaa;font-weight:950;letter-spacing:.14em}.jb-dashboard-section-head h3{margin:3px 0 0;color:#071d38;font-size:18px}.jb-dashboard-section-head>small{color:#8c99a5;font-size:10px;font-weight:700}
+  .jb-access-grid-v65 .jb-access-card{position:relative;overflow:hidden}.jb-access-grid-v65 .jb-card-arrow{position:absolute;right:14px;bottom:13px;font-style:normal;color:#95a3b1;font-size:15px}.jb-access-grid-v65 .jb-access-card:hover .jb-card-arrow{color:#7faa00;transform:translateX(2px)}.jb-access-grid-v65 .jb-access-card em{max-width:95px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  @media(max-width:900px){.jb-dash-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.jb-dash-hero h2{max-width:480px}}
+  @media(max-width:560px){.jb-dash-hero{padding:19px 17px;border-radius:18px;align-items:flex-start}.jb-dash-hero h2{font-size:22px;max-width:235px}.jb-dash-primary{padding:11px 12px;font-size:0}.jb-dash-primary span{font-size:18px;margin:0}.jb-dash-metrics{gap:8px}.jb-metric-card{padding:14px 13px;border-radius:15px}.jb-metric-card strong{font-size:27px}.jb-dash-progress-card{padding:13px 14px}.jb-dashboard-section-head>small{display:none}}
+</style>
+
+
+<style id="jb-v70-central-operacao">
+.jb-v7-assistant{display:flex;align-items:center;gap:14px;background:#f7faec;border:1px solid #dce9a9;border-radius:18px;padding:16px 18px;margin:0 0 20px}.jb-v7-assistant-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:#071d38;color:#c8ff33;font-size:20px;flex:0 0 auto}.jb-v7-assistant-copy{flex:1;min-width:0}.jb-v7-assistant-copy span{font-size:9px;font-weight:950;letter-spacing:.13em;color:#789000}.jb-v7-assistant-copy h3{margin:3px 0 3px;color:#071d38;font-size:16px}.jb-v7-assistant-copy p{margin:0;color:#627282;font-size:11px}.jb-v7-assistant button,.jb-v7-game-toolbar button{border:0;border-radius:12px;background:#071d38;color:#fff;padding:11px 14px;font-weight:900;cursor:pointer}.jb-v7-assistant button b{color:#c8ff33;margin-left:6px}.jb-event-access{background:linear-gradient(145deg,#071d38,#0d3159)!important;border-color:#173f64!important}.jb-event-access b,.jb-event-access small,.jb-event-access .ico{color:#fff!important}.jb-event-access em{background:#c8ff33!important;color:#071d38!important}
+.jb-v7-game-toolbar{display:flex;gap:10px;align-items:end;flex-wrap:wrap;background:#fff;border:1px solid #dce5ee;border-radius:16px;padding:13px;margin-bottom:10px}.jb-v7-game-toolbar>div{display:flex;flex-direction:column;gap:5px}.jb-v7-game-toolbar span{font-size:9px;font-weight:900;color:#718096}.jb-v7-game-toolbar select,.jb-v7-game-foot select{min-height:40px;border:1px solid #d5e0e9;border-radius:10px;padding:0 10px;background:#fff;color:#071d38;font-weight:800}.jb-v7-game-toolbar .secondary{background:#eaf0f5;color:#071d38}.jb-v7-games-summary,.jb-v7-live-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}.jb-v7-games-summary>div,.jb-v7-live-metrics>div{background:#fff;border:1px solid #dce5ee;border-radius:14px;padding:12px 14px}.jb-v7-games-summary span,.jb-v7-live-metrics span{display:block;font-size:9px;font-weight:900;color:#8090a0;text-transform:uppercase}.jb-v7-games-summary b,.jb-v7-live-metrics b{display:block;margin-top:4px;font-size:22px;color:#071d38}.jb-v7-games-list{display:grid;gap:14px}.jb-v7-group-games{background:#fff;border:1px solid #dce5ee;border-radius:18px;padding:15px}.jb-v7-group-games>h3{margin:0 0 10px;color:#071d38}.jb-v7-game-card{border:1px solid #e0e7ed;border-left:4px solid #aab7c3;border-radius:13px;padding:12px;margin:8px 0;background:#fbfcfd}.jb-v7-game-card.playing{border-left-color:#c8ff33;background:#fbfff0}.jb-v7-game-card.done{border-left-color:#1f9d62;background:#f6fbf8}.jb-v7-game-meta,.jb-v7-game-foot{display:flex;justify-content:space-between;align-items:center;gap:10px}.jb-v7-game-meta span{font-size:9px;font-weight:900;color:#7d8b98;text-transform:uppercase}.jb-v7-game-meta b{font-size:9px;background:#e9eef2;border-radius:999px;padding:5px 8px;color:#526271}.jb-v7-game-card.playing .jb-v7-game-meta b{background:#e8f8a7;color:#526600}.jb-v7-game-card.done .jb-v7-game-meta b{background:#dff5e9;color:#167343}.jb-v7-match-row{display:grid;grid-template-columns:minmax(0,1fr) 48px 18px 48px minmax(0,1fr);align-items:center;gap:7px;margin:11px 0}.jb-v7-match-row strong{font-size:12px;color:#071d38}.jb-v7-match-row strong:last-child{text-align:right}.jb-v7-match-row i{text-align:center;font-style:normal;color:#8b99a5}.jb-v7-match-row .score{width:48px;height:42px}.jb-v7-game-foot span{font-size:9px;color:#7c8995;font-weight:700}
+.jb-v7-live-head{display:flex;justify-content:space-between;align-items:center;background:#071d38;color:#fff;border-radius:20px;padding:20px 22px;margin-bottom:12px}.jb-v7-live-head span{font-size:9px;font-weight:950;letter-spacing:.15em;color:#c8ff33}.jb-v7-live-head h2{margin:4px 0 0}.jb-v7-live-clock{font-size:27px;font-weight:950;color:#c8ff33}.jb-v7-live-metrics{grid-template-columns:repeat(3,1fr)}.jb-v7-live-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:20px}.jb-v7-court{border-radius:17px;padding:16px;background:#fff;border:1px solid #dce5ee;min-height:125px;display:flex;flex-direction:column;justify-content:center}.jb-v7-court span{font-size:9px;font-weight:950;color:#7c8a97;letter-spacing:.1em}.jb-v7-court b{color:#071d38;font-size:13px;margin-top:5px}.jb-v7-court i{font-style:normal;color:#9aa7b2;font-size:10px}.jb-v7-court small{margin-top:8px;color:#7c8995;font-weight:700}.jb-v7-court.active{border-color:#c8e66e;box-shadow:inset 0 0 0 1px #eff9d4}.jb-v7-court.free{background:#f5f8fa}.jb-v7-court.free b{color:#83919e}.jb-v7-queue{display:grid;gap:7px}.jb-v7-queue>div:not(.empty){display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:9px;background:#fff;border:1px solid #e0e7ed;border-radius:12px;padding:10px 12px}.jb-v7-queue>div>span{width:25px;height:25px;border-radius:8px;display:grid;place-items:center;background:#071d38;color:#c8ff33;font-size:10px;font-weight:900}.jb-v7-queue b{font-size:11px;color:#071d38}.jb-v7-queue b i{font-style:normal;color:#9ba8b3}.jb-v7-queue small{font-size:9px;color:#85929f}.bracket-rounds{align-items:flex-start}.round{min-width:240px}.ko-match{box-shadow:0 5px 18px rgba(20,50,75,.06)}
+@media(max-width:650px){.jb-v7-assistant{align-items:flex-start}.jb-v7-assistant button{font-size:0;padding:10px 12px}.jb-v7-assistant button b{font-size:17px;margin:0}.jb-v7-games-summary{grid-template-columns:repeat(2,1fr)}.jb-v7-match-row{grid-template-columns:minmax(0,1fr) 43px 14px 43px minmax(0,1fr);gap:4px}.jb-v7-match-row strong{font-size:10px}.jb-v7-match-row .score{width:43px}.jb-v7-live-grid{grid-template-columns:1fr}.jb-v7-live-head{padding:16px}.jb-v7-live-clock{font-size:21px}.jb-v7-queue>div:not(.empty){grid-template-columns:30px 1fr}.jb-v7-queue small{grid-column:2}}
+
+.v73-third-toggle{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #dce5ee;border-radius:12px;background:#fff;cursor:pointer}.v73-third-toggle input{width:18px;height:18px;accent-color:#a8cf00}.v73-third-toggle span{display:flex;flex-direction:column;gap:2px}.v73-third-toggle b{font-size:12px;color:#071d38}.v73-third-toggle small{font-size:9px;color:#7b8996;max-width:260px}.v73-public-head{background:#071d38;color:#fff;border-radius:20px;padding:20px;margin-bottom:14px}.v73-public-head span{font-size:9px;font-weight:950;letter-spacing:.14em;color:#c8ff33}.v73-public-head h3{font-size:24px;margin:5px 0}.v73-public-head small{color:#c7d2dc}.v73-athlete-filter{background:#fff;border:1px solid #dce5ee;border-radius:14px;padding:12px;margin-bottom:14px}.v73-athlete-filter select{min-width:230px}.v73-public-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.v73-public-card{background:#fff;border:1px solid #dce5ee;border-radius:16px;padding:16px}.v73-public-card h3{margin:0 0 10px;color:#071d38}.v73-public-game{padding:9px 0;border-top:1px solid #edf1f4}.v73-public-game:first-of-type{border-top:0}.v73-public-game b{display:block;color:#071d38}.v73-public-game small{color:#7b8996}.v73-podium-wrap{padding:24px 0}.v73-podium-title{text-align:center}.v73-podium-title span{font-size:10px;font-weight:950;letter-spacing:.15em;color:#789000}.v73-podium-title h2{font-size:34px;margin:6px 0;color:#071d38}.v73-podium{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:16px;align-items:end;max-width:900px;margin:28px auto}.v73-place{border-radius:22px;padding:24px;text-align:center;border:1px solid #dce5ee;background:#fff}.v73-place.first{min-height:260px;background:linear-gradient(180deg,#f4ffd0,#fff)}.v73-place.second{min-height:220px}.v73-place.third{min-height:190px}.v73-medal{font-size:42px}.v73-place span{display:block;font-size:11px;letter-spacing:.12em;font-weight:950;color:#778691;margin:8px}.v73-place b{font-size:20px;color:#071d38}.v73-third-match{margin:16px 0;padding:16px;border:1px solid #dce5ee;border-radius:16px;background:#fff}.v73-third-match .match{margin-top:10px}@media(max-width:720px){.v73-public-grid,.v73-podium{grid-template-columns:1fr}.v73-podium .first{order:-1}.v73-third-toggle{width:100%}}
+</style>
+<script id="jb-v65-page-navigation">
+(function(){
+  function openPage(page, pushHash){
+    document.querySelectorAll('.jb-page').forEach(function(v){v.classList.toggle('active',v.dataset.page===page)});
+    document.querySelectorAll('[data-page-link]').forEach(function(a){a.classList.toggle('active',a.dataset.pageLink===page)});
+    if(pushHash!==false){
+      var hashes={dashboard:'inicio',inscritos:'inscritos',duplas:'duplas',grupos:'grupos',jogos:'jogos',mata:'mata-mata',evento:'evento',publico:'publico',nuvem:'nuvem',podio:'podio',arquivos:'gestao-arquivos'};
+      try{history.replaceState(null,'','#'+(hashes[page]||'inicio'));}catch(e){}
+    }
+    if(page==='dashboard') syncDashboard(); if(page==='evento'&&window.v7RenderEvent) window.v7RenderEvent(); if(page==='publico'&&window.v73RenderPublic) window.v73RenderPublic(); if(page==='podio'&&window.v73RenderPodium) window.v73RenderPodium(); if(page==='mata'&&window.v73SyncThirdToggle) window.v73SyncThirdToggle();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  window.jbOpenPage=openPage;
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('[data-open-page],[data-page-link]'); if(!t) return;
+    var p=t.dataset.openPage||t.dataset.pageLink; if(!p) return;
+    e.preventDefault(); openPage(p,true);
+  });
+
+  function setText(id,value){var n=document.getElementById(id);if(n)n.textContent=value;}
+  function validScore(m){
+    if(!m) return false;
+    var a=String(m.aScore==null?'':m.aScore).trim(),b=String(m.bScore==null?'':m.bScore).trim();
+    if(a===''||b==='')return false;
+    var na=Number(a),nb=Number(b); return Number.isFinite(na)&&Number.isFinite(nb)&&na!==nb;
+  }
+  function syncDashboard(){
+    try{
+      var heroP=document.getElementById('heroPlayers'), heroT=document.getElementById('heroTeams'), heroG=document.getElementById('heroGroups');
+      var players=heroP?heroP.textContent:'0', teams=heroT?heroT.textContent:'0', groups=heroG?heroG.textContent:'0';
+      setText('accessPlayers',players);setText('accessTeams',teams);setText('accessGroups',groups);
+      setText('dashPlayers',players);setText('dashTeams',teams);setText('dashGroups',groups);
+
+      var title=document.getElementById('title'),active=document.getElementById('activeTournamentLabel');
+      setText('dashTournamentName',(title&&title.value.trim())||'Torneio Interno');
+      setText('dashCategoryName',(active&&active.textContent.trim())||'Categoria atual');
+
+      var st=(typeof state!=='undefined'&&state)?state:{groups:[],knockout:null};
+      var allMatches=[];(st.groups||[]).forEach(function(g){(g.matches||[]).forEach(function(m){allMatches.push(m);});});
+      var total=allMatches.length,done=allMatches.filter(validScore).length;
+      setText('dashGamesDone',done);setText('dashGamesTotal',total);setText('accessGames',done+'/'+total);
+      setText('dashGamesCaption',total?(done===total?'fase de grupos concluída':(total-done)+' jogos restantes'):'aguardando sorteio');
+      setText('accessGamesText',total?(done===total?'Todos os placares da fase de grupos foram lançados.':'Faltam '+(total-done)+' placares da fase de grupos.'):'Lance os resultados da fase de grupos.');
+      var pct=total?Math.round(done*100/total):0;setText('dashProgressPercent',pct+'%');setText('dashProgressText',pct+'% concluído');
+      var bar=document.getElementById('dashProgressBar');if(bar)bar.style.width=pct+'%';
+
+      var status='Preparando torneio',koLabel='AGUARDANDO',koText='Aguardando classificação dos grupos.';
+      if(Number(players)>=2)status='Inscrições em andamento';
+      if(Number(teams)>0)status='Duplas formadas';
+      if(total>0)status=done===total?'Fase de grupos concluída':'Fase de grupos em andamento';
+      if(st.knockout&&st.knockout.rounds&&st.knockout.rounds.length){
+        status='Mata-mata em andamento';koLabel='ATIVO';koText='Chave eliminatória gerada.';
+        var champ=st.knockout.championId;
+        if(champ){status='Torneio concluído';koLabel='CONCLUÍDO';koText='Campeão definido.';}
+        else {
+          var rounds=st.knockout.rounds, current='Mata-mata';
+          for(var ri=0;ri<rounds.length;ri++){
+            var rm=rounds[ri].matches||[];
+            if(rm.some(function(m){return !validScore(m)&&m.aId&&m.bId;})){current=rounds[ri].name||current;break;}
+            if(ri===rounds.length-1)current=rounds[ri].name||current;
+          }
+          koLabel=String(current).toUpperCase();koText=current+' em andamento.';
+        }
+      }
+      setText('dashStatus',status);var ds=document.getElementById('dashStatus');if(ds)ds.innerHTML='<i></i> '+status;
+      setText('accessKnockout',koLabel);setText('accessKnockoutText',koText);
+      var assistTitle='Cadastre os participantes',assistText='Insira os nomes dos jogadores para começar o torneio.',assistPage='inscritos';
+      if(Number(players)>=2){assistTitle='Conclua as inscrições';assistText='Revise os participantes e faça o sorteio das duplas e grupos.';}
+      if(Number(teams)>0){assistTitle='Inicie a fase de grupos';assistText='Duplas e grupos prontos. Distribua os primeiros jogos nas quadras.';assistPage='jogos';}
+      if(total>0&&done<total){
+        var remBy=[];(st.groups||[]).forEach(function(g){var r=(g.matches||[]).filter(function(m){return !validScore(m)}).length;if(r)remBy.push('Grupo '+g.name+': '+r);});
+        assistTitle='Continue os jogos da fase de grupos';assistText='Faltam '+(total-done)+' partida(s). '+remBy.join(' · ')+'.';assistPage='jogos';
+      }
+      if(total>0&&done===total&&!st.knockout){assistTitle='Fase de grupos concluída';assistText='Todos os resultados foram lançados. Gere agora a chave eliminatória.';assistPage='mata';}
+      if(st.knockout&&!st.knockout.championId){assistTitle='Mata-mata em andamento';assistText='Continue lançando os resultados da chave até definir os campeões.';assistPage='mata';}
+      if(st.knockout&&st.knockout.championId){assistTitle='Torneio concluído';assistText='Campeões definidos. Salve o backup ou gere os arquivos finais.';assistPage='arquivos';}
+      setText('v7AssistTitle',assistTitle);setText('v7AssistText',assistText);var ab=document.getElementById('v7AssistAction');if(ab)ab.dataset.openPage=assistPage;
+      if(window.v7RenderEvent) window.v7RenderEvent();
+    }catch(e){}
+  }
+  window.jbSyncDashboard=syncDashboard;
+  var obs=new MutationObserver(syncDashboard);
+  ['heroPlayers','heroTeams','heroGroups','activeTournamentLabel','knockoutArea','gamesArea'].forEach(function(id){var n=document.getElementById(id);if(n)obs.observe(n,{childList:true,subtree:true,characterData:true});});
+  var ti=document.getElementById('title');if(ti)ti.addEventListener('input',syncDashboard);
+  document.addEventListener('change',function(){setTimeout(syncDashboard,0);});
+  document.addEventListener('input',function(e){if(e.target&&e.target.classList&&e.target.classList.contains('score'))setTimeout(syncDashboard,0);});
+  syncDashboard();
+  var h=(location.hash||'').replace('#','');
+  var map={'inscritos':'inscritos','config':'inscritos','duplas':'duplas','grupos':'grupos','jogos':'jogos','mata-mata':'mata','evento':'evento','publico':'publico','nuvem':'nuvem','podio':'podio','gestao-arquivos':'arquivos'};
+  openPage(map[h]||'dashboard',false);
+})();
+</script>
+
+<script id="jb-v70-live-clock">(function(){function tick(){var n=document.getElementById('v7LiveClock');if(n)n.textContent=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});}tick();setInterval(tick,30000);})();</script>
+<script id="jb-v73-public-podium">
+(function(){
+  function teamName(id){var t=getTeam(id);return t?teamLabel(t):'A definir';}
+  function allGames(){return window.v7AllGroupGames?v7AllGroupGames():[];}
+  window.v73SyncThirdToggle=function(){var cb=document.getElementById('v73ThirdPlayoff');if(cb)cb.checked=!!(state.knockout&&state.knockout.thirdPlacePlayoff);};
+  window.v73ToggleThirdPlayoff=function(enabled){if(!state.knockout){showNotice('Gere o mata-mata antes de alterar a disputa de 3º lugar.');v73SyncThirdToggle();return;}state.knockout.thirdPlacePlayoff=!!enabled;propagateKnockout(Math.max(0,state.knockout.rounds.length-2));save();renderKnockout();v73RenderPodium();showNotice(enabled?'Disputa de 3º lugar ativada.':'3º lugar automático: perdedor da semifinal contra o campeão.',true);};
+  window.v73UpdateThird=function(side,value,input){var tp=state.knockout&&state.knockout.thirdPlaceMatch;if(!tp)return;var clean=String(value).replace(/[^\d]/g,'');tp[side]=clean===''?'':String(Math.min(99,Number(clean)));if(input)input.value=tp[side];save();};
+  window.v73FinishThird=function(){var tp=state.knockout&&state.knockout.thirdPlaceMatch;if(!tp||!state.knockout.thirdPlacePlayoff)return;state.knockout.thirdPlaceId=getKnockoutWinner(tp);save();v73RenderPodium();v73AddThirdPlaceUI();};
+  window.v73AddThirdPlaceUI=function(){var host=document.getElementById('knockoutArea');if(!host)return;var old=document.getElementById('v73ThirdPlace');if(old)old.remove();v73SyncThirdToggle();var k=state.knockout||{},tp=k.thirdPlaceMatch;if(!k.thirdPlacePlayoff||!tp||!tp.aId||!tp.bId)return;var d=document.createElement('div');d.id='v73ThirdPlace';d.className='v73-third-match';d.innerHTML='<b>🥉 Disputa de 3º lugar</b><div class="match"><span class="right">'+esc(teamName(tp.aId))+'</span><input class="score" inputmode="numeric" value="'+esc(tp.aScore)+'" oninput="v73UpdateThird(\'aScore\',this.value,this)" onchange="v73FinishThird()" onblur="v73FinishThird()"><span class="vs">×</span><input class="score" inputmode="numeric" value="'+esc(tp.bScore)+'" oninput="v73UpdateThird(\'bScore\',this.value,this)" onchange="v73FinishThird()" onblur="v73FinishThird()"><span>'+esc(teamName(tp.bId))+'</span></div>';host.appendChild(d);};
+  window.v73RenderPodium=function(){var host=document.getElementById('v73Podium');if(!host)return;var k=state.knockout||{},c=k.championId,r=k.runnerUpId,t=k.thirdPlaceId,playoff=!!k.thirdPlacePlayoff;var msg=(c&&r&&t)?('Pódio definido'+(playoff?' · 3º lugar decidido em partida':' · 3º lugar automático pelo critério da semifinal')):(playoff?'O pódio será concluído após a final e a disputa de 3º lugar.':'Por padrão, o 3º lugar será a dupla que perder para o campeão na semifinal.');host.innerHTML='<div class="v73-podium-title"><span>RESULTADO OFICIAL</span><h2>'+esc((document.getElementById('title')||{}).value||'Torneio')+'</h2><p>'+esc(msg)+'</p></div><div class="v73-podium"><div class="v73-place second"><div class="v73-medal">🥈</div><span>VICE-CAMPEÃO</span><b>'+esc(teamName(r))+'</b></div><div class="v73-place first"><div class="v73-medal">🏆</div><span>CAMPEÃO</span><b>'+esc(teamName(c))+'</b></div><div class="v73-place third"><div class="v73-medal">🥉</div><span>3º LUGAR</span><b>'+esc(teamName(t))+'</b></div></div>';};
+  function standings(){if(!state.groups||!state.groups.length)return '<div class="v73-public-card"><p>Grupos ainda não gerados.</p></div>';return state.groups.map(function(g){var tb=groupStandings(g);return '<div class="v73-public-card"><h3>Grupo '+esc(g.name)+'</h3>'+tb.map(function(x,i){return '<div class="v73-public-game"><b>'+(i+1)+'º · '+esc(teamLabel(x.team))+'</b><small>'+x.J+'J · '+x.V+'V · SG '+(x.SG>0?'+':'')+x.SG+'</small></div>';}).join('')+'</div>';}).join('');}
+  window.v73RenderPublic=function(){var host=document.getElementById('v73PublicContent'),sel=document.getElementById('v73TeamFilter'),ttl=document.getElementById('v73PublicTitle');if(!host)return;if(ttl)ttl.textContent=(document.getElementById('title')||{}).value||'Torneio';if(sel){var cur=sel.value;sel.innerHTML='<option value="">Todas as duplas</option>'+(state.teams||[]).map(function(t){return '<option value="'+esc(t.id)+'">'+esc(teamLabel(t))+'</option>';}).join('');sel.value=cur;}var filter=sel?sel.value:'',games=allGames().filter(function(x){return !filter||x.m.aId===filter||x.m.bId===filter;}),o=state.operations||{},up=games.filter(function(x){return !v7ValidScore(x.m)}).slice(0,10),done=games.filter(function(x){return v7ValidScore(x.m)}).slice(-10).reverse();host.innerHTML='<div class="v73-public-grid"><div class="v73-public-card"><h3>Próximos jogos</h3>'+(up.length?up.map(function(x){var st=(o.status&&o.status[x.key])||'waiting',lab=st==='playing'?'Em jogo':st==='called'?'Chamado':'Aguardando';return '<div class="v73-public-game"><b>'+esc(teamName(x.m.aId))+' × '+esc(teamName(x.m.bId))+'</b><small>Grupo '+esc(x.g.name)+(o.assignments&&o.assignments[x.key]?' · Quadra '+o.assignments[x.key]:'')+' · '+lab+'</small></div>';}).join(''):'<p>Nenhum jogo pendente.</p>')+'</div><div class="v73-public-card"><h3>Últimos resultados</h3>'+(done.length?done.map(function(x){return '<div class="v73-public-game"><b>'+esc(teamName(x.m.aId))+' '+esc(x.m.aScore)+' × '+esc(x.m.bScore)+' '+esc(teamName(x.m.bId))+'</b><small>Grupo '+esc(x.g.name)+'</small></div>';}).join(''):'<p>Sem resultados ainda.</p>')+'</div></div><h3 style="margin:20px 0 10px">Classificação</h3><div class="v73-public-grid">'+standings()+'</div>';};
+  var rk=window.renderKnockout;if(typeof rk==='function')window.renderKnockout=function(){var r=rk.apply(this,arguments);setTimeout(function(){v73SyncThirdToggle();v73AddThirdPlaceUI();v73RenderPodium();},0);return r;};
+  var rr=window.render;if(typeof rr==='function')window.render=function(){var r=rr.apply(this,arguments);setTimeout(function(){v73RenderPublic();v73RenderPodium();v73AddThirdPlaceUI();},0);return r;};
+  setTimeout(function(){v73SyncThirdToggle();v73RenderPublic();v73RenderPodium();v73AddThirdPlaceUI();},200);
+})();
+</script>
 
 <script id="jb-torneios-personal-login">
 (function(){
@@ -2574,5 +3077,328 @@ if('serviceWorker' in navigator){
   else{document.body.classList.add('jb-auth-locked');}
 })();
 </script>
+
+<style id="jb-v71-safety">
+.v71-roster-lock{margin-top:8px;padding:10px 12px;border-radius:12px;background:#fff6d8;border:1px solid #f3d26d;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:10px;font-weight:800;color:#705b00}.v71-roster-lock button{padding:8px 10px}.v71-alerts{display:grid;gap:7px;margin:10px 0}.v71-alert{display:flex;align-items:flex-start;gap:9px;padding:10px 12px;border-radius:12px;border:1px solid #e0e7ed;background:#fff;font-size:10px;color:#405262;font-weight:700}.v71-alert b{display:block;color:#071d38;margin-bottom:2px}.v71-alert.warn{background:#fff8e8;border-color:#f2d791}.v71-alert.ok{background:#f2fbf6;border-color:#bfe7ce}.v71-safety-actions{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}.v71-safety-actions button{font-size:10px}.v71-locked-textarea{background:#f3f5f7!important;color:#71808c!important;cursor:not-allowed}.v71-badge-safe{display:inline-flex;align-items:center;gap:5px;background:#e7f6ed;color:#167343;border-radius:999px;padding:5px 8px;font-size:9px;font-weight:900}
+@media(max-width:650px){.v71-roster-lock{align-items:flex-start;flex-direction:column}.v71-safety-actions{display:grid;grid-template-columns:1fr}.v71-safety-actions button{width:100%}}
+</style>
+<script id="jb-v71-safety-script">
+(function(){
+  window.v71CreateSafetyBackup=function(reason){
+    try{
+      ensureTournamentCollection();
+      var snap=currentTournamentSnapshot(); snap.reason=reason||'alteração importante'; snap.backupAt=Date.now();
+      localStorage.setItem('jb_v71_safety_'+activeTournamentId,JSON.stringify(snap));
+      return true;
+    }catch(e){return false;}
+  };
+  window.v71RestoreSafetyBackup=function(){
+    try{
+      var raw=localStorage.getItem('jb_v71_safety_'+activeTournamentId);
+      if(!raw){ showNotice('Ainda não existe backup de segurança para esta categoria.'); return; }
+      if(!confirm('Restaurar o último backup de segurança desta categoria? Os dados atuais serão substituídos.')) return;
+      var d=JSON.parse(raw);
+      el('title').value=d.title||'Torneio Interno'; participants.value=d.participants||''; el('qualifiersPerGroup').value=d.qualifiersPerGroup||'2'; if(el('matchFormat'))el('matchFormat').value=d.matchFormat||'standard6';
+      state=d.state||{teams:[],groups:[],knockout:null}; manualTeamsDraft=d.manualTeamsDraft||[]; renderManualTeamBuilder(); render(); updateStats(); save(); v71UpdateRosterLock(); v71RenderAlerts();
+      showNotice('Backup de segurança restaurado.',true);
+    }catch(e){ showNotice('Não foi possível restaurar o backup de segurança.'); }
+  };
+  window.v71CommitUndo=function(entry){
+    if(!entry) return;
+    try{
+      var key='jb_v71_undo_'+activeTournamentId, arr=JSON.parse(localStorage.getItem(key)||'[]');
+      arr.push(entry); if(arr.length>20) arr=arr.slice(-20); localStorage.setItem(key,JSON.stringify(arr));
+    }catch(e){}
+  };
+  window.v71UndoLastScore=function(){
+    try{
+      var key='jb_v71_undo_'+activeTournamentId, arr=JSON.parse(localStorage.getItem(key)||'[]');
+      if(!arr.length){ showNotice('Não há placar recente para desfazer.'); return; }
+      var u=arr.pop();
+      if(u.type==='group' && state.groups[u.groupIndex] && state.groups[u.groupIndex].matches[u.matchIndex]){
+        var m=state.groups[u.groupIndex].matches[u.matchIndex]; m.aScore=u.aScore; m.bScore=u.bScore; state.knockout=null;
+      }else if(u.type==='ko' && state.knockout && state.knockout.rounds[u.roundIndex] && state.knockout.rounds[u.roundIndex].matches[u.matchIndex]){
+        var km=state.knockout.rounds[u.roundIndex].matches[u.matchIndex]; km.aScore=u.aScore; km.bScore=u.bScore; propagateKnockout(Math.max(0,u.roundIndex));
+      }else{ showNotice('O placar não pode mais ser desfeito porque a estrutura do torneio mudou.'); return; }
+      localStorage.setItem(key,JSON.stringify(arr)); render(); save(); v71RenderAlerts(); showNotice('Última alteração de placar desfeita.',true);
+    }catch(e){ showNotice('Não foi possível desfazer o último placar.'); }
+  };
+  window.v71ReleaseFinishedCourts=function(){
+    try{var ops=v7EnsureOps(); v7AllGroupGames().forEach(function(x){if(v7ValidScore(x.m) && ops.assignments[x.key]) delete ops.assignments[x.key];});}catch(e){}
+  };
+  window.v71UpdateRosterLock=function(){
+    var locked=!!((state.teams&&state.teams.length)||(state.groups&&state.groups.length));
+    var ta=document.getElementById('participants'), bar=document.getElementById('v71RosterLockBar');
+    if(ta){ta.readOnly=locked;ta.classList.toggle('v71-locked-textarea',locked);} if(bar)bar.style.display=locked?'flex':'none';
+  };
+  window.v71RenderAlerts=function(){
+    var root=document.getElementById('v71Alerts'); if(!root) return;
+    var alerts=[], ops=v7EnsureOps(), all=v7AllGroupGames();
+    var active=all.filter(function(x){return !v7ValidScore(x.m)&&ops.assignments[x.key]});
+    var waiting=all.filter(function(x){return !v7ValidScore(x.m)&&!ops.assignments[x.key]});
+    var usedCourts={}; active.forEach(function(x){usedCourts[ops.assignments[x.key]]=true;});
+    var free=Math.max(0,ops.courtCount-Object.keys(usedCourts).length);
+    if(active.length) alerts.push('<div class="v71-alert ok"><span>●</span><div><b>'+active.length+' jogo(s) em andamento</b>'+free+' quadra(s) livre(s) neste momento.</div></div>');
+    else if(all.length && waiting.length) alerts.push('<div class="v71-alert warn"><span>!</span><div><b>Nenhum jogo em quadra</b>Há '+waiting.length+' partida(s) aguardando. Use “Chamar melhores jogos”.</div></div>');
+    var groupPending=[];(state.groups||[]).forEach(function(g){var n=(g.matches||[]).filter(function(m){return !v7ValidScore(m)}).length;if(n)groupPending.push('Grupo '+g.name+': '+n);});
+    if(groupPending.length) alerts.push('<div class="v71-alert"><span>▤</span><div><b>Resultados pendentes</b>'+groupPending.join(' · ')+'</div></div>');
+    if(state.groups&&state.groups.length && all.length && all.every(function(x){return v7ValidScore(x.m)}) && !state.knockout) alerts.push('<div class="v71-alert ok"><span>✓</span><div><b>Fase de grupos concluída</b>O mata-mata já pode ser gerado.</div></div>');
+    root.innerHTML=alerts.join('');
+  };
+  var btn=document.getElementById('v71UnlockRosterBtn'); if(btn) btn.addEventListener('click',function(){
+    if(!confirm('Reabrir inscrições apagará duplas, grupos, quadras e resultados desta categoria. Um backup de segurança será criado antes. Deseja continuar?')) return;
+    v71CreateSafetyBackup('reabrir inscrições'); state={teams:[],groups:[],knockout:null}; manualTeamsDraft=[]; renderManualTeamBuilder(); render(); save(); v71UpdateRosterLock(); showNotice('Inscrições reabertas. O estado anterior ficou salvo no backup de segurança.',true);
+  });
+  var originalRender=window.render; if(typeof originalRender==='function'){ window.render=function(){ var r=originalRender.apply(this,arguments); setTimeout(function(){v71UpdateRosterLock();v71RenderAlerts();},0); return r; }; }
+  var originalApply=window.applyTournamentById; if(typeof originalApply==='function'){ window.applyTournamentById=function(id){var r=originalApply(id);setTimeout(function(){v71UpdateRosterLock();v71RenderAlerts();},0);return r;}; }
+  setTimeout(function(){v71UpdateRosterLock();v71RenderAlerts();},100);
+})();
+</script>
+
+
+<style id="jb-v72-smart-courts">
+.v72-command{margin:12px 0 16px;padding:14px;border:1px solid #dce5eb;border-radius:18px;background:linear-gradient(180deg,#fff,#f7fafb);box-shadow:0 8px 24px rgba(7,29,56,.06)}
+.v72-command-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.v72-command-head span{font-size:9px;font-weight:900;letter-spacing:.12em;color:#6a7a87}.v72-command-head h3{margin:3px 0 0;font-size:18px;color:#071d38}.v72-rest-setting{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:800;color:#52636f}.v72-rest-setting input{width:58px;padding:8px;border:1px solid #cfd9df;border-radius:10px;font-weight:900;text-align:center}
+.v72-court-board{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:9px;margin:10px 0}.v72-court{border:1px solid #dce5eb;border-radius:14px;padding:11px;background:#fff}.v72-court.free{background:#f1fbf5;border-color:#bfe7ce}.v72-court.called{background:#fff9e9;border-color:#efd68d}.v72-court.playing{background:#f0f6ff;border-color:#bed3ef}.v72-court-top{display:flex;justify-content:space-between;gap:8px;align-items:center}.v72-court-top b{font-size:11px;color:#071d38}.v72-state{font-size:8px;font-weight:900;padding:4px 7px;border-radius:999px;background:#edf1f4;color:#52636f}.v72-court strong{display:block;font-size:11px;color:#071d38;margin:8px 0 4px;line-height:1.35}.v72-court small{font-size:9px;color:#73818b;font-weight:700}.v72-court-actions{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}.v72-court-actions button{font-size:9px;padding:7px 9px}
+.v72-recommend{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px;border-radius:14px;background:#071d38;color:#fff;margin-top:10px}.v72-recommend .k{font-size:8px;letter-spacing:.12em;font-weight:900;color:#b7c4cf}.v72-recommend b{display:block;font-size:13px;margin:4px 0}.v72-recommend small{color:#c9d3dc;font-size:9px;font-weight:700}.v72-recommend button{white-space:nowrap}.v72-queue-mini{display:grid;gap:6px;margin-top:10px}.v72-qitem{display:grid;grid-template-columns:26px 1fr auto;gap:8px;align-items:center;padding:8px 10px;border:1px solid #e2e8ec;border-radius:11px;background:#fff}.v72-qitem>span{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#edf2f5;font-size:9px;font-weight:900}.v72-qitem b{font-size:10px;color:#071d38}.v72-qitem small{font-size:8px;color:#72818c;font-weight:700;text-align:right}.v72-rest-ok{color:#18834b!important}.v72-rest-warn{color:#a86c00!important}
+.v72-game-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.v72-game-actions button{font-size:9px;padding:7px 9px}.jb-v7-game-card.called{border-color:#efd68d;background:#fffdf5}.jb-v7-game-card.playing{border-color:#bed3ef;background:#f8fbff}
+.v72-phase-ready{margin:12px 0;padding:13px;border:1px solid #bfe7ce;background:#f1fbf5;border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:10px}.v72-phase-ready b{font-size:12px;color:#0b6e3d}.v72-phase-ready small{display:block;margin-top:3px;color:#52636f;font-size:9px;font-weight:700}
+@media(max-width:650px){.v72-command-head{align-items:flex-start;flex-direction:column}.v72-recommend{grid-template-columns:1fr}.v72-recommend button{width:100%}.v72-qitem{grid-template-columns:26px 1fr}.v72-qitem small{grid-column:2;text-align:left}.v72-phase-ready{align-items:flex-start;flex-direction:column}.v72-phase-ready button{width:100%}}
+</style>
+<script id="jb-v72-smart-courts-script">
+(function(){
+  var REST_DEFAULT=5;
+  function now(){return Date.now();}
+  function ops(){
+    var o=v7EnsureOps();
+    if(!o.statuses)o.statuses={};
+    if(!o.calledAt)o.calledAt={};
+    if(!o.startedAt)o.startedAt={};
+    if(!o.completedAt)o.completedAt={};
+    if(!o.teamLastPlayed)o.teamLastPlayed={};
+    if(!o.restMinutes)o.restMinutes=REST_DEFAULT;
+    return o;
+  }
+  function gameByKey(key){return v7AllGroupGames().find(function(x){return x.key===key;})||null;}
+  function activeStatus(x){
+    var o=ops(); if(v7ValidScore(x.m))return 'finished';
+    return o.statuses[x.key] || (o.assignments[x.key]?'playing':'waiting');
+  }
+  function teamRest(id){
+    var t=ops().teamLastPlayed[id]; if(!t)return 9999; return Math.max(0,Math.floor((now()-Number(t))/60000));
+  }
+  function restLabel(id){var m=teamRest(id),min=ops().restMinutes;return m>=9999?'sem jogo anterior':m+' min'+(m<min?' (descansando)':'');}
+  function groupPending(gi){var g=state.groups[gi];return g?(g.matches||[]).filter(function(m){return !v7ValidScore(m);}).length:0;}
+  function busyTeams(exceptKey){var b={};v7AllGroupGames().forEach(function(x){if(x.key===exceptKey)return;var st=activeStatus(x);if(st==='called'||st==='playing'){b[x.m.aId]=true;b[x.m.bId]=true;}});return b;}
+  function freeCourts(){var o=ops(),used={};v7AllGroupGames().forEach(function(x){var st=activeStatus(x),c=o.assignments[x.key];if(c&&(st==='called'||st==='playing'))used[Number(c)]=true;});var a=[];for(var c=1;c<=o.courtCount;c++)if(!used[c])a.push(c);return a;}
+  function rankedCandidates(){
+    var o=ops(),busy=busyTeams(),min=o.restMinutes;
+    var list=v7AllGroupGames().filter(function(x){return !v7ValidScore(x.m)&&activeStatus(x)==='waiting'&&!busy[x.m.aId]&&!busy[x.m.bId];});
+    list.forEach(function(x){
+      var ra=teamRest(x.m.aId),rb=teamRest(x.m.bId),r=Math.min(ra,rb),eligible=r>=min;
+      x._rest=r;x._eligible=eligible;x._score=(eligible?100000:0)+(groupPending(x.gi)*100)+Math.min(r,180)+(o.calledAt[x.key]?0:5);
+    });
+    list.sort(function(a,b){return b._score-a._score;});
+    var elig=list.filter(function(x){return x._eligible;});return elig.length?elig:list;
+  }
+  window.v72SetRestMinutes=function(v){var n=Math.max(0,Math.min(60,Number(v)||REST_DEFAULT));ops().restMinutes=n;save();renderGames();};
+  window.v72CallGame=function(key,court){
+    var x=gameByKey(key);if(!x||v7ValidScore(x.m))return;var o=ops(),busy=busyTeams(key);
+    if(busy[x.m.aId]||busy[x.m.bId]){showNotice('Uma das duplas já está chamada ou em jogo em outra quadra.');return;}
+    var fc=freeCourts();court=Number(court||fc[0]||0);if(!court){showNotice('Não há quadra livre neste momento.');return;}
+    if(fc.indexOf(court)<0){showNotice('A Quadra '+court+' já está ocupada.');return;}
+    o.assignments[key]=court;o.statuses[key]='called';o.calledAt[key]=now();save();renderGames();v71RenderAlerts();showNotice('Jogo chamado para a Quadra '+court+'.',true);
+  };
+  window.v72StartGame=function(key){var x=gameByKey(key);if(!x)return;var o=ops();if(!o.assignments[key]){showNotice('Defina uma quadra antes de iniciar o jogo.');return;}o.statuses[key]='playing';o.startedAt[key]=now();save();renderGames();v71RenderAlerts();};
+  window.v72CancelCall=function(key){var o=ops();delete o.assignments[key];delete o.statuses[key];delete o.calledAt[key];delete o.startedAt[key];save();renderGames();v71RenderAlerts();};
+  window.v72CallBest=function(){var fc=freeCourts(),r=rankedCandidates();if(!fc.length){showNotice('Não há quadra livre neste momento.');return;}if(!r.length){showNotice('Não há jogo disponível para chamada agora.');return;}v72CallGame(r[0].key,fc[0]);};
+  window.v72CallSpecific=function(key){var fc=freeCourts();if(!fc.length){showNotice('Não há quadra livre neste momento.');return;}v72CallGame(key,fc[0]);};
+  window.v72OpenKnockout=function(){if(typeof jbOpenPage==='function')jbOpenPage('mata');else{var b=document.querySelector('[data-open-page="mata"]');if(b)b.click();}};
+
+  function syncCompletions(){
+    var o=ops();v7AllGroupGames().forEach(function(x){
+      if(v7ValidScore(x.m)&&!o.completedAt[x.key]){
+        var t=now();o.completedAt[x.key]=t;o.teamLastPlayed[x.m.aId]=t;o.teamLastPlayed[x.m.bId]=t;o.statuses[x.key]='finished';delete o.assignments[x.key];
+      }
+      if(!v7ValidScore(x.m)&&o.statuses[x.key]==='finished'){delete o.statuses[x.key];delete o.completedAt[x.key];}
+    });
+  }
+  var oldFinish=window.finishGroupScore;
+  window.finishGroupScore=function(){if(typeof oldFinish==='function')oldFinish.apply(this,arguments);syncCompletions();save();renderGames();if(window.jbSyncDashboard)window.jbSyncDashboard();};
+
+  var oldSetCourt=window.v7SetGameCourt;
+  window.v7SetGameCourt=function(gi,mi,v){
+    var x=gameByKey(v7GameKey(gi,mi));if(!x)return;var key=x.key,o=ops();
+    if(!v){v72CancelCall(key);return;}
+    var c=Number(v),fc=freeCourts();var current=Number(o.assignments[key]||0);if(current===c)return;
+    if(fc.indexOf(c)<0){showNotice('A Quadra '+c+' já está ocupada.');renderGames();return;}
+    o.assignments[key]=c;if(!o.statuses[key]||o.statuses[key]==='waiting')o.statuses[key]='called';o.calledAt[key]=o.calledAt[key]||now();save();renderGames();
+  };
+
+  window.v7AutoAssignCourts=function(){
+    var courts=freeCourts(),rank=rankedCandidates(),n=Math.min(courts.length,rank.length);for(var i=0;i<n;i++)v72CallGame(rank[i].key,courts[i]);if(!n)showNotice(courts.length?'Não há jogos elegíveis para chamada neste momento.':'Não há quadras livres neste momento.');
+  };
+
+  function courtBoard(){
+    var o=ops(),all=v7AllGroupGames(),cards=[];
+    for(var c=1;c<=o.courtCount;c++){
+      var x=all.find(function(g){return Number(o.assignments[g.key])===c&&(activeStatus(g)==='called'||activeStatus(g)==='playing');});
+      if(!x){cards.push('<div class="v72-court free"><div class="v72-court-top"><b>QUADRA '+c+'</b><span class="v72-state">LIVRE</span></div><strong>Disponível</strong><small>Pronta para receber o próximo jogo</small></div>');continue;}
+      var a=getTeam(x.m.aId),b=getTeam(x.m.bId),st=activeStatus(x),label=st==='called'?'JOGO CHAMADO':'EM JOGO';
+      cards.push('<div class="v72-court '+st+'"><div class="v72-court-top"><b>QUADRA '+c+'</b><span class="v72-state">'+label+'</span></div><strong>'+esc(teamLabel(a))+' × '+esc(teamLabel(b))+'</strong><small>Grupo '+esc(x.g.name)+'</small><div class="v72-court-actions">'+(st==='called'?'<button type="button" onclick="v72StartGame(\''+x.key+'\')">Iniciar</button><button type="button" class="secondary" onclick="v72CancelCall(\''+x.key+'\')">Cancelar</button>':'<button type="button" class="secondary" onclick="document.getElementById(\'game-'+x.key+'\')?.scrollIntoView({behavior:\'smooth\',block:\'center\'})">Lançar placar</button>')+'</div></div>');
+    }return cards.join('');
+  }
+  function commandHTML(){
+    var o=ops(),rank=rankedCandidates(),best=rank[0],free=freeCourts(),html='<div class="v72-command"><div class="v72-command-head"><div><span>SMART COURT MANAGER</span><h3>Centro de Comando</h3></div><label class="v72-rest-setting">Descanso recomendado <input type="number" min="0" max="60" value="'+o.restMinutes+'" onchange="v72SetRestMinutes(this.value)"> min</label></div><div class="v72-court-board">'+courtBoard()+'</div>';
+    if(best&&free.length){var a=getTeam(best.m.aId),b=getTeam(best.m.bId);html+='<div class="v72-recommend"><div><span class="k">PRÓXIMO MELHOR JOGO · QUADRA '+free[0]+'</span><b>'+esc(teamLabel(a))+' × '+esc(teamLabel(b))+'</b><small>Grupo '+esc(best.g.name)+' · descanso: '+restLabel(best.m.aId)+' / '+restLabel(best.m.bId)+' · '+groupPending(best.gi)+' jogo(s) pendente(s) no grupo</small></div><button type="button" onclick="v72CallBest()">📣 Chamar este jogo</button></div>';}
+    else if(!free.length)html+='<div class="v72-recommend"><div><span class="k">OPERAÇÃO</span><b>Todas as quadras estão ocupadas</b><small>Ao finalizar um jogo, uma nova recomendação aparecerá automaticamente.</small></div></div>';
+    var q=rank.slice(0,5);if(q.length){html+='<div class="v72-queue-mini">'+q.map(function(x,i){var a=getTeam(x.m.aId),b=getTeam(x.m.bId);return '<div class="v72-qitem"><span>'+(i+1)+'</span><b>'+esc(teamLabel(a))+' × '+esc(teamLabel(b))+' · Grupo '+esc(x.g.name)+'</b><small class="'+(x._eligible?'v72-rest-ok':'v72-rest-warn')+'">menor descanso: '+(x._rest>=9999?'—':x._rest+' min')+'</small></div>';}).join('')+'</div>';}
+    html+='</div>';return html;
+  }
+
+  function renderSmartGames(){
+    if(!gamesArea)return;syncCompletions();var o=ops(),cc=document.getElementById('v7CourtCount');if(cc)cc.value=String(o.courtCount);
+    var host=document.getElementById('v72CommandHost');if(!host){host=document.createElement('div');host.id='v72CommandHost';var sum=document.getElementById('v7GamesSummary');if(sum&&sum.parentNode)sum.parentNode.insertBefore(host,sum);}host.innerHTML=state.groups.length?commandHTML():'';
+    if(!state.groups.length){gamesArea.className='empty';gamesArea.innerHTML='Os jogos aparecerão aqui após o sorteio dos grupos.';var sm0=document.getElementById('v7GamesSummary');if(sm0)sm0.innerHTML='';return;}
+    var all=v7AllGroupGames(),done=all.filter(function(x){return v7ValidScore(x.m)}).length,called=all.filter(function(x){return activeStatus(x)==='called'}).length,playing=all.filter(function(x){return activeStatus(x)==='playing'}).length,waiting=all.length-done-called-playing;
+    var sm=document.getElementById('v7GamesSummary');if(sm)sm.innerHTML='<div><span>Finalizados</span><b>'+done+'</b></div><div><span>Em quadra</span><b>'+playing+'</b></div><div><span>Chamados</span><b>'+called+'</b></div><div><span>Aguardando</span><b>'+waiting+'</b></div>';
+    gamesArea.className='jb-v7-games-list';gamesArea.innerHTML=state.groups.map(function(g,gi){return '<section class="jb-v7-group-games"><h3>Grupo '+esc(g.name)+' · '+groupPending(gi)+' pendente(s)</h3>'+g.matches.map(function(m,mi){
+      var a=getTeam(m.aId),b=getTeam(m.bId),key=v7GameKey(gi,mi),court=o.assignments[key]||'',st=activeStatus({m:m,key:key}),finished=st==='finished',label=finished?'Finalizado':st==='playing'?'Em jogo':st==='called'?'Chamado':'Aguardando';var options='<option value="">Fila</option>';for(var c=1;c<=o.courtCount;c++)options+='<option value="'+c+'" '+(Number(court)===c?'selected':'')+'>Quadra '+c+'</option>';
+      var acts='';if(!finished&&st==='waiting')acts='<button type="button" onclick="v72CallSpecific(\''+key+'\')">📣 Chamar</button>';if(st==='called')acts='<button type="button" onclick="v72StartGame(\''+key+'\')">▶ Iniciar</button><button type="button" class="secondary" onclick="v72CancelCall(\''+key+'\')">Cancelar chamada</button>';if(st==='playing')acts='<span class="v71-badge-safe">● Em andamento</span>';
+      return '<div id="game-'+key+'" class="jb-v7-game-card '+st+'"><div class="jb-v7-game-meta"><span>Grupo '+esc(g.name)+' · Jogo '+(mi+1)+'</span><b>'+label+(court?' · Q'+court:'')+'</b></div><div class="jb-v7-match-row"><strong>'+esc(teamLabel(a))+'</strong><input class="score" inputmode="numeric" value="'+esc(m.aScore)+'" oninput="updateGroupScore('+gi+','+mi+',\'aScore\',this.value,this)" onchange="finishGroupScore()" onblur="finishGroupScore()"><i>×</i><input class="score" inputmode="numeric" value="'+esc(m.bScore)+'" oninput="updateGroupScore('+gi+','+mi+',\'bScore\',this.value,this)" onchange="finishGroupScore()" onblur="finishGroupScore()"><strong>'+esc(teamLabel(b))+'</strong></div><div class="jb-v7-game-foot"><select onchange="v7SetGameCourt('+gi+','+mi+',this.value)" '+(finished?'disabled':'')+'>'+options+'</select><span>'+(!finished?'Descanso: '+restLabel(m.aId)+' / '+restLabel(m.bId):'Resultado confirmado')+'</span></div><div class="v72-game-actions">'+acts+'</div></div>';
+    }).join('')+'</section>';}).join('');
+    if(done===all.length&&!state.knockout){gamesArea.insertAdjacentHTML('afterbegin','<div class="v72-phase-ready"><div><b>✓ Fase de grupos concluída</b><small>Todos os resultados estão confirmados. Revise a classificação e gere o mata-mata.</small></div><button type="button" onclick="v72OpenKnockout()">Revisar e gerar mata-mata</button></div>');}
+    if(typeof v7RenderEvent==='function')v7RenderEvent();
+  }
+  window.renderGames=renderSmartGames;
+
+  var oldEvent=window.v7RenderEvent;
+  window.v7RenderEvent=function(){
+    if(typeof oldEvent==='function')oldEvent();var o=ops(),all=v7AllGroupGames(),root=document.getElementById('v7LiveCourts'),q=document.getElementById('v7LiveQueue');if(!root)return;
+    setTextSafe('v7LivePlaying',all.filter(function(x){return activeStatus(x)==='playing';}).length);setTextSafe('v7LiveWaiting',all.filter(function(x){return activeStatus(x)==='waiting'||activeStatus(x)==='called';}).length);setTextSafe('v7LiveDone',all.filter(function(x){return v7ValidScore(x.m);}).length);
+    var cards=[];for(var c=1;c<=o.courtCount;c++){var x=all.find(function(g){return Number(o.assignments[g.key])===c&&(activeStatus(g)==='called'||activeStatus(g)==='playing');});if(x){var a=getTeam(x.m.aId),b=getTeam(x.m.bId),st=activeStatus(x);cards.push('<div class="jb-v7-live-court active"><span>QUADRA '+c+' · '+(st==='called'?'CHAMADO':'EM JOGO')+'</span><b>'+esc(teamLabel(a))+' × '+esc(teamLabel(b))+'</b><small>Grupo '+esc(x.g.name)+'</small></div>');}else cards.push('<div class="jb-v7-live-court"><span>QUADRA '+c+'</span><b>Disponível</b><small>Aguardando próximo jogo</small></div>');}root.innerHTML=cards.join('');
+    var rank=rankedCandidates();if(q)q.innerHTML=rank.length?rank.slice(0,8).map(function(x,i){var a=getTeam(x.m.aId),b=getTeam(x.m.bId);return '<div><span>'+(i+1)+'</span><b>'+esc(teamLabel(a))+' <i>×</i> '+esc(teamLabel(b))+'</b><small>Grupo '+esc(x.g.name)+' · descanso mínimo '+(x._rest>=9999?'—':x._rest+' min')+'</small></div>';}).join(''):'<div class="empty">Nenhum jogo aguardando.</div>';
+  };
+  function recomputeLastPlayed(){
+    var o=ops(),last={};v7AllGroupGames().forEach(function(x){var t=Number(o.completedAt[x.key]||0);if(t){last[x.m.aId]=Math.max(last[x.m.aId]||0,t);last[x.m.bId]=Math.max(last[x.m.bId]||0,t);}});o.teamLastPlayed=last;
+  }
+  var oldUndo=window.v71UndoLastScore;if(typeof oldUndo==='function')window.v71UndoLastScore=function(){var r=oldUndo.apply(this,arguments);setTimeout(function(){syncCompletions();recomputeLastPlayed();save();renderSmartGames();},0);return r;};
+  var oldClear=window.clearScores;if(typeof oldClear==='function')window.clearScores=function(){var r=oldClear.apply(this,arguments);var o=ops();o.statuses={};o.calledAt={};o.startedAt={};o.completedAt={};o.teamLastPlayed={};o.assignments={};save();renderSmartGames();return r;};
+  var oldRender=window.render;if(typeof oldRender==='function')window.render=function(){var r=oldRender.apply(this,arguments);setTimeout(function(){renderSmartGames();},0);return r;};
+  setTimeout(function(){renderSmartGames();},120);
+})();
+</script>
+
+
+<script id="jb-v74-cloud-sync">
+(function(){
+'use strict';
+var CFG_KEY='jb_v74_cloud_config', MAP_KEY='jb_v74_share_map', AUTH_KEY='jb_v74_cloud_auth';
+var syncTimer=null,pollTimer=null,pushBusy=false,pullBusy=false,publicMode=false,publicCode='';
+function $id(id){return document.getElementById(id)}
+function safeParse(v,d){try{return JSON.parse(v)}catch(e){return d}}
+function getCfg(){return safeParse(localStorage.getItem(CFG_KEY)||'',{})||{}}
+function setCfg(c){localStorage.setItem(CFG_KEY,JSON.stringify(c||{}))}
+function getMap(){return safeParse(localStorage.getItem(MAP_KEY)||'',{})||{}}
+function setMap(m){localStorage.setItem(MAP_KEY,JSON.stringify(m||{}))}
+function normUrl(u){return String(u||'').trim().replace(/\/+$/,'')}
+function validCfg(c){return /^https:\/\/.+\.supabase\.co$/i.test(normUrl(c.url||'')) && String(c.key||'').trim().length>20}
+function fmt(t){if(!t)return '—';try{return new Date(t).toLocaleString('pt-BR',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'})}catch(e){return '—'}}
+function headers(token,extra){var c=getCfg(),h={'apikey':c.key,'Authorization':'Bearer '+(token||c.key),'Content-Type':'application/json'};if(extra)Object.assign(h,extra);return h}
+function status(kind,title,text){var n=$id('v74CloudStatus');if(n){n.className='v74-status '+kind;n.innerHTML='<b>'+esc(title)+'</b><small>'+esc(text||'')+'</small>'}var b=$id('v74CloudBadge');if(b)b.textContent=kind==='online'?'ONLINE':kind==='connecting'?'SYNC':'OFFLINE'}
+function activeShareId(){var m=getMap();return activeTournamentId?m[activeTournamentId]||'':''}
+function makeCode(){var chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',out='JB-';for(var i=0;i<8;i++)out+=chars[Math.floor(Math.random()*chars.length)];return out}
+function publicLink(code){var c=getCfg(),u=new URL(location.href);u.hash='';u.search='';u.searchParams.set('public',code);if(validCfg(c)){u.searchParams.set('sb',c.url);u.searchParams.set('ak',c.key)}return u.toString()}
+function renderShare(){var code=activeShareId(),inp=$id('v74ShareId'),lnk=$id('v74PublicLink'),qr=$id('v74QrWrap');if(inp)inp.value=code;if(lnk)lnk.value=code?publicLink(code):'';if(qr){qr.innerHTML=code?'<img alt="QR Code do torneio" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data='+encodeURIComponent(publicLink(code))+'"><small>Escaneie para abrir o Portal Público</small>':'<div>QR Code aparecerá após a publicação.</div>'}}
+function loadUi(){var c=getCfg();if($id('v74SupabaseUrl'))$id('v74SupabaseUrl').value=c.url||'';if($id('v74SupabaseKey'))$id('v74SupabaseKey').value=c.key||'';if($id('v74AutoSync'))$id('v74AutoSync').checked=c.auto!==false;renderShare();if(validCfg(c))status('offline','NUVEM CONFIGURADA','Pronta para conectar.');else status('offline','OFFLINE LOCAL','Nenhuma nuvem configurada.')}
+async function anonSession(force){var c=getCfg();if(!validCfg(c))throw new Error('Configure URL e anon key do Supabase.');var a=safeParse(localStorage.getItem(AUTH_KEY)||'',null);if(!force&&a&&a.access_token&&a.expires_at>Date.now()+60000)return a;if(!force&&a&&a.refresh_token){try{var rr=await fetch(normUrl(c.url)+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:{'apikey':c.key,'Content-Type':'application/json'},body:JSON.stringify({refresh_token:a.refresh_token})});var rd=await rr.json().catch(function(){return{}});if(rr.ok&&rd.access_token){a={access_token:rd.access_token,refresh_token:rd.refresh_token||a.refresh_token,user_id:rd.user&&rd.user.id||a.user_id,expires_at:Date.now()+Number(rd.expires_in||3600)*1000};localStorage.setItem(AUTH_KEY,JSON.stringify(a));return a}}catch(e){}}var r=await fetch(normUrl(c.url)+'/auth/v1/signup',{method:'POST',headers:{'apikey':c.key,'Content-Type':'application/json'},body:'{}'});var d=await r.json().catch(function(){return{}});if(!r.ok||!d.access_token)throw new Error((d&&d.msg)||'Ative Anonymous Sign-Ins no Supabase.');a={access_token:d.access_token,refresh_token:d.refresh_token||'',user_id:d.user&&d.user.id,expires_at:Date.now()+Number(d.expires_in||3600)*1000};localStorage.setItem(AUTH_KEY,JSON.stringify(a));return a}
+function cloudPayload(){return {app_version:'7.4.3',tournament_id:activeTournamentId,title:(($id('title')||{}).value||'Torneio'),snapshot:currentTournamentSnapshot(),published_at:new Date().toISOString()}}
+async function upsertNow(silent){if(publicMode||pushBusy)return false;var c=getCfg();if(!validCfg(c)){if(!silent)showNotice('Configure a nuvem primeiro.');return false}pushBusy=true;try{status('connecting','SINCRONIZANDO','Enviando alterações...');var a=await anonSession(false),map=getMap(),code=map[activeTournamentId]||makeCode();map[activeTournamentId]=code;setMap(map);var row={share_id:code,owner_id:a.user_id,title:(($id('title')||{}).value||'Torneio'),payload:cloudPayload(),is_public:true,updated_at:new Date().toISOString()};var r=await fetch(normUrl(c.url)+'/rest/v1/jb_tournaments?on_conflict=share_id',{method:'POST',headers:headers(a.access_token,{'Prefer':'resolution=merge-duplicates,return=representation'}),body:JSON.stringify(row)});var d=await r.text();if(!r.ok)throw new Error(safeParse(d,{message:d}).message||d||'Falha ao publicar');var now=Date.now();c.lastSync=now;setCfg(c);if($id('v74LastSync'))$id('v74LastSync').textContent=fmt(now);renderShare();status('online','ONLINE','Categoria publicada e sincronizada.');if(!silent)showNotice('Torneio sincronizado com a nuvem.',true);return true}catch(e){status('error','ERRO DE SINCRONIZAÇÃO',e.message||String(e));if(!silent)showNotice('Nuvem: '+(e.message||e));return false}finally{pushBusy=false}}
+async function fetchPublic(code){var c=getCfg();if(!validCfg(c))throw new Error('Este aparelho não possui a configuração pública da nuvem.');var r=await fetch(normUrl(c.url)+'/rest/v1/jb_tournaments?share_id=eq.'+encodeURIComponent(code)+'&is_public=eq.true&select=share_id,title,payload,updated_at&limit=1',{headers:headers(null)});var d=await r.json().catch(function(){return[]});if(!r.ok)throw new Error((d&&d.message)||'Falha ao consultar torneio.');if(!d||!d[0])throw new Error('Torneio público não encontrado.');return d[0]}
+function applyCloudSnapshot(row,forPublic){var p=row&&row.payload&&row.payload.snapshot;if(!p||!p.state)throw new Error('Dados da nuvem inválidos.');var id=forPublic?'public_'+publicCode:activeTournamentId;tournaments[id]={title:p.title||row.title||'Torneio',participants:p.participants||'',qualifiersPerGroup:p.qualifiersPerGroup||'2',matchFormat:p.matchFormat||'standard6',state:p.state,manualTeamsDraft:p.manualTeamsDraft||[],eventLogoData:p.eventLogoData||'',eventLogoName:p.eventLogoName||'',updatedAt:p.updatedAt||Date.now()};activeTournamentId=id;applyTournamentById(id);if(window.v73RenderPublic)v73RenderPublic();if(window.v73RenderPodium)v73RenderPodium();}
+async function pullNow(silent){if(pullBusy)return false;var code=activeShareId();if(!code){if(!silent)showNotice('Esta categoria ainda não foi publicada.');return false}pullBusy=true;try{status('connecting','BAIXANDO','Buscando versão da nuvem...');var row=await fetchPublic(code);applyCloudSnapshot(row,false);save();status('online','ONLINE','Versão da nuvem carregada.');if(!silent)showNotice('Versão da nuvem carregada.',true);return true}catch(e){status('error','ERRO DE SINCRONIZAÇÃO',e.message||String(e));if(!silent)showNotice('Nuvem: '+(e.message||e));return false}finally{pullBusy=false}}
+function schedulePush(){var c=getCfg();if(publicMode||!validCfg(c)||c.auto===false||!activeShareId())return;clearTimeout(syncTimer);syncTimer=setTimeout(function(){upsertNow(true)},1200)}
+window.v74SaveCloudConfig=function(){var c=getCfg();c.url=normUrl(($id('v74SupabaseUrl')||{}).value);c.key=String(($id('v74SupabaseKey')||{}).value||'').trim();c.auto=($id('v74AutoSync')||{}).checked!==false;setCfg(c);localStorage.removeItem(AUTH_KEY);loadUi();v74TestCloud()}
+window.v74TestCloud=async function(){var c=getCfg();if(!validCfg(c)){status('error','CONFIGURAÇÃO INCOMPLETA','Informe URL e anon key válidas.');return}try{status('connecting','CONECTANDO','Validando acesso...');await anonSession(true);var r=await fetch(normUrl(c.url)+'/rest/v1/jb_tournaments?select=share_id&limit=1',{headers:headers(null)});if(!r.ok){var d=await r.json().catch(function(){return{}});throw new Error(d.message||'Tabela jb_tournaments não encontrada.')}status('online','ONLINE','Conexão validada com sucesso.');showNotice('Conexão com a nuvem validada.',true)}catch(e){status('error','FALHA NA CONEXÃO',e.message||String(e));showNotice('Nuvem: '+(e.message||e))}}
+window.v74PublishNow=function(){upsertNow(false)}
+window.v74PullNow=function(){pullNow(false)}
+window.v74ToggleAutoSync=function(v){var c=getCfg();c.auto=!!v;setCfg(c);if(v)schedulePush()}
+window.v74CopyPublicLink=function(){var l=($id('v74PublicLink')||{}).value;if(!l){showNotice('Publique o torneio primeiro.');return}if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(l).then(function(){showNotice('Link público copiado.',true)});else{var i=$id('v74PublicLink');i.select();document.execCommand('copy');showNotice('Link público copiado.',true)}}
+window.v74OpenPublicLink=function(){var l=($id('v74PublicLink')||{}).value;if(l)window.open(l,'_blank');else showNotice('Publique o torneio primeiro.')}
+
+// Faz o save local continuar sendo a fonte principal e agenda a nuvem em segundo plano.
+var localSave=window.save;if(typeof localSave==='function')window.save=function(){var r=localSave.apply(this,arguments);schedulePush();return r};
+var oldApply=window.applyTournamentById;if(typeof oldApply==='function')window.applyTournamentById=function(){var r=oldApply.apply(this,arguments);setTimeout(renderShare,0);return r};
+
+async function enterPublic(code){publicMode=true;publicCode=code;document.body.classList.remove('jb-auth-locked');document.body.classList.add('v74-public-only');var screen=$id('jbAuthScreen');if(screen)screen.style.display='none';var host=$id('jbPagePublico');if(host){var b=document.createElement('div');b.className='v74-public-banner';b.id='v74PublicBanner';b.innerHTML='<div><b>JB TORNEIOS · AO VIVO</b><small>Portal público somente leitura</small></div><span id="v74PublicSync" class="v74-public-sync wait">CONECTANDO...</span>';host.insertBefore(b,host.firstChild)}
+ async function refresh(){var n=$id('v74PublicSync');try{var row=await fetchPublic(code);applyCloudSnapshot(row,true);if(n){n.className='v74-public-sync ok';n.textContent='ATUALIZADO '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}}catch(e){if(n){n.className='v74-public-sync err';n.textContent='SEM CONEXÃO'}var h=$id('v73PublicContent');if(h&&!h.innerHTML.trim())h.innerHTML='<div class="v73-public-card"><h3>Não foi possível abrir o torneio</h3><p>'+esc(e.message||String(e))+'</p><p>Confira a configuração de nuvem neste navegador ou tente novamente.</p></div>'}}
+ await refresh();pollTimer=setInterval(refresh,5000)}
+
+function init(){var q=new URLSearchParams(location.search),code=(q.get('public')||'').trim().toUpperCase(),sb=q.get('sb')||'',ak=q.get('ak')||'';if(code&&sb&&ak){var pc=getCfg();pc.url=normUrl(sb);pc.key=ak;setCfg(pc)}loadUi();var c=getCfg();if(c.lastSync&&$id('v74LastSync'))$id('v74LastSync').textContent=fmt(c.lastSync);if(code){enterPublic(code);return}window.addEventListener('online',function(){status('online','INTERNET DISPONÍVEL','Pronto para sincronizar.');schedulePush()});window.addEventListener('offline',function(){status('offline','OFFLINE LOCAL','Alterações continuam salvas neste aparelho.')})}
+setTimeout(init,250);
+})();
+</script>
+
+<style>
+.jb-match-format-field{margin:12px 0 2px}.jb-score-summary{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}.jb-score-summary strong{min-width:120px}.jb-score-pill{font-weight:1000;background:#071d38;color:#d6ff00;border-radius:10px;padding:8px 12px;min-width:94px;text-align:center}.jb-score-edit{padding:8px 11px!important}.jb-score-modal{position:fixed;inset:0;background:rgba(2,12,25,.82);z-index:100000;display:none;align-items:center;justify-content:center;padding:18px}.jb-score-modal.open{display:flex}.jb-score-dialog{width:min(720px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:18px;padding:18px;box-shadow:0 28px 80px rgba(0,0,0,.35)}.jb-score-dialog h2{margin:0 0 4px}.jb-score-format{font-weight:900;color:#566575;margin-bottom:14px}.jb-set-card{border:1px solid #d8e0e8;border-radius:14px;padding:13px;margin:10px 0;background:#f8fafc}.jb-set-card h3{margin:0 0 10px;font-size:14px;text-transform:uppercase}.jb-score-grid{display:grid;grid-template-columns:1fr 86px 30px 86px 1fr;align-items:center;gap:8px}.jb-score-grid input{font-size:22px;text-align:center;font-weight:1000}.jb-tb-row{display:grid;grid-template-columns:1fr 110px 30px 110px 1fr;align-items:center;gap:8px;margin-top:8px}.jb-tb-row input{text-align:center;font-weight:900}.jb-score-help{font-size:12px;color:#667684;margin-top:6px}.jb-score-error{display:none;background:#fff0f0;border:1px solid #efb6b6;color:#991b1b;border-radius:10px;padding:10px;margin:10px 0;font-weight:800}.jb-score-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:14px}@media(max-width:650px){.jb-score-grid{grid-template-columns:1fr 64px 20px 64px 1fr}.jb-tb-row{grid-template-columns:1fr 76px 20px 76px 1fr}.jb-score-dialog{padding:14px}.jb-score-grid strong{font-size:12px}}
+</style>
+<div id="jbScoreModal" class="jb-score-modal" aria-hidden="true"><div class="jb-score-dialog"><h2>Lançar placar</h2><div id="jbScoreFormat" class="jb-score-format"></div><div id="jbScoreTeams"></div><div id="jbScoreFields"></div><div id="jbScoreError" class="jb-score-error"></div><div class="jb-score-actions"><button type="button" class="secondary" onclick="jbCloseScoreModal()">Cancelar</button><button type="button" class="danger" onclick="jbClearCurrentScore()">Limpar placar</button><button type="button" class="ok" onclick="jbSaveCurrentScore()">Confirmar resultado</button></div></div></div>
+<script>
+(function(){
+  var ctx=null;
+  function fmt(){var n=document.getElementById('matchFormat');return n?n.value:'standard6'}
+  window.jbMatchFormat=fmt;
+  function n(v){if(v===null||v===undefined||String(v).trim()==='')return null;var x=Number(v);return Number.isFinite(x)?x:null}
+  function tbWinner(a,b,target){a=n(a);b=n(b);if(a===null||b===null||a===b)return 0;var hi=Math.max(a,b),lo=Math.min(a,b);if(hi<target||hi-lo<2)return 0;return a>b?1:2}
+  function normalSet(sa,sb,ta,tb){sa=n(sa);sb=n(sb);if(sa===null||sb===null)return 0;if(sa===6&&sb<=4)return 1;if(sb===6&&sa<=4)return 2;if(sa===7&&sb===5)return 1;if(sb===7&&sa===5)return 2;if(sa===7&&sb===6)return tbWinner(ta,tb,7)===1?1:0;if(sb===7&&sa===6)return tbWinner(ta,tb,7)===2?2:0;return 0}
+  function ensureData(m){if(!m.scoreData||m.scoreData.format!==fmt()){m.scoreData={format:fmt(),sets:[{a:'',b:'',aTb:'',bTb:''},{a:'',b:'',aTb:'',bTb:''}],superTb:{a:'',b:''}}}return m.scoreData}
+  function result(m){
+    if(!m)return {valid:false};var d=m.scoreData;
+    if(!d){ // legacy fallback
+      var a=n(m.aScore),b=n(m.bScore);if(a!==null&&b!==null&&a!==b)return {valid:true,winner:a>b?1:2,setsA:a>b?1:0,setsB:b>a?1:0,gamesA:a,gamesB:b};return {valid:false};
+    }
+    var s=d.sets||[], f=d.format||fmt();
+    if(f==='standard6'){
+      var x=s[0]||{},w=normalSet(x.a,x.b,x.aTb,x.bTb);if(!w)return {valid:false};
+      return {valid:true,winner:w,setsA:w===1?1:0,setsB:w===2?1:0,gamesA:Number(x.a),gamesB:Number(x.b)};
+    }
+    var x1=s[0]||{},x2=s[1]||{},w1=normalSet(x1.a,x1.b,x1.aTb,x1.bTb),w2=normalSet(x2.a,x2.b,x2.aTb,x2.bTb);if(!w1||!w2)return {valid:false};
+    var A=(w1===1)+(w2===1),B=(w1===2)+(w2===2),gwA=Number(x1.a)+Number(x2.a),gwB=Number(x1.b)+Number(x2.b);
+    if(A===2||B===2)return {valid:true,winner:A===2?1:2,setsA:A,setsB:B,gamesA:gwA,gamesB:gwB};
+    var st=d.superTb||{},ws=tbWinner(st.a,st.b,10);if(!ws)return {valid:false};A+=ws===1?1:0;B+=ws===2?1:0;return {valid:true,winner:ws,setsA:A,setsB:B,gamesA:gwA,gamesB:gwB,superA:Number(st.a),superB:Number(st.b)};
+  }
+  window.jbScoreResult=result;
+  window.isValidGroupScore=function(m){return result(m).valid};window.v7ValidScore=function(m){return result(m).valid};
+  window.getKnockoutWinner=function(m){if(m&&m.aId&&!m.bId)return m.aId;if(m&&!m.aId&&m.bId)return m.bId;if(!m||!m.aId||!m.bId)return null;var r=result(m);return r.valid?(r.winner===1?m.aId:m.bId):null};
+  window.jbScoreText=function(m){var r=result(m),d=m&&m.scoreData;if(!r.valid)return '—';if(!d)return String(m.aScore)+' × '+String(m.bScore);if(d.format==='standard6'){var x=d.sets[0],z=x.a+'×'+x.b;if((Number(x.a)===7&&Number(x.b)===6)||(Number(x.b)===7&&Number(x.a)===6))z+=' ('+x.aTb+'×'+x.bTb+')';return z}var parts=(d.sets||[]).slice(0,2).map(function(x){var z=x.a+'×'+x.b;if((Number(x.a)===7&&Number(x.b)===6)||(Number(x.b)===7&&Number(x.a)===6))z+=' ('+x.aTb+'×'+x.bTb+')';return z});if(r.setsA===2&&r.setsB===1||r.setsA===1&&r.setsB===2){var st=d.superTb||{};if(st.a!==''&&st.b!=='')parts.push('STB '+st.a+'×'+st.b)}return parts.join(' · ')};
+  // LetzPlay standings, now based on sets/games from the selected match format.
+  window.groupStandings=function(group){
+    var rows=group.teams.map(function(t){return {team:t,J:0,V:0,D:0,SP:0,SC:0,SS:0,GP:0,GC:0,SG:0,setPct:0,gamePct:0}}),by={};rows.forEach(function(r){by[r.team.id]=r});
+    (group.matches||[]).forEach(function(m){var rr=result(m);if(!rr.valid)return;var a=by[m.aId],b=by[m.bId];a.J++;b.J++;a.SP+=rr.setsA;a.SC+=rr.setsB;b.SP+=rr.setsB;b.SC+=rr.setsA;a.GP+=rr.gamesA;a.GC+=rr.gamesB;b.GP+=rr.gamesB;b.GC+=rr.gamesA;if(rr.winner===1){a.V++;b.D++}else{b.V++;a.D++}});
+    rows.forEach(function(r){r.SS=r.SP-r.SC;r.SG=r.GP-r.GC;var st=r.SP+r.SC,gm=r.GP+r.GC;r.setPct=st?r.SP/st:0;r.gamePct=gm?r.GP/gm:0});
+    function direct(a,b){var m=(group.matches||[]).find(function(x){return (x.aId===a.team.id&&x.bId===b.team.id)||(x.aId===b.team.id&&x.bId===a.team.id)}),rr=result(m);if(!rr.valid)return null;return rr.winner===1?m.aId:m.bId}
+    function lot(r){var text=String(group.id||group.name||'G')+'|'+r.team.id,h=2166136261;for(var i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+    function resolve(list,k){if(list.length<=1)return list.slice();if(list.length===2){var w=direct(list[0],list[1]);if(w)return list[0].team.id===w?list.slice():[list[1],list[0]]}var cs=[function(r){return r.SS},function(r){return r.SG},function(r){return r.setPct},function(r){return r.gamePct}];if(k>=cs.length)return list.slice().sort(function(a,b){return lot(b)-lot(a)});var met=cs[k],ord=list.slice().sort(function(a,b){return met(b)-met(a)}),out=[],i=0;while(i<ord.length){var j=i+1,v=met(ord[i]);while(j<ord.length&&Math.abs(met(ord[j])-v)<1e-12)j++;var sub=ord.slice(i,j);out=out.concat(sub.length>1?resolve(sub,k+1):sub);i=j}return out}
+    var bw=rows.slice().sort(function(a,b){return b.V-a.V}),fin=[],i=0;while(i<bw.length){var j=i+1;while(j<bw.length&&bw[j].V===bw[i].V)j++;var t=bw.slice(i,j);fin=fin.concat(t.length>1?resolve(t,0):t);i=j}return fin;
+  };
+  function setCard(label,i,d){var x=d.sets[i]||{};return '<div class="jb-set-card"><h3>'+label+'</h3><div class="jb-score-grid"><strong>'+esc(teamLabel(getTeam(ctx.m.aId)))+'</strong><input id="jbs'+i+'a" inputmode="numeric" value="'+esc(x.a)+'"><b>×</b><input id="jbs'+i+'b" inputmode="numeric" value="'+esc(x.b)+'"><strong>'+esc(teamLabel(getTeam(ctx.m.bId)))+'</strong></div><div class="jb-tb-row"><span></span><input id="jbs'+i+'at" inputmode="numeric" placeholder="TB A" value="'+esc(x.aTb)+'"><b>×</b><input id="jbs'+i+'bt" inputmode="numeric" placeholder="TB B" value="'+esc(x.bTb)+'"><span></span></div><div class="jb-score-help">Preencha o tie-break somente quando o set terminar 7×6 ou 6×7. Tie-break: primeiro a 7, com 2 pontos de diferença.</div></div>'}
+  window.jbOpenScore=function(type,a,b){var m;if(type==='group')m=state.groups[a].matches[b];else if(type==='ko')m=state.knockout.rounds[a].matches[b];else m=state.knockout.thirdPlaceMatch;ctx={type:type,a:a,b:b,m:m};var d=ensureData(m),f=fmt();document.getElementById('jbScoreFormat').textContent=f==='pro3'?'Categoria PRO · melhor de 3 sets · 1×1 = super tie-break até 10':'Padrão · 1 set até 6 games · 6×6 = tie-break até 7';document.getElementById('jbScoreTeams').innerHTML='<div class="jb-score-summary"><strong>'+esc(teamLabel(getTeam(m.aId)))+'</strong><span>×</span><strong>'+esc(teamLabel(getTeam(m.bId)))+'</strong></div>';var h=setCard('Set 1',0,d);if(f==='pro3'){h+=setCard('Set 2',1,d);var st=d.superTb||{};h+='<div class="jb-set-card"><h3>Super tie-break — somente se ficar 1×1 em sets</h3><div class="jb-score-grid"><strong>'+esc(teamLabel(getTeam(m.aId)))+'</strong><input id="jbstba" inputmode="numeric" value="'+esc(st.a)+'"><b>×</b><input id="jbstbb" inputmode="numeric" value="'+esc(st.b)+'"><strong>'+esc(teamLabel(getTeam(m.bId)))+'</strong></div><div class="jb-score-help">Primeiro a 10 pontos, com 2 pontos de diferença.</div></div>'}document.getElementById('jbScoreFields').innerHTML=h;document.getElementById('jbScoreError').style.display='none';document.getElementById('jbScoreModal').classList.add('open')};
+  window.jbCloseScoreModal=function(){document.getElementById('jbScoreModal').classList.remove('open');ctx=null};
+  function val(id){var e=document.getElementById(id);return e?String(e.value||'').replace(/[^0-9]/g,''):''}
+  window.jbSaveCurrentScore=function(){if(!ctx)return;var m=ctx.m,d={format:fmt(),sets:[{a:val('jbs0a'),b:val('jbs0b'),aTb:val('jbs0at'),bTb:val('jbs0bt')},{a:val('jbs1a'),b:val('jbs1b'),aTb:val('jbs1at'),bTb:val('jbs1bt')}],superTb:{a:val('jbstba'),b:val('jbstbb')}};m.scoreData=d;var rr=result(m),er=document.getElementById('jbScoreError');if(!rr.valid){er.textContent=fmt()==='pro3'?'Placar incompleto ou inválido. Use sets válidos até 6 games; em 6×6, tie-break. Se ficar 1×1, informe o super tie-break até 10.':'Placar inválido. O set deve terminar 6×0–4, 7×5 ou 7×6 com tie-break válido.';er.style.display='block';return}m.aScore=String(fmt()==='pro3'?rr.setsA:(d.sets[0].a));m.bScore=String(fmt()==='pro3'?rr.setsB:(d.sets[0].b));if(ctx.type==='group'){state.knockout=null;v71ReleaseFinishedCourts&&v71ReleaseFinishedCourts()}else if(ctx.type==='ko'){propagateKnockout(ctx.a)}else{if(state.knockout)state.knockout.thirdPlaceId=rr.winner===1?m.aId:m.bId}save();jbCloseScoreModal();render();if(window.v71RenderAlerts)v71RenderAlerts();if(window.v73RenderPodium)v73RenderPodium()};
+  window.jbClearCurrentScore=function(){if(!ctx)return;ctx.m.scoreData=null;ctx.m.aScore='';ctx.m.bScore='';if(ctx.type==='group')state.knockout=null;else if(ctx.type==='ko')propagateKnockout(ctx.a);save();jbCloseScoreModal();render()};
+  // Repaint group matches with the structured score editor while keeping standings.
+  window.renderGroups=function(){if(!state.groups.length){groupsArea.className='empty';groupsArea.innerHTML='Os grupos e a classificação aparecerão aqui após o sorteio.';renderGames();return}groupsArea.className='group-wrap';var qpg=Number(el('qualifiersPerGroup').value);groupsArea.innerHTML=state.groups.map(function(g,gi){var table=groupStandings(g),mh=(g.matches||[]).map(function(m,mi){return '<div class="match"><span class="right">'+esc(teamLabel(getTeam(m.aId)))+'</span><span class="jb-score-pill">'+esc(jbScoreText(m))+'</span><button type="button" class="secondary jb-score-edit" onclick="jbOpenScore(\'group\','+gi+','+mi+')">'+(v7ValidScore(m)?'Editar':'Lançar')+'</button><span>'+esc(teamLabel(getTeam(m.bId)))+'</span></div>'}).join(''),th=table.map(function(r,idx){return '<tr class="'+(idx<qpg?'qual':'')+'"><td class="pos">'+(idx+1)+'</td><td class="team-name">'+esc(teamLabel(r.team))+'</td><td>'+r.J+'</td><td>'+r.V+'</td><td>'+r.D+'</td><td>'+r.GP+'</td><td>'+r.GC+'</td><td>'+(r.SG>0?'+':'')+r.SG+'</td></tr>'}).join('');return '<div class="group"><h3>Grupo '+esc(g.name)+' · '+g.teams.length+' duplas</h3>'+mh+'<div class="standings-wrap"><table><thead><tr><th>#</th><th>Dupla</th><th>J</th><th>V</th><th>D</th><th>GP</th><th>GC</th><th>SG</th></tr></thead><tbody>'+th+'</tbody></table></div></div>'}).join('');renderGames()};
+  // Wrap Smart Court rendering: replace legacy score inputs with structured button after its render.
+  var oldRG=window.renderGames;window.renderGames=function(){oldRG();document.querySelectorAll('#gamesArea .jb-v7-game-card').forEach(function(card){var id=card.id||'',mm=id.match(/^game-G(\d+)M(\d+)$/);if(!mm)return;var gi=Number(mm[1]),mi=Number(mm[2]),m=state.groups[gi].matches[mi],row=card.querySelector('.jb-v7-match-row');if(row)row.innerHTML='<strong>'+esc(teamLabel(getTeam(m.aId)))+'</strong><span class="jb-score-pill">'+esc(jbScoreText(m))+'</span><button type="button" class="secondary jb-score-edit" onclick="jbOpenScore(\'group\','+gi+','+mi+')">'+(v7ValidScore(m)?'Editar placar':'Lançar placar')+'</button><strong>'+esc(teamLabel(getTeam(m.bId)))+'</strong>'})};
+  var oldRK=window.renderKnockout;window.renderKnockout=function(){oldRK();if(!state.knockout)return;var rounds=document.querySelectorAll('#knockoutArea .round');rounds.forEach(function(rd,ri){rd.querySelectorAll('.ko-match').forEach(function(km,mi){var m=state.knockout.rounds[ri].matches[mi];if(!m||!m.aId||!m.bId)return;km.innerHTML='<div class="jb-score-summary"><strong>'+esc(teamLabel(getTeam(m.aId)))+'</strong><span class="jb-score-pill">'+esc(jbScoreText(m))+'</span><button type="button" class="secondary" onclick="jbOpenScore(\'ko\','+ri+','+mi+')">'+(v7ValidScore(m)?'Editar':'Lançar placar')+'</button><strong>'+esc(teamLabel(getTeam(m.bId)))+'</strong></div>'})});if(window.v73AddThirdPlaceUI)window.v73AddThirdPlaceUI()};
+  window.v73AddThirdPlaceUI=function(){var host=document.getElementById('knockoutArea');if(!host||!state.knockout)return;var old=document.getElementById('v73ThirdPlace');if(old)old.remove();var tp=state.knockout.thirdPlaceMatch;if(!state.knockout.thirdPlacePlayoff||!tp||!tp.aId||!tp.bId)return;var d=document.createElement('div');d.id='v73ThirdPlace';d.className='v73-third-match';d.innerHTML='<b>🥉 Disputa de 3º lugar</b><div class="jb-score-summary"><strong>'+esc(teamLabel(getTeam(tp.aId)))+'</strong><span class="jb-score-pill">'+esc(jbScoreText(tp))+'</span><button type="button" class="secondary" onclick="jbOpenScore(\'third\',0,0)">'+(v7ValidScore(tp)?'Editar':'Lançar placar')+'</button><strong>'+esc(teamLabel(getTeam(tp.bId)))+'</strong></div>';host.appendChild(d)};
+  // Public results use the full formatted score.
+  var oldPub=window.v73RenderPublic;if(oldPub)window.v73RenderPublic=function(){oldPub();document.querySelectorAll('#v73PublicContent .v73-public-game').forEach(function(){/* retained; refreshed by normal render */})};
+  var mf=document.getElementById('matchFormat');if(mf)mf.addEventListener('change',function(){var has=(state.groups&&state.groups.some(function(g){return(g.matches||[]).some(v7ValidScore)}))||state.knockout;if(has&&!confirm('Alterar o formato agora apagará todos os placares da categoria para evitar resultados incompatíveis. Continuar?')){this.value=(tournaments[activeTournamentId]&&tournaments[activeTournamentId].matchFormat)||'standard6';return}if(has){state.groups.forEach(function(g){g.matches.forEach(function(m){m.aScore='';m.bScore='';m.scoreData=null})});state.knockout=null}save();render();showNotice('Formato de partida atualizado para esta categoria.',true)});
+  setTimeout(function(){render()},350);
+})();
+</script>
+
 </body>
 </html>

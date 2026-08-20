@@ -16,3 +16,8 @@ NOVIDADES V6:
 - Sorteio completo de duplas + grupos.
 - Montagem manual das duplas e sorteio somente dos grupos.
 - Dados, placares e mata-mata salvos separadamente por categoria.
+
+V7.4 inclui recursos adicionais de segurança operacional e recuperação.
+
+
+V7.4: Smart Court Manager, descanso recomendado padrão de 5 minutos, estados Aguardando/Chamado/Em jogo/Finalizado e Centro de Comando.

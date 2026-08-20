@@ -1,7 +1,7 @@
 {
-  "name": "JB Torneios Pro",
+  "name": "JB Torneios Pro V7.4.3",
   "short_name": "JB Torneios",
-  "description": "Gestão profissional de torneios de Beach Tennis.",
+  "description": "JB Torneios Pro V7.4.3 — Cloud Sync + Portal Público",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
