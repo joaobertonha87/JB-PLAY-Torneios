@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Play V10.0.5 · Dark App Layout</title>
+  <title>JB Play V10.0.8 · Nuvem Multidispositivo</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -5707,7 +5707,7 @@ var CFG_KEY='jb_v74_cloud_config', MAP_KEY='jb_v74_share_map', AUTH_KEY='jb_v74_
 var syncTimer=null,pollTimer=null,pushBusy=false,pullBusy=false,publicMode=false,publicCode='';
 function $id(id){return document.getElementById(id)}
 function safeParse(v,d){try{return JSON.parse(v)}catch(e){return d}}
-function getCfg(){return safeParse(localStorage.getItem(CFG_KEY)||'',{})||{}}
+function getCfg(){var c=safeParse(localStorage.getItem(CFG_KEY)||'',{})||{};if(!c.url)c.url='https://bhmshotrdnubgpvsduzh.supabase.co';if(!c.key)c.key='sb_publishable_lu4JYnYCDCVInY8nc-FgNQ_f653Z0bh';if(typeof c.auto==='undefined')c.auto=true;try{localStorage.setItem(CFG_KEY,JSON.stringify(c))}catch(e){}return c;}
 function setCfg(c){localStorage.setItem(CFG_KEY,JSON.stringify(c||{}))}
 function getMap(){return safeParse(localStorage.getItem(MAP_KEY)||'',{})||{}}
 function setMap(m){localStorage.setItem(MAP_KEY,JSON.stringify(m||{}))}
@@ -6371,7 +6371,7 @@ function livePulse(kind){
 }
 
 function schedulePush(){clearTimeout(SAVE_TIMER);SAVE_TIMER=setTimeout(function(){push().catch(function(){status('⚠️ Offline')})},800)}
-function status(t){var x=el('jbV780AccountStatus');if(x)x.textContent=t}
+function status(t){var x=el('jbV780AccountStatus');if(x)x.textContent=t;var online=/Sincronizado|Primeiro backup enviado|Conectado/i.test(String(t||''));var top=el('jbV9CloudState');if(top)top.textContent=online?'Sincronizado':(/Sincronizando/i.test(String(t||''))?'Sincronizando...':'Offline');var cloud=el('v74CloudStatus');if(cloud){cloud.className='v74-status '+(online?'online':'offline');cloud.innerHTML=online?'<b>CONTA JB CONECTADA</b><small>Sincronização multidispositivo ativa.</small>':'<b>OFFLINE LOCAL</b><small>Reconectando automaticamente...</small>';}var badge=el('v74CloudBadge');if(badge)badge.textContent=online?'ONLINE':'OFFLINE';}
 function addAccountChip(){if(el('jbV780AccountChip'))return;var s=session(),target=document.querySelector('.topbar')||document.querySelector('.jb-side-foot');if(!target||!s)return;var d=document.createElement('div');d.className='jb-v780-account';d.id='jbV780AccountChip';d.innerHTML='<span class="jb-v780-dot"></span><span id="jbV780AccountStatus">☁️ Sincronizado</span><span>'+((s.user&&s.user.email)||'Conta JB')+'</span><button class="jb-v780-signout" id="jbV780Signout" type="button">Sair</button>';target.appendChild(d);el('jbV780Signout').onclick=logout}
 function logout(){
   if(!confirm('Sair desta Conta JB neste dispositivo?'))return;
@@ -6393,10 +6393,12 @@ async function boot(){
   var s=session();
   if(!s){showAuth(true);return;}
   try{
+    status('Sincronizando...');
     await refresh();
     showAuth(false);
     addAccountChip();
     await pull(true);
+    status('☁️ Sincronizado');
     clearInterval(PULL_TIMER);
     PULL_TIMER=setInterval(function(){
       if(!document.hidden)pull(false).catch(function(){status('⚠️ Offline')});
@@ -6407,7 +6409,7 @@ async function boot(){
     msg('Sua sessão expirou. Entre novamente.');
   }
 }
-function bind(){setMode('login');el('jbCloudToggleMode').onclick=function(){setMode(MODE==='login'?'signup':'login')};el('jbCloudAuthForm').addEventListener('submit',async function(ev){ev.preventDefault();var email=String(el('jbCloudEmail').value||'').trim(),pw=String(el('jbCloudPassword').value||'');msg(MODE==='signup'?'Criando conta...':'Entrando...',true);el('jbCloudAuthSubmit').disabled=true;try{var s=MODE==='signup'?await signup(email,pw):await login(email,pw);showAuth(false);addAccountChip();await pull(true);clearInterval(PULL_TIMER);PULL_TIMER=setInterval(function(){if(!document.hidden)pull(false).catch(function(){status('⚠️ Offline')})},5000)}catch(e){msg(e.message)}finally{el('jbCloudAuthSubmit').disabled=false}});var old=window.save;if(typeof old==='function'&&!old.__cloudWrapped){var w=function(){var r=old.apply(this,arguments);schedulePush();return r};w.__cloudWrapped=true;window.save=w}window.addEventListener('online',function(){pull(false).catch(function(){});schedulePush()});document.addEventListener('visibilitychange',function(){if(!document.hidden)pull(false).catch(function(){})});boot()}
+function bind(){setMode('login');el('jbCloudToggleMode').onclick=function(){setMode(MODE==='login'?'signup':'login')};el('jbCloudAuthForm').addEventListener('submit',async function(ev){ev.preventDefault();var email=String(el('jbCloudEmail').value||'').trim(),pw=String(el('jbCloudPassword').value||'');msg(MODE==='signup'?'Criando conta...':'Entrando...',true);el('jbCloudAuthSubmit').disabled=true;try{var s=MODE==='signup'?await signup(email,pw):await login(email,pw);showAuth(false);addAccountChip();status('Sincronizando...');await pull(true);status('☁️ Sincronizado');clearInterval(PULL_TIMER);PULL_TIMER=setInterval(function(){if(!document.hidden)pull(false).catch(function(){status('⚠️ Offline')})},5000)}catch(e){msg(e.message)}finally{el('jbCloudAuthSubmit').disabled=false}});var old=window.save;if(typeof old==='function'&&!old.__cloudWrapped){var w=function(){var r=old.apply(this,arguments);schedulePush();return r};w.__cloudWrapped=true;window.save=w}window.addEventListener('online',function(){status('Sincronizando...');pull(false).then(function(){status('☁️ Sincronizado');schedulePush()}).catch(function(){status('⚠️ Offline')});});window.addEventListener('offline',function(){status('⚠️ Offline')});document.addEventListener('visibilitychange',function(){if(!document.hidden)pull(false).catch(function(){})});boot()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind);else bind();
 })();
 </script>
@@ -6704,5 +6706,5 @@ if(isPublic()){
 })();
 </script>
 
-</body>
+<script id="jb-v1008-cloud-health">(function(){'use strict';function p(v,d){try{return JSON.parse(v)}catch(e){return d}}function e(i){return document.getElementById(i)}function h(){var s=p(localStorage.getItem('jb_v780_session')||'',null),c=p(localStorage.getItem('jb_v74_cloud_config')||'',{});if(!c.url||!c.key){c.url='https://bhmshotrdnubgpvsduzh.supabase.co';c.key='sb_publishable_lu4JYnYCDCVInY8nc-FgNQ_f653Z0bh';c.auto=true;try{localStorage.setItem('jb_v74_cloud_config',JSON.stringify(c))}catch(x){}}var top=e('jbV9CloudState');if(!navigator.onLine){if(top)top.textContent='Offline';return}if(s&&s.access_token&&s.user&&s.user.id){fetch(String(c.url).replace(/\/+$/,'')+'/auth/v1/user',{headers:{apikey:c.key,Authorization:'Bearer '+s.access_token}}).then(function(r){if(r.ok){if(top)top.textContent='Sincronizado';var cloud=e('v74CloudStatus');if(cloud){cloud.className='v74-status online';cloud.innerHTML='<b>CONTA JB CONECTADA</b><small>PC, iPad e iPhone sincronizam pela mesma Conta JB.</small>'}}}).catch(function(){})}}window.addEventListener('load',function(){setTimeout(h,400)});window.addEventListener('online',function(){setTimeout(h,300)});document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(h,250)});setInterval(h,10000)})();</script></body>
 </html>
