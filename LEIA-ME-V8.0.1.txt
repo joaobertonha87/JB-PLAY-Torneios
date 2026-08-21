@@ -1,0 +1,15 @@
+JB PLAY V8.0.1 — CORREÇÃO DE JAVASCRIPT
+
+Correção crítica:
+- a camada visual V8 estava sendo injetada dentro da string HTML usada para impressão das súmulas;
+- isso interrompia o JavaScript e fazia o código da súmula aparecer como texto na tela;
+- CSS e JavaScript do Tournament Control Center agora ficam nos locais corretos do documento.
+
+Mantidos:
+- base funcional V7.9.4;
+- Conta JB / sincronização;
+- regras gerais de cruzamento;
+- súmulas;
+- pódio;
+- encerramento oficial;
+- visual Tournament Control Center.
