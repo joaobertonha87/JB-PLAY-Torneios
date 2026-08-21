@@ -1,0 +1,6 @@
+JB TORNEIOS PRO V7.6.1 — Correção de menu no iPad
+- Menu lateral com rolagem vertical.
+- Pódio e Salvar/PDF sempre acessíveis.
+- Espaçamento reduzido em iPad.
+- Menu compacto em telas com pouca altura.
+- Mantém todas as funções da V7.6.0.
