@@ -1,0 +1,16 @@
+JB TORNEIOS PRO V7.9.0 — OPERAÇÃO DE TORNEIO AO VIVO
+
+Base: V7.8.3 validada em PC + iPad.
+
+Novidades:
+- Portal Público consulta resultados a cada 3 segundos.
+- Barra AO VIVO com jogos finalizados/restantes e horário da última atualização.
+- Placares recebidos por outro dispositivo continuam recalculando classificação automaticamente.
+- Aviso inteligente quando a fase de grupos termina e o mata-mata está pronto.
+- O mata-mata NÃO é criado sozinho: o organizador continua confirmando a geração.
+- Proteção contra conflito: se PC e iPad alterarem a mesma base simultaneamente,
+  uma versão antiga não sobrescreve silenciosamente a versão nova.
+- Em conflito, a ferramenta oferece carregar a versão da nuvem.
+
+Não é necessário alterar o Supabase nem executar novo SQL.
+RLS, Conta JB e Anonymous Sign-ins permanecem exatamente como na V7.8.3.
