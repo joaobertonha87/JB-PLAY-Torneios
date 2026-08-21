@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.8.1 — correção estrutural de confrontos e placares */
+/* V7.8.2 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -2130,9 +2130,9 @@ body.jb-auth-locked{overflow:hidden!important}
       <div class="jb-page-head"><div><h2>Nuvem / Compartilhar</h2><p>Sincronização online da categoria atual com funcionamento local de segurança.</p></div><button class="jb-back" type="button" data-open-page="dashboard">← Painel</button></div>
       <div class="v74-cloud-grid">
         <div class="v74-cloud-card">
-          <div class="v74-cloud-title"><span>1</span><div><b>Conexão com a nuvem</b><small>Supabase — dados continuam salvos localmente mesmo offline</small></div></div>
+          <div class="v74-cloud-title"><span>1</span><div><b>Conexão com a nuvem</b><small>Supabase + Conta JB — dados continuam salvos localmente mesmo offline</small></div></div>
           <label>URL do projeto Supabase<input id="v74SupabaseUrl" type="url" placeholder="https://seu-projeto.supabase.co" autocomplete="off"></label>
-          <label>Chave pública (anon key)<textarea id="v74SupabaseKey" rows="3" placeholder="Cole a anon key do projeto"></textarea></label>
+          <label>Chave pública (publishable / anon key)<textarea id="v74SupabaseKey" rows="3" placeholder="Cole a anon key do projeto"></textarea></label>
           <div class="v74-actions"><button type="button" onclick="v74SaveCloudConfig()">Salvar e conectar</button><button type="button" class="secondary" onclick="v74TestCloud()">Testar conexão</button></div>
           <div id="v74CloudStatus" class="v74-status offline"><b>OFFLINE LOCAL</b><small>Nenhuma nuvem configurada.</small></div>
         </div>
@@ -4285,16 +4285,114 @@ function activeShareId(){var m=getMap();return activeTournamentId?m[activeTourna
 function makeCode(){var chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',out='JB-';for(var i=0;i<8;i++)out+=chars[Math.floor(Math.random()*chars.length)];return out}
 function publicLink(code){var c=getCfg(),u=new URL(location.href);u.hash='';u.search='';u.searchParams.set('public',code);if(validCfg(c)){u.searchParams.set('sb',c.url);u.searchParams.set('ak',c.key)}return u.toString()}
 function renderShare(){var code=activeShareId(),inp=$id('v74ShareId'),lnk=$id('v74PublicLink'),qr=$id('v74QrWrap');if(inp)inp.value=code;if(lnk)lnk.value=code?publicLink(code):'';if(qr){qr.innerHTML=code?'<img alt="QR Code do torneio" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data='+encodeURIComponent(publicLink(code))+'"><small>Escaneie para abrir o Portal Público</small>':'<div>QR Code aparecerá após a publicação.</div>'}}
-function loadUi(){var c=getCfg();if($id('v74SupabaseUrl'))$id('v74SupabaseUrl').value=c.url||'';if($id('v74SupabaseKey'))$id('v74SupabaseKey').value=c.key||'';if($id('v74AutoSync'))$id('v74AutoSync').checked=c.auto!==false;renderShare();if(validCfg(c))status('offline','NUVEM CONFIGURADA','Pronta para conectar.');else status('offline','OFFLINE LOCAL','Nenhuma nuvem configurada.')}
-async function anonSession(force){var c=getCfg();if(!validCfg(c))throw new Error('Configure URL e anon key do Supabase.');var a=safeParse(localStorage.getItem(AUTH_KEY)||'',null);if(!force&&a&&a.access_token&&a.expires_at>Date.now()+60000)return a;if(!force&&a&&a.refresh_token){try{var rr=await fetch(normUrl(c.url)+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:{'apikey':c.key,'Content-Type':'application/json'},body:JSON.stringify({refresh_token:a.refresh_token})});var rd=await rr.json().catch(function(){return{}});if(rr.ok&&rd.access_token){a={access_token:rd.access_token,refresh_token:rd.refresh_token||a.refresh_token,user_id:rd.user&&rd.user.id||a.user_id,expires_at:Date.now()+Number(rd.expires_in||3600)*1000};localStorage.setItem(AUTH_KEY,JSON.stringify(a));return a}}catch(e){}}var r=await fetch(normUrl(c.url)+'/auth/v1/signup',{method:'POST',headers:{'apikey':c.key,'Content-Type':'application/json'},body:'{}'});var d=await r.json().catch(function(){return{}});if(!r.ok||!d.access_token)throw new Error((d&&d.msg)||'Ative Anonymous Sign-Ins no Supabase.');a={access_token:d.access_token,refresh_token:d.refresh_token||'',user_id:d.user&&d.user.id,expires_at:Date.now()+Number(d.expires_in||3600)*1000};localStorage.setItem(AUTH_KEY,JSON.stringify(a));return a}
-function cloudPayload(){return {app_version:'7.4.3',tournament_id:activeTournamentId,title:(($id('title')||{}).value||'Torneio'),snapshot:currentTournamentSnapshot(),published_at:new Date().toISOString()}}
-async function upsertNow(silent){if(publicMode||pushBusy)return false;var c=getCfg();if(!validCfg(c)){if(!silent)showNotice('Configure a nuvem primeiro.');return false}pushBusy=true;try{status('connecting','SINCRONIZANDO','Enviando alterações...');var a=await anonSession(false),map=getMap(),code=map[activeTournamentId]||makeCode();map[activeTournamentId]=code;setMap(map);var row={share_id:code,owner_id:a.user_id,title:(($id('title')||{}).value||'Torneio'),payload:cloudPayload(),is_public:true,updated_at:new Date().toISOString()};var r=await fetch(normUrl(c.url)+'/rest/v1/jb_tournaments?on_conflict=share_id',{method:'POST',headers:headers(a.access_token,{'Prefer':'resolution=merge-duplicates,return=representation'}),body:JSON.stringify(row)});var d=await r.text();if(!r.ok)throw new Error(safeParse(d,{message:d}).message||d||'Falha ao publicar');var now=Date.now();c.lastSync=now;setCfg(c);if($id('v74LastSync'))$id('v74LastSync').textContent=fmt(now);renderShare();status('online','ONLINE','Categoria publicada e sincronizada.');if(!silent)showNotice('Torneio sincronizado com a nuvem.',true);return true}catch(e){status('error','ERRO DE SINCRONIZAÇÃO',e.message||String(e));if(!silent)showNotice('Nuvem: '+(e.message||e));return false}finally{pushBusy=false}}
+function loadUi(){
+  var c=getCfg();
+  if($id('v74SupabaseUrl'))$id('v74SupabaseUrl').value=c.url||'';
+  if($id('v74SupabaseKey'))$id('v74SupabaseKey').value=c.key||'';
+  if($id('v74AutoSync'))$id('v74AutoSync').checked=c.auto!==false;
+  renderShare();
+  var s=safeParse(localStorage.getItem('jb_v780_session')||'',null);
+  if(validCfg(c)&&s&&s.access_token&&s.user&&s.user.id)
+    status('online','CONTA JB CONECTADA','Sua sessão autenticada será usada para sincronizar e publicar.');
+  else if(validCfg(c))
+    status('offline','NUVEM CONFIGURADA','Entre na Conta JB para sincronizar.');
+  else
+    status('offline','OFFLINE LOCAL','Nenhuma nuvem configurada.');
+}
+async function accountSession(force){
+  var c=getCfg();
+  if(!validCfg(c))throw new Error('Configure a URL e a chave pública do Supabase.');
+  var s=safeParse(localStorage.getItem('jb_v780_session')||'',null);
+  if(!s||!s.access_token||!s.refresh_token||!s.user||!s.user.id){
+    throw new Error('Entre primeiro na sua Conta JB Cloud.');
+  }
+
+  if(!force && Number(s.expires_at||0)>Date.now()+60000){
+    return {
+      access_token:s.access_token,
+      refresh_token:s.refresh_token,
+      user_id:s.user.id,
+      expires_at:s.expires_at
+    };
+  }
+
+  var r=await fetch(normUrl(c.url)+'/auth/v1/token?grant_type=refresh_token',{
+    method:'POST',
+    headers:{'apikey':c.key,'Content-Type':'application/json'},
+    body:JSON.stringify({refresh_token:s.refresh_token})
+  });
+  var d=await r.json().catch(function(){return{}});
+  if(!r.ok||!d.access_token){
+    localStorage.removeItem('jb_v780_session');
+    throw new Error((d&&d.msg)||(d&&d.message)||'Sua sessão da Conta JB expirou. Entre novamente.');
+  }
+
+  s={
+    access_token:d.access_token,
+    refresh_token:d.refresh_token||s.refresh_token,
+    user:d.user||s.user,
+    expires_at:Date.now()+Number(d.expires_in||3600)*1000
+  };
+  localStorage.setItem('jb_v780_session',JSON.stringify(s));
+
+  return {
+    access_token:s.access_token,
+    refresh_token:s.refresh_token,
+    user_id:s.user.id,
+    expires_at:s.expires_at
+  };
+}
+
+function cloudPayload(){return {app_version:'7.8.2',tournament_id:activeTournamentId,title:(($id('title')||{}).value||'Torneio'),snapshot:currentTournamentSnapshot(),published_at:new Date().toISOString()}}
+async function upsertNow(silent){if(publicMode||pushBusy)return false;var c=getCfg();if(!validCfg(c)){if(!silent)showNotice('Configure a nuvem primeiro.');return false}pushBusy=true;try{status('connecting','SINCRONIZANDO','Enviando alterações...');var a=await accountSession(false),map=getMap(),code=map[activeTournamentId]||makeCode();map[activeTournamentId]=code;setMap(map);var row={share_id:code,owner_id:a.user_id,title:(($id('title')||{}).value||'Torneio'),payload:cloudPayload(),is_public:true,updated_at:new Date().toISOString()};var r=await fetch(normUrl(c.url)+'/rest/v1/jb_tournaments?on_conflict=share_id',{method:'POST',headers:headers(a.access_token,{'Prefer':'resolution=merge-duplicates,return=representation'}),body:JSON.stringify(row)});var d=await r.text();if(!r.ok)throw new Error(safeParse(d,{message:d}).message||d||'Falha ao publicar');var now=Date.now();c.lastSync=now;setCfg(c);if($id('v74LastSync'))$id('v74LastSync').textContent=fmt(now);renderShare();status('online','ONLINE','Categoria publicada e sincronizada.');if(!silent)showNotice('Torneio sincronizado com a nuvem.',true);return true}catch(e){status('error','ERRO DE SINCRONIZAÇÃO',e.message||String(e));if(!silent)showNotice('Nuvem: '+(e.message||e));return false}finally{pushBusy=false}}
 async function fetchPublic(code){var c=getCfg();if(!validCfg(c))throw new Error('Este aparelho não possui a configuração pública da nuvem.');var r=await fetch(normUrl(c.url)+'/rest/v1/jb_tournaments?share_id=eq.'+encodeURIComponent(code)+'&is_public=eq.true&select=share_id,title,payload,updated_at&limit=1',{headers:headers(null)});var d=await r.json().catch(function(){return[]});if(!r.ok)throw new Error((d&&d.message)||'Falha ao consultar torneio.');if(!d||!d[0])throw new Error('Torneio público não encontrado.');return d[0]}
 function applyCloudSnapshot(row,forPublic){var p=row&&row.payload&&row.payload.snapshot;if(!p||!p.state)throw new Error('Dados da nuvem inválidos.');var id=forPublic?'public_'+publicCode:activeTournamentId;tournaments[id]={title:p.title||row.title||'Torneio',participants:p.participants||'',qualifiersPerGroup:p.qualifiersPerGroup||'2',matchFormat:p.matchFormat||'standard6',state:p.state,manualTeamsDraft:p.manualTeamsDraft||[],eventLogoData:p.eventLogoData||'',eventLogoName:p.eventLogoName||'',updatedAt:p.updatedAt||Date.now()};activeTournamentId=id;applyTournamentById(id);if(window.v73RenderPublic)v73RenderPublic();if(window.v73RenderPodium)v73RenderPodium();}
 async function pullNow(silent){if(pullBusy)return false;var code=activeShareId();if(!code){if(!silent)showNotice('Esta categoria ainda não foi publicada.');return false}pullBusy=true;try{status('connecting','BAIXANDO','Buscando versão da nuvem...');var row=await fetchPublic(code);applyCloudSnapshot(row,false);save();status('online','ONLINE','Versão da nuvem carregada.');if(!silent)showNotice('Versão da nuvem carregada.',true);return true}catch(e){status('error','ERRO DE SINCRONIZAÇÃO',e.message||String(e));if(!silent)showNotice('Nuvem: '+(e.message||e));return false}finally{pullBusy=false}}
 function schedulePush(){var c=getCfg();if(publicMode||!validCfg(c)||c.auto===false||!activeShareId())return;clearTimeout(syncTimer);syncTimer=setTimeout(function(){upsertNow(true)},1200)}
-window.v74SaveCloudConfig=function(){var c=getCfg();c.url=normUrl(($id('v74SupabaseUrl')||{}).value);c.key=String(($id('v74SupabaseKey')||{}).value||'').trim();c.auto=($id('v74AutoSync')||{}).checked!==false;setCfg(c);localStorage.removeItem(AUTH_KEY);loadUi();v74TestCloud()}
-window.v74TestCloud=async function(){var c=getCfg();if(!validCfg(c)){status('error','CONFIGURAÇÃO INCOMPLETA','Informe URL e anon key válidas.');return}try{status('connecting','CONECTANDO','Validando acesso...');await anonSession(true);var r=await fetch(normUrl(c.url)+'/rest/v1/jb_tournaments?select=share_id&limit=1',{headers:headers(null)});if(!r.ok){var d=await r.json().catch(function(){return{}});throw new Error(d.message||'Tabela jb_tournaments não encontrada.')}status('online','ONLINE','Conexão validada com sucesso.');showNotice('Conexão com a nuvem validada.',true)}catch(e){status('error','FALHA NA CONEXÃO',e.message||String(e));showNotice('Nuvem: '+(e.message||e))}}
+window.v74SaveCloudConfig=function(){
+  var c=getCfg();
+  c.url=normUrl(($id('v74SupabaseUrl')||{}).value);
+  c.key=String(($id('v74SupabaseKey')||{}).value||'').trim();
+  c.auto=($id('v74AutoSync')||{}).checked!==false;
+  setCfg(c);
+  loadUi();
+  v74TestCloud();
+}
+window.v74TestCloud=async function(){
+  var c=getCfg();
+  if(!validCfg(c)){
+    status('error','CONFIGURAÇÃO INCOMPLETA','Informe URL e chave pública válidas.');
+    return;
+  }
+  try{
+    status('connecting','CONECTANDO','Validando sua Conta JB Cloud...');
+    var a=await accountSession(false);
+
+    var r1=await fetch(
+      normUrl(c.url)+'/rest/v1/jb_user_data?select=user_id,updated_at&user_id=eq.'+encodeURIComponent(a.user_id),
+      {headers:headers(a.access_token)}
+    );
+    if(!r1.ok){
+      var d1=await r1.json().catch(function(){return{}});
+      throw new Error(d1.message||'Não foi possível acessar os dados privados da sua Conta JB.');
+    }
+
+    var r2=await fetch(
+      normUrl(c.url)+'/rest/v1/jb_tournaments?select=share_id&limit=1',
+      {headers:headers(a.access_token)}
+    );
+    if(!r2.ok){
+      var d2=await r2.json().catch(function(){return{}});
+      throw new Error(d2.message||'Não foi possível acessar a área de publicação do torneio.');
+    }
+
+    status('online','CONTA JB CONECTADA','Login autenticado e nuvem validados com sucesso.');
+    showNotice('Conta JB Cloud conectada ao Supabase.',true);
+  }catch(e){
+    status('error','FALHA NA CONEXÃO',e.message||String(e));
+    showNotice('Nuvem: '+(e.message||e));
+  }
+}
 window.v74PublishNow=function(){upsertNow(false)}
 window.v74PullNow=function(){pullNow(false)}
 window.v74ToggleAutoSync=function(v){var c=getCfg();c.auto=!!v;setCfg(c);if(v)schedulePush()}

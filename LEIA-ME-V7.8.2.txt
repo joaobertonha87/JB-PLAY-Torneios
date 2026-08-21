@@ -1,0 +1,17 @@
+JB TORNEIOS PRO V7.8.2 — NUVEM AUTENTICADA
+
+Correção principal:
+- A tela Nuvem / Compartilhar não usa mais Anonymous Sign-ins.
+- Testar conexão usa a sessão da Conta JB já autenticada.
+- Valida a tabela privada jb_user_data com o user_id da conta.
+- Publicar / sincronizar usa o mesmo user_id autenticado.
+- Anonymous Sign-ins deve permanecer DESATIVADO no Supabase.
+- Não é necessário executar outro SQL.
+
+Depois do deploy:
+1. Entre na Conta JB no PC.
+2. Abra Nuvem / compartilhar.
+3. Clique em Testar conexão.
+4. O esperado é aparecer CONTA JB CONECTADA.
+5. Clique em Publicar / sincronizar agora.
+6. Depois entre no iPad com a mesma Conta JB.
