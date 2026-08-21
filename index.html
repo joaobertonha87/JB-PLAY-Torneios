@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Play V10.0.4 · Layout Integrado</title>
+  <title>JB Play V10.0.5 · Dark App Layout</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -2458,6 +2458,325 @@ body.v74-public-only .app{
 }
 </style>
 
+
+<style id="jb-v1005-dark-shell-sidebar-fit">
+/* =========================================================
+   V10.0.5 — FUNDO TOTAL DO APP + MENU SEM ROLAGEM
+   ========================================================= */
+
+/* 1) FUNDO TOTAL: elimina definitivamente o branco/cinza claro */
+html,
+body,
+body:not(.v74-public-only),
+.app,
+body:not(.v74-public-only) .app,
+body:not(.v74-public-only) .jb-page,
+body:not(.v74-public-only) #jbPageDashboard,
+body:not(.v74-public-only) #jbPageInscritos,
+body:not(.v74-public-only) #jbPageDuplas,
+body:not(.v74-public-only) #jbPageGroups,
+body:not(.v74-public-only) #jbPageJogos,
+body:not(.v74-public-only) #jbPageEvento,
+body:not(.v74-public-only) #jbPageCentral,
+body:not(.v74-public-only) #jbPageHistorico,
+body:not(.v74-public-only) #jbPageAparencia,
+body:not(.v74-public-only) #jbPageNuvem,
+body:not(.v74-public-only) #jbPagePodio,
+body:not(.v74-public-only) #jbPageMata,
+body:not(.v74-public-only) #jbPageArquivos {
+  background:
+    radial-gradient(circle at 84% 0%,rgba(18,92,140,.18),transparent 30rem),
+    linear-gradient(180deg,#071522 0%,#0a1f31 52%,#081827 100%) !important;
+  color:#f2f7fb!important;
+}
+
+/* cabeçalho de cada módulo acompanha o mesmo layout */
+body:not(.v74-public-only) .jb-page-head{
+  background:
+    linear-gradient(180deg,rgba(7,21,34,.98) 76%,rgba(7,21,34,0))!important;
+}
+body:not(.v74-public-only) .jb-page-head h2,
+body:not(.v74-public-only) .jb-dashboard-section-head h3,
+body:not(.v74-public-only) .section-title h2{
+  color:#f4f8fb!important;
+}
+body:not(.v74-public-only) .jb-page-head p,
+body:not(.v74-public-only) .jb-dashboard-section-head small,
+body:not(.v74-public-only) .section-title p{
+  color:#8298aa!important;
+}
+
+/* superfícies internas: sem branco */
+body:not(.v74-public-only) .card,
+body:not(.v74-public-only) .group,
+body:not(.v74-public-only) .round,
+body:not(.v74-public-only) .jb-theme-card,
+body:not(.v74-public-only) .v74-cloud-card,
+body:not(.v74-public-only) .v73-public-card,
+body:not(.v74-public-only) .jb-v7-game-toolbar,
+body:not(.v74-public-only) .jb-v7-games-summary>div,
+body:not(.v74-public-only) .jb-view-summary .card,
+body:not(.v74-public-only) .jb-access-card,
+body:not(.v74-public-only) .jb-metric-card,
+body:not(.v74-public-only) .jb-dash-progress-card,
+body:not(.v74-public-only) .jb-v7-assistant,
+body:not(.v74-public-only) .v800-command,
+body:not(.v74-public-only) .v10-kpis>div,
+body:not(.v74-public-only) .v10-panel,
+body:not(.v74-public-only) .v10-history-summary>div,
+body:not(.v74-public-only) .v10-history-card,
+body:not(.v74-public-only) .jb-theme-preview-card,
+body:not(.v74-public-only) .v73-third-match {
+  background:linear-gradient(180deg,rgba(13,35,53,.96),rgba(10,29,45,.98))!important;
+  border-color:rgba(151,185,210,.13)!important;
+  color:#eef5fa!important;
+  box-shadow:0 12px 32px rgba(0,0,0,.13)!important;
+}
+
+/* textos dos cards */
+body:not(.v74-public-only) .jb-access-card b,
+body:not(.v74-public-only) .jb-metric-card strong,
+body:not(.v74-public-only) .jb-v7-assistant-copy h3,
+body:not(.v74-public-only) .v800-command h3,
+body:not(.v74-public-only) .v10-panel-head h3,
+body:not(.v74-public-only) .v10-history-card h3,
+body:not(.v74-public-only) .v10-kpis b,
+body:not(.v74-public-only) .v10-history-summary b {
+  color:#f2f7fb!important;
+}
+body:not(.v74-public-only) .jb-access-card small,
+body:not(.v74-public-only) .jb-metric-card small,
+body:not(.v74-public-only) .jb-metric-card span,
+body:not(.v74-public-only) .jb-v7-assistant-copy p,
+body:not(.v74-public-only) .v800-command p,
+body:not(.v74-public-only) .v10-history-card p,
+body:not(.v74-public-only) .v10-kpis span,
+body:not(.v74-public-only) .v10-kpis small {
+  color:#8298aa!important;
+}
+
+/* Central de Comando */
+body:not(.v74-public-only) .v10-court,
+body:not(.v74-public-only) .v10-queue-item,
+body:not(.v74-public-only) .v10-next-action,
+body:not(.v74-public-only) .v10-podium-row div{
+  background:#0b263b!important;
+  border-color:rgba(151,185,210,.12)!important;
+  color:#ecf4f9!important;
+}
+body:not(.v74-public-only) .v10-court.free{
+  background:linear-gradient(180deg,rgba(201,255,0,.08),rgba(11,38,59,.98))!important;
+}
+body:not(.v74-public-only) .v10-court b,
+body:not(.v74-public-only) .v10-queue-item b,
+body:not(.v74-public-only) .v10-next-action{
+  color:#eaf3f8!important;
+}
+body:not(.v74-public-only) .v10-court small,
+body:not(.v74-public-only) .v10-queue-item small{
+  color:#7f96a8!important;
+}
+
+/* jogos/tabelas no tema escuro */
+body:not(.v74-public-only) .match,
+body:not(.v74-public-only) .jb-games-group .match,
+body:not(.v74-public-only) .ko-match{
+  background:#0d2a40!important;
+  border-color:rgba(151,185,210,.12)!important;
+  color:#eef5fa!important;
+}
+body:not(.v74-public-only) .score{
+  background:#081d2d!important;
+  color:#f4f9fc!important;
+  border-color:#24435a!important;
+}
+body:not(.v74-public-only) table{
+  background:#0c2539!important;
+  color:#eaf2f7!important;
+}
+body:not(.v74-public-only) thead th{
+  background:#0a2032!important;
+  color:#98abba!important;
+}
+body:not(.v74-public-only) tbody tr{
+  border-color:rgba(255,255,255,.06)!important;
+}
+body:not(.v74-public-only) tbody tr.qual{
+  background:rgba(201,255,0,.07)!important;
+}
+
+/* inputs permanecem claros apenas como campos de edição,
+   não como fundo da ferramenta */
+body:not(.v74-public-only) input,
+body:not(.v74-public-only) textarea,
+body:not(.v74-public-only) select{
+  background:#f8fbfd!important;
+  color:#15344b!important;
+}
+
+/* topbar integrada ao mesmo tema */
+body:not(.v74-public-only) .jb-v9-topbar{
+  background:rgba(7,21,34,.96)!important;
+  border-color:rgba(255,255,255,.07)!important;
+  color:#f2f7fb!important;
+}
+body:not(.v74-public-only) .jb-v9-context strong{
+  color:#f4f8fb!important;
+}
+body:not(.v74-public-only) .jb-v9-context small,
+body:not(.v74-public-only) .jb-v9-context span{
+  color:#7890a2!important;
+}
+body:not(.v74-public-only) .jb-v9-live-action,
+body:not(.v74-public-only) .jb-v9-account,
+body:not(.v74-public-only) .jb-v9-cloud-pill{
+  background:#0b263b!important;
+  border-color:rgba(255,255,255,.08)!important;
+}
+body:not(.v74-public-only) .jb-v9-live-action,
+body:not(.v74-public-only) .jb-v9-account b,
+body:not(.v74-public-only) .jb-v9-cloud-pill b{
+  color:#eaf3f8!important;
+}
+
+/* 2) MENU LATERAL: todos os itens visíveis, SEM scrollbar */
+.jb-sidebar{
+  display:flex!important;
+  flex-direction:column!important;
+  height:100dvh!important;
+  overflow:hidden!important;
+  padding:10px 8px!important;
+}
+.jb-side-brand{
+  flex:0 0 58px!important;
+  height:58px!important;
+  min-height:58px!important;
+  padding:4px 8px 8px!important;
+  margin:0 0 4px!important;
+}
+.jb-side-brand img{
+  max-height:46px!important;
+}
+.jb-v9-side-product{
+  flex:0 0 auto!important;
+  padding:4px 10px 7px!important;
+}
+.jb-side-section{
+  flex:0 0 auto!important;
+  padding:3px 10px!important;
+  margin:0!important;
+}
+.jb-side-nav{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  scrollbar-width:none!important;
+  -ms-overflow-style:none!important;
+  display:grid!important;
+  grid-template-rows:repeat(13,minmax(0,1fr))!important;
+  gap:2px!important;
+  padding:2px 0!important;
+}
+.jb-side-nav::-webkit-scrollbar{
+  display:none!important;
+  width:0!important;
+  height:0!important;
+}
+.jb-side-nav a{
+  min-height:0!important;
+  height:100%!important;
+  max-height:44px!important;
+  padding:0 9px!important;
+  border-radius:9px!important;
+  font-size:10px!important;
+  line-height:1.1!important;
+  overflow:hidden!important;
+}
+.jb-side-icon{
+  width:25px!important;
+  height:25px!important;
+  min-width:25px!important;
+  font-size:13px!important;
+}
+.jb-side-foot{
+  flex:0 0 auto!important;
+  margin-top:4px!important;
+  padding:6px 8px!important;
+  min-height:0!important;
+}
+.jb-side-foot b{
+  font-size:8px!important;
+}
+.jb-side-foot span{
+  display:none!important;
+}
+
+/* em telas mais baixas, reduz ainda mais para caber tudo sem rolagem */
+@media(max-height:780px) and (min-width:821px){
+  .jb-side-brand{
+    flex-basis:48px!important;
+    height:48px!important;
+    min-height:48px!important;
+  }
+  .jb-side-brand img{max-height:38px!important}
+  .jb-v9-side-product{padding:2px 9px 4px!important}
+  .jb-v9-side-product small{display:none!important}
+  .jb-side-section{display:none!important}
+  .jb-side-nav{
+    gap:1px!important;
+  }
+  .jb-side-nav a{
+    max-height:39px!important;
+    padding:0 7px!important;
+    font-size:9px!important;
+  }
+  .jb-side-icon{
+    width:23px!important;
+    height:23px!important;
+    min-width:23px!important;
+    font-size:12px!important;
+  }
+  .jb-side-foot{
+    padding:4px 7px!important;
+    margin-top:2px!important;
+  }
+  .jb-side-foot b{display:none!important}
+}
+
+/* iPad compacto: menu sem scrollbar e todos os ícones */
+@media(max-width:1180px) and (min-width:821px){
+  .jb-sidebar{
+    width:78px!important;
+  }
+  .jb-side-nav{
+    grid-template-rows:repeat(13,minmax(0,1fr))!important;
+  }
+  .jb-side-nav a{
+    justify-content:center!important;
+    padding:0!important;
+    max-height:44px!important;
+  }
+  .jb-side-nav a span:last-child{
+    display:none!important;
+  }
+  .jb-v9-side-product,
+  .jb-side-section,
+  .jb-side-foot{
+    display:none!important;
+  }
+  .jb-side-brand{
+    flex:0 0 54px!important;
+  }
+}
+
+/* Portal Público continua independente e limpo */
+body.v74-public-only,
+body.v74-public-only .app,
+body.v74-public-only #jbPagePublico{
+  background:#eef3f7!important;
+}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
@@ -2521,7 +2840,7 @@ body.v74-public-only .app{
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB PLAY V10.0.4</small>
+      <small>JB PLAY V10.0.5</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
