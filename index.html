@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Play V9.0.1.1 · Commercial App UI</title>
+  <title>JB Play V10 · Tournament Control System</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -2131,6 +2131,165 @@ tbody tr.qual{background:#f2f8df!important}
 }
 </style>
 
+
+<style id="jb-v910-native-app">
+:root{
+ --v91-bg:#eef3f7;--v91-surface:#fff;--v91-ink:#0b2033;--v91-muted:#748596;
+ --v91-line:#d9e3eb;--v91-dark:#071522;--v91-dark2:#0a1f31;
+ --v91-accent:var(--jb-theme-accent,#c9ff00);
+}
+html,body{height:100%;overflow:hidden!important;background:var(--v91-bg)!important}
+body{overscroll-behavior:none!important}
+.app{
+ height:100dvh!important;overflow:hidden!important;display:grid!important;
+ grid-template-rows:auto 1fr!important;background:var(--v91-bg)!important
+}
+.jb-v9-topbar{
+ position:relative!important;min-height:62px!important;padding:7px 16px!important;
+ box-shadow:0 1px 0 rgba(10,30,45,.06)!important
+}
+.jb-v9-appmark{width:40px!important;height:40px!important;min-height:40px!important;border-radius:11px!important}
+.jb-v9-context strong{font-size:13px!important}
+.jb-v9-live-action,.jb-v9-account,.jb-v9-cloud-pill{height:38px!important;border-radius:10px!important}
+.hero,.quick-nav,.footer{display:none!important}
+
+.jb-sidebar{background:linear-gradient(180deg,var(--v91-dark),var(--v91-dark2))!important}
+.jb-side-nav a{min-height:42px!important;border-radius:10px!important;font-size:11px!important}
+.jb-side-icon{width:26px!important;height:26px!important;border-radius:7px!important;font-size:14px!important}
+
+.jb-page{
+ height:100%!important;min-height:0!important;overflow:auto!important;
+ padding:16px 20px 28px!important;overscroll-behavior:contain!important
+}
+.jb-page-head{
+ position:sticky!important;top:0!important;z-index:12!important;
+ background:linear-gradient(180deg,var(--v91-bg) 78%,rgba(238,243,247,0))!important;
+ padding:4px 0 13px!important;margin:0 0 8px!important
+}
+.jb-page-head h2{font-size:23px!important}.jb-page-head p{font-size:10px!important}
+.jb-back{min-height:34px!important;height:34px!important;border-radius:9px!important}
+
+/* Home de aplicativo */
+#jbPageDashboard{
+ display:grid!important;grid-template-columns:minmax(0,1.45fr) minmax(280px,.55fr)!important;
+ grid-auto-rows:min-content!important;gap:12px!important;align-content:start!important
+}
+#jbPageDashboard .jb-dash-hero{grid-column:1/-1!important}
+#jbPageDashboard .jb-dash-metrics{grid-column:1!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;margin:0!important}
+#jbPageDashboard .jb-dash-progress-card{grid-column:1!important}
+#jbPageDashboard .jb-v7-assistant{grid-column:2!important;grid-row:2 / span 2!important;margin:0!important}
+#jbPageDashboard .v800-command,#jbPageDashboard .jb-dashboard-section-head,#jbPageDashboard .jb-access-grid{grid-column:1/-1!important}
+#jbPageDashboard .jb-access-grid{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+.jb-dash-hero{min-height:142px!important;padding:18px 21px!important}
+.jb-dash-hero h2{font-size:27px!important}
+.jb-metric-card{min-height:90px!important;padding:12px!important}.jb-metric-card strong{font-size:24px!important}
+.jb-v7-assistant{display:flex!important;flex-direction:column!important;justify-content:center!important;padding:16px!important}
+.jb-v7-assistant button{width:100%!important;margin-top:10px!important}
+.jb-access-card{min-height:102px!important;padding:12px!important}.jb-access-card .ico{margin-bottom:8px!important}
+
+/* Componentes nativos */
+.card,.group,.jb-theme-card,.v74-cloud-card,.v73-public-card,.jb-v7-game-toolbar,.jb-v7-games-summary>div{
+ border-radius:14px!important;border:1px solid var(--v91-line)!important;
+ box-shadow:0 4px 14px rgba(10,31,49,.045)!important
+}
+button{min-height:40px!important;border-radius:10px!important}
+input,textarea,select{border-radius:9px!important}
+
+/* Central de Jogos como tela operacional */
+#jbPageJogos{display:grid!important;grid-template-rows:auto auto auto auto 1fr!important;overflow:hidden!important}
+#jbPageJogos .jb-page-head{position:relative!important}
+.jb-v7-game-toolbar{position:relative!important;top:auto!important;padding:9px!important;margin:0 0 8px!important}
+#gamesArea{overflow:auto!important;min-height:0!important;padding-right:3px!important}
+.jb-games-group{margin-bottom:9px!important}.jb-games-group .match{min-height:60px!important;padding:8px!important;margin:5px 0!important}
+.score{height:40px!important;min-height:40px!important;font-size:15px!important}
+
+/* Console de evento */
+#jbPageEvento{display:grid!important;grid-template-rows:auto auto auto 1fr!important;overflow:hidden!important;padding-bottom:16px!important}
+#jbPageEvento .jb-page-head{position:relative!important;background:transparent!important}
+.jb-v7-live-head{padding:14px 16px!important;border-radius:15px!important}
+.jb-v7-live-grid{overflow:auto!important;min-height:0!important;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))!important}
+.jb-v7-live-court{min-height:140px!important;border-radius:14px!important}
+.jb-v7-queue{max-height:210px!important;overflow:auto!important}
+
+/* Bracket como canvas horizontal */
+#jbPageMata{display:grid!important;grid-template-rows:auto auto 1fr!important;overflow:hidden!important}
+#jbPageMata .jb-page-head{position:relative!important}
+#knockoutArea{min-height:0!important;overflow:auto!important;padding:4px 6px 16px!important}
+.bracket-rounds{min-height:100%!important;align-items:center!important}
+.bracket-rounds .round{width:270px!important;min-width:270px!important;max-height:calc(100dvh - 180px)!important;overflow:auto!important}
+
+/* Configurações */
+#jbPageAparencia .jb-theme-editor{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+.v74-cloud-grid{grid-template-columns:1fr 1fr!important;gap:12px!important}
+
+/* Dock nativo */
+.mobile-dock{
+ height:64px!important;min-height:64px!important;padding:6px!important;
+ grid-template-columns:repeat(5,1fr)!important;border-radius:18px!important;
+ background:rgba(7,21,34,.96)!important
+}
+.mobile-dock a{
+ min-height:50px!important;display:flex!important;flex-direction:column!important;
+ align-items:center!important;justify-content:center!important;gap:2px!important;font-size:8px!important
+}
+
+/* iPad */
+@media(max-width:1180px) and (min-width:821px){
+ #jbPageDashboard{grid-template-columns:1fr!important}
+ #jbPageDashboard .jb-dash-metrics,#jbPageDashboard .jb-dash-progress-card,#jbPageDashboard .jb-v7-assistant,
+ #jbPageDashboard .v800-command,#jbPageDashboard .jb-dashboard-section-head,#jbPageDashboard .jb-access-grid{
+  grid-column:1!important;grid-row:auto!important
+ }
+ #jbPageDashboard .jb-access-grid{grid-template-columns:repeat(4,1fr)!important}
+}
+
+/* iPad/iPhone */
+@media(max-width:820px){
+ .app{height:100dvh!important;padding-bottom:74px!important}
+ .jb-v9-topbar{min-height:56px!important;padding:6px 10px!important}
+ .jb-page{padding:13px 11px 17px!important}
+ #jbPageDashboard{display:block!important}
+ #jbPageDashboard>*{margin-bottom:9px!important}
+ #jbPageDashboard .jb-dash-metrics{grid-template-columns:repeat(2,1fr)!important}
+ #jbPageDashboard .jb-access-grid{grid-template-columns:repeat(2,1fr)!important}
+ #jbPageJogos,#jbPageEvento,#jbPageMata{display:block!important;overflow:auto!important}
+ #gamesArea,#knockoutArea{overflow:visible!important}
+ #jbPageAparencia .jb-theme-editor,.v74-cloud-grid{grid-template-columns:1fr!important}
+ .mobile-dock{display:grid!important}
+}
+@media(max-width:520px){
+ .jb-page{padding:11px 9px 14px!important}.jb-page-head h2{font-size:20px!important}
+ .jb-dash-hero{min-height:128px!important;padding:14px!important}.jb-dash-hero h2{font-size:22px!important}
+ .jb-metric-card{min-height:80px!important}.jb-access-card{min-height:84px!important}
+}
+@media(display-mode:standalone){
+ .app{height:100dvh!important}
+ .jb-v9-topbar{padding-top:calc(6px + env(safe-area-inset-top))!important}
+ .mobile-dock{bottom:calc(8px + env(safe-area-inset-bottom))!important}
+}
+</style>
+
+
+<style id="jb-v1000-control-system">
+.v10-command-hero{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px 22px;border-radius:17px;background:linear-gradient(120deg,#071d38,#0c4c75);color:#fff;margin-bottom:12px}
+.v10-command-hero span,.v10-panel-head span{font-size:8px;font-weight:1000;letter-spacing:.15em;color:var(--v91-accent,#c9ff00)}
+.v10-command-hero h3{margin:4px 0;font-size:22px}.v10-command-hero p{margin:0;color:#91aabd;font-size:10px}
+.v10-command-actions{display:flex;gap:8px}.v10-auto-btn{background:var(--v91-accent,#c9ff00)!important;color:#071522!important;font-weight:1000!important}
+.v10-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-bottom:10px}
+.v10-kpis>div,.v10-panel,.v10-history-summary>div{background:#fff;border:1px solid #d9e3eb;border-radius:14px;box-shadow:0 5px 16px rgba(10,31,49,.045)}
+.v10-kpis>div{padding:13px}.v10-kpis span,.v10-history-summary span{display:block;color:#8293a1;font-size:7px;font-weight:1000;letter-spacing:.11em}.v10-kpis b{display:block;font-size:25px;color:#0b2033;margin:5px 0 1px}.v10-kpis small{color:#9aa8b3;font-size:8px}
+.v10-command-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.5fr);gap:10px}.v10-panel{padding:14px;min-width:0}.v10-panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px}.v10-panel-head h3{margin:2px 0 0;color:#0b2033;font-size:14px}.v10-panel-head strong{font-size:18px;color:#0b2033}
+.v10-courts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.v10-court{padding:11px;border:1px solid #e0e8ee;border-radius:11px;background:#f8fafb;min-height:92px}.v10-court.free{background:#f5f9ec}.v10-court.busy{border-color:#cbd9e2;background:#f4f8fb}.v10-court span{display:block;font-size:7px;font-weight:1000;color:#7a8e9e;letter-spacing:.1em}.v10-court b{display:block;font-size:10px;color:#18354c;margin:5px 0;line-height:1.3}.v10-court small{font-size:8px;color:#8b9aa6}
+.v10-queue{display:flex;flex-direction:column;gap:7px;max-height:420px;overflow:auto}.v10-queue-item{display:grid;grid-template-columns:25px 1fr auto;gap:8px;align-items:center;padding:9px;border:1px solid #e3eaf0;border-radius:10px}.v10-queue-item>span{width:25px;height:25px;border-radius:8px;background:#0d3554;color:#fff;display:grid;place-items:center;font-size:9px;font-weight:900}.v10-queue-item b{font-size:9px;color:#17344b;line-height:1.3}.v10-queue-item small{display:block;color:#8b9ba7;font-size:7px;margin-top:2px}.v10-queue-item button{min-height:31px!important;height:31px!important;padding:0 8px!important;font-size:8px!important}
+.v10-progress-panel{margin-top:10px}.v10-progress{height:9px;border-radius:999px;background:#e9eef2;overflow:hidden}.v10-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#0e639c,var(--v91-accent,#c9ff00));transition:width .3s}.v10-next-action{margin-top:10px;padding:10px;border-radius:10px;background:#f5f8fa;color:#607687;font-size:9px}
+.v10-history-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:12px}.v10-history-summary>div{padding:14px}.v10-history-summary b{display:block;color:#0b2033;font-size:18px;margin-top:5px}
+.v10-history-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.v10-history-card{background:#fff;border:1px solid #d9e3eb;border-radius:14px;padding:15px;box-shadow:0 5px 16px rgba(10,31,49,.045)}.v10-history-card>span{font-size:7px;color:#7f909d;font-weight:1000;letter-spacing:.12em}.v10-history-card h3{font-size:15px;color:#102c42;margin:5px 0}.v10-history-card p{font-size:9px;color:#7d8e9b;margin:0 0 10px}.v10-podium-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.v10-podium-row div{background:#f5f8fa;border-radius:9px;padding:8px}.v10-podium-row span{display:block;font-size:7px;color:#8b9ba7}.v10-podium-row b{display:block;font-size:8px;color:#19364d;margin-top:3px}
+.v10-empty{padding:24px;text-align:center;color:#8395a3;font-size:10px;border:1px dashed #cfdbe4;border-radius:12px}
+#jbPagePublico .v73-public-head:before{content:"LIVE";display:inline-grid;place-items:center;min-width:40px;height:20px;padding:0 8px;border-radius:999px;background:#ff4966;color:#fff;font-size:7px;font-weight:1000;letter-spacing:.12em;margin-bottom:7px}
+@media(max-width:1100px){.v10-kpis{grid-template-columns:repeat(3,1fr)}.v10-command-grid{grid-template-columns:1fr}.v10-courts{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:820px){.v10-command-hero{align-items:flex-start;flex-direction:column}.v10-command-actions{width:100%;flex-wrap:wrap}.v10-command-actions button{flex:1}.v10-kpis{grid-template-columns:1fr 1fr}.v10-courts{grid-template-columns:1fr 1fr}.v10-history-list{grid-template-columns:1fr}.v10-history-summary{grid-template-columns:1fr 1fr}}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
@@ -2184,15 +2343,17 @@ tbody tr.qual{background:#f2f8df!important}
       <a href="#duplas" data-page-link="duplas"><span class="jb-side-icon">🤝</span><span>Duplas</span></a>
       <a href="#grupos" data-page-link="grupos"><span class="jb-side-icon">🗂️</span><span>Grupos</span></a>
       <a href="#jogos" data-page-link="jogos"><span class="jb-side-icon">🎾</span><span>Jogos / placares</span></a>
+      <a href="#central" data-page-link="central"><span class="jb-side-icon">🎛️</span><span>Central de comando</span></a>
       <a href="#mata-mata" data-page-link="mata"><span class="jb-side-icon">⚔️</span><span>Mata-mata</span></a>
       <a href="#publico" data-page-link="publico"><span class="jb-side-icon">🌐</span><span>Portal público</span></a>
       <a href="#aparencia" data-page-link="aparencia"><span class="jb-side-icon">🎨</span><span>Aparência</span></a>
       <a href="#nuvem" data-page-link="nuvem"><span class="jb-side-icon">☁️</span><span>Nuvem / compartilhar</span></a>
       <a href="#podio" data-page-link="podio"><span class="jb-side-icon">🏆</span><span>Pódio</span></a>
+      <a href="#historico" data-page-link="historico"><span class="jb-side-icon">🕘</span><span>Histórico</span></a>
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB PLAY V9.0.1</small>
+      <small>JB PLAY V10</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -2521,6 +2682,56 @@ tbody tr.qual{background:#f2f8df!important}
     </section>
 
     
+
+    <section class="jb-page" id="jbPageCentral" data-page="central">
+      <div class="jb-page-head">
+        <div><h2>Central de Comando</h2><p>Operação das quadras, fila inteligente e andamento do torneio em uma única tela.</p></div>
+        <button class="jb-back" type="button" data-open-page="dashboard">← Painel</button>
+      </div>
+      <div class="v10-command-hero">
+        <div><span>TOURNAMENT CONTROL SYSTEM</span><h3 id="v10CommandTitle">Torneio atual</h3><p id="v10CommandPhase">Preparando operação...</p></div>
+        <div class="v10-command-actions">
+          <button type="button" class="v10-auto-btn" onclick="v10AutoFillCourts()">⚡ Preencher quadras livres</button>
+          <button type="button" class="secondary" data-open-page="evento">Abrir Modo Evento</button>
+        </div>
+      </div>
+      <div class="v10-kpis">
+        <div><span>QUADRAS ATIVAS</span><b id="v10CourtsTotal">0</b><small>configuradas</small></div>
+        <div><span>EM JOGO / CHAMADOS</span><b id="v10Playing">0</b><small>agora</small></div>
+        <div><span>QUADRAS LIVRES</span><b id="v10FreeCourts">0</b><small>disponíveis</small></div>
+        <div><span>NA FILA</span><b id="v10Waiting">0</b><small>aguardando</small></div>
+        <div><span>FINALIZADOS</span><b id="v10Done">0</b><small>jogos</small></div>
+      </div>
+      <div class="v10-command-grid">
+        <section class="v10-panel">
+          <div class="v10-panel-head"><div><span>OPERAÇÃO AO VIVO</span><h3>Mapa das quadras</h3></div><button type="button" class="secondary" onclick="v10Refresh()">Atualizar</button></div>
+          <div id="v10CourtBoard" class="v10-courts"></div>
+        </section>
+        <section class="v10-panel">
+          <div class="v10-panel-head"><div><span>FILA INTELIGENTE</span><h3>Próximos jogos sugeridos</h3></div></div>
+          <div id="v10SmartQueue" class="v10-queue"></div>
+        </section>
+      </div>
+      <div class="v10-panel v10-progress-panel">
+        <div class="v10-panel-head"><div><span>ANDAMENTO GERAL</span><h3>Progresso do torneio</h3></div><strong id="v10ProgressText">0%</strong></div>
+        <div class="v10-progress"><i id="v10ProgressBar"></i></div>
+        <div id="v10NextAction" class="v10-next-action">Aguardando dados do torneio.</div>
+      </div>
+    </section>
+
+    <section class="jb-page" id="jbPageHistorico" data-page="historico">
+      <div class="jb-page-head">
+        <div><h2>Histórico de Torneios</h2><p>Torneios encerrados ficam arquivados com pódio, participantes e data de conclusão.</p></div>
+        <button class="jb-back" type="button" data-open-page="dashboard">← Painel</button>
+      </div>
+      <div class="v10-history-summary">
+        <div><span>TORNEIOS ENCERRADOS</span><b id="v10HistoryCount">0</b></div>
+        <div><span>JOGOS REGISTRADOS</span><b id="v10HistoryGames">0</b></div>
+        <div><span>ÚLTIMO EVENTO</span><b id="v10HistoryLast">—</b></div>
+      </div>
+      <div id="v10HistoryList" class="v10-history-list"></div>
+    </section>
+
     <section class="jb-page" id="jbPageAparencia" data-page="aparencia">
       <div class="jb-page-head">
         <div>
@@ -5768,6 +5979,110 @@ window.addEventListener('jb:live-sync',syncTopbar);
 document.addEventListener('visibilitychange',function(){if(!document.hidden)syncTopbar()});
 setInterval(syncTopbar,2500);
 setTimeout(syncTopbar,250);
+})();
+</script>
+
+
+<script id="jb-v910-native-runtime">
+(function(){
+'use strict';
+function id(x){return document.getElementById(x)}
+function q(s){return document.querySelector(s)}
+function qa(s){return Array.from(document.querySelectorAll(s))}
+var labels={dashboard:'Painel',central:'Central de Comando',historico:'Histórico',inscritos:'Inscritos',duplas:'Duplas',grupos:'Grupos',jogos:'Jogos',evento:'Evento',mata:'Mata-mata',publico:'Portal',aparencia:'Aparência',nuvem:'Nuvem',podio:'Pódio',arquivos:'Relatórios'};
+
+function syncNative(){
+ try{
+  var active=q('.jb-page.active'), page=active&&active.getAttribute('data-page');
+  if(id('jbV9TopPage'))id('jbV9TopPage').textContent=labels[page]||'JB Play';
+  var tournament=(id('title')&&id('title').value)||'JB Play';
+  document.title=tournament+' · '+(labels[page]||'JB Play');
+  qa('.jb-page').forEach(function(pg){
+   var b=pg.querySelector('.jb-back');
+   if(b)b.style.visibility=pg.getAttribute('data-page')==='dashboard'?'hidden':'visible';
+  });
+ }catch(e){}
+}
+if('ontouchstart' in window||navigator.maxTouchPoints>0)document.documentElement.classList.add('jb-v91-touch');
+document.addEventListener('click',function(e){if(e.target.closest('[data-page-link],[data-open-page]'))setTimeout(syncNative,50)});
+window.addEventListener('popstate',function(){setTimeout(syncNative,50)});
+window.addEventListener('jb:live-sync',syncNative);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)syncNative()});
+setTimeout(syncNative,150);setInterval(syncNative,3000);
+})();
+</script>
+
+
+<script id="jb-v1000-control-runtime">
+(function(){
+'use strict';
+function id(x){return document.getElementById(x)}
+function esc10(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function team10(t){return t&&t.players?t.players.join(' / '):'—'}
+function teamBy10(tid){try{return (state.teams||[]).find(function(t){return t.id===tid})||null}catch(e){return null}}
+function valid10(m){return m&&String(m.aScore==null?'':m.aScore)!==''&&String(m.bScore==null?'':m.bScore)!==''&&Number(m.aScore)!==Number(m.bScore)}
+function games10(){
+ var a=[];try{(state.groups||[]).forEach(function(g,gi){(g.matches||[]).forEach(function(m,mi){a.push({key:'G'+gi+'M'+mi,g:g,gi:gi,mi:mi,m:m})})})}catch(e){}return a
+}
+function ops10(){try{return state.operations||{courtCount:15,assignments:{},statuses:{}}}catch(e){return {courtCount:15,assignments:{},statuses:{}}}}
+function status10(x){
+ var o=ops10();if(valid10(x.m))return 'finished';
+ return (o.statuses&&o.statuses[x.key])||(o.assignments&&o.assignments[x.key]?'playing':'waiting')
+}
+function active10(){return games10().filter(function(x){var s=status10(x);return s==='called'||s==='playing'})}
+function waiting10(){return games10().filter(function(x){return status10(x)==='waiting'})}
+function totalAll10(){
+ var group=games10(),ko=[];try{(state.knockout&&state.knockout.rounds||[]).forEach(function(r){(r.matches||[]).forEach(function(m){if(m.aId&&m.bId)ko.push(m)})});var tp=state.knockout&&state.knockout.thirdPlaceMatch;if(tp&&tp.aId&&tp.bId)ko.push(tp)}catch(e){}
+ return {total:group.length+ko.length,done:group.filter(function(x){return valid10(x.m)}).length+ko.filter(valid10).length}
+}
+function rest10(x){
+ var o=ops10(),last=o.teamLastPlayed||{},now=Date.now(),a=last[x.m.aId],b=last[x.m.bId],ra=a?Math.floor((now-a)/60000):9999,rb=b?Math.floor((now-b)/60000):9999;
+ return Math.min(ra,rb)
+}
+function smartQueue10(){
+ var busy={};active10().forEach(function(x){busy[x.m.aId]=1;busy[x.m.bId]=1});
+ var min=Number(ops10().restMinutes||5);
+ var list=waiting10().filter(function(x){return !busy[x.m.aId]&&!busy[x.m.bId]});
+ list.forEach(function(x){x._rest=rest10(x);x._eligible=x._rest>=min;x._score=(x._eligible?100000:0)+Math.min(x._rest,180)});
+ list.sort(function(a,b){return b._score-a._score});var ok=list.filter(function(x){return x._eligible});return ok.length?ok:list
+}
+window.v10Refresh=function(){
+ var root=id('v10CourtBoard');if(!root)return;
+ var o=ops10(),count=Math.max(1,Math.min(15,Number(o.courtCount)||15)),all=games10(),act=active10(),wait=waiting10(),done=all.filter(function(x){return valid10(x.m)});
+ if(id('v10CommandTitle'))id('v10CommandTitle').textContent=(id('title')&&id('title').value)||'Torneio atual';
+ if(id('v10CourtsTotal'))id('v10CourtsTotal').textContent=count;
+ if(id('v10Playing'))id('v10Playing').textContent=act.length;
+ if(id('v10FreeCourts'))id('v10FreeCourts').textContent=Math.max(0,count-act.length);
+ if(id('v10Waiting'))id('v10Waiting').textContent=wait.length;
+ if(id('v10Done'))id('v10Done').textContent=done.length;
+ var cards=[];for(var c=1;c<=count;c++){var x=act.find(function(y){return Number((o.assignments||{})[y.key])===c});if(x){cards.push('<div class="v10-court busy"><span>QUADRA '+c+' · '+(status10(x)==='called'?'CHAMADO':'EM JOGO')+'</span><b>'+esc10(team10(teamBy10(x.m.aId)))+' × '+esc10(team10(teamBy10(x.m.bId)))+'</b><small>Grupo '+esc10(x.g.name)+'</small></div>')}else cards.push('<div class="v10-court free"><span>QUADRA '+c+'</span><b>Disponível</b><small>Pronta para receber o próximo jogo</small></div>')}root.innerHTML=cards.join('');
+ var q=smartQueue10(),qr=id('v10SmartQueue');if(qr)qr.innerHTML=q.length?q.slice(0,12).map(function(x,i){return '<div class="v10-queue-item"><span>'+(i+1)+'</span><div><b>'+esc10(team10(teamBy10(x.m.aId)))+' × '+esc10(team10(teamBy10(x.m.bId)))+'</b><small>Grupo '+esc10(x.g.name)+' · descanso '+(x._rest>=9999?'livre':x._rest+' min')+'</small></div><button type="button" onclick="v10CallSuggested(\''+x.key+'\')">Chamar</button></div>'}).join(''):'<div class="v10-empty">Nenhum jogo elegível aguardando.</div>';
+ var totals=totalAll10(),pct=totals.total?Math.round(totals.done/totals.total*100):0;if(state&&state.closedAt)pct=100;
+ if(id('v10ProgressText'))id('v10ProgressText').textContent=pct+'%';if(id('v10ProgressBar'))id('v10ProgressBar').style.width=pct+'%';
+ var phase=!all.length?'Crie os grupos para iniciar a operação.':wait.length||act.length?'Fase de grupos em operação':state.knockout?'Mata-mata em andamento':'Fase de grupos concluída';
+ if(state&&state.closedAt)phase='Torneio encerrado oficialmente';if(id('v10CommandPhase'))id('v10CommandPhase').textContent=phase;
+ var next=state&&state.closedAt?'Torneio concluído e arquivado no Histórico.':act.length?'Acompanhe os jogos em quadra. Quando um resultado for lançado, a fila será recalculada automaticamente.':wait.length?'Há '+wait.length+' jogo(s) aguardando. Use “Preencher quadras livres” para chamar automaticamente os próximos elegíveis.':state.knockout?'Continue os resultados do mata-mata até o pódio.':'Todos os grupos terminaram. Gere o mata-mata.';
+ if(id('v10NextAction'))id('v10NextAction').textContent=next;
+ v10RenderHistory();
+}
+window.v10AutoFillCourts=function(){if(typeof window.v7AutoAssignCourts==='function'){window.v7AutoAssignCourts();setTimeout(v10Refresh,100)}else alert('Fila inteligente indisponível nesta tela.')}
+window.v10CallSuggested=function(key){
+ var o=ops10(),count=Math.max(1,Math.min(15,Number(o.courtCount)||15)),used={};active10().forEach(function(x){var c=(o.assignments||{})[x.key];if(c)used[Number(c)]=1});var court=0;for(var c=1;c<=count;c++){if(!used[c]){court=c;break}}
+ if(!court){if(typeof showNotice==='function')showNotice('Não há quadra livre neste momento.');return}
+ if(typeof window.v72CallGame==='function'){window.v72CallGame(key,court);setTimeout(v10Refresh,100)}
+}
+window.v10RenderHistory=function(){
+ var list=id('v10HistoryList');if(!list)return;var rows=[];
+ try{Object.keys(tournaments||{}).forEach(function(k){var t=tournaments[k],s=t&&t.state;if(s&&s.closedAt)rows.push({id:k,t:t,s:s})})}catch(e){}
+ rows.sort(function(a,b){return new Date(b.s.closedAt)-new Date(a.s.closedAt)});
+ var games=0;rows.forEach(function(r){(r.s.groups||[]).forEach(function(g){games+=(g.matches||[]).filter(valid10).length});(r.s.knockout&&r.s.knockout.rounds||[]).forEach(function(rd){games+=(rd.matches||[]).filter(valid10).length})});
+ if(id('v10HistoryCount'))id('v10HistoryCount').textContent=rows.length;if(id('v10HistoryGames'))id('v10HistoryGames').textContent=games;if(id('v10HistoryLast'))id('v10HistoryLast').textContent=rows.length?new Date(rows[0].s.closedAt).toLocaleDateString('pt-BR'):'—';
+ list.innerHTML=rows.length?rows.map(function(r){var s=r.s,ko=s.knockout||{},get=function(tid){var t=(s.teams||[]).find(function(x){return x.id===tid});return team10(t)};return '<article class="v10-history-card"><span>ENCERRADO · '+esc10(new Date(s.closedAt).toLocaleString('pt-BR'))+'</span><h3>'+esc10(r.t.title||'Torneio')+'</h3><p>'+((s.teams||[]).length*2)+' atletas · '+(s.groups||[]).length+' grupos</p><div class="v10-podium-row"><div><span>🏆 CAMPEÃO</span><b>'+esc10(get(ko.championId))+'</b></div><div><span>🥈 VICE</span><b>'+esc10(get(ko.runnerUpId))+'</b></div><div><span>🥉 3º LUGAR</span><b>'+esc10(get(ko.thirdPlaceId))+'</b></div></div></article>'}).join(''):'<div class="v10-empty">Nenhum torneio encerrado ainda. Quando você usar “Encerrar torneio”, ele aparecerá automaticamente aqui.</div>';
+}
+var pageLabels={central:'Central de Comando',historico:'Histórico de Torneios'};
+document.addEventListener('click',function(e){var a=e.target.closest('[data-page-link],[data-open-page]');if(a){var p=a.getAttribute('data-page-link')||a.getAttribute('data-open-page');if(pageLabels[p]&&id('jbV9TopPage'))id('jbV9TopPage').textContent=pageLabels[p];setTimeout(v10Refresh,80)}});
+window.addEventListener('jb:live-sync',v10Refresh);document.addEventListener('visibilitychange',function(){if(!document.hidden)v10Refresh()});
+setInterval(v10Refresh,3000);setTimeout(v10Refresh,350);
 })();
 </script>
 

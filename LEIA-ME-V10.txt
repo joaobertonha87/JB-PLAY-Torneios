@@ -1,0 +1,35 @@
+JB PLAY V10 — TOURNAMENT CONTROL SYSTEM
+
+V10 criada SEM CHECK-IN, conforme solicitado.
+
+NOVOS MÓDULOS
+1. Central de Comando
+- mapa das quadras ativas;
+- jogos chamados/em andamento;
+- quadras livres;
+- fila inteligente;
+- botão para preencher automaticamente quadras livres;
+- chamada manual do próximo jogo sugerido;
+- progresso geral e próxima ação operacional.
+
+2. Fila Inteligente
+- reutiliza o motor de descanso e conflito já existente;
+- evita chamar dupla que já está em quadra;
+- considera descanso mínimo configurado;
+- usa automaticamente as quadras livres.
+
+3. Portal Público Live
+- identificação visual LIVE;
+- continua usando a sincronização em nuvem já existente;
+- resultados e andamento permanecem em somente leitura para o público.
+
+4. Histórico de Torneios
+- torneios encerrados são listados automaticamente;
+- data/hora de encerramento;
+- total de atletas e grupos;
+- campeão, vice e terceiro lugar;
+- resumo de torneios e jogos registrados.
+
+PRESERVADO
+Conta JB, Supabase/RLS, sincronização PC/iPad, 15 quadras, regras gerais de cruzamento,
+súmulas, terceiro lugar, pódio, encerramento oficial, PWA e visual de aplicativo V9.1.
