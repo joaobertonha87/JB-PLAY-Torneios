@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.9.0 — correção estrutural de confrontos e placares */
+/* V7.9.1 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -2856,6 +2856,49 @@ body.jb-auth-locked{overflow:hidden!important}
     const size=nextPowerOfTwo(qualifiers.length);
     const blank=(aId,bId)=>({aId:aId||null,bId:bId||null,aScore:'',bScore:''});
 
+    // ============================================================
+    // REGRA JB — 3 GRUPOS / 2 CLASSIFICADOS POR GRUPO
+    // ============================================================
+    // Com 6 classificados, a chave tem 8 vagas e 2 BYEs.
+    //
+    // Grupo 1: 1º = BYE
+    // Grupo 3: 1º = BYE
+    //
+    // Jogo A = 2º Grupo 2 x 2º Grupo 3
+    // Jogo B = 2º Grupo 1 x 1º Grupo 2
+    //
+    // Semifinal 1 = 1º Grupo 1 x vencedor do Jogo A
+    // Semifinal 2 = 1º Grupo 3 x vencedor do Jogo B
+    //
+    // Dessa forma:
+    // - nenhuma dupla enfrenta alguém do próprio grupo na primeira fase;
+    // - os cabeças que receberam BYE também não podem reencontrar
+    //   o 2º colocado do próprio grupo logo na semifinal.
+    if(qualifiers.length===6){
+      const groups=[...new Set(qualifiers.map(q=>q.group))];
+      if(groups.length===3){
+        const g1=qualifiers.filter(q=>q.group===groups[0]).sort((a,b)=>a.position-b.position);
+        const g2=qualifiers.filter(q=>q.group===groups[1]).sort((a,b)=>a.position-b.position);
+        const g3=qualifiers.filter(q=>q.group===groups[2]).sort((a,b)=>a.position-b.position);
+
+        if(g1.length===2 && g2.length===2 && g3.length===2){
+          return {
+            size:8,
+            specialRule:'3groups-2qualifiers',
+            pairings:[
+              // Alimentam a Semifinal 1
+              blank(g1[0].team.id,null),              // 1º G1 — BYE
+              blank(g2[1].team.id,g3[1].team.id),    // 2º G2 x 2º G3
+
+              // Alimentam a Semifinal 2
+              blank(g3[0].team.id,null),              // 1º G3 — BYE
+              blank(g1[1].team.id,g2[0].team.id)     // 2º G1 x 1º G2
+            ]
+          };
+        }
+      }
+    }
+
     // Dois grupos, duas duplas classificadas por grupo:
     // Semi 1 = 1º A x 2º B | Semi 2 = 1º B x 2º A.
     if(qualifiers.length===4){
@@ -2964,7 +3007,15 @@ body.jb-auth-locked{overflow:hidden!important}
     propagateKnockout(0);
     renderKnockout();
     save();
-    showNotice('Mata-mata gerado automaticamente com base na classificação dos grupos.', true);
+    const tresGruposDoisClassificados =
+      qualifiers.length===6 &&
+      [...new Set(qualifiers.map(q=>q.group))].length===3;
+    showNotice(
+      tresGruposDoisClassificados
+        ? 'Mata-mata gerado: 1º do Grupo 1 e 1º do Grupo 3 avançam de BYE, com cruzamentos intergrupos protegidos.'
+        : 'Mata-mata gerado automaticamente com base na classificação dos grupos.',
+      true
+    );
   }
 
   function propagateKnockout(fromRound){
@@ -4400,7 +4451,7 @@ async function accountSession(force){
   };
 }
 
-function cloudPayload(){return {app_version:'7.9.0',tournament_id:activeTournamentId,title:(($id('title')||{}).value||'Torneio'),snapshot:currentTournamentSnapshot(),published_at:new Date().toISOString()}}
+function cloudPayload(){return {app_version:'7.9.1',tournament_id:activeTournamentId,title:(($id('title')||{}).value||'Torneio'),snapshot:currentTournamentSnapshot(),published_at:new Date().toISOString()}}
 async function upsertNow(silent){
   if(publicMode||pushBusy)return false;
   var c=getCfg();

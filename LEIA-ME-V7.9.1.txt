@@ -1,0 +1,21 @@
+JB TORNEIOS PRO V7.9.1 — CRUZAMENTO DE 3 GRUPOS
+
+Correção do mata-mata quando existem 3 grupos e classificam 2 duplas por grupo.
+
+Chave fixa:
+QUARTAS / ENTRADA
+- 1º Grupo 1 = BYE
+- 2º Grupo 2 x 2º Grupo 3
+- 1º Grupo 3 = BYE
+- 2º Grupo 1 x 1º Grupo 2
+
+SEMIFINAIS
+- 1º Grupo 1 x vencedor de 2º G2 x 2º G3
+- 1º Grupo 3 x vencedor de 2º G1 x 1º G2
+
+Objetivo:
+- impedir confronto entre classificados do mesmo grupo na entrada do mata-mata;
+- impedir que os cabeças com BYE reencontrem o 2º colocado do próprio grupo na semifinal.
+
+As regras de 2 grupos e os demais formatos continuam preservadas.
+Conta JB, RLS e sincronização ao vivo da V7.9.0 permanecem intactas.
