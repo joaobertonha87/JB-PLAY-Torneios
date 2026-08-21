@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Play V9.0 · Commercial App UI</title>
+  <title>JB Play V9.0.1.1 · Commercial App UI</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -2083,6 +2083,54 @@ tbody tr.qual{background:#f2f8df!important}
 }
 </style>
 
+
+<style id="jb-v901-sidebar-fix">
+/* V9.0.1 — corrige sobreposição do rodapé sobre Salvar/PDF */
+.jb-sidebar{
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+}
+.jb-side-brand{flex:0 0 auto!important}
+.jb-v9-side-product{flex:0 0 auto!important}
+.jb-side-section{flex:0 0 auto!important}
+.jb-side-nav{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  padding-bottom:12px!important;
+  scrollbar-width:thin;
+}
+.jb-side-nav a{
+  flex:0 0 auto!important;
+}
+.jb-side-foot{
+  position:static!important;
+  flex:0 0 auto!important;
+  margin-top:10px!important;
+  z-index:1!important;
+  pointer-events:auto!important;
+}
+.jb-side-nav a[data-page-link="arquivos"]{
+  margin-bottom:2px!important;
+  position:relative!important;
+  z-index:3!important;
+}
+
+/* garante acesso em telas com menor altura */
+@media(max-height:820px) and (min-width:821px){
+  .jb-sidebar{padding-top:10px!important;padding-bottom:10px!important}
+  .jb-side-brand{height:66px!important;margin-bottom:6px!important}
+  .jb-v9-side-product{padding:4px 10px 8px!important}
+  .jb-side-section{padding:4px 10px!important}
+  .jb-side-nav{gap:3px!important}
+  .jb-side-nav a{min-height:39px!important}
+  .jb-side-foot{padding:8px 10px!important;margin-top:6px!important}
+  .jb-side-foot span{display:none!important}
+}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
@@ -2144,7 +2192,7 @@ tbody tr.qual{background:#f2f8df!important}
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB PLAY V9.0</small>
+      <small>JB PLAY V9.0.1</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
