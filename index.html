@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Play V10 · Tournament Control System</title>
+  <title>JB Play V10.0.1.0.1 · Tournament Control System</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -2290,6 +2290,24 @@ input,textarea,select{border-radius:9px!important}
 @media(max-width:820px){.v10-command-hero{align-items:flex-start;flex-direction:column}.v10-command-actions{width:100%;flex-wrap:wrap}.v10-command-actions button{flex:1}.v10-kpis{grid-template-columns:1fr 1fr}.v10-courts{grid-template-columns:1fr 1fr}.v10-history-list{grid-template-columns:1fr}.v10-history-summary{grid-template-columns:1fr 1fr}}
 </style>
 
+
+<style id="jb-v1001-module-navigation-fix">
+/* V10.0.1 — um módulo por vez, comportamento de aplicativo */
+#jbPageDashboard:not(.active),#jbPageInscritos:not(.active),#jbPageDuplas:not(.active),#jbPageGroups:not(.active),#jbPageJogos:not(.active),#jbPageEvento:not(.active),#jbPageCentral:not(.active),#jbPageHistorico:not(.active),#jbPageAparencia:not(.active),#jbPagePublico:not(.active),#jbPageNuvem:not(.active),#jbPagePodio:not(.active),#jbPageMata:not(.active),#jbPageArquivos:not(.active){
+  display:none!important;
+}
+.jb-page.active{
+  visibility:visible!important;
+}
+/* Evita que módulos escondidos ocupem espaço ou recebam clique */
+.jb-page:not(.active){
+  pointer-events:none!important;
+}
+.jb-page.active{
+  pointer-events:auto!important;
+}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
@@ -2353,7 +2371,7 @@ input,textarea,select{border-radius:9px!important}
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB PLAY V10</small>
+      <small>JB PLAY V10.0.1</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -4571,14 +4589,26 @@ if('serviceWorker' in navigator){
 <script id="jb-v65-page-navigation">
 (function(){
   function openPage(page, pushHash){
-    document.querySelectorAll('.jb-page').forEach(function(v){v.classList.toggle('active',v.dataset.page===page)});
+    var pages=document.querySelectorAll('.jb-page');
+    pages.forEach(function(v){
+      var active=v.dataset.page===page;
+      v.classList.toggle('active',active);
+      v.setAttribute('aria-hidden',active?'false':'true');
+    });
     document.querySelectorAll('[data-page-link]').forEach(function(a){a.classList.toggle('active',a.dataset.pageLink===page)});
     if(pushHash!==false){
-      var hashes={dashboard:'inicio',inscritos:'inscritos',duplas:'duplas',grupos:'grupos',jogos:'jogos',mata:'mata-mata',evento:'evento',publico:'publico',aparencia:'aparencia',nuvem:'nuvem',podio:'podio',arquivos:'gestao-arquivos'};
+      var hashes={dashboard:'inicio',inscritos:'inscritos',duplas:'duplas',grupos:'grupos',jogos:'jogos',central:'central',mata:'mata-mata',evento:'evento',publico:'publico',aparencia:'aparencia',nuvem:'nuvem',podio:'podio',historico:'historico',arquivos:'gestao-arquivos'};
       try{history.replaceState(null,'','#'+(hashes[page]||'inicio'));}catch(e){}
     }
-    if(page==='dashboard') syncDashboard(); if(page==='evento'&&window.v7RenderEvent) window.v7RenderEvent(); if(page==='publico'&&window.v73RenderPublic) window.v73RenderPublic(); if(page==='podio'&&window.v73RenderPodium) window.v73RenderPodium(); if(page==='mata'&&window.v73SyncThirdToggle) window.v73SyncThirdToggle();
-    window.scrollTo({top:0,behavior:'smooth'});
+    if(page==='dashboard') syncDashboard();
+    if(page==='evento'&&window.v7RenderEvent) window.v7RenderEvent();
+    if(page==='publico'&&window.v73RenderPublic) window.v73RenderPublic();
+    if(page==='podio'&&window.v73RenderPodium) window.v73RenderPodium();
+    if(page==='mata'&&window.v73SyncThirdToggle) window.v73SyncThirdToggle();
+    if(page==='central'&&window.v10Refresh) window.v10Refresh();
+    if(page==='historico'&&window.v10RenderHistory) window.v10RenderHistory();
+    var activePage=document.querySelector('.jb-page.active');
+    if(activePage)activePage.scrollTop=0;
   }
   window.jbOpenPage=openPage;
   document.addEventListener('click',function(e){
@@ -4661,7 +4691,7 @@ if('serviceWorker' in navigator){
   document.addEventListener('input',function(e){if(e.target&&e.target.classList&&e.target.classList.contains('score'))setTimeout(syncDashboard,0);});
   syncDashboard();
   var h=(location.hash||'').replace('#','');
-  var map={'inscritos':'inscritos','config':'inscritos','duplas':'duplas','grupos':'grupos','jogos':'jogos','mata-mata':'mata','evento':'evento','publico':'publico','nuvem':'nuvem','podio':'podio','gestao-arquivos':'arquivos'};
+  var map={'inscritos':'inscritos','config':'inscritos','duplas':'duplas','grupos':'grupos','jogos':'jogos','central':'central','mata-mata':'mata','evento':'evento','publico':'publico','nuvem':'nuvem','podio':'podio','historico':'historico','gestao-arquivos':'arquivos'};
   openPage(map[h]||'dashboard',false);
 })();
 </script>
