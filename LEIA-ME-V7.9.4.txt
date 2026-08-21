@@ -1,0 +1,17 @@
+JB TORNEIOS PRO V7.9.4 — ENCERRAMENTO OFICIAL DO TORNEIO
+
+O botão "🏁 Encerrar torneio" aparece automaticamente na área Pódio somente quando:
+- todos os jogos da fase de grupos estão finalizados;
+- todos os confrontos reais do mata-mata estão finalizados;
+- a disputa de 3º lugar, se ativada, foi finalizada;
+- campeão, vice e terceiro lugar já estão definidos.
+
+Ao encerrar:
+- o torneio recebe data/hora oficial de encerramento;
+- a informação sincroniza pela Conta JB;
+- o painel passa a mostrar "Torneio encerrado";
+- o Portal Público mostra "TORNEIO ENCERRADO";
+- campos de placar ficam bloqueados;
+- existe botão "Reabrir torneio" para correções excepcionais.
+
+Regra geral de cruzamentos, súmulas, Conta JB, RLS e sincronização ao vivo permanecem preservadas.

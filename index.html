@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.9.3 — correção estrutural de confrontos e placares */
+/* V7.9.4 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -1714,6 +1714,22 @@ body.jb-auth-locked{overflow:hidden!important}
 }
 </style>
 
+
+<style id="jb-v794-finish-style">
+.jb-v794-finish-wrap{margin:18px 0 4px;padding:18px;border-radius:18px;border:1px solid rgba(201,255,40,.30);background:linear-gradient(135deg,rgba(201,255,40,.10),rgba(8,33,49,.92));display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+.jb-v794-finish-wrap[hidden]{display:none!important}
+.jb-v794-finish-wrap span{display:block;font-size:10px;font-weight:900;letter-spacing:.12em;color:#c9ff28}
+.jb-v794-finish-wrap h3{margin:5px 0 4px;font-size:18px}
+.jb-v794-finish-wrap p{margin:0;color:#a9bac6;font-size:12px;line-height:1.45}
+.jb-v794-finish-btn{min-height:50px;padding:0 20px!important;border-radius:14px!important;background:linear-gradient(135deg,#c9ff28,#7ee56a)!important;color:#061018!important;font-weight:1000!important;white-space:nowrap}
+.jb-v794-reopen-btn{min-height:46px;white-space:nowrap}
+.jb-v794-closed-banner{margin:12px 0;padding:14px 16px;border-radius:16px;text-align:center;border:1px solid rgba(201,255,40,.30);background:rgba(201,255,40,.09)}
+.jb-v794-closed-banner b{display:block;color:#c9ff28;font-size:13px;letter-spacing:.10em}
+.jb-v794-closed-banner span{display:block;margin-top:4px;color:#b9c7d0;font-size:12px}
+body.jb-tournament-closed .score{opacity:.55}
+@media(max-width:700px){.jb-v794-finish-wrap{grid-template-columns:1fr}.jb-v794-finish-btn,.jb-v794-reopen-btn{width:100%}}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
@@ -2188,6 +2204,15 @@ body.jb-auth-locked{overflow:hidden!important}
     <section class="jb-page" id="jbPagePodio" data-page="podio">
       <div class="jb-page-head"><div><h2>Pódio Final</h2><p>Campeão, vice-campeão e terceiro lugar da categoria.</p></div><button class="jb-back" type="button" data-open-page="dashboard">← Painel</button></div>
       <div id="v73Podium" class="v73-podium-wrap"></div>
+      <div id="jbV794FinishWrap" class="jb-v794-finish-wrap" hidden>
+        <div>
+          <span>RESULTADO OFICIAL PRONTO</span>
+          <h3 id="jbV794FinishTitle">Todos os resultados foram concluídos.</h3>
+          <p id="jbV794FinishHelp">Confirme o encerramento para bloquear novos placares e marcar o torneio como finalizado.</p>
+        </div>
+        <button id="jbV794FinishBtn" type="button" class="jb-v794-finish-btn" onclick="jbV794CloseTournament()">🏁 Encerrar torneio</button>
+        <button id="jbV794ReopenBtn" type="button" class="secondary jb-v794-reopen-btn" onclick="jbV794ReopenTournament()" hidden>↺ Reabrir torneio</button>
+      </div>
     </section>
 
     <section class="jb-page" id="jbPageMata" data-page="mata">
@@ -2752,6 +2777,11 @@ body.jb-auth-locked{overflow:hidden!important}
   }
 
   function updateGroupScore(groupIndex, matchIndex, side, value, inputEl){
+    if(state && state.closedAt){
+      showNotice('Este torneio está encerrado. Reabra o torneio para alterar placares.');
+      renderGroups();
+      return;
+    }
     var m=state.groups[groupIndex].matches[matchIndex];
     if(!window.__v71PendingUndo || window.__v71PendingUndo.key!==('G:'+groupIndex+':'+matchIndex)){
       window.__v71PendingUndo={type:'group',key:'G:'+groupIndex+':'+matchIndex,groupIndex:groupIndex,matchIndex:matchIndex,aScore:m.aScore,bScore:m.bScore,ts:Date.now()};
@@ -3072,6 +3102,11 @@ body.jb-auth-locked{overflow:hidden!important}
   }
 
   function updateKOScore(roundIndex, matchIndex, side, value, inputEl){
+    if(state && state.closedAt){
+      showNotice('Este torneio está encerrado. Reabra o torneio para alterar placares.');
+      renderKnockout();
+      return;
+    }
     var match=state.knockout.rounds[roundIndex].matches[matchIndex];
     if(!window.__v71PendingUndo || window.__v71PendingUndo.key!==('K:'+roundIndex+':'+matchIndex)){
       window.__v71PendingUndo={type:'ko',key:'K:'+roundIndex+':'+matchIndex,roundIndex:roundIndex,matchIndex:matchIndex,aScore:match.aScore,bScore:match.bScore,ts:Date.now()};
@@ -3332,11 +3367,111 @@ body.jb-auth-locked{overflow:hidden!important}
     if(window.v73RenderPodium) window.v73RenderPodium();
   }
 
+  function jbV794ScoreDone(m){
+    if(!m)return false;
+    var a=String(m.aScore==null?'':m.aScore).trim(),b=String(m.bScore==null?'':m.bScore).trim();
+    return a!==''&&b!==''&&Number.isFinite(Number(a))&&Number.isFinite(Number(b))&&Number(a)!==Number(b);
+  }
+
+  function jbV794CanCloseTournament(){
+    if(!state || !state.knockout)return false;
+
+    var groupsDone=true;
+    (state.groups||[]).forEach(function(g){
+      (g.matches||[]).forEach(function(m){
+        if(!jbV794ScoreDone(m))groupsDone=false;
+      });
+    });
+    if(!groupsDone)return false;
+
+    var koDone=true;
+    (state.knockout.rounds||[]).forEach(function(round){
+      (round.matches||[]).forEach(function(m){
+        if(m.aId&&m.bId&&!jbV794ScoreDone(m))koDone=false;
+      });
+    });
+    if(!koDone)return false;
+
+    var tp=state.knockout.thirdPlaceMatch;
+    if(state.knockout.thirdPlacePlayoff && tp && tp.aId && tp.bId && !jbV794ScoreDone(tp))return false;
+
+    return !!(state.knockout.championId && state.knockout.runnerUpId && state.knockout.thirdPlaceId);
+  }
+
+  function jbV794UpdateFinishUI(){
+    var wrap=document.getElementById('jbV794FinishWrap');
+    if(!wrap)return;
+    var canClose=jbV794CanCloseTournament();
+    var closed=!!(state&&state.closedAt);
+
+    wrap.hidden=!(canClose||closed);
+
+    var finish=document.getElementById('jbV794FinishBtn');
+    var reopen=document.getElementById('jbV794ReopenBtn');
+    var title=document.getElementById('jbV794FinishTitle');
+    var help=document.getElementById('jbV794FinishHelp');
+
+    if(finish)finish.hidden=closed||!canClose;
+    if(reopen)reopen.hidden=!closed;
+
+    if(closed){
+      var d=new Date(state.closedAt);
+      if(title)title.textContent='Torneio encerrado oficialmente';
+      if(help)help.textContent='Encerrado em '+d.toLocaleString('pt-BR')+'. Os placares estão bloqueados.';
+      document.body.classList.add('jb-tournament-closed');
+      document.querySelectorAll('.score').forEach(function(x){x.disabled=true;});
+    }else{
+      if(title)title.textContent='Todos os resultados e o pódio estão definidos';
+      if(help)help.textContent='Confirme o encerramento para bloquear novos placares e marcar o torneio como finalizado.';
+      document.body.classList.remove('jb-tournament-closed');
+    }
+  }
+
+  window.jbV794UpdateFinishUI=jbV794UpdateFinishUI;
+
+  window.jbV794CloseTournament=function(){
+    if(!jbV794CanCloseTournament()){
+      showNotice('Ainda existem resultados pendentes ou o pódio não está completo.');
+      return;
+    }
+    if(!confirm('Encerrar oficialmente este torneio? Os placares serão bloqueados.'))return;
+
+    state.closedAt=new Date().toISOString();
+    state.closedBy='Conta JB';
+    save();
+    render();
+
+    if(window.v73RenderPodium)window.v73RenderPodium();
+    if(window.v73RenderPublic)window.v73RenderPublic();
+    if(window.jbSyncDashboard)window.jbSyncDashboard();
+
+    jbV794UpdateFinishUI();
+    showNotice('Torneio encerrado oficialmente.',true);
+  };
+
+  window.jbV794ReopenTournament=function(){
+    if(!state||!state.closedAt)return;
+    if(!confirm('Reabrir este torneio? Os placares poderão ser alterados novamente.'))return;
+
+    state.closedAt=null;
+    state.closedBy=null;
+    save();
+    render();
+
+    if(window.v73RenderPodium)window.v73RenderPodium();
+    if(window.v73RenderPublic)window.v73RenderPublic();
+    if(window.jbSyncDashboard)window.jbSyncDashboard();
+
+    jbV794UpdateFinishUI();
+    showNotice('Torneio reaberto para edição.',true);
+  };
+
   function render(){
     updateStats();
     renderTeams();
     renderGroups();
     renderKnockout();
+    setTimeout(jbV794UpdateFinishUI,0);
   }
 
 
@@ -3874,6 +4009,11 @@ if('serviceWorker' in navigator){
           koLabel=String(current).toUpperCase();koText=current+' em andamento.';
         }
       }
+      if(st.closedAt){
+        status='Torneio encerrado';
+        koLabel='ENCERRADO';
+        koText='Resultado oficial confirmado e placares bloqueados.';
+      }
       setText('dashStatus',status);var ds=document.getElementById('dashStatus');if(ds)ds.innerHTML='<i></i> '+status;
       setText('accessKnockout',koLabel);setText('accessKnockoutText',koText);
       var assistTitle='Cadastre os participantes',assistText='Insira os nomes dos jogadores para começar o torneio.',assistPage='inscritos';
@@ -3944,10 +4084,10 @@ if('serviceWorker' in navigator){
     }
     v73ToggleThirdPlayoff(!state.knockout.thirdPlacePlayoff);
   };
-  window.v73UpdateThird=function(side,value,input){var tp=state.knockout&&state.knockout.thirdPlaceMatch;if(!tp)return;var clean=String(value).replace(/[^\d]/g,'');tp[side]=clean===''?'':String(Math.min(99,Number(clean)));if(input)input.value=tp[side];save();};
+  window.v73UpdateThird=function(side,value,input){if(state&&state.closedAt){showNotice('Este torneio está encerrado. Reabra o torneio para alterar placares.');if(window.v73AddThirdPlaceUI)window.v73AddThirdPlaceUI();return;}var tp=state.knockout&&state.knockout.thirdPlaceMatch;if(!tp)return;var clean=String(value).replace(/[^\d]/g,'');tp[side]=clean===''?'':String(Math.min(99,Number(clean)));if(input)input.value=tp[side];save();};
   window.v73FinishThird=function(){var tp=state.knockout&&state.knockout.thirdPlaceMatch;if(!tp||!state.knockout.thirdPlacePlayoff)return;state.knockout.thirdPlaceId=getKnockoutWinner(tp);save();v73RenderPodium();v73AddThirdPlaceUI();};
   window.v73AddThirdPlaceUI=function(){var host=document.getElementById('knockoutArea');if(!host)return;var old=document.getElementById('v73ThirdPlace');if(old)old.remove();v73SyncThirdToggle();var k=state.knockout||{},tp=k.thirdPlaceMatch;if(!k.thirdPlacePlayoff||!tp||!tp.aId||!tp.bId)return;var d=document.createElement('div');d.id='v73ThirdPlace';d.className='v73-third-match v7484-third-match';d.innerHTML='<div class="v7484-third-title">🥉 <b>Disputa de 3º lugar</b></div><div class="v7484-third-grid"><div class="v7484-third-team"><small>DUPLA A</small><strong>'+esc(teamName(tp.aId))+'</strong></div><input class="score v7484-third-score" aria-label="Placar da Dupla A" inputmode="numeric" value="'+esc(tp.aScore)+'" oninput="v73UpdateThird(\'aScore\',this.value,this)" onchange="v73FinishThird()" onblur="v73FinishThird()"><span class="v7484-third-vs">×</span><input class="score v7484-third-score" aria-label="Placar da Dupla B" inputmode="numeric" value="'+esc(tp.bScore)+'" oninput="v73UpdateThird(\'bScore\',this.value,this)" onchange="v73FinishThird()" onblur="v73FinishThird()"><div class="v7484-third-team"><small>DUPLA B</small><strong>'+esc(teamName(tp.bId))+'</strong></div></div>';var slot=document.getElementById('jbV7487ThirdSlot');(slot||host).appendChild(d);};
-  window.v73RenderPodium=function(){var host=document.getElementById('v73Podium');if(!host)return;var k=state.knockout||{},c=k.championId,r=k.runnerUpId,t=k.thirdPlaceId,playoff=!!k.thirdPlacePlayoff;var msg=(c&&r&&t)?('Pódio definido'+(playoff?' · 3º lugar decidido em partida':' · 3º lugar automático pelo critério da semifinal')):(playoff?'O pódio será concluído após a final e a disputa de 3º lugar.':'Por padrão, o 3º lugar será a dupla que perder para o campeão na semifinal.');host.innerHTML='<div class="v73-podium-title"><span>RESULTADO OFICIAL</span><h2>'+esc((document.getElementById('title')||{}).value||'Torneio')+'</h2><p>'+esc(msg)+'</p></div><div class="v73-podium"><div class="v73-place second"><div class="v73-medal">🥈</div><span>VICE-CAMPEÃO</span><b>'+esc(teamName(r))+'</b></div><div class="v73-place first"><div class="v73-medal">🏆</div><span>CAMPEÃO</span><b>'+esc(teamName(c))+'</b></div><div class="v73-place third"><div class="v73-medal">🥉</div><span>3º LUGAR</span><b>'+esc(teamName(t))+'</b></div></div>';};
+  window.v73RenderPodium=function(){var host=document.getElementById('v73Podium');if(!host)return;var k=state.knockout||{},c=k.championId,r=k.runnerUpId,t=k.thirdPlaceId,playoff=!!k.thirdPlacePlayoff;var msg=(c&&r&&t)?('Pódio definido'+(playoff?' · 3º lugar decidido em partida':' · 3º lugar automático pelo critério da semifinal')):(playoff?'O pódio será concluído após a final e a disputa de 3º lugar.':'Por padrão, o 3º lugar será a dupla que perder para o campeão na semifinal.');host.innerHTML='<div class="v73-podium-title"><span>RESULTADO OFICIAL</span><h2>'+esc((document.getElementById('title')||{}).value||'Torneio')+'</h2><p>'+esc(msg)+'</p></div><div class="v73-podium"><div class="v73-place second"><div class="v73-medal">🥈</div><span>VICE-CAMPEÃO</span><b>'+esc(teamName(r))+'</b></div><div class="v73-place first"><div class="v73-medal">🏆</div><span>CAMPEÃO</span><b>'+esc(teamName(c))+'</b></div><div class="v73-place third"><div class="v73-medal">🥉</div><span>3º LUGAR</span><b>'+esc(teamName(t))+'</b></div></div>';if(window.jbV794UpdateFinishUI)window.jbV794UpdateFinishUI();};
   function standings(){if(!state.groups||!state.groups.length)return '<div class="v73-public-card"><p>Grupos ainda não gerados.</p></div>';return state.groups.map(function(g){var tb=groupStandings(g);return '<div class="v73-public-card"><h3>Grupo '+esc(g.name)+'</h3>'+tb.map(function(x,i){return '<div class="v73-public-game"><b>'+(i+1)+'º · '+esc(teamLabel(x.team))+'</b><small>'+x.J+'J · '+x.V+'V · SG '+(x.SG>0?'+':'')+x.SG+'</small></div>';}).join('')+'</div>';}).join('');}
   window.v73RenderPublic=function(){
     var host=document.getElementById('v73PublicContent'),
@@ -4118,7 +4258,11 @@ if('serviceWorker' in navigator){
       }
     }
 
+    var closedBanner=state.closedAt
+      ? '<div class="jb-v794-closed-banner"><b>🏁 TORNEIO ENCERRADO</b><span>Resultado oficial confirmado · '+esc(new Date(state.closedAt).toLocaleString('pt-BR'))+'</span></div>'
+      : '';
     host.innerHTML=
+      closedBanner+
       '<div class="v73-public-grid">'+
         '<div class="v73-public-card"><h3>Próximos jogos</h3>'+upcomingHtml+'</div>'+
         '<div class="v73-public-card"><h3>Últimos resultados</h3>'+doneHtml+'</div>'+
@@ -4501,7 +4645,7 @@ async function accountSession(force){
   };
 }
 
-function cloudPayload(){return {app_version:'7.9.3',tournament_id:activeTournamentId,title:(($id('title')||{}).value||'Torneio'),snapshot:currentTournamentSnapshot(),published_at:new Date().toISOString()}}
+function cloudPayload(){return {app_version:'7.9.4',tournament_id:activeTournamentId,title:(($id('title')||{}).value||'Torneio'),snapshot:currentTournamentSnapshot(),published_at:new Date().toISOString()}}
 async function upsertNow(silent){
   if(publicMode||pushBusy)return false;
   var c=getCfg();
