@@ -2777,6 +2777,20 @@ body.v74-public-only #jbPagePublico{
 }
 </style>
 
+
+<style id="jb-v10-0-6-metric-contrast">
+/* V10.0.6 — contraste dos cards KPI verde-limão */
+body:not(.v74-public-only) .jb-metric-card span,
+body:not(.v74-public-only) .jb-metric-card small {
+  color:#12344a !important;
+  opacity:1 !important;
+  text-shadow:none !important;
+}
+body:not(.v74-public-only) .jb-metric-card strong,
+body:not(.v74-public-only) .jb-metric-card strong b {
+  color:#ffffff !important;
+}
+</style>
 </head>
 
 <body class="jb-auth-locked">
@@ -4778,7 +4792,21 @@ body.v74-public-only #jbPagePublico{
       @media print{.no-print{display:none}}
     `;
     w.document.open();
-    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'</body></html>');
+    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style>
+<style id="jb-v10-0-6-metric-contrast">
+/* V10.0.6 — contraste dos cards KPI verde-limão */
+body:not(.v74-public-only) .jb-metric-card span,
+body:not(.v74-public-only) .jb-metric-card small {
+  color:#12344a !important;
+  opacity:1 !important;
+  text-shadow:none !important;
+}
+body:not(.v74-public-only) .jb-metric-card strong,
+body:not(.v74-public-only) .jb-metric-card strong b {
+  color:#ffffff !important;
+}
+</style>
+</head><body>'+bodyHtml+'</body></html>');
     w.document.close();
     w.focus();
     setTimeout(function(){ w.print(); },350);
