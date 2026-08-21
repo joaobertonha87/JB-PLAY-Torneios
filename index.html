@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.8.2 — correção estrutural de confrontos e placares */
+/* V7.8.3 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -4302,18 +4302,36 @@ function loadUi(){
 async function accountSession(force){
   var c=getCfg();
   if(!validCfg(c))throw new Error('Configure a URL e a chave pública do Supabase.');
+
   var s=safeParse(localStorage.getItem('jb_v780_session')||'',null);
-  if(!s||!s.access_token||!s.refresh_token||!s.user||!s.user.id){
+  if(!s||!s.access_token||!s.refresh_token){
     throw new Error('Entre primeiro na sua Conta JB Cloud.');
   }
 
+  async function verifyUser(token){
+    var vr=await fetch(normUrl(c.url)+'/auth/v1/user',{
+      headers:{'apikey':c.key,'Authorization':'Bearer '+token}
+    });
+    var vu=await vr.json().catch(function(){return{}});
+    if(!vr.ok||!vu||!vu.id)return null;
+    return vu;
+  }
+
+  var user=null;
+
   if(!force && Number(s.expires_at||0)>Date.now()+60000){
-    return {
-      access_token:s.access_token,
-      refresh_token:s.refresh_token,
-      user_id:s.user.id,
-      expires_at:s.expires_at
-    };
+    user=await verifyUser(s.access_token);
+    if(user){
+      s.user=user;
+      localStorage.setItem('jb_v780_session',JSON.stringify(s));
+      return {
+        access_token:s.access_token,
+        refresh_token:s.refresh_token,
+        user_id:user.id,
+        user:user,
+        expires_at:s.expires_at
+      };
+    }
   }
 
   var r=await fetch(normUrl(c.url)+'/auth/v1/token?grant_type=refresh_token',{
@@ -4327,10 +4345,16 @@ async function accountSession(force){
     throw new Error((d&&d.msg)||(d&&d.message)||'Sua sessão da Conta JB expirou. Entre novamente.');
   }
 
+  user=d.user||await verifyUser(d.access_token);
+  if(!user||!user.id){
+    localStorage.removeItem('jb_v780_session');
+    throw new Error('Não foi possível confirmar o usuário autenticado.');
+  }
+
   s={
     access_token:d.access_token,
     refresh_token:d.refresh_token||s.refresh_token,
-    user:d.user||s.user,
+    user:user,
     expires_at:Date.now()+Number(d.expires_in||3600)*1000
   };
   localStorage.setItem('jb_v780_session',JSON.stringify(s));
@@ -4338,13 +4362,110 @@ async function accountSession(force){
   return {
     access_token:s.access_token,
     refresh_token:s.refresh_token,
-    user_id:s.user.id,
+    user_id:user.id,
+    user:user,
     expires_at:s.expires_at
   };
 }
 
-function cloudPayload(){return {app_version:'7.8.2',tournament_id:activeTournamentId,title:(($id('title')||{}).value||'Torneio'),snapshot:currentTournamentSnapshot(),published_at:new Date().toISOString()}}
-async function upsertNow(silent){if(publicMode||pushBusy)return false;var c=getCfg();if(!validCfg(c)){if(!silent)showNotice('Configure a nuvem primeiro.');return false}pushBusy=true;try{status('connecting','SINCRONIZANDO','Enviando alterações...');var a=await accountSession(false),map=getMap(),code=map[activeTournamentId]||makeCode();map[activeTournamentId]=code;setMap(map);var row={share_id:code,owner_id:a.user_id,title:(($id('title')||{}).value||'Torneio'),payload:cloudPayload(),is_public:true,updated_at:new Date().toISOString()};var r=await fetch(normUrl(c.url)+'/rest/v1/jb_tournaments?on_conflict=share_id',{method:'POST',headers:headers(a.access_token,{'Prefer':'resolution=merge-duplicates,return=representation'}),body:JSON.stringify(row)});var d=await r.text();if(!r.ok)throw new Error(safeParse(d,{message:d}).message||d||'Falha ao publicar');var now=Date.now();c.lastSync=now;setCfg(c);if($id('v74LastSync'))$id('v74LastSync').textContent=fmt(now);renderShare();status('online','ONLINE','Categoria publicada e sincronizada.');if(!silent)showNotice('Torneio sincronizado com a nuvem.',true);return true}catch(e){status('error','ERRO DE SINCRONIZAÇÃO',e.message||String(e));if(!silent)showNotice('Nuvem: '+(e.message||e));return false}finally{pushBusy=false}}
+function cloudPayload(){return {app_version:'7.8.3',tournament_id:activeTournamentId,title:(($id('title')||{}).value||'Torneio'),snapshot:currentTournamentSnapshot(),published_at:new Date().toISOString()}}
+async function upsertNow(silent){
+  if(publicMode||pushBusy)return false;
+  var c=getCfg();
+  if(!validCfg(c)){
+    if(!silent)showNotice('Configure a nuvem primeiro.');
+    return false;
+  }
+
+  pushBusy=true;
+  try{
+    status('connecting','SINCRONIZANDO','Confirmando sua Conta JB e enviando alterações...');
+
+    var a=await accountSession(false);
+    if(!a.user_id)throw new Error('Conta JB sem identificador de usuário.');
+
+    var map=getMap();
+    var code=map[activeTournamentId]||makeCode();
+
+    // Consulta o código atual usando a sessão autenticada.
+    var check=await fetch(
+      normUrl(c.url)+'/rest/v1/jb_tournaments?share_id=eq.'+encodeURIComponent(code)+'&select=share_id,owner_id&limit=1',
+      {headers:headers(a.access_token)}
+    );
+    var existing=await check.json().catch(function(){return[]});
+    if(!check.ok){
+      throw new Error((existing&&existing.message)||'Não foi possível verificar o torneio na nuvem.');
+    }
+
+    // Se o código legado pertence a outro UID, nunca tenta sobrescrevê-lo:
+    // gera um novo código público para esta Conta JB.
+    if(existing&&existing[0]&&existing[0].owner_id!==a.user_id){
+      code=makeCode();
+      existing=[];
+    }
+
+    map[activeTournamentId]=code;
+    setMap(map);
+
+    var row={
+      share_id:code,
+      owner_id:a.user_id,
+      title:(($id('title')||{}).value||'Torneio'),
+      payload:cloudPayload(),
+      is_public:true,
+      updated_at:new Date().toISOString()
+    };
+
+    var r,d;
+
+    if(existing&&existing[0]){
+      // Registro já existe e pertence ao usuário atual: UPDATE explícito.
+      r=await fetch(
+        normUrl(c.url)+'/rest/v1/jb_tournaments?share_id=eq.'+encodeURIComponent(code)+'&owner_id=eq.'+encodeURIComponent(a.user_id),
+        {
+          method:'PATCH',
+          headers:headers(a.access_token,{'Prefer':'return=representation'}),
+          body:JSON.stringify({
+            title:row.title,
+            payload:row.payload,
+            is_public:true,
+            updated_at:row.updated_at
+          })
+        }
+      );
+    }else{
+      // Registro realmente novo: INSERT explícito com owner_id = UID confirmado pelo JWT.
+      r=await fetch(
+        normUrl(c.url)+'/rest/v1/jb_tournaments',
+        {
+          method:'POST',
+          headers:headers(a.access_token,{'Prefer':'return=representation'}),
+          body:JSON.stringify(row)
+        }
+      );
+    }
+
+    var text=await r.text();
+    d=safeParse(text,{message:text});
+    if(!r.ok)throw new Error((d&&d.message)||text||'Falha ao sincronizar.');
+
+    var now=Date.now();
+    c.lastSync=now;
+    setCfg(c);
+    if($id('v74LastSync'))$id('v74LastSync').textContent=fmt(now);
+    renderShare();
+    status('online','SINCRONIZADO','Torneio salvo na sua Conta JB.');
+    if(!silent)showNotice('Torneio sincronizado com sua Conta JB.',true);
+    return true;
+  }catch(e){
+    status('error','ERRO DE SINCRONIZAÇÃO',e.message||String(e));
+    if(!silent)showNotice('Nuvem: '+(e.message||e));
+    return false;
+  }finally{
+    pushBusy=false;
+  }
+}
+
 async function fetchPublic(code){var c=getCfg();if(!validCfg(c))throw new Error('Este aparelho não possui a configuração pública da nuvem.');var r=await fetch(normUrl(c.url)+'/rest/v1/jb_tournaments?share_id=eq.'+encodeURIComponent(code)+'&is_public=eq.true&select=share_id,title,payload,updated_at&limit=1',{headers:headers(null)});var d=await r.json().catch(function(){return[]});if(!r.ok)throw new Error((d&&d.message)||'Falha ao consultar torneio.');if(!d||!d[0])throw new Error('Torneio público não encontrado.');return d[0]}
 function applyCloudSnapshot(row,forPublic){var p=row&&row.payload&&row.payload.snapshot;if(!p||!p.state)throw new Error('Dados da nuvem inválidos.');var id=forPublic?'public_'+publicCode:activeTournamentId;tournaments[id]={title:p.title||row.title||'Torneio',participants:p.participants||'',qualifiersPerGroup:p.qualifiersPerGroup||'2',matchFormat:p.matchFormat||'standard6',state:p.state,manualTeamsDraft:p.manualTeamsDraft||[],eventLogoData:p.eventLogoData||'',eventLogoName:p.eventLogoName||'',updatedAt:p.updatedAt||Date.now()};activeTournamentId=id;applyTournamentById(id);if(window.v73RenderPublic)v73RenderPublic();if(window.v73RenderPodium)v73RenderPodium();}
 async function pullNow(silent){if(pullBusy)return false;var code=activeShareId();if(!code){if(!silent)showNotice('Esta categoria ainda não foi publicada.');return false}pullBusy=true;try{status('connecting','BAIXANDO','Buscando versão da nuvem...');var row=await fetchPublic(code);applyCloudSnapshot(row,false);save();status('online','ONLINE','Versão da nuvem carregada.');if(!silent)showNotice('Versão da nuvem carregada.',true);return true}catch(e){status('error','ERRO DE SINCRONIZAÇÃO',e.message||String(e));if(!silent)showNotice('Nuvem: '+(e.message||e));return false}finally{pullBusy=false}}

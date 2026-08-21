@@ -1,0 +1,20 @@
+JB TORNEIOS PRO V7.8.3 — CORREÇÃO DEFINITIVA DO FLUXO RLS
+
+Mudanças:
+- O UID é confirmado diretamente em /auth/v1/user usando o token atual.
+- A sincronização não usa mais UPSERT.
+- Se o torneio já existe e pertence à conta: usa PATCH (UPDATE explícito).
+- Se é novo: usa POST (INSERT explícito).
+- Se um código público antigo pertence a outro UID: gera novo código automaticamente.
+- owner_id sempre recebe o UID confirmado pelo Supabase.
+- Mantém Conta JB, Portal Público, cache local e demais recursos da V7.8.2.
+
+Não é necessário alterar RLS nem executar novo SQL.
+Anonymous Sign-ins deve continuar DESATIVADO.
+
+Teste:
+1. Faça deploy da V7.8.3.
+2. Entre na Conta JB no PC.
+3. Nuvem / compartilhar > Testar conexão.
+4. Clique Publicar / sincronizar agora.
+5. O esperado é SINCRONIZADO / Torneio salvo na sua Conta JB.
