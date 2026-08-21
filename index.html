@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Play V10.0.2 · Portal Público Live</title>
+  <title>JB Play V10.0.4 · Layout Integrado</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -2397,6 +2397,67 @@ body.v74-public-only .jb-v79-livebar{
 }
 </style>
 
+
+<style id="jb-v1003-court-selector-style">
+.v1003-court-selector{
+  display:grid;gap:4px;min-width:150px;
+  color:#9fb2c1!important;font-size:7px!important;font-weight:1000!important;letter-spacing:.11em!important
+}
+.v1003-court-selector select{
+  height:40px!important;min-height:40px!important;border-radius:10px!important;
+  background:#fff!important;color:#15344b!important;border:1px solid rgba(255,255,255,.18)!important;
+  font-size:10px!important;font-weight:900!important;padding:0 10px!important
+}
+@media(max-width:820px){
+  .v1003-court-selector{width:100%;min-width:0}
+  .v1003-court-selector select{width:100%}
+}
+</style>
+
+
+<style id="jb-v1004-full-theme-background">
+/* V10.0.4 — elimina o fundo branco geral e integra toda a área ao layout */
+html,body,.app{
+  background:var(--v91-bg,#eef3f7)!important;
+}
+.jb-page,
+#jbPagePublico{
+  background:var(--v91-bg,#eef3f7)!important;
+}
+.jb-page-head{
+  background:linear-gradient(180deg,var(--v91-bg,#eef3f7) 78%,rgba(238,243,247,0))!important;
+}
+
+/* Superfícies internas continuam legíveis, mas deixam de parecer uma página branca */
+.card,.group,.jb-theme-card,.v74-cloud-card,.v73-public-card,
+.jb-v7-game-toolbar,.jb-v7-games-summary>div,
+.v10-kpis>div,.v10-panel,.v10-history-summary>div,.v10-history-card{
+  background:color-mix(in srgb,var(--v91-bg,#eef3f7) 78%,white 22%)!important;
+}
+
+/* Central de Comando e módulos passam a fazer parte da mesma superfície visual */
+.v10-court,
+.v10-next-action,
+.v10-podium-row div{
+  background:color-mix(in srgb,var(--v91-bg,#eef3f7) 88%,white 12%)!important;
+}
+.v10-court.free{
+  background:color-mix(in srgb,var(--v91-accent,#c9ff00) 8%,var(--v91-bg,#eef3f7) 92%)!important;
+}
+
+/* Portal público mantém leitura limpa, mas sem faixa branca externa */
+body.v74-public-only,
+body.v74-public-only #jbPagePublico,
+body.v74-public-only .app{
+  background:var(--v91-bg,#eef3f7)!important;
+}
+
+/* Safari/iOS */
+@supports (-webkit-touch-callout:none){
+  html,body{background:var(--v91-bg,#eef3f7)!important}
+}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
@@ -2460,7 +2521,7 @@ body.v74-public-only .jb-v79-livebar{
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB PLAY V10.0.2</small>
+      <small>JB PLAY V10.0.4</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -2798,6 +2859,11 @@ body.v74-public-only .jb-v79-livebar{
       <div class="v10-command-hero">
         <div><span>TOURNAMENT CONTROL SYSTEM</span><h3 id="v10CommandTitle">Torneio atual</h3><p id="v10CommandPhase">Preparando operação...</p></div>
         <div class="v10-command-actions">
+          <label class="v1003-court-selector">QUADRAS DISPONÍVEIS
+            <select id="v10CourtSelector" onchange="v10SetCourtCount(this.value)">
+              <option value="1">1 quadra</option><option value="2">2 quadras</option><option value="3">3 quadras</option><option value="4">4 quadras</option><option value="5">5 quadras</option><option value="6">6 quadras</option><option value="7">7 quadras</option><option value="8">8 quadras</option><option value="9">9 quadras</option><option value="10">10 quadras</option><option value="11">11 quadras</option><option value="12">12 quadras</option><option value="13">13 quadras</option><option value="14">14 quadras</option><option value="15">15 quadras</option>
+            </select>
+          </label>
           <button type="button" class="v10-auto-btn" onclick="v10AutoFillCourts()">⚡ Preencher quadras livres</button>
           <button type="button" class="secondary" data-open-page="evento">Abrir Modo Evento</button>
         </div>
@@ -3935,6 +4001,8 @@ body.v74-public-only .jb-v79-livebar{
   function v7GameKey(gi,mi){ return 'G'+gi+'M'+mi; }
   function v7SetCourtCount(v){
     var ops=v7EnsureOps(); ops.courtCount=Math.max(1,Math.min(15,Number(v)||2)); save(); renderGames(); v7RenderEvent();
+    var s=document.getElementById('v10CourtSelector');if(s)s.value=String(ops.courtCount);
+    if(window.v10Refresh)window.v10Refresh();
   }
   function v7SetGameCourt(gi,mi,v){
     var ops=v7EnsureOps(),key=v7GameKey(gi,mi),m=state.groups[gi].matches[mi];
@@ -6190,9 +6258,33 @@ function smartQueue10(){
  list.forEach(function(x){x._rest=rest10(x);x._eligible=x._rest>=min;x._score=(x._eligible?100000:0)+Math.min(x._rest,180)});
  list.sort(function(a,b){return b._score-a._score});var ok=list.filter(function(x){return x._eligible});return ok.length?ok:list
 }
+
+window.v10SetCourtCount=function(v){
+  var n=Math.max(1,Math.min(15,Number(v)||1));
+  try{
+    if(typeof v7EnsureOps==='function'){
+      var o=v7EnsureOps();
+      o.courtCount=n;
+    }else if(state){
+      if(!state.operations)state.operations={};
+      state.operations.courtCount=n;
+      if(!state.operations.assignments)state.operations.assignments={};
+    }
+    var legacy=document.getElementById('v7CourtCount');
+    if(legacy)legacy.value=String(n);
+    if(typeof save==='function')save();
+    if(typeof renderGames==='function')renderGames();
+    if(typeof v7RenderEvent==='function')v7RenderEvent();
+    if(typeof v10Refresh==='function')v10Refresh();
+    if(typeof showNotice==='function')showNotice(n+' quadra'+(n>1?'s':'')+' ativa'+(n>1?'s':'')+' na arena.',true);
+  }catch(e){}
+};
+
 window.v10Refresh=function(){
  var root=id('v10CourtBoard');if(!root)return;
- var o=ops10(),count=Math.max(1,Math.min(15,Number(o.courtCount)||15)),all=games10(),act=active10(),wait=waiting10(),done=all.filter(function(x){return valid10(x.m)});
+ var o=ops10(),count=Math.max(1,Math.min(15,Number(o.courtCount)||2)),all=games10(),act=active10(),wait=waiting10(),done=all.filter(function(x){return valid10(x.m)});
+ var selector=id('v10CourtSelector');if(selector&&selector.value!==String(count))selector.value=String(count);
+ var legacy=id('v7CourtCount');if(legacy&&legacy.value!==String(count))legacy.value=String(count);
  if(id('v10CommandTitle'))id('v10CommandTitle').textContent=(id('title')&&id('title').value)||'Torneio atual';
  if(id('v10CourtsTotal'))id('v10CourtsTotal').textContent=count;
  if(id('v10Playing'))id('v10Playing').textContent=act.length;

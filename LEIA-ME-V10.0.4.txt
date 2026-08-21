@@ -1,0 +1,8 @@
+JB PLAY V10.0.4 — FUNDO INTEGRADO AO LAYOUT
+
+- Removido o aspecto de fundo branco geral.
+- Área de trabalho usa a mesma base visual do layout.
+- Dashboard, Jogos, Central, Histórico, Mata-mata e demais módulos ficam integrados.
+- Cards mantêm contraste suave para leitura.
+- Portal Público também não exibe faixa/fundo branco externo.
+- Ajuste compatível com Safari/iPad/iPhone e Windows.
