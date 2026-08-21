@@ -1,0 +1,20 @@
+JB TORNEIOS PRO V7.8.1 — LOGIN ÚNICO JB CLOUD
+
+Correções:
+- remove o login antigo por usuário local do navegador;
+- Conta JB Cloud passa a ser o único login do organizador;
+- botão CRIAR MINHA CONTA disponível na própria tela;
+- Supabase do projeto configurado automaticamente no aplicativo;
+- mesmo e-mail/senha funciona no PC, iPad e iPhone;
+- primeiro login envia os dados locais para a Conta JB se ainda não existir backup;
+- dados da nuvem só substituem os locais quando forem mais recentes;
+- Portal Público continua sem exigir login de organizador.
+
+O SQL da V7.8.0 já executado no Supabase continua válido. NÃO é necessário executar outro SQL.
+
+Depois do deploy:
+1. Abra a ferramenta no PC onde estão os dados mais completos.
+2. Clique em CRIAR MINHA CONTA.
+3. Cadastre e-mail e senha.
+4. Aguarde aparecer 'Sincronizado'.
+5. Só depois abra no iPad e entre com a mesma conta.

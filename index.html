@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.7.0 — correção estrutural de confrontos e placares */
+/* V7.8.1 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -1615,48 +1615,94 @@ button,input,select,textarea{border-radius:12px!important}
 </style>
 
 
-<style id="jb-v77-multidevice-style">
-.v77-sync-card{
-  margin:18px 0;padding:20px;border-radius:20px;
-  background:var(--jb-theme-card,#fff);color:var(--jb-theme-text-dark,#071d38);
-  border:1px solid rgba(5,28,48,.10);box-shadow:0 14px 36px rgba(4,25,42,.10)
+<style id="jb-v780-cloud-account-style">
+.jb-cloud-auth-screen{position:fixed;inset:0;z-index:10050;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 70% 10%,rgba(15,94,153,.65),transparent 36%),#061b2d}
+.jb-cloud-auth-screen[hidden]{display:none!important}
+.jb-cloud-auth-card{width:min(430px,100%);padding:28px;border-radius:24px;background:#fff;color:#071d38;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.jb-cloud-auth-brand{width:54px;height:54px;display:grid;place-items:center;border-radius:16px;background:#c9ff00;color:#071d38;font-weight:1000;font-size:20px;margin-bottom:16px}
+.jb-cloud-auth-card>span{font-size:10px;font-weight:950;letter-spacing:.15em;color:#719000}
+.jb-cloud-auth-card h1{font-size:27px;margin:5px 0 7px}.jb-cloud-auth-card p{margin:0 0 18px;color:#758491;font-size:12px}
+.jb-cloud-auth-card label{display:block;font-size:11px;font-weight:900;margin:11px 0}.jb-cloud-auth-card input{width:100%!important;margin-top:6px!important}
+.jb-cloud-auth-card form button{width:100%;min-height:46px;margin-top:8px}
+.jb-cloud-link{width:100%;border:0!important;background:transparent!important;color:#0f5e99!important;font-weight:900;margin-top:8px}
+.jb-cloud-auth-msg{min-height:18px;margin-top:8px;font-size:11px;font-weight:800;color:#b43b32}
+.jb-cloud-auth-card>small{display:block;margin-top:12px;color:#8a969f;line-height:1.45}
+.jb-v780-account{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.09);font-size:10px;font-weight:850}
+.jb-v780-dot{width:7px;height:7px;border-radius:50%;background:#c9ff00}
+.jb-v780-signout{border:0!important;background:transparent!important;color:inherit!important;padding:2px 4px!important;font-size:10px!important}
+#jbAuthScreen{display:none!important}
+</style>
+
+
+<style id="jb-v781-cloud-login-fix">
+#jbAuthScreen,#jbAuthLogout{display:none!important}
+body.jb-auth-locked .app{
+  filter:blur(7px)!important;
+  pointer-events:none!important;
+  user-select:none!important;
 }
-.v77-sync-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
-.v77-sync-head span{font-size:10px;font-weight:950;letter-spacing:.14em;color:#7e9800}
-.v77-sync-head h3{margin:5px 0 6px!important;color:var(--jb-theme-text-dark,#071d38)!important}
-.v77-sync-head p{margin:0;max-width:720px;color:#758391;font-size:12px}
-.v77-sync-badge{padding:7px 10px;border-radius:999px;font-size:10px;font-weight:950;letter-spacing:.08em;background:#e8edf1;color:#65727d}
-.v77-sync-badge.online{background:#e9f7cf;color:#527300}.v77-sync-badge.syncing{background:#e5f0fa;color:#0f5e99}
-.v77-sync-status{margin:16px 0;padding:13px 15px;border-radius:14px;background:#f6f9fb;border:1px solid #e2e9ee}
-.v77-sync-status b,.v77-sync-status small{display:block}.v77-sync-status small{margin-top:3px;color:#7a8995;font-size:10px}
-.v77-sync-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.v77-sync-grid label{font-size:11px;font-weight:900;color:var(--jb-theme-text-dark,#071d38)}
-.v77-sync-grid input{margin-top:6px!important;width:100%!important}
-.v77-secret-wrap{display:grid;grid-template-columns:1fr auto;gap:7px;align-items:end}.v77-secret-wrap button{min-width:48px!important}
-.v77-auto{display:flex!important;align-items:center!important;gap:8px!important;margin:14px 0!important;font-size:11px!important;font-weight:800!important}
-.v77-sync-actions{display:flex;flex-wrap:wrap;gap:8px}
-.v77-sync-info{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}
-.v77-sync-info>div{padding:12px;border-radius:13px;background:#f7f9fb;border:1px solid #e3e9ee}
-.v77-sync-info small{display:block;color:#7c8994;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.06em}
-.v77-sync-info b{display:block;margin-top:5px;font-size:12px}
-.v77-sync-note{display:grid;gap:4px;margin-top:13px;padding:12px 14px;border-left:4px solid var(--jb-theme-accent,#c9ff00);background:#f8fafb;border-radius:10px}
-.v77-sync-note b{font-size:11px}.v77-sync-note span{font-size:10px;color:#71808d}
-.v77-global-indicator{
-  position:fixed;right:16px;bottom:16px;z-index:9997;padding:8px 11px;border-radius:999px;
-  background:#142b3d;color:#fff;font-size:10px;font-weight:900;box-shadow:0 6px 18px rgba(0,0,0,.18)
+body.jb-auth-locked{overflow:hidden!important}
+.jb-cloud-auth-screen{
+  z-index:20000!important;
+  background:
+    radial-gradient(circle at 18% 4%,rgba(24,200,216,.18),transparent 28rem),
+    radial-gradient(circle at 88% 8%,rgba(200,255,51,.14),transparent 30rem),
+    linear-gradient(180deg,rgba(3,10,16,.98),rgba(3,8,13,.995))!important;
 }
-.v77-global-indicator.online:before{content:"●";color:#b9e800;margin-right:6px}
-.v77-global-indicator.syncing:before{content:"↻";color:#7ec8ff;margin-right:6px}
-.v77-global-indicator.offline:before{content:"●";color:#a8b2ba;margin-right:6px}
-@media(max-width:760px){
-  .v77-sync-head{display:block}.v77-sync-badge{display:inline-block;margin-top:10px}
-  .v77-sync-grid,.v77-sync-info{grid-template-columns:1fr}
+.jb-cloud-auth-card{
+  background:linear-gradient(180deg,rgba(13,29,45,.99),rgba(6,14,21,.995))!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.12)!important;
 }
+.jb-cloud-auth-card h1{color:#fff!important}
+.jb-cloud-auth-card p,.jb-cloud-auth-card>small{color:#aebdca!important}
+.jb-cloud-auth-card label{color:#e9f0f5!important}
+.jb-cloud-auth-card input{
+  min-height:48px!important;
+  background:rgba(255,255,255,.07)!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  color:#fff!important;
+}
+.jb-cloud-auth-card input::placeholder{color:#91a3b2!important}
+.jb-cloud-auth-card .ok{
+  min-height:50px!important;
+  background:#c9ff00!important;
+  color:#071d38!important;
+  font-weight:950!important;
+}
+.jb-cloud-link{
+  color:#c9ff00!important;
+  font-weight:950!important;
+  padding:11px!important;
+}
+.jb-cloud-auth-brand{
+  background:#c9ff00!important;
+  color:#071d38!important;
+}
+.jb-cloud-auth-msg{min-height:20px!important}
 </style>
 
 </head>
 
 <body class="jb-auth-locked">
+
+<div id="jbCloudAuthScreen" class="jb-cloud-auth-screen" hidden>
+  <div class="jb-cloud-auth-card">
+    <div class="jb-cloud-auth-brand">JB</div>
+    <span>JB TORNEIOS CLOUD</span>
+    <h1 id="jbCloudAuthTitle">Entrar na sua conta</h1>
+    <p id="jbCloudAuthSub">Seus torneios disponíveis em qualquer dispositivo.</p>
+    <form id="jbCloudAuthForm">
+      <label>E-mail<input id="jbCloudEmail" type="email" autocomplete="email" required placeholder="seuemail@exemplo.com"></label>
+      <label>Senha<input id="jbCloudPassword" type="password" autocomplete="current-password" minlength="6" required placeholder="Sua senha"></label>
+      <button type="submit" class="ok" id="jbCloudAuthSubmit">Entrar</button>
+    </form>
+    <button type="button" class="jb-cloud-link" id="jbCloudToggleMode">Ainda não tenho conta</button>
+    <div class="jb-cloud-auth-msg" id="jbCloudAuthMsg"></div>
+    <small>Ao entrar em outro PC, iPad ou iPhone com esta mesma conta, seus torneios serão carregados automaticamente.</small>
+  </div>
+</div>
+
 
 <div class="jb-auth-screen" id="jbAuthScreen" aria-modal="true" role="dialog">
   <div class="jb-auth-card">
@@ -2082,60 +2128,6 @@ button,input,select,textarea{border-radius:12px!important}
 
     <section class="jb-page" id="jbPageNuvem" data-page="nuvem">
       <div class="jb-page-head"><div><h2>Nuvem / Compartilhar</h2><p>Sincronização online da categoria atual com funcionamento local de segurança.</p></div><button class="jb-back" type="button" data-open-page="dashboard">← Painel</button></div>
-
-<div class="v77-sync-card" id="v77SyncCard">
-  <div class="v77-sync-head">
-    <div>
-      <span>MULTIDISPOSITIVO</span>
-      <h3>Sincronização entre PC, iPad e iPhone</h3>
-      <p>Use o mesmo ID e chave em todos os seus dispositivos para trabalhar sempre com os mesmos torneios.</p>
-    </div>
-    <div class="v77-sync-badge offline" id="v77SyncBadge">LOCAL</div>
-  </div>
-
-  <div class="v77-sync-status" id="v77SyncStatus">
-    <b>Somente neste dispositivo</b>
-    <small>Crie ou conecte um espaço sincronizado.</small>
-  </div>
-
-  <div class="v77-sync-grid">
-    <label>ID de sincronização
-      <input id="v77SyncId" type="text" autocomplete="off" placeholder="Ex.: JBX-ABCD1234">
-    </label>
-    <label>Chave de sincronização
-      <div class="v77-secret-wrap">
-        <input id="v77SyncSecret" type="password" autocomplete="off" placeholder="Chave privada">
-        <button type="button" id="v77ShowSecret" class="secondary">👁️</button>
-      </div>
-    </label>
-  </div>
-
-  <label class="v77-auto">
-    <input type="checkbox" id="v77AutoSync" checked>
-    Sincronizar automaticamente entre dispositivos
-  </label>
-
-  <div class="v77-sync-actions">
-    <button type="button" class="ok" id="v77CreateWorkspace">Criar espaço sincronizado</button>
-    <button type="button" class="secondary" id="v77ConnectWorkspace">Conectar e baixar</button>
-    <button type="button" class="secondary" id="v77PushNow">Enviar agora</button>
-    <button type="button" class="secondary" id="v77PullNow">Baixar agora</button>
-    <button type="button" class="secondary" id="v77Disconnect">Desconectar aparelho</button>
-  </div>
-
-  <div class="v77-sync-info">
-    <div><small>Último envio</small><b id="v77LastPush">—</b></div>
-    <div><small>Último recebimento</small><b id="v77LastPull">—</b></div>
-    <div><small>Estado</small><b id="v77SyncState">Não conectado</b></div>
-  </div>
-
-  <div class="v77-sync-note">
-    <b>Como usar em outro aparelho</b>
-    <span>Abra o JB Torneios → Nuvem / compartilhar → informe este mesmo ID e chave → toque em “Conectar e baixar”.</span>
-  </div>
-</div>
-
-
       <div class="v74-cloud-grid">
         <div class="v74-cloud-card">
           <div class="v74-cloud-title"><span>1</span><div><b>Conexão com a nuvem</b><small>Supabase — dados continuam salvos localmente mesmo offline</small></div></div>
@@ -4075,132 +4067,6 @@ if('serviceWorker' in navigator){
 .v72-phase-ready{margin:12px 0;padding:13px;border:1px solid #bfe7ce;background:#f1fbf5;border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:10px}.v72-phase-ready b{font-size:12px;color:#0b6e3d}.v72-phase-ready small{display:block;margin-top:3px;color:#52636f;font-size:9px;font-weight:700}
 @media(max-width:650px){.v72-command-head{align-items:flex-start;flex-direction:column}.v72-recommend{grid-template-columns:1fr}.v72-recommend button{width:100%}.v72-qitem{grid-template-columns:26px 1fr}.v72-qitem small{grid-column:2;text-align:left}.v72-phase-ready{align-items:flex-start;flex-direction:column}.v72-phase-ready button{width:100%}}
 </style>
-<script id="jb-torneios-personal-login">
-(function(){
-  'use strict';
-  var AUTH_KEY='jbtorneios-auth-v1';
-  var SESSION_KEY='jbtorneios-session-v1';
-  var authTitle=document.getElementById('jbAuthTitle');
-  var authSub=document.getElementById('jbAuthSub');
-  var authForm=document.getElementById('jbAuthForm');
-  var authUser=document.getElementById('jbAuthUser');
-  var authPass=document.getElementById('jbAuthPass');
-  var authRemember=document.getElementById('jbAuthRemember');
-  var authSubmit=document.getElementById('jbAuthSubmit');
-  var authError=document.getElementById('jbAuthError');
-  var authEye=document.getElementById('jbAuthEye');
-  var logoutBtn=document.getElementById('jbAuthLogout');
-  var setupMode=false;
-
-  function safeGet(key, session){
-    try{return (session?sessionStorage:localStorage).getItem(key);}catch(e){return null;}
-  }
-  function safeSet(key,value,session){
-    try{(session?sessionStorage:localStorage).setItem(key,value);return true;}catch(e){return false;}
-  }
-  function safeRemove(key,session){
-    try{(session?sessionStorage:localStorage).removeItem(key);}catch(e){}
-  }
-  function getStoredAuth(){
-    try{var raw=safeGet(AUTH_KEY,false);return raw?JSON.parse(raw):null;}catch(e){return null;}
-  }
-  function fallbackHash(text){
-    var h=2166136261;
-    for(var i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619);}
-    return 'fallback-'+(h>>>0).toString(16);
-  }
-  function hashText(text){
-    if(window.crypto && window.crypto.subtle && window.TextEncoder){
-      try{
-        var data=new TextEncoder().encode(text);
-        return window.crypto.subtle.digest('SHA-256',data).then(function(buf){
-          return Array.prototype.map.call(new Uint8Array(buf),function(b){return b.toString(16).padStart(2,'0');}).join('');
-        }).catch(function(){return fallbackHash(text);});
-      }catch(e){}
-    }
-    return Promise.resolve(fallbackHash(text));
-  }
-  function configureAuthScreen(){
-    var saved=getStoredAuth();
-    setupMode=!saved;
-    authError.textContent='';
-    if(setupMode){
-      authTitle.textContent='Crie seu primeiro acesso';
-      authSub.textContent='Escolha seu usuário e sua senha. Você fará isso somente uma vez neste navegador.';
-      authSubmit.textContent='CRIAR PRIMEIRO ACESSO';
-      authPass.autocomplete='new-password';
-      authUser.value='';
-      authUser.placeholder='Crie seu usuário';
-      authPass.placeholder='Crie sua senha';
-    }else{
-      authTitle.textContent='Acesso ao JB Torneios';
-      authSub.textContent='Digite seu usuário e senha para acessar a plataforma.';
-      authSubmit.textContent='ENTRAR';
-      authPass.autocomplete='current-password';
-      authUser.value=saved.user||'';
-      authUser.placeholder='Seu usuário';
-      authPass.placeholder='Sua senha';
-    }
-  }
-  function setLoggedIn(remember){
-    if(remember){safeSet(SESSION_KEY,'1',false);safeRemove(SESSION_KEY,true);}
-    else{safeSet(SESSION_KEY,'1',true);safeRemove(SESSION_KEY,false);}
-    document.body.classList.remove('jb-auth-locked');
-    authError.textContent='';
-  }
-  function hasSession(){return safeGet(SESSION_KEY,false)==='1'||safeGet(SESSION_KEY,true)==='1';}
-  function clearSession(){
-    safeRemove(SESSION_KEY,false);safeRemove(SESSION_KEY,true);
-    document.body.classList.add('jb-auth-locked');
-    authPass.value='';
-    configureAuthScreen();
-    setTimeout(function(){authUser.focus();},80);
-  }
-
-  if(!authForm || !authUser || !authPass || !authSubmit){return;}
-  if(authEye){authEye.addEventListener('click',function(){
-    authPass.type=authPass.type==='password'?'text':'password';
-    authEye.textContent=authPass.type==='password'?'◉':'◎';
-  });}
-  authForm.addEventListener('submit',function(e){
-    e.preventDefault();
-    authError.textContent='';
-    var user=authUser.value.trim();
-    var pass=authPass.value;
-    if(!user||!pass){authError.textContent='Preencha usuário e senha.';return;}
-    if(pass.length<4){authError.textContent='A senha precisa ter pelo menos 4 caracteres.';return;}
-    var wasSetup=setupMode;
-    authSubmit.disabled=true;
-    authSubmit.textContent=wasSetup?'CRIANDO...':'ENTRANDO...';
-    hashText(pass).then(function(passHash){
-      if(wasSetup){
-        var ok=safeSet(AUTH_KEY,JSON.stringify({user:user,passHash:passHash,createdAt:new Date().toISOString()}),false);
-        if(!ok){throw new Error('storage');}
-        setupMode=false;
-        setLoggedIn(authRemember.checked);
-      }else{
-        var saved=getStoredAuth();
-        if(saved && user===saved.user && passHash===saved.passHash){
-          setLoggedIn(authRemember.checked);
-        }else{
-          authError.textContent='Usuário ou senha incorretos.';
-          authPass.focus();authPass.select();
-        }
-      }
-    }).catch(function(){
-      authError.textContent='Não foi possível salvar/validar o acesso neste navegador.';
-    }).then(function(){
-      authSubmit.disabled=false;
-      authSubmit.textContent=setupMode?'CRIAR PRIMEIRO ACESSO':'ENTRAR';
-    });
-  });
-  if(logoutBtn){logoutBtn.addEventListener('click',clearSession);}
-  configureAuthScreen();
-  if(hasSession()&&getStoredAuth()){document.body.classList.remove('jb-auth-locked');}
-  else{document.body.classList.add('jb-auth-locked');}
-})();
-</script>
-
 <script id="jb-v71-safety-script">
 (function(){
   window.v71CreateSafetyBackup=function(reason){
@@ -4693,152 +4559,101 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 </script>
 
 
-<script id="jb-v77-multidevice-sync">
+
+<script id="jb-v781-supabase-bootstrap">
+(function(){
+  var URL='https://bhmshotrdnubgpvsduzh.supabase.co';
+  var KEY='sb_publishable_lu4JYnYCDCVInY8nc-FgNQ_f653Z0bh';
+  try{
+    var k='jb_v74_cloud_config', cur={};
+    try{cur=JSON.parse(localStorage.getItem(k)||'{}')||{}}catch(e){}
+    if(!cur.url)cur.url=URL;
+    if(!cur.key)cur.key=KEY;
+    if(typeof cur.auto==='undefined')cur.auto=true;
+    localStorage.setItem(k,JSON.stringify(cur));
+  }catch(e){}
+})();
+</script>
+
+<script id="jb-v780-cloud-account">
 (function(){
 'use strict';
-var WS_KEY='jb_v77_workspace';
-var timer=null,pushTimer=null,pushing=false,pulling=false,lastRemoteStamp=0,lastAppliedStamp=0;
+var SESSION='jb_v780_session', SAVE_TIMER=null, PULL_TIMER=null, APPLYING=false, MODE='login';
 
-function $i(id){return document.getElementById(id)}
+function el(id){return document.getElementById(id)}
 function parse(v,d){try{return JSON.parse(v)}catch(e){return d}}
-function cfg(){try{return parse(localStorage.getItem('jb_v74_cloud_config')||'',{})||{}}catch(e){return{}}}
-function ws(){try{return parse(localStorage.getItem(WS_KEY)||'',{})||{}}catch(e){return{}}}
-function saveWs(v){try{localStorage.setItem(WS_KEY,JSON.stringify(v||{}))}catch(e){}}
-function validCloud(){var c=cfg();return /^https:\/\/.+\.supabase\.co$/i.test(String(c.url||'').replace(/\/+$/,''))&&String(c.key||'').length>20}
-function baseUrl(){return String(cfg().url||'').replace(/\/+$/,'')}
-function hdr(){var c=cfg();return {'apikey':c.key,'Authorization':'Bearer '+c.key,'Content-Type':'application/json'}}
-function nowLabel(){return new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}
-function randomChars(n){var a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',s='';for(var i=0;i<n;i++)s+=a[Math.floor(Math.random()*a.length)];return s}
-function makeId(){return 'JBX-'+randomChars(8)}
-function makeSecret(){return randomChars(6)+'-'+randomChars(6)+'-'+randomChars(6)}
-function localSnapshot(){
+function cloudCfg(){try{return parse(localStorage.getItem('jb_v74_cloud_config')||'',{})||{}}catch(e){return{}}}
+function validCfg(){var c=cloudCfg();return /^https:\/\/.+\.supabase\.co$/i.test(String(c.url||'').replace(/\/+$/,''))&&String(c.key||'').length>20}
+function base(){return String(cloudCfg().url||'').replace(/\/+$/,'')}
+function session(){try{return parse(localStorage.getItem(SESSION)||'',null)}catch(e){return null}}
+function saveSession(s){if(s)localStorage.setItem(SESSION,JSON.stringify(s));else localStorage.removeItem(SESSION)}
+function authHeaders(token){var c=cloudCfg();return {'apikey':c.key,'Authorization':'Bearer '+token,'Content-Type':'application/json'}}
+function showAuth(show){
+  var s=el('jbCloudAuthScreen');
+  if(s)s.hidden=!show;
+  if(show)document.body.classList.add('jb-auth-locked');
+  else document.body.classList.remove('jb-auth-locked');
+}
+function msg(t,ok){var x=el('jbCloudAuthMsg');if(x){x.textContent=t||'';x.style.color=ok?'#5c7900':'#b43b32'}}
+function setMode(m){
+  MODE=m;
+  var reg=m==='signup';
+  el('jbCloudAuthTitle').textContent=reg?'Criar minha Conta JB':'Entrar na Conta JB';
+  el('jbCloudAuthSub').textContent=reg?'Crie uma única conta para continuar seus torneios em qualquer dispositivo.':'Entre com o mesmo e-mail e senha no PC, iPad ou iPhone.';
+  el('jbCloudAuthSubmit').textContent=reg?'CRIAR MINHA CONTA':'ENTRAR';
+  el('jbCloudToggleMode').textContent=reg?'← Já tenho uma conta':'CRIAR MINHA CONTA';
+  el('jbCloudPassword').autocomplete=reg?'new-password':'current-password';
+  msg('');
+}
+async function req(path,opt){opt=opt||{};var c=cloudCfg();if(!validCfg())throw new Error('A conexão do Supabase ainda não foi configurada nesta instalação.');var r=await fetch(base()+path,{method:opt.method||'GET',headers:opt.headers||{'apikey':c.key,'Content-Type':'application/json'},body:opt.body?JSON.stringify(opt.body):undefined});var tx=await r.text(),d=null;try{d=tx?JSON.parse(tx):null}catch(e){d=tx}if(!r.ok)throw new Error((d&&d.msg)||(d&&d.message)||(d&&d.error_description)||(d&&d.error)||tx||'Falha na conexão');return d}
+async function login(email,password){var c=cloudCfg();var d=await req('/auth/v1/token?grant_type=password',{method:'POST',headers:{'apikey':c.key,'Content-Type':'application/json'},body:{email:email,password:password}});var s={access_token:d.access_token,refresh_token:d.refresh_token,user:d.user,expires_at:Date.now()+Number(d.expires_in||3600)*1000};saveSession(s);return s}
+async function signup(email,password){var c=cloudCfg();var d=await req('/auth/v1/signup',{method:'POST',headers:{'apikey':c.key,'Content-Type':'application/json'},body:{email:email,password:password}});if(!d.access_token)throw new Error('Conta criada. Confirme o e-mail, se a confirmação estiver ativada no Supabase, e depois faça login.');var s={access_token:d.access_token,refresh_token:d.refresh_token,user:d.user,expires_at:Date.now()+Number(d.expires_in||3600)*1000};saveSession(s);return s}
+async function refresh(){var s=session();if(!s||!s.refresh_token)return null;if(s.expires_at>Date.now()+120000)return s;var c=cloudCfg();var d=await req('/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:{'apikey':c.key,'Content-Type':'application/json'},body:{refresh_token:s.refresh_token}});s={access_token:d.access_token,refresh_token:d.refresh_token||s.refresh_token,user:d.user||s.user,expires_at:Date.now()+Number(d.expires_in||3600)*1000};saveSession(s);return s}
+function snapshot(){try{var raw=(typeof storageGet==='function'&&storageGet('jb_torneios_v6_multi'))||localStorage.getItem('jb_torneios_v6_multi');var d=raw?JSON.parse(raw):null;if(d&&d.tournaments)return d}catch(e){}return {version:6,savedAt:Date.now(),activeTournamentId:window.activeTournamentId||null,tournaments:window.tournaments||{}}}
+async function push(){if(APPLYING)return;var s=await refresh();if(!s)return;var snap=snapshot();var r=await req('/rest/v1/jb_user_data?on_conflict=user_id',{method:'POST',headers:Object.assign(authHeaders(s.access_token),{'Prefer':'resolution=merge-duplicates,return=minimal'}),body:{user_id:s.user.id,payload:snap,updated_at:new Date().toISOString()}});status('☁️ Sincronizado')}
+async function pull(force){var s=await refresh();if(!s)return false;var d=await req('/rest/v1/jb_user_data?select=payload,updated_at&user_id=eq.'+encodeURIComponent(s.user.id),{headers:authHeaders(s.access_token)});if(!Array.isArray(d)||!d.length){
+  await push();
+  status('☁️ Primeiro backup enviado');
+  return true;
+}var snap=d[0].payload;if(!snap||!snap.tournaments)return false;var local=snapshot();if(force||Number(snap.savedAt||0)>Number(local.savedAt||0)){APPLYING=true;try{if(typeof applySnapshot==='function')applySnapshot(snap);if(typeof storageSet==='function'){storageSet('jb_torneios_v6_multi',JSON.stringify(snap));storageSet('jb_torneio_v4_pro',JSON.stringify(snap))}if(typeof render==='function')render();if(typeof renderTournamentSelector==='function')renderTournamentSelector()}finally{APPLYING=false}}status('☁️ Sincronizado');return true}
+function schedulePush(){clearTimeout(SAVE_TIMER);SAVE_TIMER=setTimeout(function(){push().catch(function(){status('⚠️ Offline')})},800)}
+function status(t){var x=el('jbV780AccountStatus');if(x)x.textContent=t}
+function addAccountChip(){if(el('jbV780AccountChip'))return;var s=session(),target=document.querySelector('.topbar')||document.querySelector('.jb-side-foot');if(!target||!s)return;var d=document.createElement('div');d.className='jb-v780-account';d.id='jbV780AccountChip';d.innerHTML='<span class="jb-v780-dot"></span><span id="jbV780AccountStatus">☁️ Sincronizado</span><span>'+((s.user&&s.user.email)||'Conta JB')+'</span><button class="jb-v780-signout" id="jbV780Signout" type="button">Sair</button>';target.appendChild(d);el('jbV780Signout').onclick=logout}
+function logout(){
+  if(!confirm('Sair desta Conta JB neste dispositivo?'))return;
+  saveSession(null);
   try{
-    var raw=(typeof storageGet==='function'&&storageGet('jb_torneios_v6_multi'))||localStorage.getItem('jb_torneios_v6_multi');
-    var d=raw?JSON.parse(raw):null;
-    if(d&&d.tournaments)return d;
+    localStorage.removeItem('jbtorneios-session-v1');
+    sessionStorage.removeItem('jbtorneios-session-v1');
   }catch(e){}
-  try{
-    if(typeof save==='function')return JSON.parse(save());
-  }catch(e){}
-  return {version:6,savedAt:Date.now(),activeTournamentId:window.activeTournamentId||null,tournaments:window.tournaments||{}};
+  location.reload();
 }
-function snapshotStamp(s){return Number(s&&s.savedAt||0)}
-function setStatus(kind,title,text){
-  var b=$i('v77SyncBadge'),s=$i('v77SyncStatus'),g=$i('v77GlobalIndicator'),st=$i('v77SyncState');
-  if(b){b.className='v77-sync-badge '+kind;b.textContent=kind==='online'?'SINCRONIZADO':kind==='syncing'?'SINCRONIZANDO':'LOCAL'}
-  if(s)s.innerHTML='<b>'+esc(title)+'</b><small>'+esc(text||'')+'</small>';
-  if(st)st.textContent=title;
-  if(!g){g=document.createElement('div');g.id='v77GlobalIndicator';document.body.appendChild(g)}
-  g.className='v77-global-indicator '+kind;
-  g.textContent=kind==='online'?'Nuvem sincronizada':kind==='syncing'?'Sincronizando...':'Somente local';
-}
-function render(){
-  var w=ws(),id=$i('v77SyncId'),sec=$i('v77SyncSecret'),auto=$i('v77AutoSync');
-  if(id)id.value=w.id||'';if(sec)sec.value=w.secret||'';if(auto)auto.checked=w.auto!==false;
-  if(w.id&&w.secret)setStatus('online','Espaço sincronizado conectado','ID '+w.id+' · alterações podem ser compartilhadas entre dispositivos.');
-  else setStatus('offline','Somente neste dispositivo','Crie ou conecte um espaço sincronizado.');
-}
-async function rpc(name,body){
-  if(!validCloud())throw new Error('Configure primeiro a conexão do Supabase na área Nuvem.');
-  var r=await fetch(baseUrl()+'/rest/v1/rpc/'+name,{method:'POST',headers:hdr(),body:JSON.stringify(body||{})});
-  var text=await r.text(),data=null;try{data=text?JSON.parse(text):null}catch(e){data=text}
-  if(!r.ok)throw new Error((data&&data.message)||(data&&data.error)||text||'Falha na sincronização');
-  return data;
-}
-async function createWorkspace(){
-  var id=makeId(),secret=makeSecret(),snap=localSnapshot();
-  setStatus('syncing','Criando espaço sincronizado','Enviando os dados atuais para o Supabase...');
-  await rpc('jb_sync_create',{p_sync_id:id,p_secret:secret,p_payload:snap});
-  var w={id:id,secret:secret,auto:true};saveWs(w);render();
-  var a=$i('v77SyncId'),b=$i('v77SyncSecret');if(a)a.value=id;if(b){b.value=secret;b.type='text'}
-  if($i('v77LastPush'))$i('v77LastPush').textContent=nowLabel();
-  lastRemoteStamp=snapshotStamp(snap);
-  setStatus('online','Espaço criado com sucesso','Guarde o ID e a chave para conectar seus outros dispositivos.');
-  alert('Espaço sincronizado criado.\n\nID: '+id+'\nChave: '+secret+'\n\nGuarde essas informações. Você precisará delas no iPad/iPhone.');
-}
-async function pushNow(silent){
-  var w=ws();if(!w.id||!w.secret)return false;if(pushing)return false;
-  pushing=true;
-  try{
-    setStatus('syncing','Sincronizando...','Enviando alterações deste dispositivo.');
-    var snap=localSnapshot();
-    var d=await rpc('jb_sync_push',{p_sync_id:w.id,p_secret:w.secret,p_payload:snap});
-    lastRemoteStamp=snapshotStamp(snap);
-    if($i('v77LastPush'))$i('v77LastPush').textContent=nowLabel();
-    setStatus('online','Sincronizado','Últimas alterações enviadas para a nuvem.');
-    return true;
-  }catch(e){if(!silent)setStatus('offline','Falha ao enviar',e.message);return false}
-  finally{pushing=false}
-}
-async function pullNow(opts){
-  opts=opts||{};var w=ws();if(!w.id||!w.secret)return false;if(pulling)return false;
-  pulling=true;
-  try{
-    if(!opts.silent)setStatus('syncing','Buscando atualizações...','Consultando o Supabase.');
-    var d=await rpc('jb_sync_pull',{p_sync_id:w.id,p_secret:w.secret});
-    if(Array.isArray(d))d=d[0];
-    var snap=d&&d.payload?d.payload:d;
-    if(!snap||!snap.tournaments)throw new Error('Nenhum dado sincronizado encontrado.');
-    var remoteStamp=snapshotStamp(snap), local=localSnapshot(), localStamp=snapshotStamp(local);
-    lastRemoteStamp=remoteStamp;
-    if(opts.force||remoteStamp>localStamp){
-      if(typeof applySnapshot!=='function')throw new Error('Rotina de restauração indisponível.');
-      applySnapshot(snap);
-      try{
-        storageSet('jb_torneios_v6_multi',JSON.stringify(snap));
-        storageSet('jb_torneio_v4_pro',JSON.stringify(snap));
-      }catch(e){}
-      lastAppliedStamp=remoteStamp;
-      if(typeof render==='function')render();
-      if(typeof renderTournamentSelector==='function')renderTournamentSelector();
-    }
-    if($i('v77LastPull'))$i('v77LastPull').textContent=nowLabel();
-    setStatus('online','Sincronizado',remoteStamp>localStamp?'Dados mais recentes recebidos da nuvem.':'Este dispositivo já está atualizado.');
-    return true;
-  }catch(e){if(!opts.silent)setStatus('offline','Falha ao baixar',e.message);return false}
-  finally{pulling=false}
-}
-async function connect(){
-  var id=String(($i('v77SyncId')||{}).value||'').trim().toUpperCase(),secret=String(($i('v77SyncSecret')||{}).value||'').trim();
-  if(!id||!secret){setStatus('offline','Informe ID e chave','Use os dados gerados no dispositivo principal.');return}
-  saveWs({id:id,secret:secret,auto:($i('v77AutoSync')||{}).checked!==false});
-  var ok=await pullNow({force:true});
-  if(!ok){localStorage.removeItem(WS_KEY);render();return}
-  render();
-}
-function disconnect(){
-  if(!confirm('Desconectar este aparelho do espaço sincronizado? Os dados locais continuarão neste dispositivo.'))return;
-  localStorage.removeItem(WS_KEY);lastRemoteStamp=0;render();
-}
-function schedulePush(){
-  var w=ws();if(!w.id||!w.secret||w.auto===false)return;
-  clearTimeout(pushTimer);pushTimer=setTimeout(function(){pushNow(true)},900);
-}
-function startPoll(){
-  clearInterval(timer);
-  timer=setInterval(function(){
-    var w=ws();if(!w.id||!w.secret||w.auto===false||document.hidden)return;
-    pullNow({silent:true});
-  },5000);
-}
-function bind(){
-  var b;
-  b=$i('v77CreateWorkspace');if(b)b.addEventListener('click',function(){createWorkspace().catch(function(e){setStatus('offline','Não foi possível criar',e.message)})});
-  b=$i('v77ConnectWorkspace');if(b)b.addEventListener('click',connect);
-  b=$i('v77PushNow');if(b)b.addEventListener('click',function(){pushNow(false)});
-  b=$i('v77PullNow');if(b)b.addEventListener('click',function(){pullNow({force:true})});
-  b=$i('v77Disconnect');if(b)b.addEventListener('click',disconnect);
-  b=$i('v77ShowSecret');if(b)b.addEventListener('click',function(){var x=$i('v77SyncSecret');if(x)x.type=x.type==='password'?'text':'password'});
-  b=$i('v77AutoSync');if(b)b.addEventListener('change',function(){var w=ws();w.auto=b.checked;saveWs(w);if(b.checked){schedulePush();startPoll()}});
-  var originalSave=window.save;
-  if(typeof originalSave==='function'&&!originalSave.__v77wrapped){
-    var wrapped=function(){var r=originalSave.apply(this,arguments);schedulePush();return r};wrapped.__v77wrapped=true;window.save=wrapped;
+async function boot(){
+  var q=new URLSearchParams(location.search);
+  if(q.get('public')){showAuth(false);return;}
+  if(!validCfg()){
+    showAuth(true);
+    msg('Não foi possível localizar a configuração do JB Cloud.');
+    return;
   }
-  document.addEventListener('visibilitychange',function(){if(!document.hidden)pullNow({silent:true})});
-  window.addEventListener('online',function(){pullNow({silent:true});schedulePush()});
-  render();startPoll();
-  setTimeout(function(){var w=ws();if(w.id&&w.secret&&w.auto!==false)pullNow({silent:true})},1200);
+  var s=session();
+  if(!s){showAuth(true);return;}
+  try{
+    await refresh();
+    showAuth(false);
+    addAccountChip();
+    await pull(false);
+    clearInterval(PULL_TIMER);
+    PULL_TIMER=setInterval(function(){
+      if(!document.hidden)pull(false).catch(function(){status('⚠️ Offline')});
+    },5000);
+  }catch(e){
+    saveSession(null);
+    showAuth(true);
+    msg('Sua sessão expirou. Entre novamente.');
+  }
 }
+function bind(){setMode('login');el('jbCloudToggleMode').onclick=function(){setMode(MODE==='login'?'signup':'login')};el('jbCloudAuthForm').addEventListener('submit',async function(ev){ev.preventDefault();var email=String(el('jbCloudEmail').value||'').trim(),pw=String(el('jbCloudPassword').value||'');msg(MODE==='signup'?'Criando conta...':'Entrando...',true);el('jbCloudAuthSubmit').disabled=true;try{var s=MODE==='signup'?await signup(email,pw):await login(email,pw);showAuth(false);addAccountChip();await pull(false);clearInterval(PULL_TIMER);PULL_TIMER=setInterval(function(){if(!document.hidden)pull(false).catch(function(){status('⚠️ Offline')})},5000)}catch(e){msg(e.message)}finally{el('jbCloudAuthSubmit').disabled=false}});var old=window.save;if(typeof old==='function'&&!old.__cloudWrapped){var w=function(){var r=old.apply(this,arguments);schedulePush();return r};w.__cloudWrapped=true;window.save=w}window.addEventListener('online',function(){pull(false).catch(function(){});schedulePush()});document.addEventListener('visibilitychange',function(){if(!document.hidden)pull(false).catch(function(){})});boot()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind);else bind();
 })();
 </script>

@@ -1,0 +1,22 @@
+JB TORNEIOS PRO V7.8.0 — CONTA JB CLOUD
+
+O que mudou:
+- Sai o sistema de ID + chave da V7.7.
+- Entra login único por e-mail e senha usando Supabase Auth.
+- Torneios ficam vinculados ao usuário autenticado.
+- Mesmo login no PC/iPad/iPhone carrega os mesmos dados.
+- Sincronização automática e cache local continuam ativos.
+
+INSTALAÇÃO:
+1. Faça backup/exportação dos torneios atuais.
+2. Supabase > SQL Editor > execute CONFIGURAR-SUPABASE-V7.8-CONTA-JB-CLOUD.sql.
+3. Supabase > Authentication > Providers > Email: deixe Email habilitado.
+4. Para facilitar o primeiro teste, em Authentication > Sign In / Email, você pode desativar temporariamente a confirmação obrigatória de e-mail.
+5. Faça deploy da V7.8.0 no Render.
+6. Abra a ferramenta e crie sua conta.
+7. No outro dispositivo, use exatamente o mesmo e-mail e senha.
+8. Os dados passam a ser carregados da sua conta automaticamente.
+
+IMPORTANTE:
+A ferramenta continua usando a URL e a chave pública/anon do Supabase já configuradas na área Nuvem.
+Nunca coloque a service_role key no HTML.
