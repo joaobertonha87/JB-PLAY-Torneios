@@ -1,0 +1,10 @@
+JB PLAY V10.0.7 — SINCRONIZAÇÃO MULTIDISPOSITIVO
+
+Correções:
+- Login passa a carregar primeiro a versão da nuvem (cloud-first).
+- Evita que um estado local recém-criado no iPad/PC bloqueie o download do torneio existente.
+- Polling compara a revisão remota com a última revisão conhecida da nuvem, não com o timestamp local.
+- Mantém salvamento local/offline e envio automático após alterações.
+- Mantém todas as funções e visual da V10.0.6.
+
+IMPORTANTE: usar a mesma Conta JB no PC e iPad.

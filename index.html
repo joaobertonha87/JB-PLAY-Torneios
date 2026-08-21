@@ -2791,6 +2791,7 @@ body:not(.v74-public-only) .jb-metric-card strong b {
   color:#ffffff !important;
 }
 </style>
+<meta name="jb-play-version" content="10.0.7">
 </head>
 
 <body class="jb-auth-locked">
@@ -6332,7 +6333,7 @@ var remoteSaved=Number(snap.savedAt||0);
 var local=snapshot();
 var localSaved=Number(local.savedAt||0);
 
-if(force||remoteSaved>localSaved){
+if(force||remoteSaved>LAST_REMOTE_SAVED){
   APPLYING=true;
   try{
     if(typeof applySnapshot==='function')applySnapshot(snap);
@@ -6395,7 +6396,7 @@ async function boot(){
     await refresh();
     showAuth(false);
     addAccountChip();
-    await pull(false);
+    await pull(true);
     clearInterval(PULL_TIMER);
     PULL_TIMER=setInterval(function(){
       if(!document.hidden)pull(false).catch(function(){status('⚠️ Offline')});
@@ -6406,7 +6407,7 @@ async function boot(){
     msg('Sua sessão expirou. Entre novamente.');
   }
 }
-function bind(){setMode('login');el('jbCloudToggleMode').onclick=function(){setMode(MODE==='login'?'signup':'login')};el('jbCloudAuthForm').addEventListener('submit',async function(ev){ev.preventDefault();var email=String(el('jbCloudEmail').value||'').trim(),pw=String(el('jbCloudPassword').value||'');msg(MODE==='signup'?'Criando conta...':'Entrando...',true);el('jbCloudAuthSubmit').disabled=true;try{var s=MODE==='signup'?await signup(email,pw):await login(email,pw);showAuth(false);addAccountChip();await pull(false);clearInterval(PULL_TIMER);PULL_TIMER=setInterval(function(){if(!document.hidden)pull(false).catch(function(){status('⚠️ Offline')})},5000)}catch(e){msg(e.message)}finally{el('jbCloudAuthSubmit').disabled=false}});var old=window.save;if(typeof old==='function'&&!old.__cloudWrapped){var w=function(){var r=old.apply(this,arguments);schedulePush();return r};w.__cloudWrapped=true;window.save=w}window.addEventListener('online',function(){pull(false).catch(function(){});schedulePush()});document.addEventListener('visibilitychange',function(){if(!document.hidden)pull(false).catch(function(){})});boot()}
+function bind(){setMode('login');el('jbCloudToggleMode').onclick=function(){setMode(MODE==='login'?'signup':'login')};el('jbCloudAuthForm').addEventListener('submit',async function(ev){ev.preventDefault();var email=String(el('jbCloudEmail').value||'').trim(),pw=String(el('jbCloudPassword').value||'');msg(MODE==='signup'?'Criando conta...':'Entrando...',true);el('jbCloudAuthSubmit').disabled=true;try{var s=MODE==='signup'?await signup(email,pw):await login(email,pw);showAuth(false);addAccountChip();await pull(true);clearInterval(PULL_TIMER);PULL_TIMER=setInterval(function(){if(!document.hidden)pull(false).catch(function(){status('⚠️ Offline')})},5000)}catch(e){msg(e.message)}finally{el('jbCloudAuthSubmit').disabled=false}});var old=window.save;if(typeof old==='function'&&!old.__cloudWrapped){var w=function(){var r=old.apply(this,arguments);schedulePush();return r};w.__cloudWrapped=true;window.save=w}window.addEventListener('online',function(){pull(false).catch(function(){});schedulePush()});document.addEventListener('visibilitychange',function(){if(!document.hidden)pull(false).catch(function(){})});boot()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind);else bind();
 })();
 </script>
