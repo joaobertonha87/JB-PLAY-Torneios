@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.9.1 — correção estrutural de confrontos e placares */
+/* V7.9.2 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -3572,17 +3572,62 @@ body.jb-auth-locked{overflow:hidden!important}
     if(!state.groups.length){ showNotice('Faça o sorteio dos grupos antes de gerar a chave eliminatória em branco.'); return; }
     var qs=blankQualifiers();
     if(qs.length<2){ showNotice('É necessário haver pelo menos 2 vagas classificatórias.'); return; }
-    var size=nextPowerOfTwo(qs.length), slots=Array(size).fill(null);
-    qs.forEach(function(q,i){slots[i]=q.label;});
-    var rounds=[], first=[], l=0,r=size-1,gameNo=1;
-    while(l<r){ first.push({a:slots[l]||'BYE',b:slots[r]||'BYE',game:gameNo++}); l++;r--; }
-    rounds.push({name:roundName(size),matches:first});
-    var prev=first, nextSize=size/2;
-    while(nextSize>=2){
-      var ms=[];
-      for(var i=0;i<nextSize/2;i++) ms.push({a:'Vencedor J'+prev[i*2].game,b:'Vencedor J'+prev[i*2+1].game,game:gameNo++});
-      rounds.push({name:roundName(nextSize),matches:ms}); prev=ms; nextSize/=2;
+
+    var size=nextPowerOfTwo(qs.length), rounds=[], first=[], gameNo=1;
+
+    // ============================================================
+    // SÚMULA JB — 3 GRUPOS / 2 CLASSIFICADOS POR GRUPO
+    // Usa exatamente a mesma regra da chave do mata-mata V7.9.2.
+    // ============================================================
+    if(qs.length===6){
+      var groups=[...new Set(qs.map(function(q){return q.group;}))];
+      if(groups.length===3){
+        var g1=qs.filter(function(q){return q.group===groups[0];}).sort(function(a,b){return a.position-b.position;});
+        var g2=qs.filter(function(q){return q.group===groups[1];}).sort(function(a,b){return a.position-b.position;});
+        var g3=qs.filter(function(q){return q.group===groups[2];}).sort(function(a,b){return a.position-b.position;});
+
+        if(g1.length===2 && g2.length===2 && g3.length===2){
+          size=8;
+          first=[
+            {a:g1[0].label,b:'BYE',game:gameNo++},
+            {a:g2[1].label,b:g3[1].label,game:gameNo++},
+            {a:g3[0].label,b:'BYE',game:gameNo++},
+            {a:g1[1].label,b:g2[0].label,game:gameNo++}
+          ];
+
+          rounds.push({name:roundName(size),matches:first});
+
+          // Semifinais: J1 x J2 e J3 x J4.
+          var semis=[
+            {a:'Vencedor J'+first[0].game,b:'Vencedor J'+first[1].game,game:gameNo++},
+            {a:'Vencedor J'+first[2].game,b:'Vencedor J'+first[3].game,game:gameNo++}
+          ];
+          rounds.push({name:roundName(4),matches:semis});
+
+          // Final: vencedores das duas semifinais.
+          rounds.push({
+            name:roundName(2),
+            matches:[{a:'Vencedor J'+semis[0].game,b:'Vencedor J'+semis[1].game,game:gameNo++}]
+          });
+        }
+      }
     }
+
+    // Demais formatos continuam usando a lógica genérica anterior.
+    if(!rounds.length){
+      var slots=Array(size).fill(null);
+      qs.forEach(function(q,i){slots[i]=q.label;});
+      var l=0,r=size-1;
+      while(l<r){ first.push({a:slots[l]||'BYE',b:slots[r]||'BYE',game:gameNo++}); l++;r--; }
+      rounds.push({name:roundName(size),matches:first});
+      var prev=first, nextSize=size/2;
+      while(nextSize>=2){
+        var ms=[];
+        for(var i=0;i<nextSize/2;i++) ms.push({a:'Vencedor J'+prev[i*2].game,b:'Vencedor J'+prev[i*2+1].game,game:gameNo++});
+        rounds.push({name:roundName(nextSize),matches:ms}); prev=ms; nextSize/=2;
+      }
+    }
+
     var tournament=esc(el('title').value||'Torneio Interno');
     function matchCard(m,label){
       return '<div class="premium-match"><div class="match-ribbon">'+esc(label)+'</div>'+
@@ -4451,7 +4496,7 @@ async function accountSession(force){
   };
 }
 
-function cloudPayload(){return {app_version:'7.9.1',tournament_id:activeTournamentId,title:(($id('title')||{}).value||'Torneio'),snapshot:currentTournamentSnapshot(),published_at:new Date().toISOString()}}
+function cloudPayload(){return {app_version:'7.9.2',tournament_id:activeTournamentId,title:(($id('title')||{}).value||'Torneio'),snapshot:currentTournamentSnapshot(),published_at:new Date().toISOString()}}
 async function upsertNow(silent){
   if(publicMode||pushBusy)return false;
   var c=getCfg();

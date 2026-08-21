@@ -1,7 +1,7 @@
 {
-  "name": "JB Torneios Pro V7.9.1",
+  "name": "JB Torneios Pro V7.9.2",
   "short_name": "JB Torneios",
-  "description": "JB Torneios Pro V7.9.1 — Cloud Sync + Portal Público",
+  "description": "JB Torneios Pro V7.9.2 — Cloud Sync + Portal Público",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
