@@ -1,0 +1,24 @@
+JB PLAY V9.0 — COMMERCIAL APP UI
+
+Objetivo:
+Transformar a ferramenta em uma experiência de aplicativo comercial, sem alterar a lógica funcional validada.
+
+Principais mudanças:
+- Shell de aplicativo em tela cheia.
+- Sidebar fixa profissional no Windows.
+- Sidebar compacta no iPad em landscape.
+- Dock inferior no iPhone/iPad menor.
+- Topbar de aplicativo com torneio atual, tela ativa, Conta JB, nuvem e acesso ao Modo Evento.
+- Remoção da aparência de landing page/site durante a operação.
+- Dashboard executivo com superfícies comerciais, KPIs e central de controle.
+- Central de jogos com toolbar operacional fixa.
+- Modo Evento com aparência de painel de arena.
+- Mata-mata em workspace horizontal profissional.
+- Pódio e portal público com tratamento visual comercial.
+- Formulários, tabelas e cards padronizados.
+- Responsividade otimizada para Windows, iPad e iPhone.
+- PWA preservado.
+
+Preservado da base anterior:
+Conta JB, Supabase/RLS, sincronização entre dispositivos, Portal Público, regras gerais de cruzamento,
+súmulas, 15 quadras, mata-mata, pódio, terceiro lugar e encerramento oficial do torneio.

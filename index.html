@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Play V8.0.1 · Tournament Control Center</title>
+  <title>JB Play V9.0 · Commercial App UI</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -1752,6 +1752,337 @@ body.jb-tournament-closed .score{opacity:.55}
 @media(max-width:1180px){button,.jb-access-card{min-height:52px}.jb-side-nav a{min-height:48px}.bracket-rounds .round{width:280px!important;min-width:280px!important}}
 @media(max-width:720px){.v800-command{grid-template-columns:1fr}.v800-command button{width:100%}.v73-place.first{transform:none}.v760-hero:after{font-size:120px}}
 </style>
+
+<style id="jb-v900-commercial-ui">
+:root{
+  --v9-sidebar:#071522;
+  --v9-sidebar-2:#0b1e2f;
+  --v9-canvas:#eef3f7;
+  --v9-surface:#ffffff;
+  --v9-surface-2:#f8fafc;
+  --v9-ink:#0c2033;
+  --v9-muted:#718394;
+  --v9-border:#dce5ec;
+  --v9-accent:var(--jb-theme-accent,#c9ff00);
+  --v9-blue:var(--jb-theme-primary,#0f5e99);
+  --v9-shadow:0 16px 44px rgba(12,32,51,.08);
+}
+
+/* APPLICATION SHELL */
+html,body{height:100%;overscroll-behavior:none}
+body{
+  background:var(--v9-canvas)!important;
+  color:var(--v9-ink);
+  overflow:hidden!important;
+  padding-left:252px!important;
+}
+body:before{display:none!important}
+.app{
+  max-width:none!important;
+  height:100vh!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:auto!important;
+  overscroll-behavior:contain;
+  scrollbar-gutter:stable;
+}
+
+/* Sidebar = true app navigation */
+.jb-sidebar{
+  width:252px!important;
+  height:100vh!important;
+  top:0!important;left:0!important;
+  border-radius:0!important;
+  border:0!important;
+  border-right:1px solid rgba(255,255,255,.07)!important;
+  background:
+    radial-gradient(circle at 50% 2%,rgba(201,255,0,.08),transparent 15rem),
+    linear-gradient(180deg,var(--v9-sidebar),var(--v9-sidebar-2))!important;
+  box-shadow:10px 0 38px rgba(7,21,34,.12)!important;
+  padding:18px 14px 16px!important;
+  overflow-y:auto!important;
+}
+.jb-side-brand{height:86px!important;padding:8px 10px 15px!important;border-bottom:1px solid rgba(255,255,255,.07)!important;margin-bottom:12px!important}
+.jb-side-brand img{max-height:58px!important;max-width:170px!important}
+.jb-v9-side-product{padding:7px 12px 15px}
+.jb-v9-side-product span{display:block;color:var(--v9-accent);font-size:10px;font-weight:1000;letter-spacing:.18em}
+.jb-v9-side-product b{display:block;color:#fff;font-size:14px;margin-top:3px}
+.jb-v9-side-product small{display:block;color:#68829a;font-size:9px;margin-top:2px}
+.jb-side-section{padding:6px 12px!important;font-size:8px!important;letter-spacing:.18em!important;color:#58738b!important}
+.jb-side-nav{gap:5px!important}
+.jb-side-nav a{
+  min-height:46px!important;border-radius:12px!important;padding:0 12px!important;
+  color:#aac0d1!important;font-size:12px!important;font-weight:800!important;
+  border:1px solid transparent!important;transition:.18s ease!important;
+}
+.jb-side-nav a:hover{background:rgba(255,255,255,.055)!important;color:#fff!important}
+.jb-side-nav a.active{
+  background:linear-gradient(90deg,color-mix(in srgb,var(--v9-accent) 92%,white),var(--v9-accent))!important;
+  color:#0b1b27!important;border-color:rgba(255,255,255,.32)!important;
+  box-shadow:0 10px 30px color-mix(in srgb,var(--v9-accent) 19%,transparent)!important
+}
+.jb-side-icon{
+  width:28px!important;height:28px!important;display:grid!important;place-items:center!important;
+  border-radius:8px!important;background:rgba(255,255,255,.07)!important;font-size:15px!important;
+}
+.jb-side-nav a.active .jb-side-icon{background:rgba(7,21,34,.10)!important}
+.jb-side-foot{
+  margin-top:auto!important;border:1px solid rgba(255,255,255,.07)!important;
+  background:rgba(255,255,255,.035)!important;border-radius:13px!important;padding:12px!important
+}
+.jb-side-foot small{color:var(--v9-accent)!important;font-size:8px!important;letter-spacing:.12em}
+.jb-side-foot b{color:#dce9f2!important;font-size:10px!important;margin-top:4px!important}
+.jb-side-foot span{display:block;color:#59748b;font-size:8px;margin-top:4px}
+
+/* App topbar */
+.jb-v9-topbar{
+  position:sticky!important;top:0!important;z-index:80!important;
+  min-height:74px!important;margin:0!important;padding:10px 24px!important;border-radius:0!important;
+  border:0!important;border-bottom:1px solid var(--v9-border)!important;
+  background:rgba(255,255,255,.94)!important;color:var(--v9-ink)!important;
+  box-shadow:0 8px 28px rgba(11,35,55,.045)!important;
+  backdrop-filter:blur(20px)!important;-webkit-backdrop-filter:blur(20px)!important
+}
+.jb-v9-top-left,.jb-v9-top-actions{display:flex;align-items:center;gap:12px}
+.jb-v9-appmark{
+  width:45px;height:45px;min-height:45px!important;border:1px solid #d9e4eb!important;
+  background:#071d38!important;border-radius:13px!important;padding:7px!important;display:grid!important;place-items:center!important
+}
+.jb-v9-appmark img{max-width:100%;max-height:100%;object-fit:contain}
+.jb-v9-context{min-width:0}
+.jb-v9-context small{display:block;color:#8192a1;font-size:8px;font-weight:1000;letter-spacing:.14em}
+.jb-v9-context strong{display:block;color:var(--v9-ink);font-size:15px;line-height:1.2;max-width:370px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jb-v9-context span{display:block;color:#8798a7;font-size:9px;margin-top:2px}
+.jb-v9-live-action,.jb-v9-account,.jb-v9-cloud-pill{
+  height:44px;border:1px solid var(--v9-border);border-radius:12px;background:#fff;display:flex;align-items:center;gap:9px;padding:0 12px
+}
+.jb-v9-live-action{color:var(--v9-ink)!important;font-size:10px!important;font-weight:900!important}
+.jb-v9-live-action i{width:8px;height:8px;border-radius:50%;background:#ff536d;box-shadow:0 0 0 4px rgba(255,83,109,.12);animation:v9pulse 1.7s infinite}
+@keyframes v9pulse{50%{box-shadow:0 0 0 8px rgba(255,83,109,0)}}
+.jb-v9-cloud-pill i{width:8px;height:8px;border-radius:50%;background:#38cc81}
+.jb-v9-cloud-pill small,.jb-v9-account small{display:block;color:#92a1ad;font-size:7px;font-weight:1000;letter-spacing:.12em}
+.jb-v9-cloud-pill b,.jb-v9-account b{display:block;color:#294154;font-size:9px;white-space:nowrap}
+.jb-v9-account{min-height:44px!important;color:inherit!important}
+.jb-v9-account>span{width:27px;height:27px;border-radius:9px;display:grid;place-items:center;background:#071d38;color:var(--v9-accent);font-size:9px;font-weight:1000}
+
+/* Hide marketing webpage feeling */
+.hero{display:none!important}
+.quick-nav{display:none!important}
+.footer{display:none!important}
+
+/* Pages become application workspaces */
+.jb-page{
+  width:auto!important;max-width:none!important;
+  margin:0!important;padding:24px 26px 40px!important;
+  animation:v9WorkspaceIn .20s ease both!important;
+}
+@keyframes v9WorkspaceIn{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}
+.jb-page-head{
+  margin:0 0 18px!important;padding:0!important;border:0!important;
+  display:flex!important;align-items:flex-end!important
+}
+.jb-page-head h2{margin:0!important;color:var(--v9-ink)!important;font-size:25px!important;letter-spacing:-.03em!important}
+.jb-page-head p{margin:4px 0 0!important;color:var(--v9-muted)!important;font-size:11px!important}
+.jb-back{
+  background:#fff!important;color:#375066!important;border:1px solid var(--v9-border)!important;
+  border-radius:11px!important;box-shadow:none!important;font-size:10px!important;min-height:38px!important;padding:0 14px!important
+}
+
+/* Dashboard */
+#jbPageDashboard{padding-top:22px!important}
+.jb-dash-hero{
+  min-height:170px!important;border-radius:20px!important;padding:24px 26px!important;
+  background:
+    radial-gradient(circle at 90% 15%,rgba(201,255,0,.19),transparent 19rem),
+    linear-gradient(120deg,#071d38,#0d4773 72%,#126b8a)!important;
+  box-shadow:0 18px 48px rgba(8,35,57,.17)!important;border:0!important;overflow:hidden!important
+}
+.jb-dash-hero:after{content:"CONTROL CENTER";position:absolute;right:22px;bottom:10px;font-size:38px;font-weight:1000;letter-spacing:.05em;color:rgba(255,255,255,.035);pointer-events:none}
+.jb-dash-kicker{font-size:8px!important;letter-spacing:.18em!important;color:var(--v9-accent)!important}
+.jb-dash-hero h2{font-size:30px!important;letter-spacing:-.035em!important;color:#fff!important;margin:5px 0 8px!important}
+.jb-dash-status{border:1px solid rgba(255,255,255,.11)!important;background:rgba(255,255,255,.08)!important;color:#dbeaf4!important}
+.jb-dash-category{background:rgba(201,255,0,.12)!important;color:#dfff69!important;border:1px solid rgba(201,255,0,.18)!important}
+.jb-dash-primary{
+  border:0!important;border-radius:12px!important;background:var(--v9-accent)!important;color:#071522!important;
+  font-size:10px!important;font-weight:1000!important;padding:0 17px!important;box-shadow:0 12px 30px rgba(0,0,0,.14)!important
+}
+.jb-event-logo-dash{border:1px solid rgba(255,255,255,.12)!important;background:rgba(255,255,255,.92)!important;border-radius:15px!important;padding:7px!important}
+
+/* KPI layer */
+.jb-dash-metrics{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important;margin:14px 0!important}
+.jb-metric-card{
+  min-height:118px!important;border-radius:16px!important;border:1px solid var(--v9-border)!important;
+  background:var(--v9-surface)!important;color:var(--v9-ink)!important;box-shadow:var(--v9-shadow)!important;
+  text-align:left!important;padding:16px!important;position:relative!important;overflow:hidden!important
+}
+.jb-metric-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--v9-accent)}
+.jb-metric-card span{color:#8191a0!important;font-size:8px!important;font-weight:1000!important;letter-spacing:.11em!important;text-transform:uppercase}
+.jb-metric-card strong{color:var(--v9-ink)!important;font-size:29px!important;line-height:1!important;margin:10px 0 5px!important}
+.jb-metric-card small{color:#98a6b2!important;font-size:9px!important}
+.jb-metric-wide{grid-column:auto!important}
+
+/* Overall progress and assistant */
+.jb-dash-progress-card,.jb-v7-assistant,.v800-command{
+  border:1px solid var(--v9-border)!important;border-radius:17px!important;
+  background:#fff!important;box-shadow:var(--v9-shadow)!important;color:var(--v9-ink)!important
+}
+.jb-dash-progress-card{padding:18px!important}
+.jb-dash-progress-copy span,.jb-dash-progress-copy b,.jb-dash-progress-copy strong{color:var(--v9-ink)!important}
+.jb-dash-progress{height:9px!important;background:#e8eef2!important}
+.jb-dash-progress i{background:linear-gradient(90deg,#0d659e,var(--v9-accent))!important}
+.jb-v7-assistant{padding:17px!important}
+.jb-v7-assistant-copy span{color:#7c8d9b!important}
+.jb-v7-assistant-copy h3{color:var(--v9-ink)!important}
+.jb-v7-assistant-copy p{color:var(--v9-muted)!important}
+.jb-v7-assistant button{background:#0d3656!important;color:#fff!important;border-radius:11px!important}
+.v800-command small{color:#6d8190!important}
+.v800-command h3{color:var(--v9-ink)!important}
+.v800-command p{color:var(--v9-muted)!important}
+
+/* Quick modules */
+.jb-dashboard-section-head span{color:#8393a0!important}
+.jb-dashboard-section-head h3{color:var(--v9-ink)!important}
+.jb-dashboard-section-head small{color:#9aa7b2!important}
+.jb-access-grid{gap:11px!important}
+.jb-access-card{
+  min-height:132px!important;padding:16px!important;border:1px solid var(--v9-border)!important;border-radius:16px!important;
+  background:#fff!important;color:var(--v9-ink)!important;box-shadow:0 10px 28px rgba(12,32,51,.055)!important;
+  backdrop-filter:none!important;transition:.16s ease!important
+}
+.jb-access-card:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(12,32,51,.10)!important;border-color:#cbd8e1!important}
+.jb-access-card:after{display:none!important}
+.jb-access-card .ico{background:#edf3f7!important;color:#153c5a!important;filter:none!important}
+.jb-access-card b{color:var(--v9-ink)!important}
+.jb-access-card small{color:var(--v9-muted)!important}
+.jb-access-card em{background:#eef6d7!important;color:#647a00!important}
+
+/* Generic cards/forms/tables */
+.card,.group,.jb-theme-card,.v74-cloud-card,.v73-public-card,.v71-alerts,.jb-v7-game-toolbar,.jb-v7-games-summary>div,
+.jb-v7-live-head,.jb-v7-live-metrics>div,.jb-v7-live-court,.jb-v7-queue-item,.jb-view-summary .card{
+  border-color:var(--v9-border)!important;box-shadow:0 10px 28px rgba(12,32,51,.055)!important
+}
+.card,.group,.jb-theme-card,.v74-cloud-card,.v73-public-card{
+  background:#fff!important;color:var(--v9-ink)!important;border-radius:16px!important
+}
+input,textarea,select{
+  border:1px solid #cfdbe4!important;background:#fff!important;color:#173146!important;
+  border-radius:10px!important;box-shadow:none!important
+}
+input:focus,textarea:focus,select:focus{outline:2px solid color-mix(in srgb,var(--v9-accent) 42%,transparent)!important;border-color:#9badba!important}
+label,.small,.hint{color:#667c8d!important}
+button{border-radius:11px!important}
+
+/* Match center */
+.jb-v7-game-toolbar{
+  position:sticky!important;top:82px!important;z-index:18!important;background:rgba(255,255,255,.96)!important;
+  backdrop-filter:blur(14px)!important;border-radius:14px!important;padding:12px!important
+}
+.jb-v7-game-toolbar span{color:#80909d!important}
+.jb-v7-game-toolbar button:not(.secondary){background:#0c3555!important;color:#fff!important}
+.jb-games-group .match,.match{
+  border:1px solid var(--v9-border)!important;background:#fff!important;border-radius:13px!important;
+  box-shadow:0 7px 20px rgba(12,32,51,.045)!important
+}
+.score{background:#f3f6f8!important;color:#0d2a42!important;border:1px solid #d3dee6!important;font-weight:900!important}
+.score:focus{background:#fff!important;border-color:#8c9eaa!important}
+.standings-wrap{border:1px solid var(--v9-border)!important;border-radius:13px!important;overflow:auto!important}
+table{background:#fff!important;color:#183248!important}
+thead th{position:sticky;top:0;background:#eef3f6!important;color:#6c7d8a!important}
+tbody tr{border-bottom:1px solid #edf1f4!important}
+tbody tr.qual{background:#f2f8df!important}
+
+/* Event mode = operations board */
+#jbPageEvento{
+  background:#071522!important;color:#fff!important;min-height:calc(100vh - 74px)!important
+}
+#jbPageEvento .jb-page-head h2,#jbPageEvento .jb-dashboard-section-head h3{color:#fff!important}
+#jbPageEvento .jb-page-head p,#jbPageEvento .jb-dashboard-section-head small{color:#71879a!important}
+#jbPageEvento .jb-back{background:rgba(255,255,255,.06)!important;color:#fff!important;border-color:rgba(255,255,255,.10)!important}
+.jb-v7-live-head{
+  background:linear-gradient(120deg,#0a2740,#0b456b)!important;border-color:rgba(255,255,255,.09)!important;color:#fff!important;
+  border-radius:18px!important;padding:20px!important
+}
+.jb-v7-live-head span{color:var(--v9-accent)!important}
+.jb-v7-live-metrics{gap:10px!important}
+.jb-v7-live-metrics>div{background:#0b2337!important;border-color:rgba(255,255,255,.08)!important;color:#fff!important;border-radius:14px!important}
+.jb-v7-live-court,.jb-v7-queue-item{background:#0b2235!important;border-color:rgba(255,255,255,.08)!important;color:#fff!important;border-radius:15px!important}
+
+/* Bracket */
+#jbPageMata #knockoutArea{padding-bottom:30px!important}
+.bracket-rounds{gap:18px!important}
+.bracket-rounds .round{border-radius:16px!important;border-color:var(--v9-border)!important;box-shadow:0 12px 34px rgba(12,32,51,.08)!important}
+.ko-match{border-radius:12px!important;background:#f8fafb!important}
+
+/* Podium */
+.v73-podium-wrap,.jb-v7486-podium{filter:none!important}
+.v73-podium-title{background:#071d38!important;border-radius:17px!important;padding:20px!important;color:#fff!important}
+.v73-place{border-radius:17px!important;border:1px solid var(--v9-border)!important;box-shadow:var(--v9-shadow)!important}
+.v73-place.first{transform:translateY(-8px)!important}
+
+/* Public portal keeps commercial brand but no admin chrome feel */
+#jbPagePublico .jb-page-head{padding-bottom:12px!important;border-bottom:1px solid var(--v9-border)!important}
+.v73-public-grid{gap:12px!important}
+.v73-public-card{padding:16px!important}
+.v73-public-game{border-bottom:1px solid #edf2f5!important}
+.v7488-public-round{background:#fff!important;border:1px solid var(--v9-border)!important;border-radius:14px!important}
+
+/* Mobile/iPad */
+.mobile-dock{
+  left:10px!important;right:10px!important;bottom:calc(10px + env(safe-area-inset-bottom))!important;
+  border-radius:17px!important;background:rgba(7,21,34,.94)!important;border:1px solid rgba(255,255,255,.10)!important;
+  box-shadow:0 16px 50px rgba(0,0,0,.30)!important
+}
+.mobile-dock a{color:#91a8ba!important;border-radius:11px!important}
+.mobile-dock a.active{background:var(--v9-accent)!important;color:#071522!important}
+
+/* Commercial responsive shell */
+@media(max-width:1180px){
+  body{padding-left:82px!important}
+  .jb-sidebar{width:82px!important;padding:14px 8px!important}
+  .jb-side-brand{height:62px!important;padding:5px!important}
+  .jb-side-brand img{max-width:62px!important}
+  .jb-v9-side-product,.jb-side-section,.jb-side-nav a span:last-child,.jb-side-foot{display:none!important}
+  .jb-side-nav a{justify-content:center!important;padding:0!important}
+  .jb-side-icon{width:34px!important;height:34px!important}
+  .jb-v9-context strong{max-width:260px}
+}
+@media(max-width:820px){
+  body{padding-left:0!important;overflow:hidden!important}
+  .jb-sidebar{display:none!important}
+  .app{padding-bottom:82px!important}
+  .jb-v9-topbar{min-height:66px!important;padding:9px 12px!important}
+  .jb-v9-context small,.jb-v9-context span{display:none}
+  .jb-v9-context strong{font-size:12px;max-width:200px}
+  .jb-v9-cloud-pill{display:none!important}
+  .jb-v9-live-action span{display:none}
+  .jb-v9-live-action{width:42px;padding:0!important;justify-content:center}
+  .jb-v9-account div{display:none}
+  .jb-v9-account{padding:0 8px!important}
+  .jb-page{padding:18px 12px 24px!important}
+  .jb-dash-metrics{grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .jb-metric-card{min-height:100px!important}
+  .jb-access-grid{grid-template-columns:1fr 1fr!important}
+  .mobile-dock{display:grid!important}
+}
+@media(max-width:520px){
+  .jb-v9-appmark{width:40px;height:40px;min-height:40px!important}
+  .jb-v9-context strong{max-width:135px}
+  .jb-page-head{align-items:flex-start!important}
+  .jb-page-head h2{font-size:21px!important}
+  .jb-dash-hero{padding:18px!important;min-height:155px!important}
+  .jb-dash-hero h2{font-size:24px!important}
+  .jb-dash-hero:after{font-size:24px}
+  .jb-dash-metrics{grid-template-columns:1fr 1fr!important}
+  .jb-access-grid{grid-template-columns:1fr!important}
+  .jb-access-card{min-height:104px!important}
+}
+
+/* PWA standalone feel */
+@media(display-mode:standalone){
+  .jb-v9-topbar{padding-top:calc(10px + env(safe-area-inset-top))!important}
+}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
@@ -1797,7 +2128,8 @@ body.jb-tournament-closed .score{opacity:.55}
     <div class="jb-side-brand jb-side-brand-logo">
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
     </div>
-    <div class="jb-side-section">GESTÃO</div>
+    <div class="jb-v9-side-product"><span>JB PLAY</span><b>TOURNAMENT OS</b><small>Commercial Edition</small></div>
+    <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><span>Início</span></a>
       <a href="#inscritos" data-page-link="inscritos"><span class="jb-side-icon">👥</span><span>Inscritos</span></a>
@@ -1812,8 +2144,9 @@ body.jb-tournament-closed .score{opacity:.55}
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB TORNEIOS</small>
-      <b>Foco • Organização • Resultados</b>
+      <small>JB PLAY V9.0</small>
+      <b>Tournament Control Center</b>
+      <span>Online · Commercial UI</span>
     </div>
   </aside>
 
@@ -1828,25 +2161,34 @@ body.jb-tournament-closed .score{opacity:.55}
   </div>
 
   <div class="app">
-    <header class="topbar">
-      <div class="brand-mini">
-        <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
-        <div>
-          <strong>JB Play</strong>
-          <span>João Bertonha · Beach Tennis</span>
+    <header class="topbar jb-v9-topbar">
+      <div class="jb-v9-top-left">
+        <button type="button" class="jb-v9-appmark" data-open-page="dashboard" aria-label="Ir para o painel">
+          <img src="jb-logo-lime.png" alt="">
+        </button>
+        <div class="jb-v9-context">
+          <small>JB PLAY · TOURNAMENT OS</small>
+          <strong id="jbV9TopTournament">Torneio atual</strong>
+          <span id="jbV9TopPage">Painel de controle</span>
         </div>
       </div>
-      <div class="status-chip"><span class="status-dot"></span> pronto para iPhone/iPad</div>
+      <div class="jb-v9-top-actions">
+        <button type="button" class="jb-v9-live-action" data-open-page="evento"><i></i><span>Modo Evento</span></button>
+        <div class="jb-v9-cloud-pill"><i></i><div><small>NUVEM</small><b id="jbV9CloudState">Sincronizado</b></div></div>
+        <button type="button" class="jb-v9-account" data-open-page="nuvem" aria-label="Conta JB">
+          <span>JB</span><div><small>CONTA JB</small><b id="jbV9AccountLabel">Administrador</b></div>
+        </button>
+      </div>
     </header>
 
     <section class="hero" id="inicio">
       <img class="hero-watermark" src="jb-watermark-lime.png" alt="" aria-hidden="true">
       <div class="hero-content">
-        <div class="eyebrow">JB Torneios Pro · Gestão de torneios</div>
-        <h1>Seu torneio, <span>mais profissional.</span></h1>
+        <div class="eyebrow">TOURNAMENT CONTROL CENTER</div>
+        <h1>Controle total. <span>Em tempo real.</span></h1>
         <p class="subtitle">
-          Sorteio automático de duplas e grupos, lançamento rápido de placares,
-          classificação em tempo real e mata-mata completo em uma interface otimizada para toque.
+          Operação profissional do torneio, quadras, placares, classificação,
+          mata-mata e portal público em uma única central.
         </p>
         <div class="hero-stats">
           <div class="metric"><small>Inscritos</small><strong id="heroPlayers">0</strong></div>
@@ -5341,5 +5683,45 @@ setTimeout(renderLive,300);
  document.addEventListener('click',function(){setTimeout(inject,300)});
 })();
 </script>
+
+<script id="jb-v900-commercial-runtime">
+(function(){
+'use strict';
+var pageNames={
+  dashboard:'Painel de controle',inscritos:'Inscritos',duplas:'Duplas',
+  grupos:'Grupos e classificação',jogos:'Central de jogos',evento:'Modo Evento',
+  mata:'Mata-mata',publico:'Portal público',aparencia:'Aparência',
+  nuvem:'Nuvem e compartilhamento',podio:'Pódio final',arquivos:'Arquivos e relatórios'
+};
+function $id(x){return document.getElementById(x)}
+function syncTopbar(){
+  try{
+    var title=($id('title')&&$id('title').value)||($id('dashTournamentName')&&$id('dashTournamentName').textContent)||'Torneio atual';
+    if($id('jbV9TopTournament'))$id('jbV9TopTournament').textContent=title;
+    var active=document.querySelector('.jb-page.active');
+    var page=active&&active.getAttribute('data-page');
+    if($id('jbV9TopPage'))$id('jbV9TopPage').textContent=pageNames[page]||'Tournament Control Center';
+
+    var cloud=$id('jbV9CloudState');
+    if(cloud){
+      var source=$id('v74CloudStatus')||document.querySelector('.v74-status b')||document.querySelector('[id*="CloudStatus"]');
+      var txt=(source&&source.textContent||'Sincronizado').trim();
+      cloud.textContent=/erro/i.test(txt)?'Atenção':/sincron/i.test(txt)?'Sincronizado':txt.slice(0,18);
+    }
+  }catch(e){}
+}
+document.addEventListener('click',function(e){
+  if(e.target.closest('[data-page-link],[data-open-page]'))setTimeout(syncTopbar,80);
+});
+document.addEventListener('input',function(e){
+  if(e.target&&e.target.id==='title')syncTopbar();
+});
+window.addEventListener('jb:live-sync',syncTopbar);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)syncTopbar()});
+setInterval(syncTopbar,2500);
+setTimeout(syncTopbar,250);
+})();
+</script>
+
 </body>
 </html>
