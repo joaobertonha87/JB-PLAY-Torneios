@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Play V10.0.9 · Hotfix Funcional</title>
+  <title>JB Play V10.1.0 · Grupos Manuais</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -2792,6 +2792,23 @@ body:not(.v74-public-only) .jb-metric-card strong b {
 }
 </style>
 <meta name="jb-play-version" content="10.0.7">
+
+<style id="jb-v1010-manual-groups-style">
+.jb-manual-groups-panel{margin-top:14px!important}
+.jb-manual-group-toolbar{display:flex;align-items:end;gap:10px;margin:12px 0}
+.jb-manual-group-toolbar .field{min-width:190px;margin:0}
+.jb-manual-group-assignments{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0}
+.jb-manual-group-row{display:grid;grid-template-columns:42px 1fr 150px;align-items:center;gap:9px;padding:9px 10px;border:1px solid rgba(151,185,210,.14);border-radius:11px;background:rgba(7,25,40,.34)}
+.jb-manual-group-row>span{width:32px;height:32px;display:grid;place-items:center;border-radius:9px;background:rgba(201,255,0,.10);color:var(--v91-accent,#c9ff00);font-size:9px;font-weight:1000}
+.jb-manual-group-row b{font-size:10px;color:#edf5fa;line-height:1.25;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.jb-manual-group-row select{height:36px!important;min-height:36px!important;font-size:9px!important}
+.jb-manual-groups-summary{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 12px}
+.jb-manual-groups-summary span{padding:7px 9px;border-radius:9px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.07);font-size:8px;color:#91a5b4}
+.jb-manual-groups-summary span.good{color:#dfff68;border-color:rgba(201,255,0,.18);background:rgba(201,255,0,.06)}
+.jb-manual-groups-summary span.warn{color:#ffd37a;border-color:rgba(255,190,70,.18);background:rgba(255,190,70,.06)}
+@media(max-width:820px){.jb-manual-group-assignments{grid-template-columns:1fr}.jb-manual-group-row{grid-template-columns:38px 1fr 125px}.jb-manual-group-toolbar{align-items:stretch;flex-direction:column}.jb-manual-group-toolbar .field{min-width:0;width:100%}}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
@@ -3028,6 +3045,7 @@ body:not(.v74-public-only) .jb-metric-card strong b {
         <div class="actions">
           <button id="drawBtn">Sortear duplas e grupos</button>
           <button id="manualTeamsBtn" class="secondary">Montar duplas manualmente</button>
+          <button id="manualGroupsBtn" class="secondary">Criar grupos manualmente</button>
           <button id="reshuffleBtn" class="warn">Sortear novamente</button>
           <button id="clearScoresBtn" class="secondary">Zerar placares</button>
           <button id="clearBtn" class="danger">Limpar categoria</button>
@@ -3047,6 +3065,25 @@ body:not(.v74-public-only) .jb-metric-card strong b {
           <div class="actions">
             <button id="drawGroupsOnlyBtn">Sortear apenas os grupos</button>
             <button id="clearManualTeamsBtn" class="secondary">Limpar duplas manuais</button>
+          </div>
+        </div>
+
+        <div id="manualGroupsPanel" class="manual-panel jb-manual-groups-panel">
+          <div class="card-kicker">Grupos manuais</div>
+          <h3 style="margin:2px 0 6px">Monte os grupos exatamente como quiser</h3>
+          <p class="manual-help">Escolha a quantidade de grupos e indique em qual grupo cada dupla ficará. Nenhum sorteio será feito.</p>
+          <div class="jb-manual-group-toolbar">
+            <div class="field">
+              <label for="manualGroupCount">Quantidade de grupos</label>
+              <select id="manualGroupCount"></select>
+            </div>
+            <button id="autoDistributeManualGroupsBtn" type="button" class="secondary">Distribuir para editar</button>
+          </div>
+          <div id="manualGroupsAssignments" class="jb-manual-group-assignments"></div>
+          <div id="manualGroupsSummary" class="jb-manual-groups-summary"></div>
+          <div class="actions">
+            <button id="applyManualGroupsBtn" type="button" class="ok">✓ Aplicar grupos manuais</button>
+            <button id="closeManualGroupsBtn" type="button" class="secondary">Fechar</button>
           </div>
         </div>
       </section>
@@ -3396,7 +3433,9 @@ body:not(.v74-public-only) .jb-metric-card strong b {
   const knockoutArea = el('knockoutArea');
   const notice = el('notice');
   const manualTeamsPanel = el('manualTeamsPanel');
+  const manualGroupsPanel = el('manualGroupsPanel');
   let manualTeamsDraft = [];
+  let manualGroupsDraft = {};
   let eventLogoData = "";
   let eventLogoName = "";
   let tournaments = {};
@@ -3828,6 +3867,112 @@ body:not(.v74-public-only) .jb-metric-card strong b {
   function clearManualTeams(){
     manualTeamsDraft=[];
     renderManualTeamBuilder(); save();
+  }
+
+
+  function jbManualGroupTeams(){
+    if(state && state.teams && state.teams.length) return state.teams;
+    const names=getNames();
+    if(manualTeamsDraft.length && manualTeamsDraft.length===names.length/2){
+      return manualTeamsDraft.map((t,i)=>({id:i+1,players:[t.players[0],t.players[1]]}));
+    }
+    return [];
+  }
+
+  function jbRecommendedGroupCount(teamCount){
+    const sizes=groupSizes(teamCount);
+    return Math.max(1,sizes.length||1);
+  }
+
+  function jbManualGroupName(idx){
+    if(idx<26) return String.fromCharCode(65+idx);
+    return 'G'+(idx+1);
+  }
+
+  function jbInitManualGroups(forceDistribute){
+    const teams=jbManualGroupTeams();
+    const countEl=el('manualGroupCount');
+    if(!countEl) return;
+    const max=Math.max(1,Math.min(15,Math.floor(teams.length/2)||1));
+    const previous=Math.max(1,Math.min(max,Number(countEl.value)||jbRecommendedGroupCount(teams.length)));
+    countEl.innerHTML=Array.from({length:max},(_,i)=>'<option value="'+(i+1)+'">'+(i+1)+' grupo'+(i?'s':'')+'</option>').join('');
+    countEl.value=String(previous);
+
+    if(forceDistribute || !teams.every(t=>manualGroupsDraft[t.id])){
+      manualGroupsDraft={};
+      const sizes=groupSizes(teams.length);
+      const target=Number(countEl.value)||1;
+      let desired=sizes.length===target?sizes:null;
+      if(!desired){
+        desired=Array(target).fill(Math.floor(teams.length/target));
+        for(let i=0;i<teams.length%target;i++) desired[i]++;
+      }
+      let cursor=0;
+      desired.forEach((size,gi)=>{
+        for(let j=0;j<size && cursor<teams.length;j++,cursor++) manualGroupsDraft[teams[cursor].id]=gi;
+      });
+      while(cursor<teams.length){manualGroupsDraft[teams[cursor].id]=cursor%target;cursor++}
+    }
+    renderManualGroupsBuilder();
+  }
+
+  function renderManualGroupsBuilder(){
+    const host=el('manualGroupsAssignments'), summary=el('manualGroupsSummary'), countEl=el('manualGroupCount');
+    if(!host||!summary||!countEl) return;
+    const teams=jbManualGroupTeams();
+    if(!teams.length){
+      host.innerHTML='<div class="empty">Primeiro forme ou sorteie as duplas. Depois você poderá montar os grupos manualmente.</div>';
+      summary.innerHTML='';
+      return;
+    }
+    const groupCount=Math.max(1,Number(countEl.value)||1);
+    teams.forEach((t,i)=>{if(manualGroupsDraft[t.id]==null||manualGroupsDraft[t.id]>=groupCount)manualGroupsDraft[t.id]=i%groupCount});
+    const options=Array.from({length:groupCount},(_,gi)=>'<option value="'+gi+'">Grupo '+jbManualGroupName(gi)+'</option>').join('');
+    host.innerHTML=teams.map((t,i)=>'<div class="jb-manual-group-row"><span>D'+(i+1)+'</span><b>'+esc(teamLabel(t))+'</b><select data-manual-team="'+t.id+'">'+options+'</select></div>').join('');
+    host.querySelectorAll('select[data-manual-team]').forEach(sel=>{
+      const tid=String(sel.getAttribute('data-manual-team'));
+      const team=teams.find(t=>String(t.id)===tid);
+      if(team) sel.value=String(manualGroupsDraft[team.id]||0);
+      sel.addEventListener('change',function(){if(team)manualGroupsDraft[team.id]=Number(this.value);renderManualGroupsSummary()});
+    });
+    renderManualGroupsSummary();
+  }
+
+  function renderManualGroupsSummary(){
+    const summary=el('manualGroupsSummary'), countEl=el('manualGroupCount');
+    if(!summary||!countEl)return;
+    const teams=jbManualGroupTeams(), groupCount=Math.max(1,Number(countEl.value)||1);
+    const counts=Array(groupCount).fill(0);
+    teams.forEach(t=>{const gi=Number(manualGroupsDraft[t.id]);if(gi>=0&&gi<groupCount)counts[gi]++});
+    summary.innerHTML=counts.map((n,gi)=>'<span class="'+(n>=3?'good':n>=2?'':'warn')+'">Grupo '+jbManualGroupName(gi)+': <b>'+n+' dupla'+(n===1?'':'s')+'</b></span>').join('');
+  }
+
+  function applyManualGroups(){
+    hideNotice();
+    const teams=jbManualGroupTeams();
+    if(teams.length<2){showNotice('Primeiro forme as duplas antes de criar os grupos manualmente.');return}
+    const countEl=el('manualGroupCount'), groupCount=Math.max(1,Number(countEl&&countEl.value)||1);
+    const buckets=Array.from({length:groupCount},()=>[]);
+    for(const t of teams){
+      const gi=Number(manualGroupsDraft[t.id]);
+      if(!Number.isInteger(gi)||gi<0||gi>=groupCount){showNotice('Todas as duplas precisam estar atribuídas a um grupo.');return}
+      buckets[gi].push(t);
+    }
+    if(buckets.some(g=>g.length<2)){showNotice('Cada grupo precisa ter pelo menos 2 duplas. Ajuste a distribuição antes de aplicar.');return}
+    if((state.groups&&state.groups.length)||state.knockout){
+      if(!confirm('Aplicar os grupos manuais substituirá os grupos atuais e apagará placares/classificação. Deseja continuar?'))return;
+      if(typeof v71CreateSafetyBackup==='function')v71CreateSafetyBackup('criar grupos manualmente');
+    }
+    state.teams=JSON.parse(JSON.stringify(teams));
+    state.groups=buckets.map((gTeams,idx)=>{
+      const name=jbManualGroupName(idx);
+      return {name,teams:gTeams,matches:makeRoundRobin(gTeams,name)};
+    });
+    state.knockout=null;
+    render();save();
+    manualGroupsPanel.classList.remove('open');
+    showNotice('Grupos criados manualmente. Nenhum sorteio foi realizado.',true);
+    try{document.querySelector('[data-page-link="grupos"]').click()}catch(e){}
   }
 
   function drawGroupsFromTeams(teams){
@@ -4982,6 +5127,14 @@ body:not(.v74-public-only) .jb-metric-card strong b {
     manualTeamsPanel.classList.toggle('open');
     renderManualTeamBuilder();
   });
+  el('manualGroupsBtn').addEventListener('click',function(){
+    manualGroupsPanel.classList.toggle('open');
+    if(manualGroupsPanel.classList.contains('open')) jbInitManualGroups(false);
+  });
+  el('manualGroupCount').addEventListener('change',function(){ jbInitManualGroups(true); });
+  el('autoDistributeManualGroupsBtn').addEventListener('click',function(){ jbInitManualGroups(true); });
+  el('applyManualGroupsBtn').addEventListener('click',applyManualGroups);
+  el('closeManualGroupsBtn').addEventListener('click',function(){ manualGroupsPanel.classList.remove('open'); });
   el('addManualTeamBtn').addEventListener('click',addManualTeam);
   el('drawGroupsOnlyBtn').addEventListener('click',drawGroupsOnly);
   el('clearManualTeamsBtn').addEventListener('click',function(){
