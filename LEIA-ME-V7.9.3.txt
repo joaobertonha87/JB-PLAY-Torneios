@@ -1,0 +1,21 @@
+JB TORNEIOS PRO V7.9.3 — REGRA GERAL DE CRUZAMENTO ENTRE GRUPOS
+
+A regra de proteção agora vale para QUALQUER quantidade de grupos.
+
+PRINCÍPIOS:
+1. Duplas do mesmo grupo não se enfrentam na primeira rodada enquanto existir combinação possível.
+2. BYEs são priorizados para os melhores colocados.
+3. Quando há menos BYEs que primeiros colocados, eles são distribuídos de forma espaçada entre os grupos.
+4. O confronto ao lado de um BYE evita conter outra dupla do grupo do cabeça de chave, reduzindo reencontro na rodada seguinte.
+5. Quando uma repetição for matematicamente inevitável, o algoritmo escolhe a configuração com o menor número possível de reencontros.
+6. A SÚMULA/PDF usa exatamente o MESMO algoritmo da chave mostrada na tela.
+
+Exemplos cobertos:
+- 2 grupos
+- 3 grupos
+- 4 grupos
+- 5 grupos
+- qualquer quantidade superior
+- 2, 3 ou mais classificados por grupo
+
+Conta JB, RLS, sincronização ao vivo e Portal Público permanecem preservados.

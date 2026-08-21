@@ -1019,7 +1019,7 @@ button,.btn,input[type=button],input[type=submit]{min-height:42px;touch-action:m
 
 
 <style id="jb-v747-score-layout-fix">
-/* V7.9.2 — correção estrutural de confrontos e placares */
+/* V7.9.3 — correção estrutural de confrontos e placares */
 #jbPageGroups .match {
   display:grid !important;
   grid-template-columns:minmax(180px,1fr) 112px 128px minmax(180px,1fr) !important;
@@ -2855,120 +2855,141 @@ body.jb-auth-locked{overflow:hidden!important}
   function buildFirstRound(qualifiers){
     const size=nextPowerOfTwo(qualifiers.length);
     const blank=(aId,bId)=>({aId:aId||null,bId:bId||null,aScore:'',bScore:''});
+    const groupOrder=[...new Set(qualifiers.map(q=>q.group))];
+    const groupIndex=(g)=>Math.max(0,groupOrder.indexOf(g));
 
     // ============================================================
-    // REGRA JB — 3 GRUPOS / 2 CLASSIFICADOS POR GRUPO
+    // REGRA GERAL JB — CRUZAMENTO ENTRE GRUPOS
     // ============================================================
-    // Com 6 classificados, a chave tem 8 vagas e 2 BYEs.
-    //
-    // Grupo 1: 1º = BYE
-    // Grupo 3: 1º = BYE
-    //
-    // Jogo A = 2º Grupo 2 x 2º Grupo 3
-    // Jogo B = 2º Grupo 1 x 1º Grupo 2
-    //
-    // Semifinal 1 = 1º Grupo 1 x vencedor do Jogo A
-    // Semifinal 2 = 1º Grupo 3 x vencedor do Jogo B
-    //
-    // Dessa forma:
-    // - nenhuma dupla enfrenta alguém do próprio grupo na primeira fase;
-    // - os cabeças que receberam BYE também não podem reencontrar
-    //   o 2º colocado do próprio grupo logo na semifinal.
-    if(qualifiers.length===6){
-      const groups=[...new Set(qualifiers.map(q=>q.group))];
-      if(groups.length===3){
-        const g1=qualifiers.filter(q=>q.group===groups[0]).sort((a,b)=>a.position-b.position);
-        const g2=qualifiers.filter(q=>q.group===groups[1]).sort((a,b)=>a.position-b.position);
-        const g3=qualifiers.filter(q=>q.group===groups[2]).sort((a,b)=>a.position-b.position);
+    // 1) Nunca confronta duas duplas do mesmo grupo na primeira rodada
+    //    quando existir alternativa matemática.
+    // 2) BYEs são priorizados para melhores colocados (1º, depois 2º...).
+    // 3) Quando nem todos os 1º colocados podem receber BYE, os BYEs
+    //    são distribuídos de forma espaçada entre os grupos.
+    // 4) O jogo "irmão" de um BYE evita conter outra dupla do mesmo
+    //    grupo, reduzindo reencontro logo na rodada seguinte.
+    // 5) A regra funciona para qualquer número de grupos e qualquer
+    //    quantidade de classificados por grupo.
+    const byeCount=Math.max(0,size-qualifiers.length);
 
-        if(g1.length===2 && g2.length===2 && g3.length===2){
-          return {
-            size:8,
-            specialRule:'3groups-2qualifiers',
-            pairings:[
-              // Alimentam a Semifinal 1
-              blank(g1[0].team.id,null),              // 1º G1 — BYE
-              blank(g2[1].team.id,g3[1].team.id),    // 2º G2 x 2º G3
-
-              // Alimentam a Semifinal 2
-              blank(g3[0].team.id,null),              // 1º G3 — BYE
-              blank(g1[1].team.id,g2[0].team.id)     // 2º G1 x 1º G2
-            ]
-          };
-        }
+    function spreadPick(items,count){
+      if(count<=0)return [];
+      if(count>=items.length)return items.slice();
+      if(count===1)return [items[0]];
+      const out=[], used=new Set();
+      for(let k=0;k<count;k++){
+        const idx=Math.round(k*(items.length-1)/(count-1));
+        if(!used.has(idx)){used.add(idx);out.push(items[idx]);}
       }
+      // completa caso arredondamento tenha repetido posição
+      for(let i=0;out.length<count && i<items.length;i++){
+        if(!used.has(i)){used.add(i);out.push(items[i]);}
+      }
+      return out;
     }
 
-    // Dois grupos, duas duplas classificadas por grupo:
-    // Semi 1 = 1º A x 2º B | Semi 2 = 1º B x 2º A.
-    if(qualifiers.length===4){
-      const groups=[...new Set(qualifiers.map(q=>q.group))];
-      if(groups.length===2){
-        const ga=qualifiers.filter(q=>q.group===groups[0]).sort((a,b)=>a.position-b.position);
-        const gb=qualifiers.filter(q=>q.group===groups[1]).sort((a,b)=>a.position-b.position);
-        if(ga.length===2 && gb.length===2){
-          return {size:4,pairings:[
-            blank(ga[0].team.id,gb[1].team.id),
-            blank(gb[0].team.id,ga[1].team.id)
-          ]};
-        }
-      }
+    // Escolhe BYEs por prioridade de colocação e distribuição por grupos.
+    const byes=[];
+    let remainingBye=byeCount;
+    const maxPos=Math.max.apply(null,qualifiers.map(q=>Number(q.position)||1));
+    for(let pos=1;pos<=maxPos && remainingBye>0;pos++){
+      const tier=qualifiers
+        .filter(q=>(Number(q.position)||1)===pos && !byes.includes(q))
+        .sort((a,b)=>groupIndex(a.group)-groupIndex(b.group));
+      const chosen=spreadPick(tier,Math.min(remainingBye,tier.length));
+      chosen.forEach(q=>byes.push(q));
+      remainingBye-=chosen.length;
     }
 
-    // Outros formatos: evita reencontro do mesmo grupo na primeira rodada
-    // sempre que houver uma combinação intergrupos possível.
-    const items=qualifiers.slice();
-    const byeCount=Math.max(0,size-items.length);
+    // Segurança: se ainda faltarem BYEs, completa pelos melhores seeds.
+    if(remainingBye>0){
+      qualifiers
+        .slice()
+        .sort((a,b)=>(a.position-b.position)||groupIndex(a.group)-groupIndex(b.group))
+        .forEach(q=>{
+          if(remainingBye>0 && !byes.includes(q)){byes.push(q);remainingBye--;}
+        });
+    }
+
+    const pool=qualifiers.filter(q=>!byes.includes(q));
+
+    // Encontra pareamento com o menor número possível de reencontros.
+    function pairCost(a,b){
+      let c=0;
+      if(a.group===b.group)c+=10000;            // fortemente proibitivo
+      c+=Math.abs((a.position||1)-(b.position||1))*3;
+      c+=Math.abs(groupIndex(a.group)-groupIndex(b.group))*0.01;
+      return c;
+    }
+    function bestPairing(items){
+      if(!items.length)return {cost:0,pairs:[]};
+      if(items.length===1)return {cost:5000,pairs:[[items[0],null]]};
+      const first=items[0];
+      let best=null;
+      for(let i=1;i<items.length;i++){
+        const other=items[i];
+        const rest=items.filter((_,idx)=>idx!==0&&idx!==i);
+        const sub=bestPairing(rest);
+        if(!sub)continue;
+        const cost=pairCost(first,other)+sub.cost;
+        if(!best||cost<best.cost)best={cost:cost,pairs:[[first,other],...sub.pairs]};
+      }
+      return best;
+    }
+
+    let paired=(bestPairing(pool)||{pairs:[]}).pairs;
+
+    // Distribui os BYEs em "blocos" de duas partidas.
+    // Cada BYE fica ao lado de um confronto que não contenha seu grupo,
+    // sempre que houver uma escolha possível.
+    const blocks=[];
+    const unusedPairs=paired.slice();
+
+    byes.forEach(bye=>{
+      let bestIdx=-1,bestCost=Infinity;
+      unusedPairs.forEach((pair,idx)=>{
+        const containsSame=pair.some(q=>q&&q.group===bye.group);
+        let c=containsSame?10000:0;
+        // privilegia confrontos de seeds mais baixos contra o cabeça com BYE
+        c+=pair.reduce((s,q)=>s+(q?(10-(Number(q.position)||1)):0),0)*0.001;
+        if(c<bestCost){bestCost=c;bestIdx=idx;}
+      });
+      const sibling=bestIdx>=0?unusedPairs.splice(bestIdx,1)[0]:null;
+      blocks.push({
+        bye:bye,
+        sibling:sibling
+      });
+    });
+
+    // Pares restantes viram blocos normais (2 jogos consecutivos).
+    while(unusedPairs.length){
+      const p1=unusedPairs.shift();
+      const p2=unusedPairs.length?unusedPairs.shift():null;
+      blocks.push({bye:null,sibling:p1,extra:p2});
+    }
+
     const pairings=[];
-    const byeTeams=items.splice(0,byeCount);
-    byeTeams.forEach(q=>pairings.push(blank(q.team.id,null)));
+    blocks.forEach(block=>{
+      if(block.bye){
+        pairings.push(blank(block.bye.team.id,null));
+        if(block.sibling)pairings.push(blank(block.sibling[0].team.id,block.sibling[1]&&block.sibling[1].team.id));
+        else pairings.push(blank(null,null));
+      }else{
+        if(block.sibling)pairings.push(blank(block.sibling[0].team.id,block.sibling[1]&&block.sibling[1].team.id));
+        if(block.extra)pairings.push(blank(block.extra[0].team.id,block.extra[1]&&block.extra[1].team.id));
+      }
+    });
 
-    function solve(pool,acc){
-      if(!pool.length) return acc.slice();
-      if(pool.length===1){ acc.push(blank(pool[0].team.id,null)); return acc.slice(); }
-      const first=pool[0];
-      const candidates=[];
-      for(let i=1;i<pool.length;i++){
-        const q=pool[i];
-        candidates.push({i,q,same:q.group===first.group,
-          positionPenalty:Math.abs((first.position||1)-(q.position||1)),
-          seedDistance:Math.abs(qualifiers.indexOf(first)-qualifiers.indexOf(q))});
-      }
-      candidates.sort((a,b)=>Number(a.same)-Number(b.same) || a.positionPenalty-b.positionPenalty || b.seedDistance-a.seedDistance);
-      const hasCross=candidates.some(c=>!c.same);
-      for(const c of candidates){
-        if(hasCross && c.same) continue;
-        const rest=pool.filter((_,idx)=>idx!==0 && idx!==c.i);
-        acc.push(blank(first.team.id,c.q.team.id));
-        const solved=solve(rest,acc);
-        if(solved) return solved;
-        acc.pop();
-      }
-      // fallback somente quando o reencontro for inevitável
-      for(const c of candidates){
-        const rest=pool.filter((_,idx)=>idx!==0 && idx!==c.i);
-        acc.push(blank(first.team.id,c.q.team.id));
-        const solved=solve(rest,acc);
-        if(solved) return solved;
-        acc.pop();
-      }
-      return null;
-    }
-    pairings.push(...(solve(items,[])||[]));
-    while(pairings.length<size/2) pairings.push(blank(null,null));
-    return {size,pairings};
+    while(pairings.length<size/2)pairings.push(blank(null,null));
+    if(pairings.length>size/2)pairings.length=size/2;
+
+    return {
+      size:size,
+      pairings:pairings,
+      specialRule:'general-cross-group',
+      byes:byes.map(q=>({group:q.group,position:q.position,teamId:q.team.id}))
+    };
   }
-
-  function getKnockoutWinner(match){
-    if(match.aId && !match.bId) return match.aId;
-    if(!match.aId && match.bId) return match.bId;
-    if(!match.aId || !match.bId) return null;
-    if(match.aScore==='' || match.bScore==='') return null;
-    const a=Number(match.aScore), b=Number(match.bScore);
-    if(a===b) return null;
-    return a>b ? match.aId : match.bId;
-  }
-
   function generateKnockout(){
     hideNotice();
     if(!state.groups.length){
@@ -3007,15 +3028,7 @@ body.jb-auth-locked{overflow:hidden!important}
     propagateKnockout(0);
     renderKnockout();
     save();
-    const tresGruposDoisClassificados =
-      qualifiers.length===6 &&
-      [...new Set(qualifiers.map(q=>q.group))].length===3;
-    showNotice(
-      tresGruposDoisClassificados
-        ? 'Mata-mata gerado: 1º do Grupo 1 e 1º do Grupo 3 avançam de BYE, com cruzamentos intergrupos protegidos.'
-        : 'Mata-mata gerado automaticamente com base na classificação dos grupos.',
-      true
-    );
+    showNotice('Mata-mata gerado com cruzamento protegido entre grupos e distribuição automática de BYEs.', true);
   }
 
   function propagateKnockout(fromRound){
@@ -3570,62 +3583,54 @@ body.jb-auth-locked{overflow:hidden!important}
 
   function printBlankKnockout(){
     if(!state.groups.length){ showNotice('Faça o sorteio dos grupos antes de gerar a chave eliminatória em branco.'); return; }
-    var qs=blankQualifiers();
-    if(qs.length<2){ showNotice('É necessário haver pelo menos 2 vagas classificatórias.'); return; }
 
-    var size=nextPowerOfTwo(qs.length), rounds=[], first=[], gameNo=1;
-
-    // ============================================================
-    // SÚMULA JB — 3 GRUPOS / 2 CLASSIFICADOS POR GRUPO
-    // Usa exatamente a mesma regra da chave do mata-mata V7.9.2.
-    // ============================================================
-    if(qs.length===6){
-      var groups=[...new Set(qs.map(function(q){return q.group;}))];
-      if(groups.length===3){
-        var g1=qs.filter(function(q){return q.group===groups[0];}).sort(function(a,b){return a.position-b.position;});
-        var g2=qs.filter(function(q){return q.group===groups[1];}).sort(function(a,b){return a.position-b.position;});
-        var g3=qs.filter(function(q){return q.group===groups[2];}).sort(function(a,b){return a.position-b.position;});
-
-        if(g1.length===2 && g2.length===2 && g3.length===2){
-          size=8;
-          first=[
-            {a:g1[0].label,b:'BYE',game:gameNo++},
-            {a:g2[1].label,b:g3[1].label,game:gameNo++},
-            {a:g3[0].label,b:'BYE',game:gameNo++},
-            {a:g1[1].label,b:g2[0].label,game:gameNo++}
-          ];
-
-          rounds.push({name:roundName(size),matches:first});
-
-          // Semifinais: J1 x J2 e J3 x J4.
-          var semis=[
-            {a:'Vencedor J'+first[0].game,b:'Vencedor J'+first[1].game,game:gameNo++},
-            {a:'Vencedor J'+first[2].game,b:'Vencedor J'+first[3].game,game:gameNo++}
-          ];
-          rounds.push({name:roundName(4),matches:semis});
-
-          // Final: vencedores das duas semifinais.
-          rounds.push({
-            name:roundName(2),
-            matches:[{a:'Vencedor J'+semis[0].game,b:'Vencedor J'+semis[1].game,game:gameNo++}]
-          });
-        }
+    // Cria qualificadores fictícios com a mesma estrutura usada pelo mata-mata real.
+    var qpg=Number(el('qualifiersPerGroup').value)||2;
+    var fakeQualifiers=[];
+    state.groups.forEach(function(g){
+      for(var p=1;p<=qpg;p++){
+        fakeQualifiers.push({
+          group:g.name,
+          position:p,
+          team:{id:'PRINT|'+g.name+'|'+p}
+        });
       }
-    }
+    });
+    if(fakeQualifiers.length<2){ showNotice('É necessário haver pelo menos 2 vagas classificatórias.'); return; }
 
-    // Demais formatos continuam usando a lógica genérica anterior.
-    if(!rounds.length){
-      var slots=Array(size).fill(null);
-      qs.forEach(function(q,i){slots[i]=q.label;});
-      var l=0,r=size-1;
-      while(l<r){ first.push({a:slots[l]||'BYE',b:slots[r]||'BYE',game:gameNo++}); l++;r--; }
-      rounds.push({name:roundName(size),matches:first});
-      var prev=first, nextSize=size/2;
-      while(nextSize>=2){
-        var ms=[];
-        for(var i=0;i<nextSize/2;i++) ms.push({a:'Vencedor J'+prev[i*2].game,b:'Vencedor J'+prev[i*2+1].game,game:gameNo++});
-        rounds.push({name:roundName(nextSize),matches:ms}); prev=ms; nextSize/=2;
+    // Mapa de IDs fictícios -> rótulos impressos.
+    var labelMap={};
+    fakeQualifiers.forEach(function(q){
+      labelMap[q.team.id]=q.position+'º Grupo '+q.group;
+    });
+
+    // EXATAMENTE o mesmo algoritmo da chave na tela.
+    var built=buildFirstRound(fakeQualifiers);
+    var size=built.size;
+    var rounds=[], gameNo=1;
+
+    var first=built.pairings.map(function(m){
+      return {
+        a:m.aId?(labelMap[m.aId]||m.aId):'BYE',
+        b:m.bId?(labelMap[m.bId]||m.bId):'BYE',
+        game:gameNo++
+      };
+    });
+    rounds.push({name:roundName(size),matches:first});
+
+    var prev=first,nextSize=size/2;
+    while(nextSize>=2){
+      var ms=[];
+      for(var i=0;i<nextSize/2;i++){
+        ms.push({
+          a:'Vencedor J'+prev[i*2].game,
+          b:'Vencedor J'+prev[i*2+1].game,
+          game:gameNo++
+        });
       }
+      rounds.push({name:roundName(nextSize),matches:ms});
+      prev=ms;
+      nextSize/=2;
     }
 
     var tournament=esc(el('title').value||'Torneio Interno');
@@ -4496,7 +4501,7 @@ async function accountSession(force){
   };
 }
 
-function cloudPayload(){return {app_version:'7.9.2',tournament_id:activeTournamentId,title:(($id('title')||{}).value||'Torneio'),snapshot:currentTournamentSnapshot(),published_at:new Date().toISOString()}}
+function cloudPayload(){return {app_version:'7.9.3',tournament_id:activeTournamentId,title:(($id('title')||{}).value||'Torneio'),snapshot:currentTournamentSnapshot(),published_at:new Date().toISOString()}}
 async function upsertNow(silent){
   if(publicMode||pushBusy)return false;
   var c=getCfg();
