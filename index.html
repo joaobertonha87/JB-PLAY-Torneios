@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Play V10.0.1.0.1 · Tournament Control System</title>
+  <title>JB Play V10.0.2 · Portal Público Live</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -2308,6 +2308,95 @@ input,textarea,select{border-radius:9px!important}
 }
 </style>
 
+
+<style id="jb-v1002-public-portal-lock">
+/* V10.0.2 — link/QR abre SOMENTE o Portal Público */
+body.v74-public-only{
+  padding-left:0!important;
+  overflow:auto!important;
+  background:#eef3f7!important;
+}
+body.v74-public-only .jb-sidebar,
+body.v74-public-only .jb-v9-topbar,
+body.v74-public-only .topbar,
+body.v74-public-only .mobile-dock,
+body.v74-public-only .jb-auth-logout,
+body.v74-public-only #pwaSplash,
+body.v74-public-only .hero,
+body.v74-public-only .quick-nav{
+  display:none!important;
+}
+
+/* Esconde explicitamente TODOS os módulos administrativos,
+   inclusive os que têm display:grid!important na experiência nativa. */
+body.v74-public-only #jbPageDashboard,
+body.v74-public-only #jbPageInscritos,
+body.v74-public-only #jbPageDuplas,
+body.v74-public-only #jbPageGroups,
+body.v74-public-only #jbPageJogos,
+body.v74-public-only #jbPageEvento,
+body.v74-public-only #jbPageCentral,
+body.v74-public-only #jbPageHistorico,
+body.v74-public-only #jbPageAparencia,
+body.v74-public-only #jbPageNuvem,
+body.v74-public-only #jbPagePodio,
+body.v74-public-only #jbPageMata,
+body.v74-public-only #jbPageArquivos{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+
+/* Somente o portal fica disponível. */
+body.v74-public-only #jbPagePublico{
+  display:block!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  position:relative!important;
+  width:min(1180px,100%)!important;
+  max-width:1180px!important;
+  height:auto!important;
+  min-height:100dvh!important;
+  margin:0 auto!important;
+  padding:16px 18px 34px!important;
+  overflow:visible!important;
+  background:#f4f7f9!important;
+}
+body.v74-public-only .app{
+  display:block!important;
+  height:auto!important;
+  min-height:100dvh!important;
+  overflow:visible!important;
+  padding:0!important;
+  margin:0!important;
+}
+body.v74-public-only #jbPagePublico>.jb-page-head{
+  display:none!important;
+}
+body.v74-public-only #v73PublicContent{
+  display:block!important;
+}
+body.v74-public-only .v73-public-head{
+  margin-top:0!important;
+}
+
+/* Portal público visualmente independente do painel administrativo */
+body.v74-public-only .v74-public-banner{
+  position:sticky!important;
+  top:8px!important;
+  z-index:50!important;
+  border-radius:14px!important;
+  box-shadow:0 10px 30px rgba(7,29,56,.15)!important;
+}
+body.v74-public-only .jb-v79-livebar{
+  top:68px!important;
+}
+@media(max-width:700px){
+  body.v74-public-only #jbPagePublico{padding:10px 9px 24px!important}
+  body.v74-public-only .v74-public-banner{top:5px!important}
+}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
@@ -2371,7 +2460,7 @@ input,textarea,select{border-radius:9px!important}
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB PLAY V10.0.1</small>
+      <small>JB PLAY V10.0.2</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -5397,7 +5486,7 @@ async function upsertNow(silent){
 }
 
 async function fetchPublic(code){var c=getCfg();if(!validCfg(c))throw new Error('Este aparelho não possui a configuração pública da nuvem.');var r=await fetch(normUrl(c.url)+'/rest/v1/jb_tournaments?share_id=eq.'+encodeURIComponent(code)+'&is_public=eq.true&select=share_id,title,payload,updated_at&limit=1',{headers:headers(null)});var d=await r.json().catch(function(){return[]});if(!r.ok)throw new Error((d&&d.message)||'Falha ao consultar torneio.');if(!d||!d[0])throw new Error('Torneio público não encontrado.');return d[0]}
-function applyCloudSnapshot(row,forPublic){var p=row&&row.payload&&row.payload.snapshot;if(!p||!p.state)throw new Error('Dados da nuvem inválidos.');var id=forPublic?'public_'+publicCode:activeTournamentId;tournaments[id]={title:p.title||row.title||'Torneio',participants:p.participants||'',qualifiersPerGroup:p.qualifiersPerGroup||'2',matchFormat:p.matchFormat||'standard6',state:p.state,manualTeamsDraft:p.manualTeamsDraft||[],eventLogoData:p.eventLogoData||'',eventLogoName:p.eventLogoName||'',updatedAt:p.updatedAt||Date.now()};activeTournamentId=id;applyTournamentById(id);if(window.v73RenderPublic)v73RenderPublic();if(window.v73RenderPodium)v73RenderPodium();}
+function applyCloudSnapshot(row,forPublic){var p=row&&row.payload&&row.payload.snapshot;if(!p||!p.state)throw new Error('Dados da nuvem inválidos.');var id=forPublic?'public_'+publicCode:activeTournamentId;tournaments[id]={title:p.title||row.title||'Torneio',participants:p.participants||'',qualifiersPerGroup:p.qualifiersPerGroup||'2',matchFormat:p.matchFormat||'standard6',state:p.state,manualTeamsDraft:p.manualTeamsDraft||[],eventLogoData:p.eventLogoData||'',eventLogoName:p.eventLogoName||'',updatedAt:p.updatedAt||Date.now()};activeTournamentId=id;applyTournamentById(id);if(window.v73RenderPublic)v73RenderPublic();if(window.v73RenderPodium)v73RenderPodium();if(forPublic){document.querySelectorAll('.jb-page').forEach(function(pg){pg.classList.toggle('active',pg.id==='jbPagePublico');});var pub=$id('jbPagePublico');if(pub)pub.setAttribute('aria-hidden','false');}}
 async function pullNow(silent){if(pullBusy)return false;var code=activeShareId();if(!code){if(!silent)showNotice('Esta categoria ainda não foi publicada.');return false}pullBusy=true;try{status('connecting','BAIXANDO','Buscando versão da nuvem...');var row=await fetchPublic(code);applyCloudSnapshot(row,false);save();status('online','ONLINE','Versão da nuvem carregada.');if(!silent)showNotice('Versão da nuvem carregada.',true);return true}catch(e){status('error','ERRO DE SINCRONIZAÇÃO',e.message||String(e));if(!silent)showNotice('Nuvem: '+(e.message||e));return false}finally{pullBusy=false}}
 function schedulePush(){var c=getCfg();if(publicMode||!validCfg(c)||c.auto===false||!activeShareId())return;clearTimeout(syncTimer);syncTimer=setTimeout(function(){upsertNow(true)},1200)}
 window.v74SaveCloudConfig=function(){
@@ -5454,7 +5543,32 @@ window.v74OpenPublicLink=function(){var l=($id('v74PublicLink')||{}).value;if(l)
 var localSave=window.save;if(typeof localSave==='function')window.save=function(){var r=localSave.apply(this,arguments);schedulePush();return r};
 var oldApply=window.applyTournamentById;if(typeof oldApply==='function')window.applyTournamentById=function(){var r=oldApply.apply(this,arguments);setTimeout(renderShare,0);return r};
 
-async function enterPublic(code){publicMode=true;publicCode=code;document.body.classList.remove('jb-auth-locked');document.body.classList.add('v74-public-only');var screen=$id('jbAuthScreen');if(screen)screen.style.display='none';var host=$id('jbPagePublico');if(host){var b=document.createElement('div');b.className='v74-public-banner';b.id='v74PublicBanner';b.innerHTML='<div><b>JB TORNEIOS · AO VIVO</b><small>Portal público somente leitura</small></div><span id="v74PublicSync" class="v74-public-sync wait">CONECTANDO...</span>';host.insertBefore(b,host.firstChild)}
+async function enterPublic(code){
+  publicMode=true;
+  publicCode=code;
+  document.body.classList.remove('jb-auth-locked');
+  document.body.classList.add('v74-public-only');
+
+  var screen=$id('jbAuthScreen');
+  if(screen)screen.style.display='none';
+
+  // Trava a interface em modo público: nenhuma tela administrativa permanece ativa.
+  document.querySelectorAll('.jb-page').forEach(function(pg){
+    pg.classList.remove('active');
+    pg.setAttribute('aria-hidden',pg.id==='jbPagePublico'?'false':'true');
+  });
+  var host=$id('jbPagePublico');
+  if(host){
+    host.classList.add('active');
+    host.setAttribute('aria-hidden','false');
+    var oldBanner=$id('v74PublicBanner');
+    if(oldBanner)oldBanner.remove();
+    var b=document.createElement('div');
+    b.className='v74-public-banner';
+    b.id='v74PublicBanner';
+    b.innerHTML='<div><b>JB PLAY · TORNEIO AO VIVO</b><small>Portal público · acompanhamento em tempo real</small></div><span id="v74PublicSync" class="v74-public-sync wait">CONECTANDO...</span>';
+    host.insertBefore(b,host.firstChild);
+  }
  async function refresh(){var n=$id('v74PublicSync');try{var row=await fetchPublic(code);applyCloudSnapshot(row,true);if(n){n.className='v74-public-sync ok';n.textContent='ATUALIZADO '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}}catch(e){if(n){n.className='v74-public-sync err';n.textContent='SEM CONEXÃO'}var h=$id('v73PublicContent');if(h&&!h.innerHTML.trim())h.innerHTML='<div class="v73-public-card"><h3>Não foi possível abrir o torneio</h3><p>'+esc(e.message||String(e))+'</p><p>Confira a configuração de nuvem neste navegador ou tente novamente.</p></div>'}}
  await refresh();pollTimer=setInterval(refresh,3000)}
 
@@ -6113,6 +6227,40 @@ var pageLabels={central:'Central de Comando',historico:'Histórico de Torneios'}
 document.addEventListener('click',function(e){var a=e.target.closest('[data-page-link],[data-open-page]');if(a){var p=a.getAttribute('data-page-link')||a.getAttribute('data-open-page');if(pageLabels[p]&&id('jbV9TopPage'))id('jbV9TopPage').textContent=pageLabels[p];setTimeout(v10Refresh,80)}});
 window.addEventListener('jb:live-sync',v10Refresh);document.addEventListener('visibilitychange',function(){if(!document.hidden)v10Refresh()});
 setInterval(v10Refresh,3000);setTimeout(v10Refresh,350);
+})();
+</script>
+
+
+<script id="jb-v1002-public-mode-guard">
+(function(){
+'use strict';
+function isPublic(){try{return !!new URLSearchParams(location.search).get('public')}catch(e){return false}}
+function lockPublic(){
+  if(!isPublic())return;
+  document.body.classList.add('v74-public-only');
+  document.body.classList.remove('jb-auth-locked');
+  var auth=document.getElementById('jbAuthScreen');if(auth)auth.style.display='none';
+  document.querySelectorAll('.jb-page').forEach(function(pg){
+    var pub=pg.id==='jbPagePublico';
+    pg.classList.toggle('active',pub);
+    pg.setAttribute('aria-hidden',pub?'false':'true');
+  });
+}
+if(isPublic()){
+  // Capture navigation attempts before normal application handlers.
+  document.addEventListener('click',function(e){
+    if(e.target.closest('[data-page-link],[data-open-page],.jb-sidebar,.mobile-dock')){
+      e.preventDefault();e.stopPropagation();lockPublic();
+    }
+  },true);
+  lockPublic();
+  document.addEventListener('DOMContentLoaded',lockPublic);
+  window.addEventListener('load',lockPublic);
+  setTimeout(lockPublic,50);
+  setTimeout(lockPublic,300);
+  setTimeout(lockPublic,1000);
+  setInterval(lockPublic,3000);
+}
 })();
 </script>
 
