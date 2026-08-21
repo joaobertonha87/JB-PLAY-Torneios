@@ -1,0 +1,19 @@
+JB TORNEIOS PRO V7.7.0 — SINCRONIZAÇÃO MULTIDISPOSITIVO
+
+ANTES DE USAR:
+1. Entre no Supabase > SQL Editor.
+2. Abra CONFIGURAR-SUPABASE-V7.7-MULTIDISPOSITIVO.sql.
+3. Copie todo o conteúdo, cole no SQL Editor e clique em Run.
+4. Faça o deploy completo da V7.7.0 no Render.
+5. No PC: Nuvem / compartilhar > Criar espaço sincronizado.
+6. Guarde o ID JBX-... e a chave privada.
+7. No iPad/iPhone: abra a mesma ferramenta > Nuvem / compartilhar.
+8. Informe o mesmo ID e chave > Conectar e baixar.
+
+FUNCIONAMENTO:
+- O Supabase vira a fonte comum entre seus dispositivos.
+- O armazenamento local continua como cache/backup.
+- Alterações são enviadas automaticamente após salvar.
+- Outros dispositivos verificam atualizações aproximadamente a cada 5 segundos.
+- Ao voltar para a ferramenta, ela também verifica a nuvem.
+- Nunca compartilhe a chave de sincronização com atletas/público.
