@@ -1,0 +1,14 @@
+JB PLAY V10.0.9 — HOTFIX FUNCIONAL
+
+Correção do erro JavaScript no bloco de impressão/súmulas que impedia a inicialização do aplicativo.
+
+Corrigido:
+- contador de inscritos;
+- botões;
+- navegação lateral;
+- sorteio de duplas e grupos;
+- inicialização geral da ferramenta.
+
+Preservado: V10.0.8 multidispositivo, Conta JB/Supabase, Central de Comando, Portal Público, quadras, mata-mata, pódio, súmulas e histórico.
+
+Todos os blocos JavaScript foram validados.
