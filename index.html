@@ -3,30 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#07111c" />
+  <meta name="theme-color" content="#111417" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Torneios V10.2.6 · PC / iPad</title>
+  <title>JB Torneios V10.2.7 · Grafite</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
 
   <style>
     :root{
-      --bg:#07111c;
-      --bg-2:#0a1624;
-      --panel:rgba(13,29,45,.86);
-      --panel-strong:#102237;
-      --panel-soft:rgba(16,34,55,.68);
+      --bg:#111417;
+      --bg-2:#15191d;
+      --panel:rgba(27,32,37,.94);
+      --panel-strong:#1c2126;
+      --panel-soft:rgba(31,37,43,.82);
       --text:#f7fbff;
-      --muted:#8fa4ba;
+      --muted:#aeb7bf;
       --line:rgba(150,180,210,.16);
       --line-strong:rgba(180,210,240,.24);
       --accent:#c8ff33;
-      --accent-2:#18c8d8;
+      --accent-2:#9aa4ad;
       --accent-soft:rgba(200,255,51,.12);
       --danger:#ff6479;
       --warning:#ffd34d;
@@ -48,7 +48,7 @@
       background:
         radial-gradient(circle at 14% 0%, rgba(24,200,216,.11), transparent 27rem),
         radial-gradient(circle at 92% 8%, rgba(200,255,51,.09), transparent 28rem),
-        linear-gradient(180deg,#06101a 0%,#091522 48%,#07111c 100%);
+        linear-gradient(180deg,#0d1012 0%,#15191d 48%,#111417 100%);
       overflow-x:hidden;
     }
     body:before{
@@ -81,7 +81,7 @@
       padding:12px 14px; margin-bottom:14px;
       border:1px solid var(--line);
       border-radius:20px;
-      background:rgba(7,17,28,.78);
+      background:rgba(17,20,23,.92);
       backdrop-filter:blur(18px);
       -webkit-backdrop-filter:blur(18px);
       box-shadow:0 12px 32px rgba(0,0,0,.2);
@@ -106,7 +106,7 @@
       padding:28px;
       box-shadow:var(--shadow);
       background:
-        linear-gradient(115deg,rgba(8,22,35,.97) 0%,rgba(9,27,42,.88) 55%,rgba(8,24,36,.82) 100%);
+        linear-gradient(115deg,rgba(18,22,25,.98) 0%,rgba(25,30,34,.96) 55%,rgba(20,24,28,.94) 100%);
       margin-bottom:16px;
     }
     .hero:after{
@@ -316,7 +316,7 @@
       position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
       background:
         radial-gradient(circle at 50% 36%,rgba(200,255,51,.10),transparent 16rem),
-        #07111c;
+        #111417;
       transition:opacity .32s ease,visibility .32s ease;
     }
     #pwaSplash.hide{opacity:0;visibility:hidden}
@@ -373,6 +373,17 @@
       .mobile-dock a:first-child{color:#e9ffc0;background:rgba(200,255,51,.08)}
       .mobile-dock a:first-child i{background:var(--accent);box-shadow:0 0 10px rgba(200,255,51,.45)}
     }
+
+    /* V10.2.7 — Tema Grafite de alto contraste */
+    body{background:linear-gradient(180deg,#0d1012 0%,#15191d 52%,#111417 100%);}
+    .topbar{background:rgba(17,20,23,.94);}
+    .card,.panel,.group-card,.bracket-round,.modal-card{background:rgba(27,32,37,.96);}
+    input,textarea,select{background:#f7f8f9!important;color:#15191d!important;border-color:#69737c!important;}
+    input::placeholder,textarea::placeholder{color:#65707a!important;}
+    table,th,td{color:#f7fbff;}
+    th{color:#dbe2e8!important;}
+    .muted,.help,.sub,.hint,small{color:#aeb7bf!important;}
+    .btn.primary,.primary,.accent{color:#111417!important;}
   </style>
 
 <style id="jb-torneios-v4-theme">
@@ -495,7 +506,7 @@
   .save-status i{width:8px;height:8px;border-radius:50%;background:#57dc97;box-shadow:0 0 12px rgba(87,220,151,.5)}
   .management-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
   .management-actions button{width:100%;min-height:44px;font-size:12px;padding:10px}
-  .print-note{font-size:11px;color:#8fa4ba;line-height:1.5;margin-top:9px}
+  .print-note{font-size:11px;color:#aeb7bf;line-height:1.5;margin-top:9px}
 
   @media(max-width:1000px){
     body{padding-left:78px}
