@@ -1,0 +1,15 @@
+JB TORNEIOS V12.6 — PLACAR DARK REAL FIX
+
+Correção feita diretamente nos seletores antigos que ainda forçavam branco:
+- .jb-score-dialog: fundo branco removido na regra original;
+- #jbScoreTeams .jb-score-team-card: branco removido;
+- nomes das duplas: branco;
+- "Dupla A / Dupla B": cinza claro;
+- símbolo ×: branco;
+- .jb-set-card: grafite;
+- nomes dentro do set: branco;
+- inputs: pretos com números brancos;
+- Cancelar/Limpar: grafite com branco;
+- Confirmar resultado: verde-limão com preto.
+
+Nenhum JavaScript funcional foi alterado.
