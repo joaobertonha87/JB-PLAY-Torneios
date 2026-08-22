@@ -2711,7 +2711,7 @@ body:not(.v74-public-only) .jb-metric-card strong b {
   color:#ffffff !important;
 }
 </style>
-<meta name="jb-play-version" content="14.2">
+<meta name="jb-play-version" content="14.3">
 
 <style id="jb-v1010-manual-groups-style">
 .jb-manual-groups-panel{margin-top:14px!important}
@@ -3095,7 +3095,7 @@ html[data-jb-view="ipad"] #jbPageMata .jb-v136-stage-wrap{overflow-x:auto!import
 
 <style id="jb-v139-matamata-final">
 /* =========================================================
-   JB TORNEIOS V14.2 — MATA-MATA FINAL
+   JB TORNEIOS V14.3 — MATA-MATA FINAL
    - chave usa toda a largura
    - controles superiores alinhados à esquerda
    - nomes e placares mais legíveis
@@ -3494,7 +3494,7 @@ html[data-jb-view="ipad"] #jbPageMata #jbV7487PodiumSlot .jb-v7486-podium{
 
 <style id="jb-v1391-pc-bracket-fix">
 /* =========================================================
-   JB TORNEIOS V14.2 — CORREÇÃO EXCLUSIVA DA VISUALIZAÇÃO PC
+   JB TORNEIOS V14.3 — CORREÇÃO EXCLUSIVA DA VISUALIZAÇÃO PC
    Mantém o iPad como estava e reorganiza o chaveamento no PC.
    ========================================================= */
 
@@ -3841,7 +3841,7 @@ html[data-jb-view="pc"] .jb-ipad-menu-close{
 
 <style id="jb-v1393-ipad-landscape-bracket">
 /* =========================================================
-   JB TORNEIOS V14.2
+   JB TORNEIOS V14.3
    Correção Mata-mata — iPad 10ª geração em PAISAGEM
    Mantém o menu iPad e evita chave espremida.
    ========================================================= */
@@ -4042,7 +4042,7 @@ html[data-jb-view="pc"] .jb-ipad-menu-close{
 
 <style id="jb-v140-premium-clean">
 /* =========================================================
-   JB TORNEIOS V14.2 — PREMIUM CLEAN
+   JB TORNEIOS V14.3 — PREMIUM CLEAN
    Interface inspirada no layout aprovado:
    dark clean, lime apenas em ação/seleção, ícones vetoriais,
    mata-mata amplo e responsivo em PC e iPad.
@@ -4834,7 +4834,7 @@ html[data-jb-view="ipad"] #jbPageMata #resetKO{
 
 <style id="jb-v141-unified-responsive">
 /* =========================================================
-   JB TORNEIOS V14.2 — RESPONSIVE UNIFICADO
+   JB TORNEIOS V14.3 — RESPONSIVE UNIFICADO
    Um único layout automático para Windows, iPad e smartphones.
    Não depende mais de data-jb-view nem de botão PC/iPad.
    ========================================================= */
@@ -5255,303 +5255,377 @@ html[data-jb-view="ipad"] #jbPageMata #resetKO{
 
 
 
-<style id="jb-v142-bracket-fix">
-/* JB TORNEIOS V14.2 — correção definitiva de alinhamento/sobreposição do mata-mata */
-
-/* A página e o chaveamento passam a obedecer fluxo normal. */
-#jbPageMata,
-#jbPageMata #knockoutArea,
-#jbPageMata .jb137-bracket,
-#jbPageMata .jb137-rounds{
-  box-sizing:border-box!important;
-}
+<style id="jb-v143-bracket-rebuild">
+/* =========================================================
+   JB TORNEIOS V14.3 — MATA-MATA RECONSTRUÍDO
+   Refeito do zero para eliminar sobreposição e desalinhamento.
+   ========================================================= */
 
 #jbPageMata #knockoutArea{
-  position:relative!important;
   width:100%!important;
   max-width:none!important;
   min-width:0!important;
   overflow:visible!important;
+  padding:14px 18px 28px!important;
 }
 
-/* Estrutura principal: chave à esquerda + coluna de resultado à direita.
-   Nada de card absoluto sobre as rodadas. */
-#jbPageMata .jb137-bracket{
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) clamp(210px,18vw,280px)!important;
-  align-items:start!important;
-  gap:24px!important;
-  width:100%!important;
-  max-width:none!important;
-  min-width:0!important;
-  position:relative!important;
-  overflow:visible!important;
+.jb143-shell{
+  width:100%;
+  min-width:0;
 }
 
-#jbPageMata .jb137-rounds{
-  display:grid!important;
+.jb143-scroll{
+  width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  scrollbar-color:#52616a #10181d;
+  padding-bottom:8px;
+}
+
+.jb143-canvas{
+  position:relative;
+  display:grid;
   grid-template-columns:
-    minmax(205px,1.18fr)
-    minmax(195px,1.10fr)
-    minmax(185px,1fr)
-    minmax(175px,.94fr)!important;
-  gap:clamp(24px,2.3vw,42px)!important;
-  align-items:stretch!important;
-  width:100%!important;
-  min-width:0!important;
-  position:relative!important;
-  overflow:visible!important;
+    minmax(220px,1.15fr)
+    minmax(210px,1.08fr)
+    minmax(200px,1fr)
+    minmax(190px,.95fr)
+    minmax(200px,.98fr);
+  gap:34px;
+  width:100%;
+  min-width:1180px;
+  min-height:var(--jb143-h,760px);
+  padding:0 4px 8px;
+  box-sizing:border-box;
 }
 
-/* Cada rodada ocupa sua própria coluna e nunca invade a próxima. */
-#jbPageMata .jb137-round{
-  position:relative!important;
-  width:100%!important;
-  min-width:0!important;
-  max-width:none!important;
-  margin:0!important;
-  padding:0 10px 0 0!important;
-  overflow:visible!important;
+.jb143-connectors{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:1;
+  overflow:visible;
+}
+.jb143-connectors path{
+  fill:none;
+  stroke:#4d5e67;
+  stroke-width:1.5;
+  vector-effect:non-scaling-stroke;
+}
+.jb143-connectors path.done{
+  stroke:#c9ff00;
+  stroke-width:2;
 }
 
-#jbPageMata .jb137-round + .jb137-round{
-  border-left:1px solid rgba(180,210,225,.16)!important;
-  padding-left:18px!important;
+.jb143-col{
+  position:relative;
+  min-width:0;
+  min-height:var(--jb143-h,760px);
+  z-index:2;
+  border-right:1px solid rgba(255,255,255,.07);
+}
+.jb143-col:last-of-type{
+  border-right:0;
 }
 
-#jbPageMata .jb137-round header{
-  position:relative!important;
-  width:100%!important;
-  min-height:58px!important;
-  margin:0 0 12px!important;
-  padding:0 0 10px!important;
-  border-bottom:2px solid rgba(214,255,0,.85)!important;
-  background:transparent!important;
-  overflow:visible!important;
+.jb143-head{
+  position:absolute;
+  left:0;
+  right:10px;
+  top:0;
+  height:58px;
+  border-bottom:2px solid #c9ff00;
+}
+.jb143-head strong{
+  display:block;
+  color:#fff;
+  font-size:16px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:.01em;
+  white-space:nowrap;
+}
+.jb143-head span{
+  display:block;
+  margin-top:6px;
+  color:#9ca8ae;
+  font-size:9px;
+  font-weight:800;
 }
 
-#jbPageMata .jb137-round header strong{
-  display:block!important;
-  white-space:nowrap!important;
-  overflow:visible!important;
-  text-overflow:clip!important;
-  font-size:clamp(13px,1vw,18px)!important;
-  line-height:1.05!important;
-  letter-spacing:.01em!important;
+.jb143-match{
+  position:absolute;
+  left:0;
+  right:12px;
+  height:78px;
+  transform:translateY(-50%);
+}
+.jb143-game{
+  height:15px;
+  margin-bottom:4px;
+  color:#829097;
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.05em;
+  text-transform:uppercase;
 }
 
-/* Match e linhas: sem transformações que criem sobreposição. */
-#jbPageMata .jb137-match,
-#jbPageMata .jb137-team{
-  position:relative!important;
-  transform:none!important;
-  left:auto!important;
-  right:auto!important;
-  top:auto!important;
-  bottom:auto!important;
-  max-width:100%!important;
-  box-sizing:border-box!important;
+.jb143-team{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 38px;
+  gap:5px;
+  align-items:center;
+  height:27px;
+  padding:0 4px 0 8px;
+  background:#0a141a;
+  border:1px solid #314049;
+  color:#f4f7f8;
+}
+.jb143-team:first-of-type{
+  border-radius:6px 6px 2px 2px;
+}
+.jb143-team:last-of-type{
+  margin-top:2px;
+  border-radius:2px 2px 6px 6px;
+}
+.jb143-team.winner{
+  border-color:#627328;
+  background:#0d1716;
+}
+.jb143-name{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:#fff;
+  font-size:10px;
+  font-weight:820;
+}
+.jb143-team.winner .jb143-name{
+  color:#d8ff22;
+}
+.jb143-score{
+  width:34px;
+  height:23px;
+  min-height:23px!important;
+  padding:0!important;
+  border-radius:5px!important;
+  border:1px solid #61717a!important;
+  background:#172228!important;
+  color:#fff!important;
+  font-size:11px!important;
+  font-weight:950!important;
+  line-height:1!important;
+  box-shadow:none!important;
+}
+.jb143-score:disabled{
+  opacity:.65!important;
+  cursor:default!important;
 }
 
-#jbPageMata .jb137-match{
-  width:100%!important;
+/* Campeão é uma quinta coluna real; nunca fica em cima da chave. */
+.jb143-champion-col{
+  position:relative;
+  min-height:var(--jb143-h,760px);
+  z-index:2;
+}
+.jb143-champion-card{
+  position:absolute;
+  left:0;
+  right:0;
+  top:50%;
+  transform:translateY(-50%);
+  min-height:190px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:18px 14px;
+  border:1px solid #c9ff00;
+  border-radius:13px;
+  background:
+    radial-gradient(circle at 50% 10%,rgba(201,255,0,.08),transparent 48%),
+    #091319;
+  text-align:center;
+  box-shadow:0 0 32px rgba(201,255,0,.05);
+}
+.jb143-cup{
+  font-size:38px;
+  line-height:1;
+  margin-bottom:10px;
+}
+.jb143-champion-card small{
+  color:#c7d0d4;
+  font-size:8px;
+  font-weight:950;
+  letter-spacing:.10em;
+}
+.jb143-champion-card strong{
+  margin-top:9px;
+  color:#d8ff22;
+  font-size:15px;
+  line-height:1.2;
+  overflow-wrap:anywhere;
+}
+.jb143-champion-card em{
+  margin-top:8px;
+  color:#89979f;
+  font-style:normal;
+  font-size:8px;
 }
 
-#jbPageMata .jb137-team{
-  width:100%!important;
-  min-width:0!important;
+/* Disputa de 3º lugar abaixo da final, mas ainda dentro da coluna Final. */
+.jb143-third{
+  position:absolute;
+  left:0;
+  right:12px;
+  bottom:26px;
+}
+.jb143-third-title{
+  color:#d78a42;
+  font-size:8px;
+  font-weight:950;
+  letter-spacing:.08em;
+  margin-bottom:5px;
+  text-transform:uppercase;
 }
 
-#jbPageMata .jb137-team span{
-  min-width:0!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
-  white-space:nowrap!important;
+/* Pódio horizontal abaixo de toda a chave. */
+.jb143-podium{
+  display:grid;
+  grid-template-columns:1.08fr 1fr 1fr;
+  gap:10px;
+  width:100%;
+  margin-top:16px;
 }
-
-/* O campeão que antes aparecia no meio da chave é removido do fluxo visual.
-   O resultado oficial permanece na coluna/pódio. */
-#jbPageMata .jb137-champion{
-  position:relative!important;
-  inset:auto!important;
-  transform:none!important;
-  width:100%!important;
-  max-width:none!important;
-  min-width:0!important;
-  margin:0!important;
-  z-index:1!important;
+.jb143-podium-card{
+  min-height:92px;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:14px 16px;
+  border-radius:10px;
+  background:#0a141a;
+  border:1px solid #39474f;
 }
-
-/* Se existir campeão injetado dentro das colunas de rodadas, ele não pode sobrepor. */
-#jbPageMata .jb137-rounds > .jb137-champion,
-#jbPageMata .jb137-round .jb137-champion{
-  display:none!important;
+.jb143-podium-card.first{border-color:#7e9400}
+.jb143-podium-card.third{border-color:#8d5527}
+.jb143-medal{
+  font-size:30px;
+  flex:0 0 auto;
 }
-
-/* Coluna de pódio/resultado: sempre separada da chave. */
-#jbPageMata #jbV7487PodiumSlot{
-  grid-column:2!important;
-  grid-row:1!important;
-  position:relative!important;
-  inset:auto!important;
-  transform:none!important;
-  width:100%!important;
-  min-width:0!important;
-  max-width:none!important;
-  margin:0!important;
-  align-self:start!important;
-  z-index:1!important;
+.jb143-podium-card small{
+  display:block;
+  color:#9ba8ae;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.08em;
 }
-
-#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium{
-  display:grid!important;
-  grid-template-columns:1fr!important;
-  gap:10px!important;
-  width:100%!important;
-  min-width:0!important;
-  margin:0!important;
+.jb143-podium-card strong{
+  display:block;
+  margin-top:4px;
+  color:#fff;
+  font-size:15px;
+  line-height:1.2;
+  overflow-wrap:anywhere;
 }
+.jb143-podium-card.first strong{color:#d8ff22}
 
-#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium > *{
-  width:100%!important;
-  min-width:0!important;
-  max-width:none!important;
-  margin:0!important;
-  position:relative!important;
-  transform:none!important;
+/* CONTROLES DO MATA-MATA */
+#jbPageMata .section-title{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:flex-end!important;
+  justify-content:space-between!important;
+  gap:12px!important;
 }
-
-/* Caso a implementação use outro container de cards dentro do bracket,
-   força-o para a segunda coluna em vez de deixá-lo absoluto. */
-#jbPageMata .jb137-bracket > :not(.jb137-rounds):not(script):not(style){
-  position:relative!important;
-  inset:auto!important;
-  transform:none!important;
-  max-width:100%!important;
+#jbPageMata .title-wrap{
+  min-width:220px!important;
 }
-
-/* Controles superiores alinhados em uma única faixa. */
 #jbPageMata .knockout-controls{
+  margin-left:auto!important;
   display:flex!important;
   flex-wrap:wrap!important;
   justify-content:flex-end!important;
-  align-items:end!important;
-  gap:8px!important;
-  width:100%!important;
-  margin:0 0 18px!important;
+  align-items:flex-end!important;
+  gap:7px!important;
+}
+#jbPageMata .knockout-controls .field{
+  flex:0 0 160px!important;
+  min-width:160px!important;
+  max-width:160px!important;
+}
+#jbPageMata .v7483-third-button{
+  min-width:185px!important;
+  max-width:220px!important;
 }
 
-/* DESKTOP GRANDE */
-@media (min-width:1440px){
-  #jbPageMata .jb137-bracket{
-    grid-template-columns:minmax(0,1fr) 300px!important;
-    gap:28px!important;
-  }
-  #jbPageMata .jb137-rounds{
-    grid-template-columns:
-      minmax(225px,1.20fr)
-      minmax(215px,1.12fr)
-      minmax(200px,1fr)
-      minmax(190px,.94fr)!important;
-    gap:42px!important;
-  }
-}
-
-/* WINDOWS / NOTEBOOK: reduz espaçamento, não a estrutura. */
-@media (min-width:1181px) and (max-width:1439px){
-  #jbPageMata .jb137-bracket{
-    grid-template-columns:minmax(0,1fr) 230px!important;
-    gap:18px!important;
-  }
-  #jbPageMata .jb137-rounds{
-    grid-template-columns:
-      minmax(180px,1.18fr)
-      minmax(172px,1.10fr)
-      minmax(162px,1fr)
-      minmax(154px,.94fr)!important;
-    gap:22px!important;
-  }
-  #jbPageMata .jb137-round + .jb137-round{
-    padding-left:12px!important;
+/* Windows largo: sem scroll horizontal. */
+@media (min-width:1380px){
+  .jb143-canvas{
+    min-width:0;
+    gap:clamp(26px,2vw,38px);
   }
 }
 
-/* iPad paisagem: preserva quatro colunas; pódio vai abaixo para dar largura à chave. */
-@media (min-width:900px) and (max-width:1180px) and (orientation:landscape){
-  #jbPageMata .jb137-bracket{
-    display:block!important;
-    width:100%!important;
-  }
-  #jbPageMata .jb137-rounds{
-    grid-template-columns:
-      minmax(165px,1.18fr)
-      minmax(155px,1.10fr)
-      minmax(145px,1fr)
-      minmax(138px,.94fr)!important;
-    gap:16px!important;
-    width:100%!important;
-  }
-  #jbPageMata #jbV7487PodiumSlot{
-    width:100%!important;
-    margin-top:26px!important;
-  }
-  #jbPageMata #jbV7487PodiumSlot .jb-v7486-podium{
-    grid-template-columns:repeat(3,minmax(0,1fr))!important;
-    gap:12px!important;
+/* Notebook/Windows menor: scroll local só se necessário, sem esmagar a chave. */
+@media (min-width:900px) and (max-width:1379px){
+  .jb143-canvas{
+    min-width:1120px;
   }
 }
 
-/* iPad retrato e telas intermediárias: scroll somente na chave.
-   Assim os nomes não são esmagados. */
-@media (min-width:700px) and (max-width:899px){
+/* iPad paisagem */
+@media (min-width:700px) and (max-width:1180px) and (orientation:landscape){
   #jbPageMata #knockoutArea{
-    overflow-x:auto!important;
-    -webkit-overflow-scrolling:touch!important;
-    padding-bottom:10px!important;
+    padding-left:10px!important;
+    padding-right:10px!important;
   }
-  #jbPageMata .jb137-bracket{
-    display:block!important;
-    min-width:920px!important;
+  .jb143-canvas{
+    min-width:1080px;
+    gap:25px;
   }
-  #jbPageMata .jb137-rounds{
-    grid-template-columns:220px 210px 200px 190px!important;
-    gap:28px!important;
-  }
-  #jbPageMata #jbV7487PodiumSlot{
-    width:100%!important;
-    margin-top:24px!important;
-  }
-  #jbPageMata #jbV7487PodiumSlot .jb-v7486-podium{
-    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  .jb143-head strong{font-size:14px}
+  .jb143-name{font-size:9px}
+  .jb143-podium{
+    grid-template-columns:1fr 1fr 1fr;
   }
 }
 
-/* Smartphone: chave horizontal legível + pódio empilhado abaixo. */
+/* Tablet retrato */
+@media (min-width:700px) and (orientation:portrait){
+  .jb143-canvas{
+    min-width:1080px;
+  }
+}
+
+/* Smartphone */
 @media (max-width:699px){
+  #jbPageMata .section-title{
+    align-items:stretch!important;
+  }
   #jbPageMata .knockout-controls{
+    width:100%!important;
     display:grid!important;
     grid-template-columns:1fr 1fr!important;
     justify-content:stretch!important;
   }
-  #jbPageMata #knockoutArea{
-    overflow-x:auto!important;
-    -webkit-overflow-scrolling:touch!important;
-    padding-bottom:12px!important;
-  }
-  #jbPageMata .jb137-bracket{
-    display:block!important;
-    min-width:900px!important;
-  }
-  #jbPageMata .jb137-rounds{
-    grid-template-columns:215px 205px 195px 185px!important;
-    gap:24px!important;
-  }
-  #jbPageMata #jbV7487PodiumSlot{
+  #jbPageMata .knockout-controls .field,
+  #jbPageMata .v7483-third-button{
+    min-width:0!important;
+    max-width:none!important;
     width:100%!important;
-    margin-top:24px!important;
   }
-  #jbPageMata #jbV7487PodiumSlot .jb-v7486-podium{
-    grid-template-columns:1fr!important;
+  .jb143-canvas{
+    min-width:1040px;
+    gap:22px;
+  }
+  .jb143-podium{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -5602,7 +5676,7 @@ html[data-jb-view="ipad"] #jbPageMata #resetKO{
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
       <button type="button" id="jbIpadMenuClose" class="jb-ipad-menu-close" aria-label="Fechar menu">×</button>
     </div>
-    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Bracket Layout V14.2</small></div>
+    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Bracket Rebuild V14.3</small></div>
     <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><span>Início</span></a>
@@ -5619,7 +5693,7 @@ html[data-jb-view="ipad"] #jbPageMata #resetKO{
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB TORNEIOS V14.2</small>
+      <small>JB TORNEIOS V14.3</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -9920,6 +9994,210 @@ if(isPublic()){
 })();
 </script>
 
+
+
+<script id="jb-v143-bracket-rebuild-js">
+(function(){
+'use strict';
+
+function q(id){return document.getElementById(id)}
+function safe(s){try{return esc(s)}catch(e){return String(s==null?'':s)}}
+function teamName(id){
+  if(!id)return 'Aguardando dupla';
+  try{
+    var t=getTeam(id);
+    return t?teamLabel(t):'Aguardando dupla';
+  }catch(e){return 'Aguardando dupla'}
+}
+function scoreDone(m){
+  if(!m)return false;
+  var a=String(m.aScore==null?'':m.aScore).trim();
+  var b=String(m.bScore==null?'':m.bScore).trim();
+  return a!==''&&b!==''&&Number.isFinite(Number(a))&&Number.isFinite(Number(b))&&Number(a)!==Number(b);
+}
+function winnerId(m){
+  if(!scoreDone(m))return null;
+  return Number(m.aScore)>Number(m.bScore)?m.aId:m.bId;
+}
+function roundTitle(round,ri,total){
+  if(round&&round.name)return String(round.name).toUpperCase();
+  var n=(round&&round.matches&&round.matches.length)||0;
+  if(n===8)return 'OITAVAS DE FINAL';
+  if(n===4)return 'QUARTAS DE FINAL';
+  if(n===2)return 'SEMIFINAIS';
+  if(n===1)return 'FINAL';
+  return 'FASE '+(ri+1);
+}
+function gameNumber(ri,mi,rounds){
+  var c=1;
+  for(var r=0;r<ri;r++)c+=(rounds[r].matches||[]).length;
+  return c+mi;
+}
+function scoreButton(kind,ri,mi,m,side){
+  var v=side==='a'?m.aScore:m.bScore;
+  var txt=(v===''||v==null)?'—':safe(v);
+  var disabled=!(m&&m.aId&&m.bId);
+  return '<button type="button" class="jb143-score" '+(disabled?'disabled':'')+
+    ' onclick="jbOpenScore(\''+kind+'\','+ri+','+mi+')">'+txt+'</button>';
+}
+function teamRow(kind,ri,mi,m,side){
+  var id=side==='a'?m.aId:m.bId;
+  var win=winnerId(m)===id && !!id;
+  return '<div class="jb143-team'+(win?' winner':'')+'">'+
+    '<span class="jb143-name">'+safe(teamName(id))+'</span>'+
+    scoreButton(kind,ri,mi,m,side)+
+  '</div>';
+}
+
+function drawLines(){
+  var canvas=document.querySelector('.jb143-canvas');
+  var svg=document.querySelector('.jb143-connectors');
+  if(!canvas||!svg)return;
+  var base=canvas.getBoundingClientRect();
+  var width=Math.max(1,canvas.scrollWidth);
+  var height=Math.max(1,canvas.scrollHeight);
+  svg.setAttribute('viewBox','0 0 '+width+' '+height);
+  svg.setAttribute('width',width);
+  svg.setAttribute('height',height);
+  svg.innerHTML='';
+
+  var rounds=state&&state.knockout&&state.knockout.rounds||[];
+  for(var ri=0;ri<rounds.length-1;ri++){
+    var cur=rounds[ri].matches||[];
+    var next=rounds[ri+1].matches||[];
+    for(var ni=0;ni<next.length;ni++){
+      var target=document.querySelector('.jb143-match[data-r="'+(ri+1)+'"][data-m="'+ni+'"]');
+      if(!target)continue;
+      var tr=target.getBoundingClientRect();
+      var tx=tr.left-base.left;
+      var ty=tr.top-base.top+tr.height/2;
+
+      [ni*2,ni*2+1].forEach(function(mi){
+        var source=document.querySelector('.jb143-match[data-r="'+ri+'"][data-m="'+mi+'"]');
+        if(!source)return;
+        var sr=source.getBoundingClientRect();
+        var sx=sr.right-base.left;
+        var sy=sr.top-base.top+sr.height/2;
+        var mid=sx+(tx-sx)*0.55;
+        var d='M '+sx+' '+sy+' H '+mid+' V '+ty+' H '+tx;
+        var p=document.createElementNS('http://www.w3.org/2000/svg','path');
+        p.setAttribute('d',d);
+        var srcMatch=cur[mi];
+        if(srcMatch&&scoreDone(srcMatch))p.setAttribute('class','done');
+        svg.appendChild(p);
+      });
+    }
+  }
+
+  // Final -> campeão
+  var finalRound=rounds[rounds.length-1];
+  var finalMatch=document.querySelector('.jb143-match[data-r="'+(rounds.length-1)+'"][data-m="0"]');
+  var champ=document.querySelector('.jb143-champion-card');
+  if(finalMatch&&champ){
+    var fr=finalMatch.getBoundingClientRect(), cr=champ.getBoundingClientRect();
+    var sx=fr.right-base.left, sy=fr.top-base.top+fr.height/2;
+    var tx=cr.left-base.left, ty=cr.top-base.top+cr.height/2;
+    var mid=sx+(tx-sx)*0.55;
+    var p=document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d','M '+sx+' '+sy+' H '+mid+' V '+ty+' H '+tx);
+    if(finalRound&&finalRound.matches&&scoreDone(finalRound.matches[0]))p.setAttribute('class','done');
+    svg.appendChild(p);
+  }
+}
+
+function podiumCard(cls,medal,label,id){
+  return '<div class="jb143-podium-card '+cls+'"><span class="jb143-medal">'+medal+'</span><div><small>'+label+'</small><strong>'+safe(id?teamName(id):'A definir')+'</strong></div></div>';
+}
+
+function render143(){
+  var host=q('knockoutArea');
+  if(!host)return;
+
+  if(!state||!state.knockout||!state.knockout.rounds||!state.knockout.rounds.length){
+    host.className='empty';
+    host.innerHTML='Preencha todos os placares da fase de grupos e gere o mata-mata.';
+    return;
+  }
+
+  host.className='';
+  var rounds=state.knockout.rounds;
+  var firstCount=Math.max(1,(rounds[0].matches||[]).length);
+  var H=Math.max(650,Math.min(1180,firstCount*112+100));
+
+  var cols=rounds.map(function(round,ri){
+    var matches=round.matches||[];
+    var slotH=(H-78)/Math.max(1,matches.length);
+    var cards=matches.map(function(m,mi){
+      var center=74+(mi+.5)*slotH;
+      var g=gameNumber(ri,mi,rounds);
+      return '<div class="jb143-match" data-r="'+ri+'" data-m="'+mi+'" style="top:'+center+'px">'+
+        '<div class="jb143-game">JOGO '+g+'</div>'+
+        teamRow('ko',ri,mi,m,'a')+
+        teamRow('ko',ri,mi,m,'b')+
+      '</div>';
+    }).join('');
+    return '<section class="jb143-col">'+
+      '<div class="jb143-head"><strong>'+safe(roundTitle(round,ri,rounds.length))+'</strong><span>'+matches.length+' '+(matches.length===1?'jogo':'jogos')+'</span></div>'+
+      cards+
+      ((ri===rounds.length-1&&state.knockout.thirdPlacePlayoff&&state.knockout.thirdPlaceMatch&&state.knockout.thirdPlaceMatch.aId&&state.knockout.thirdPlaceMatch.bId)?
+       '<div class="jb143-third"><div class="jb143-third-title">Disputa — 3º lugar</div>'+
+        teamRow('third',0,0,state.knockout.thirdPlaceMatch,'a')+
+        teamRow('third',0,0,state.knockout.thirdPlaceMatch,'b')+
+       '</div>':'')+
+    '</section>';
+  }).join('');
+
+  var tournament=(q('title')&&q('title').value)||'Torneio';
+  var champion=state.knockout.championId||null;
+  var runner=state.knockout.runnerUpId||null;
+  var third=state.knockout.thirdPlaceId||null;
+
+  host.innerHTML=
+    '<div class="jb143-shell">'+
+      '<div class="jb143-scroll">'+
+        '<div class="jb143-canvas" style="--jb143-h:'+H+'px">'+
+          '<svg class="jb143-connectors" aria-hidden="true"></svg>'+
+          cols+
+          '<aside class="jb143-champion-col"><div class="jb143-head"><strong>CAMPEÃO</strong><span>Resultado oficial</span></div>'+
+            '<div class="jb143-champion-card"><div class="jb143-cup">🏆</div><small>CAMPEÃO</small><strong>'+safe(champion?teamName(champion):'A definir')+'</strong><em>'+safe(tournament)+'</em></div>'+
+          '</aside>'+
+        '</div>'+
+      '</div>'+
+      '<div class="jb143-podium">'+
+        podiumCard('first','🏆','CAMPEÃO',champion)+
+        podiumCard('second','🥈','VICE-CAMPEÃO',runner)+
+        podiumCard('third','🥉','3º LUGAR',third)+
+      '</div>'+
+    '</div>';
+
+  requestAnimationFrame(function(){
+    requestAnimationFrame(drawLines);
+  });
+}
+
+window.jb143RenderKnockout=render143;
+try{window.renderKnockout=render143;}catch(e){}
+try{renderKnockout=render143;}catch(e){}
+
+window.addEventListener('resize',function(){
+  clearTimeout(window.__jb143Resize);
+  window.__jb143Resize=setTimeout(drawLines,90);
+});
+window.addEventListener('orientationchange',function(){
+  clearTimeout(window.__jb143Orient);
+  window.__jb143Orient=setTimeout(function(){render143()},160);
+});
+
+document.addEventListener('click',function(e){
+  if(e.target && (e.target.id==='generateKO'||e.target.id==='resetKO')){
+    setTimeout(render143,80);
+  }
+});
+
+setTimeout(render143,450);
+})();
+</script>
+
 </body>
 
 <style id="jb-v1054-clean-dark-rebuild">
@@ -12389,7 +12667,7 @@ body.auth-open,
 
 <style id="jb-v132-device-pro">
 /* ==========================================================
-   JB TORNEIOS V14.2 — PC / iPad PRO
+   JB TORNEIOS V14.3 — PC / iPad PRO
    Dois perfis reais de exibição:
    - PC: mais denso e panorâmico
    - iPad: touch-first, cards maiores, menos densidade
@@ -12660,7 +12938,7 @@ html[data-jb-view="ipad"] #jbPageArquivos .v7-safety-actions{
 
 <style id="jb-v133-ipad10">
 /* ==========================================================
-   JB TORNEIOS V14.2 — iPad 10ª geração (2022)
+   JB TORNEIOS V14.3 — iPad 10ª geração (2022)
    Tela 10,9" — viewport de referência:
    retrato ~820x1180 CSS px
    paisagem ~1180x820 CSS px
