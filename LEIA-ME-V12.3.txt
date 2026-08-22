@@ -1,0 +1,12 @@
+JB TORNEIOS V12.3 — CORREÇÃO TOTAL UI
+
+Correções feitas diretamente na ferramenta:
+- Menu superior: verde-limão com texto preto; grafite com texto branco.
+- Duplas: fundo azul removido; cards grafite; nomes brancos.
+- Portal Público: todos os cards brancos removidos; fundo/cards grafite.
+- Salvar/PDF: Salvar agora verde-limão com texto preto; backups grafite com texto branco.
+- Mata-mata: Gerar mata-mata verde-limão com texto preto; demais controles grafite/branco.
+- PC/iPad ativo: verde-limão com texto preto.
+- Proteção contra texto preto sobre cards escuros.
+- Nenhum JavaScript de tema adicionado.
+- Todos os scripts inline validados para preservar a funcionalidade.
