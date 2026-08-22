@@ -1,0 +1,26 @@
+JB TORNEIOS V11.3 — PREMIUM FUNCTIONAL FIX
+
+CORREÇÃO CRÍTICA:
+Foi encontrado um erro de sintaxe no JavaScript principal, dentro da função de impressão.
+Esse único erro impedia o navegador de executar TODO o script principal.
+
+Por isso não funcionavam:
+- botão Escolher logomarca;
+- leitura/upload da logo;
+- atualização da quantidade de inscritos;
+- listeners dos participantes;
+- vários botões e ações do torneio.
+
+Correção aplicada:
+- reparada a string quebrada em w.document.write();
+- todos os scripts inline foram validados por sintaxe;
+- nenhuma lógica de torneio foi removida;
+- visual Premium Safe da V11.2 foi preservado;
+- login/Supabase preservados.
+
+TESTE RECOMENDADO:
+1. abrir Inscritos;
+2. digitar 4 nomes, um por linha;
+3. confirmar "Inscritos = 4";
+4. clicar "Escolher logomarca";
+5. selecionar PNG/JPG/WEBP e confirmar a prévia.
