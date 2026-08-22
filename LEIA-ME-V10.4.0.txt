@@ -1,0 +1,21 @@
+JB TORNEIOS V10.4.0 — REDESIGN TOTAL CLEAN DARK
+
+O que foi alterado:
+- removido completamente o menu “Aparência”;
+- removidos os temas prontos e o editor de cores;
+- removida a restauração automática de temas antigos salvos;
+- interface inteira unificada em um único tema;
+- fundo preto/grafite em todas as abas;
+- cards e tabelas em camadas de grafite;
+- textos principais brancos em alto contraste;
+- textos secundários cinza-claro;
+- verde-limão reservado somente para ações, status e destaques;
+- removido o antigo hero azul grande e a navegação rápida duplicada;
+- topbar fixa e mais limpa;
+- sidebar mais compacta e consistente;
+- dashboard, inscritos, duplas, grupos, jogos, central, mata-mata,
+  portal público, nuvem, pódio, histórico e relatórios seguem o mesmo padrão;
+- modo iPad preservado e melhorado para toque;
+- logomarca JB preservada nas cores originais.
+
+A lógica do torneio, banco/nuvem, mata-mata e dados existentes foram mantidos.
