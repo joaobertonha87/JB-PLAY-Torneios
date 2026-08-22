@@ -6078,7 +6078,278 @@ table,thead,tbody,tr,td,th{background-color:transparent!important;} thead th{bac
       @media print{.no-print{display:none}}
     `;
     w.document.open();
-    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'</body></html>');
+    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'
+<style id="jb-v1053-final-dark">
+:root{
+ --jb-final-bg:#090d10;
+ --jb-final-card:#12191e;
+ --jb-final-card2:#182126;
+ --jb-final-border:#2c3941;
+ --jb-final-text:#f7fafc;
+ --jb-final-muted:#b4c0c8;
+ --jb-final-lime:#b9f20d;
+}
+
+/* Fundo definitivo em todas as abas */
+html,body,
+body:not(.v74-public-only),
+body:not(.v74-public-only) .app,
+body:not(.v74-public-only) .jb-page,
+body:not(.v74-public-only) #jbPageDashboard,
+body:not(.v74-public-only) #jbPageInscritos,
+body:not(.v74-public-only) #jbPageDuplas,
+body:not(.v74-public-only) #jbPageGroups,
+body:not(.v74-public-only) #jbPageJogos,
+body:not(.v74-public-only) #jbPageCentral,
+body:not(.v74-public-only) #jbPageMata,
+body:not(.v74-public-only) #jbPagePublico,
+body:not(.v74-public-only) #jbPageNuvem,
+body:not(.v74-public-only) #jbPagePodio,
+body:not(.v74-public-only) #jbPageHistorico,
+body:not(.v74-public-only) #jbPageArquivos{
+ background:#090d10!important;
+ background-color:#090d10!important;
+ background-image:none!important;
+ color:#f7fafc!important;
+}
+
+/* Remove painéis/hero azuis antigos */
+body:not(.v74-public-only) .jb-dash-hero,
+body:not(.v74-public-only) .v10-command-hero,
+body:not(.v74-public-only) .v760-hero,
+body:not(.v74-public-only) [class*="command-hero"],
+body:not(.v74-public-only) [class*="dashboard-hero"]{
+ background:#12191e!important;
+ background-color:#12191e!important;
+ background-image:none!important;
+ color:#fff!important;
+ border:1px solid #2c3941!important;
+ box-shadow:none!important;
+}
+
+/* CENTRAL DE JOGOS — correção exata da tela enviada */
+body:not(.v74-public-only) #jbPageCentral,
+body:not(.v74-public-only) #jbPageCentral .v10-command-grid,
+body:not(.v74-public-only) #jbPageCentral .v10-progress-panel{
+ background:#090d10!important;
+ background-image:none!important;
+}
+body:not(.v74-public-only) #jbPageCentral .v10-command-hero,
+body:not(.v74-public-only) #jbPageCentral .v10-kpis>div,
+body:not(.v74-public-only) #jbPageCentral .v10-panel,
+body:not(.v74-public-only) #jbPageCentral .v10-court,
+body:not(.v74-public-only) #jbPageCentral .v10-court.free,
+body:not(.v74-public-only) #jbPageCentral .v10-court.busy,
+body:not(.v74-public-only) #jbPageCentral .v10-queue-item,
+body:not(.v74-public-only) #jbPageCentral .v10-next-action,
+body:not(.v74-public-only) #jbPageCentral .v10-history-summary>div,
+body:not(.v74-public-only) #jbPageCentral .v10-history-card{
+ background:#12191e!important;
+ background-color:#12191e!important;
+ background-image:none!important;
+ color:#fff!important;
+ border:1px solid #2c3941!important;
+ box-shadow:none!important;
+}
+body:not(.v74-public-only) #jbPageCentral .v10-court{
+ background:#182126!important;
+}
+body:not(.v74-public-only) #jbPageCentral .v10-court.free{
+ background:#182416!important;
+ border-color:#354b25!important;
+}
+body:not(.v74-public-only) #jbPageCentral :is(h1,h2,h3,h4,strong,b,label),
+body:not(.v74-public-only) #jbPageCentral .v10-kpis b,
+body:not(.v74-public-only) #jbPageCentral .v10-panel-head h3,
+body:not(.v74-public-only) #jbPageCentral .v10-panel-head strong,
+body:not(.v74-public-only) #jbPageCentral .v10-court b,
+body:not(.v74-public-only) #jbPageCentral .v10-queue-item b,
+body:not(.v74-public-only) #jbPageCentral .v10-history-summary b{
+ color:#fff!important;
+ -webkit-text-fill-color:#fff!important;
+}
+body:not(.v74-public-only) #jbPageCentral :is(p,small),
+body:not(.v74-public-only) #jbPageCentral .v10-kpis span,
+body:not(.v74-public-only) #jbPageCentral .v10-kpis small,
+body:not(.v74-public-only) #jbPageCentral .v10-court span,
+body:not(.v74-public-only) #jbPageCentral .v10-court small,
+body:not(.v74-public-only) #jbPageCentral .v10-queue-item small{
+ color:#b4c0c8!important;
+ -webkit-text-fill-color:#b4c0c8!important;
+}
+body:not(.v74-public-only) #jbPageCentral .v10-progress{
+ background:#222d33!important;
+}
+body:not(.v74-public-only) #jbPageCentral .v10-progress i{
+ background:#b9f20d!important;
+ background-image:none!important;
+}
+
+/* Cards de todos os módulos */
+body:not(.v74-public-only) .card,
+body:not(.v74-public-only) .panel,
+body:not(.v74-public-only) .box,
+body:not(.v74-public-only) .group,
+body:not(.v74-public-only) .round,
+body:not(.v74-public-only) .category-manager,
+body:not(.v74-public-only) .jb-metric-card,
+body:not(.v74-public-only) .jb-access-card,
+body:not(.v74-public-only) .jb-dash-progress-card,
+body:not(.v74-public-only) .jb-v7-assistant,
+body:not(.v74-public-only) .v74-cloud-card,
+body:not(.v74-public-only) .v10-panel,
+body:not(.v74-public-only) .v10-history-card,
+body:not(.v74-public-only) .v10-history-summary>div,
+body:not(.v74-public-only) .v10-kpis>div,
+body:not(.v74-public-only) .v10-court,
+body:not(.v74-public-only) .v10-queue-item,
+body:not(.v74-public-only) .v10-next-action,
+body:not(.v74-public-only) .v73-public-card,
+body:not(.v74-public-only) .v760-metric,
+body:not(.v74-public-only) .v760-filter{
+ background:#12191e!important;
+ background-color:#12191e!important;
+ background-image:none!important;
+ color:#fff!important;
+ border-color:#2c3941!important;
+ box-shadow:none!important;
+}
+
+/* Mata qualquer fundo branco legado */
+body:not(.v74-public-only) .bg-white,
+body:not(.v74-public-only) .white,
+body:not(.v74-public-only) .surface-white,
+body:not(.v74-public-only) [style*="background: white"],
+body:not(.v74-public-only) [style*="background:white"],
+body:not(.v74-public-only) [style*="background: #fff"],
+body:not(.v74-public-only) [style*="background:#fff"],
+body:not(.v74-public-only) [style*="background: #ffffff"],
+body:not(.v74-public-only) [style*="background:#ffffff"]{
+ background:#12191e!important;
+ background-color:#12191e!important;
+ background-image:none!important;
+ color:#fff!important;
+}
+
+/* Tipografia */
+body:not(.v74-public-only) h1,
+body:not(.v74-public-only) h2,
+body:not(.v74-public-only) h3,
+body:not(.v74-public-only) h4,
+body:not(.v74-public-only) h5,
+body:not(.v74-public-only) h6,
+body:not(.v74-public-only) strong,
+body:not(.v74-public-only) b,
+body:not(.v74-public-only) label,
+body:not(.v74-public-only) legend{
+ color:#fff!important;
+ -webkit-text-fill-color:#fff!important;
+ text-shadow:none!important;
+}
+body:not(.v74-public-only) p,
+body:not(.v74-public-only) small,
+body:not(.v74-public-only) .muted,
+body:not(.v74-public-only) .subtitle,
+body:not(.v74-public-only) .hint,
+body:not(.v74-public-only) .meta,
+body:not(.v74-public-only) .caption{
+ color:#b4c0c8!important;
+ -webkit-text-fill-color:#b4c0c8!important;
+}
+
+/* Inputs escuros */
+body:not(.v74-public-only) input,
+body:not(.v74-public-only) textarea,
+body:not(.v74-public-only) select,
+body:not(.v74-public-only) option{
+ background:#0d1317!important;
+ background-color:#0d1317!important;
+ color:#fff!important;
+ -webkit-text-fill-color:#fff!important;
+ border:1px solid #3a4851!important;
+}
+
+/* Botões */
+body:not(.v74-public-only) button,
+body:not(.v74-public-only) .btn{
+ background:#1b252b!important;
+ background-image:none!important;
+ color:#fff!important;
+ -webkit-text-fill-color:#fff!important;
+ border:1px solid #3b4850!important;
+ box-shadow:none!important;
+}
+body:not(.v74-public-only) button.primary,
+body:not(.v74-public-only) .btn.primary,
+body:not(.v74-public-only) .ok,
+body:not(.v74-public-only) .accent,
+body:not(.v74-public-only) .lime,
+body:not(.v74-public-only) .v10-auto-btn{
+ background:#b9f20d!important;
+ color:#0b0f11!important;
+ -webkit-text-fill-color:#0b0f11!important;
+ border-color:#88b400!important;
+}
+
+/* Tabelas */
+body:not(.v74-public-only) table{
+ background:#12191e!important;
+ color:#fff!important;
+}
+body:not(.v74-public-only) thead,
+body:not(.v74-public-only) thead tr,
+body:not(.v74-public-only) th{
+ background:#0b1014!important;
+ color:#fff!important;
+ -webkit-text-fill-color:#fff!important;
+}
+body:not(.v74-public-only) tbody tr,
+body:not(.v74-public-only) td{
+ background:#12191e!important;
+ color:#fff!important;
+ -webkit-text-fill-color:#fff!important;
+}
+body:not(.v74-public-only) tbody tr:nth-child(even) td{
+ background:#151e23!important;
+}
+body:not(.v74-public-only) tr.qual td{
+ background:#202c15!important;
+}
+
+/* Topbar/sidebar */
+body:not(.v74-public-only) .jb-sidebar,
+body:not(.v74-public-only) .jb-v9-topbar{
+ background:#080c0f!important;
+ background-image:none!important;
+ border-color:#2c3941!important;
+}
+
+/* Nuvem */
+body:not(.v74-public-only) #jbPageNuvem .v74-cloud-card,
+body:not(.v74-public-only) #jbPageNuvem .v74-status,
+body:not(.v74-public-only) #jbPageNuvem .v74-qr{
+ background:#12191e!important;
+ color:#fff!important;
+ border-color:#2c3941!important;
+}
+
+/* Portal público */
+body.v74-public-only,
+body.v74-public-only .app,
+body.v74-public-only #jbPagePublico,
+body.v74-public-only .v760-shell,
+body.v74-public-only .v760-hero,
+body.v74-public-only .v73-public-card,
+body.v74-public-only .v760-metric,
+body.v74-public-only .v760-filter{
+ background:#090d10!important;
+ background-image:none!important;
+ color:#fff!important;
+ border-color:#2c3941!important;
+}
+</style>
+
+</body></html>');
     w.document.close();
     w.focus();
     setTimeout(function(){ w.print(); },350);
@@ -7962,7 +8233,7 @@ window.addEventListener('resize',function(){
 </script>
 
 <style id="jb-v105-unified-dark">
-/* JB TORNEIOS V10.5.2 — unified commercial dark UI */
+/* JB TORNEIOS V10.5.3 — unified commercial dark UI */
 :root{--jb-bg:#090d10;--jb-bg2:#0d1216;--jb-panel:#11181d;--jb-panel2:#151e24;--jb-border:#29343c;--jb-text:#f7f9fa;--jb-muted:#aab5bd;--jb-lime:#b9f20d;--jb-lime2:#d6ff00;--jb-danger:#ff5d6c;--jb-shadow:0 12px 32px rgba(0,0,0,.28)}
 html,body{background:var(--jb-bg)!important;color:var(--jb-text)!important;color-scheme:dark}
 body,#app,.app,.app-shell,.shell,.main,.main-content,.content,.content-wrap,.page,.page-content,.workspace,.view,.screen,[class*="page"],[class*="screen"]{background:var(--jb-bg)!important;background-image:none!important;color:var(--jb-text)!important}

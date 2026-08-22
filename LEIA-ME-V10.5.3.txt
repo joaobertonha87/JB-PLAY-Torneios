@@ -1,0 +1,13 @@
+JB TORNEIOS V10.5.3 — DARK INTERFACE FINAL
+
+Correção visual definitiva:
+- fundo azul removido da Central de Jogos;
+- cards brancos da Central convertidos em grafite;
+- todos os módulos V10 antigos receberam override específico;
+- todas as abas usam fundo #090d10;
+- cards usam #12191e / #182126;
+- textos principais brancos;
+- textos secundários cinza-claro;
+- verde-limão somente em destaques;
+- login e correção da API key da V10.5.2 preservados;
+- override CSS colocado no final absoluto do HTML para prevalecer sobre os temas antigos.
