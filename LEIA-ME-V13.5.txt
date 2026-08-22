@@ -1,0 +1,8 @@
+JB Torneios V13.5 — correção visual do Pódio
+
+- Remove cards brancos de campeão, vice-campeão e 3º lugar.
+- Cards passam ao grafite premium do restante da interface.
+- Escritas em branco de alto contraste.
+- Campeão mantém contorno verde-limão.
+- Preserva a correção PC V13.4 e o layout iPad 10ª geração.
+- JavaScript preservado e validado.
