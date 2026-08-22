@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Torneios V10.2.7 · Grafite</title>
+  <title>JB Torneios V10.2.8 · Grafite</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -3137,238 +3137,10 @@ body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy strong.bye{color:#fff!
 body:not(.v74-public-only) #knockoutArea .jb-ko-team-row{background:#0b304a!important}
 </style>
 
-<style id="jb-v1022-comfort-theme">
-:root{
-  --jb-comfort-bg:#111820;
-  --jb-comfort-bg-2:#16212b;
-  --jb-comfort-surface:#1b2934;
-  --jb-comfort-surface-2:#223441;
-  --jb-comfort-border:rgba(255,255,255,.10);
-  --jb-comfort-text:#f4f7f9;
-  --jb-comfort-muted:#b9c5cd;
-}
-
-/* Fundo geral — neutro, profissional e menos cansativo */
-html,body,
-body:not(.v74-public-only),
-.app-shell,.app-main,.main,.content,.content-wrap,
-.page,.page-content,.screen,.workspace,.dashboard,
-main,#app,#root{
-  background:var(--jb-comfort-bg)!important;
-  color:var(--jb-comfort-text)!important;
-}
-
-/* Navegação e áreas estruturais */
-.sidebar,.side-menu,.nav-panel,.app-sidebar,
-header,.topbar,.top-bar,.app-header,
-.bottom-nav,.mobile-nav{
-  background:#0d141b!important;
-  border-color:var(--jb-comfort-border)!important;
-}
-
-/* Cards, painéis e módulos */
-.card,.panel,.box,.section,.module,.widget,
-.stat-card,.dashboard-card,.glass,.glass-card,
-.modal-content,.drawer,.sheet,
-#knockoutArea .jb-ko-round,
-#knockoutArea .jb-ko-match,
-#knockoutArea .jb-ko-team-row{
-  background:var(--jb-comfort-surface)!important;
-  border-color:var(--jb-comfort-border)!important;
-  box-shadow:0 8px 24px rgba(0,0,0,.18)!important;
-}
-
-/* Variação para elementos internos */
-.card .card,.panel .panel,.box .box,
-.table-wrap,.list-item,.match-card,.group-card,
-#knockoutArea .jb-ko-team-row{
-  background:var(--jb-comfort-surface-2)!important;
-}
-
-/* Tipografia principal */
-body:not(.v74-public-only) h1,
-body:not(.v74-public-only) h2,
-body:not(.v74-public-only) h3,
-body:not(.v74-public-only) h4,
-body:not(.v74-public-only) strong,
-body:not(.v74-public-only) label{
-  color:var(--jb-comfort-text)!important;
-}
-
-/* Texto secundário */
-body:not(.v74-public-only) p,
-body:not(.v74-public-only) small,
-body:not(.v74-public-only) .muted,
-body:not(.v74-public-only) .subtitle,
-body:not(.v74-public-only) .hint{
-  color:var(--jb-comfort-muted)!important;
-}
-
-/* Campos com contraste confortável */
-body:not(.v74-public-only) input,
-body:not(.v74-public-only) textarea,
-body:not(.v74-public-only) select{
-  background:#f7f9fa!important;
-  color:#17212a!important;
-  border-color:#d6dde2!important;
-}
-
-/* Mata-mata: leitura máxima */
-body:not(.v74-public-only) #knockoutArea .jb-ko-round-head h3,
-body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy strong,
-body:not(.v74-public-only) #knockoutArea .jb-score-summary strong{
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-  text-shadow:0 1px 2px rgba(0,0,0,.65)!important;
-}
-body:not(.v74-public-only) #knockoutArea .jb-ko-round-head small,
-body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy small{
-  color:#d7e0e6!important;
-  -webkit-text-fill-color:#d7e0e6!important;
-}
-
-/* Botões comuns deixam de competir com a identidade visual.
-   O lime original continua onde já é usado como destaque/branding. */
-body:not(.v74-public-only) button:not(.primary):not(.active):not(.lime):not(.accent),
-body:not(.v74-public-only) .btn:not(.primary):not(.active):not(.lime):not(.accent){
-  background:#263846!important;
-  color:#f7fafb!important;
-  border-color:rgba(255,255,255,.12)!important;
-}
-
-/* Preserva imagens/logomarcas exatamente como estão */
-img, .brand-logo, .jb-logo, .logo, [class*="logo"]{
-  filter:none!important;
-  opacity:1!important;
-}
-</style>
 
 
-<style id="jb-v1023-contrast-system">
-/* Sistema de contraste V10.2.3
-   Superfície escura = texto claro
-   Superfície clara = texto escuro */
 
-/* CARDS/PANÉIS ESCUROS */
-body:not(.v74-public-only) .card,
-body:not(.v74-public-only) .panel,
-body:not(.v74-public-only) .box,
-body:not(.v74-public-only) .section,
-body:not(.v74-public-only) .module,
-body:not(.v74-public-only) .widget,
-body:not(.v74-public-only) .stat-card,
-body:not(.v74-public-only) .dashboard-card,
-body:not(.v74-public-only) .match-card,
-body:not(.v74-public-only) .group-card,
-body:not(.v74-public-only) .glass-card,
-body:not(.v74-public-only) #knockoutArea .jb-ko-round,
-body:not(.v74-public-only) #knockoutArea .jb-ko-match{
- background:#1b2934!important;
- color:#f7fafc!important;
- border-color:rgba(255,255,255,.12)!important;
-}
 
-/* Tudo que for texto comum dentro de cards escuros */
-body:not(.v74-public-only) .card :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value),
-body:not(.v74-public-only) .panel :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value),
-body:not(.v74-public-only) .box :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value),
-body:not(.v74-public-only) .stat-card :is(h1,h2,h3,h4,strong,b,label,.title,.name,.value),
-body:not(.v74-public-only) .dashboard-card :is(h1,h2,h3,h4,strong,b,label,.title,.name,.value),
-body:not(.v74-public-only) .match-card :is(h1,h2,h3,h4,strong,b,label,.title,.name,.value),
-body:not(.v74-public-only) .group-card :is(h1,h2,h3,h4,strong,b,label,.title,.name,.value){
- color:#f7fafc!important;
- -webkit-text-fill-color:#f7fafc!important;
-}
-body:not(.v74-public-only) .card :is(p,small,.muted,.subtitle,.hint),
-body:not(.v74-public-only) .panel :is(p,small,.muted,.subtitle,.hint),
-body:not(.v74-public-only) .box :is(p,small,.muted,.subtitle,.hint){
- color:#c5d0d7!important;
- -webkit-text-fill-color:#c5d0d7!important;
-}
-
-/* CAMPOS E ÁREAS CLARAS: sempre texto escuro */
-body:not(.v74-public-only) input,
-body:not(.v74-public-only) textarea,
-body:not(.v74-public-only) select,
-body:not(.v74-public-only) option{
- background:#f7f9fb!important;
- color:#15232d!important;
- -webkit-text-fill-color:#15232d!important;
- border:1px solid #cbd5dc!important;
-}
-body:not(.v74-public-only) input::placeholder,
-body:not(.v74-public-only) textarea::placeholder{
- color:#657580!important;
- -webkit-text-fill-color:#657580!important;
- opacity:1!important;
-}
-
-/* Cards que originalmente eram brancos */
-body:not(.v74-public-only) .white,
-body:not(.v74-public-only) .bg-white,
-body:not(.v74-public-only) [class*="white-card"],
-body:not(.v74-public-only) [class*="light-card"]{
- background:#f4f7f9!important;
- color:#172630!important;
-}
-body:not(.v74-public-only) .white *,
-body:not(.v74-public-only) .bg-white *,
-body:not(.v74-public-only) [class*="white-card"] *,
-body:not(.v74-public-only) [class*="light-card"] *{
- color:#172630!important;
- -webkit-text-fill-color:#172630!important;
-}
-
-/* Mata-mata: elimina azul sobre azul */
-body:not(.v74-public-only) #knockoutArea .jb-ko-team-row{
- background:#263b49!important;
- color:#fff!important;
-}
-body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy strong,
-body:not(.v74-public-only) #knockoutArea .jb-ko-round-head h3,
-body:not(.v74-public-only) #knockoutArea .jb-score-summary strong{
- color:#fff!important;
- -webkit-text-fill-color:#fff!important;
- opacity:1!important;
-}
-body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy small,
-body:not(.v74-public-only) #knockoutArea .jb-ko-round-head small{
- color:#d9e3e8!important;
- -webkit-text-fill-color:#d9e3e8!important;
- opacity:1!important;
-}
-
-/* Tabelas */
-body:not(.v74-public-only) table{
- background:#1b2934!important;
- color:#f4f7f9!important;
-}
-body:not(.v74-public-only) th{
- background:#253744!important;
- color:#fff!important;
-}
-body:not(.v74-public-only) td{
- color:#eef3f6!important;
- border-color:rgba(255,255,255,.10)!important;
-}
-
-/* Botões escuros */
-body:not(.v74-public-only) button:not(.primary):not(.active):not(.lime):not(.accent),
-body:not(.v74-public-only) .btn:not(.primary):not(.active):not(.lime):not(.accent){
- background:#2a3d4b!important;
- color:#fff!important;
- -webkit-text-fill-color:#fff!important;
-}
-
-/* Preserva identidade JB */
-body:not(.v74-public-only) img,
-body:not(.v74-public-only) .brand-logo,
-body:not(.v74-public-only) .jb-logo,
-body:not(.v74-public-only) [class*="logo"]{
- filter:none!important;
- opacity:1!important;
-}
-</style>
 
 
 <style id="jb-v1024-groups-vertical">
@@ -3523,26 +3295,22 @@ body:not(.v74-public-only) img,body:not(.v74-public-only) .brand-logo,body:not(.
 </style>
 
 
-<style id="jb-v1026-max-contrast">
-/* =========================================================
-   JB TORNEIOS V10.2.6 — CONTRASTE MÁXIMO
-   Base: branco + preto/grafite + lime JB
-   ========================================================= */
 
+
+
+<style id="jb-v1028-graphite-total">
 :root{
-  --jb-bg:#f7f8fa;
-  --jb-surface:#ffffff;
-  --jb-surface-alt:#f0f2f4;
-  --jb-border:#cfd5da;
-  --jb-border-strong:#aeb7be;
-  --jb-text:#101418;
-  --jb-muted:#4a555d;
-  --jb-dark:#151a1f;
-  --jb-dark-2:#20262c;
+  --jb-bg:#171b1f;
+  --jb-bg-2:#1d2227;
+  --jb-card:#20262b;
+  --jb-card-2:#262d33;
+  --jb-border:#394149;
+  --jb-text:#ffffff;
+  --jb-muted:#c6ced4;
   --jb-lime:#c9ff28;
 }
 
-/* ===== FUNDO GERAL: remove azul antigo ===== */
+/* ========== FUNDO TOTAL ========== */
 html,
 body,
 body:not(.v74-public-only),
@@ -3555,92 +3323,60 @@ body:not(.v74-public-only) .content,
 body:not(.v74-public-only) .content-wrap,
 body:not(.v74-public-only) .workspace,
 body:not(.v74-public-only) .jb-page,
-body:not(.v74-public-only) #jbPageDashboard,
-body:not(.v74-public-only) #jbPageInscritos,
-body:not(.v74-public-only) #jbPageDuplas,
-body:not(.v74-public-only) #jbPageGroups,
-body:not(.v74-public-only) #jbPageJogos,
-body:not(.v74-public-only) #jbPageEvento,
-body:not(.v74-public-only) #jbPageCentral,
-body:not(.v74-public-only) #jbPageHistorico,
-body:not(.v74-public-only) #jbPageAparencia,
-body:not(.v74-public-only) #jbPageNuvem,
-body:not(.v74-public-only) #jbPagePodio,
-body:not(.v74-public-only) #jbPageMata,
-body:not(.v74-public-only) #jbPageArquivos{
-  background:var(--jb-bg)!important;
-  color:var(--jb-text)!important;
+body:not(.v74-public-only) [id^="jbPage"]{
+  background:#171b1f!important;
+  background-color:#171b1f!important;
   background-image:none!important;
+  color:#fff!important;
 }
 
-/* ===== TOPO ===== */
+/* remove qualquer bloco branco grande */
+body:not(.v74-public-only) .jb-page>div,
+body:not(.v74-public-only) .jb-page>section,
+body:not(.v74-public-only) .jb-page>article{
+  background-color:transparent!important;
+}
+
+/* ========== TOPO ========== */
 body:not(.v74-public-only) .jb-v9-topbar,
+body:not(.v74-public-only) header,
 body:not(.v74-public-only) .topbar,
-body:not(.v74-public-only) .top-bar,
-body:not(.v74-public-only) header{
-  background:#fff!important;
-  color:var(--jb-text)!important;
-  border-color:var(--jb-border)!important;
-  box-shadow:0 1px 10px rgba(0,0,0,.06)!important;
+body:not(.v74-public-only) .top-bar{
+  background:#111519!important;
+  background-image:none!important;
+  border-color:#333b42!important;
+  color:#fff!important;
 }
 body:not(.v74-public-only) .jb-v9-topbar *,
-body:not(.v74-public-only) .topbar *,
 body:not(.v74-public-only) header *{
-  color:var(--jb-text)!important;
-  -webkit-text-fill-color:var(--jb-text)!important;
-}
-
-/* ===== MENU LATERAL ===== */
-body:not(.v74-public-only) .jb-sidebar,
-body:not(.v74-public-only) .sidebar,
-body:not(.v74-public-only) .app-sidebar{
-  background:var(--jb-dark)!important;
-  border-color:#2b3136!important;
-}
-body:not(.v74-public-only) .jb-sidebar a,
-body:not(.v74-public-only) .jb-sidebar span,
-body:not(.v74-public-only) .jb-sidebar b,
-body:not(.v74-public-only) .jb-sidebar small{
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
 }
-body:not(.v74-public-only) .jb-sidebar a.active{
-  background:var(--jb-lime)!important;
-  color:#111!important;
-}
-body:not(.v74-public-only) .jb-sidebar a.active *{
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
-}
 
-/* ===== TÍTULOS DAS TELAS ===== */
+/* ========== TÍTULOS ========== */
 body:not(.v74-public-only) .jb-page-head,
 body:not(.v74-public-only) .section-title,
 body:not(.v74-public-only) .jb-dashboard-section-head{
   background:transparent!important;
   background-image:none!important;
 }
-body:not(.v74-public-only) .jb-page-head h1,
-body:not(.v74-public-only) .jb-page-head h2,
-body:not(.v74-public-only) .jb-page-head h3,
-body:not(.v74-public-only) .section-title h1,
-body:not(.v74-public-only) .section-title h2,
-body:not(.v74-public-only) .section-title h3,
+body:not(.v74-public-only) .jb-page-head :is(h1,h2,h3),
+body:not(.v74-public-only) .section-title :is(h1,h2,h3),
 body:not(.v74-public-only) .jb-dashboard-section-head h3{
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
   text-shadow:none!important;
   opacity:1!important;
 }
 body:not(.v74-public-only) .jb-page-head p,
 body:not(.v74-public-only) .section-title p,
 body:not(.v74-public-only) .jb-dashboard-section-head small{
-  color:var(--jb-muted)!important;
-  -webkit-text-fill-color:var(--jb-muted)!important;
+  color:#c6ced4!important;
+  -webkit-text-fill-color:#c6ced4!important;
   opacity:1!important;
 }
 
-/* ===== CARDS GERAIS CLAROS ===== */
+/* ========== CARDS / PAINÉIS ========== */
 body:not(.v74-public-only) .card,
 body:not(.v74-public-only) .group,
 body:not(.v74-public-only) .panel,
@@ -3657,252 +3393,214 @@ body:not(.v74-public-only) .v10-history-card,
 body:not(.v74-public-only) .v10-kpis>div,
 body:not(.v74-public-only) .v10-history-summary>div,
 body:not(.v74-public-only) .jb-v7-game-toolbar,
-body:not(.v74-public-only) .jb-v7-games-summary>div{
-  background:#fff!important;
+body:not(.v74-public-only) .jb-v7-games-summary>div,
+body:not(.v74-public-only) #groupsArea .group,
+body:not(.v74-public-only) #knockoutArea .jb-ko-round,
+body:not(.v74-public-only) #knockoutArea .round{
+  background:#20262b!important;
+  background-color:#20262b!important;
   background-image:none!important;
-  color:var(--jb-text)!important;
-  border:1px solid var(--jb-border)!important;
-  box-shadow:0 5px 18px rgba(0,0,0,.055)!important;
+  color:#fff!important;
+  border:1px solid #394149!important;
+  box-shadow:0 8px 22px rgba(0,0,0,.22)!important;
 }
 
-/* texto preto em cards claros */
+/* texto em cards */
 body:not(.v74-public-only) .card :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value),
 body:not(.v74-public-only) .group :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value),
 body:not(.v74-public-only) .panel :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value),
 body:not(.v74-public-only) .box :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value),
 body:not(.v74-public-only) .v10-panel :is(h1,h2,h3,h4,strong,b,label,.title,.name,.value){
-  color:var(--jb-text)!important;
-  -webkit-text-fill-color:var(--jb-text)!important;
-  opacity:1!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
 }
 body:not(.v74-public-only) .card :is(p,small,.muted,.subtitle,.hint),
 body:not(.v74-public-only) .group :is(p,small,.muted,.subtitle,.hint),
-body:not(.v74-public-only) .panel :is(p,small,.muted,.subtitle,.hint),
-body:not(.v74-public-only) .box :is(p,small,.muted,.subtitle,.hint){
-  color:var(--jb-muted)!important;
-  -webkit-text-fill-color:var(--jb-muted)!important;
-  opacity:1!important;
+body:not(.v74-public-only) .panel :is(p,small,.muted,.subtitle,.hint){
+  color:#c6ced4!important;
+  -webkit-text-fill-color:#c6ced4!important;
 }
 
-/* ===== FASE DE GRUPOS ===== */
-body:not(.v74-public-only) #groupsArea.group-wrap>.group{
-  background:#fff!important;
-  border:1px solid var(--jb-border)!important;
+/* ========== FASE DE GRUPOS ========== */
+body:not(.v74-public-only) #groupsArea{
+  background:#171b1f!important;
+}
+body:not(.v74-public-only) #groupsArea .group{
+  background:#20262b!important;
 }
 body:not(.v74-public-only) #groupsArea .group>h3{
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
 }
-body:not(.v74-public-only) #groupsArea .group .team{
-  background:var(--jb-surface-alt)!important;
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
-  border:1px solid #e0e4e7!important;
+body:not(.v74-public-only) #groupsArea .team{
+  background:#262d33!important;
+  color:#fff!important;
+  border:1px solid #394149!important;
 }
-body:not(.v74-public-only) #groupsArea .group .team *{
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
+body:not(.v74-public-only) #groupsArea .team *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
 }
 
-/* ===== JOGOS/PLACARES DOS GRUPOS ===== */
+/* ========== JOGOS / PLACARES ========== */
 body:not(.v74-public-only) .match,
 body:not(.v74-public-only) .jb-games-group .match{
-  background:#f1f3f5!important;
-  color:#111!important;
-  border:1px solid #d4dade!important;
+  background:#262d33!important;
+  color:#fff!important;
+  border:1px solid #394149!important;
 }
-body:not(.v74-public-only) .match span,
-body:not(.v74-public-only) .match .right,
-body:not(.v74-public-only) .match .vs{
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
-  opacity:1!important;
-}
-body:not(.v74-public-only) .match .vs{
-  color:#606a71!important;
-  -webkit-text-fill-color:#606a71!important;
-}
-
-/* ===== INPUTS / SELECTS / PLACARES ===== */
-body:not(.v74-public-only) input,
-body:not(.v74-public-only) textarea,
-body:not(.v74-public-only) select,
-body:not(.v74-public-only) option{
-  background:#fff!important;
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
-  border:1px solid #aeb8bf!important;
-  opacity:1!important;
-}
-body:not(.v74-public-only) input::placeholder,
-body:not(.v74-public-only) textarea::placeholder{
-  color:#626d75!important;
-  -webkit-text-fill-color:#626d75!important;
-  opacity:1!important;
+body:not(.v74-public-only) .match *,
+body:not(.v74-public-only) .jb-games-group .match *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
 }
 body:not(.v74-public-only) .score,
 body:not(.v74-public-only) .jb-ko-score{
-  background:#fff!important;
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
-  border:2px solid #222!important;
-  box-shadow:none!important;
-  opacity:1!important;
-}
-
-/* ===== TABELAS ===== */
-body:not(.v74-public-only) table{
-  background:#fff!important;
-  color:#111!important;
-  border-collapse:separate!important;
-  border-spacing:0!important;
-}
-body:not(.v74-public-only) thead th{
-  background:var(--jb-dark)!important;
+  background:#111519!important;
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
-  border-color:#30363b!important;
-}
-body:not(.v74-public-only) tbody td{
-  background:#fff!important;
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
-  border-color:#dfe3e6!important;
-}
-body:not(.v74-public-only) tbody tr:nth-child(even) td{
-  background:#f6f7f8!important;
-}
-body:not(.v74-public-only) tbody tr.qual td{
-  background:#eaf7c7!important;
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
-}
-body:not(.v74-public-only) td.team-name,
-body:not(.v74-public-only) td.pos{
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
+  border:1px solid #5d6871!important;
 }
 
-/* ===== MATA-MATA: TUDO CLARO E LEGÍVEL ===== */
-body:not(.v74-public-only) #knockoutArea{
-  background:transparent!important;
+/* ========== TABELAS ========== */
+body:not(.v74-public-only) table{
+  background:#20262b!important;
+  color:#fff!important;
 }
-body:not(.v74-public-only) #knockoutArea .jb-ko-round,
-body:not(.v74-public-only) #knockoutArea .round{
-  background:#fff!important;
-  color:#111!important;
-  border:1px solid var(--jb-border)!important;
-  box-shadow:0 6px 18px rgba(0,0,0,.055)!important;
+body:not(.v74-public-only) thead th{
+  background:#101417!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border-color:#394149!important;
+}
+body:not(.v74-public-only) tbody td{
+  background:#20262b!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border-color:#343c43!important;
+}
+body:not(.v74-public-only) tbody tr:nth-child(even) td{
+  background:#252b30!important;
+}
+body:not(.v74-public-only) tbody tr.qual td{
+  background:#313b22!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body:not(.v74-public-only) tbody tr.qual td.pos{
+  color:#c9ff28!important;
+  -webkit-text-fill-color:#c9ff28!important;
+  font-weight:1000!important;
+}
+
+/* ========== MATA-MATA ========== */
+body:not(.v74-public-only) #knockoutArea{
+  background:#171b1f!important;
+}
+body:not(.v74-public-only) #knockoutArea .jb-ko-round{
+  background:#20262b!important;
 }
 body:not(.v74-public-only) #knockoutArea .jb-ko-round-head h3,
 body:not(.v74-public-only) #knockoutArea .jb-ko-round-head small,
 body:not(.v74-public-only) #knockoutArea .jb-ko-round-head span{
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
-  opacity:1!important;
-  text-shadow:none!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
 }
-body:not(.v74-public-only) #knockoutArea .jb-ko-match,
-body:not(.v74-public-only) #knockoutArea .ko-match{
-  background:#f4f5f6!important;
-  color:#111!important;
-  border:1px solid #d4dadd!important;
+body:not(.v74-public-only) #knockoutArea .jb-ko-match{
+  background:#262d33!important;
+  border-color:#394149!important;
 }
 body:not(.v74-public-only) #knockoutArea .jb-ko-team-row{
-  background:#fff!important;
-  color:#111!important;
-  border:1px solid #ccd3d7!important;
+  background:#1a1f23!important;
+  color:#fff!important;
+  border-color:#394149!important;
 }
 body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy strong,
 body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy small,
 body:not(.v74-public-only) #knockoutArea .jb-ko-game-label,
 body:not(.v74-public-only) #knockoutArea .jb-ko-versus{
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
-  opacity:1!important;
-  text-shadow:none!important;
-}
-body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy small{
-  color:#4f5960!important;
-  -webkit-text-fill-color:#4f5960!important;
-}
-body:not(.v74-public-only) #knockoutArea .jb-ko-game-label{
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
-  font-weight:1000!important;
-}
-body:not(.v74-public-only) #knockoutArea .jb-ko-team-row.winner{
-  border-color:#9fc900!important;
-  box-shadow:inset 4px 0 0 var(--jb-lime)!important;
-}
-body:not(.v74-public-only) #knockoutArea .jb-ko-bye-note{
-  background:#edf8d2!important;
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
-}
-
-/* ===== BOTÕES ===== */
-body:not(.v74-public-only) button,
-body:not(.v74-public-only) .btn{
-  text-shadow:none!important;
-}
-body:not(.v74-public-only) button:not(.primary):not(.active):not(.lime):not(.accent),
-body:not(.v74-public-only) .btn:not(.primary):not(.active):not(.lime):not(.accent){
-  background:var(--jb-dark)!important;
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
-  border:1px solid var(--jb-dark)!important;
+}
+body:not(.v74-public-only) #knockoutArea .jb-ko-game-label{
+  color:#c9ff28!important;
+  -webkit-text-fill-color:#c9ff28!important;
+}
+
+/* ========== INPUTS / SELECTS ========== */
+body:not(.v74-public-only) input,
+body:not(.v74-public-only) textarea,
+body:not(.v74-public-only) select,
+body:not(.v74-public-only) option{
+  background:#12171b!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #4a545d!important;
+}
+body:not(.v74-public-only) input::placeholder,
+body:not(.v74-public-only) textarea::placeholder{
+  color:#9ca8b1!important;
+  -webkit-text-fill-color:#9ca8b1!important;
+  opacity:1!important;
+}
+
+/* ========== BOTÕES ========== */
+body:not(.v74-public-only) button:not(.primary):not(.active):not(.lime):not(.accent),
+body:not(.v74-public-only) .btn:not(.primary):not(.active):not(.lime):not(.accent){
+  background:#30383f!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #4b555e!important;
 }
 body:not(.v74-public-only) button.primary,
 body:not(.v74-public-only) .btn.primary,
 body:not(.v74-public-only) .lime,
-body:not(.v74-public-only) .accent,
-body:not(.v74-public-only) .v10-auto-btn{
-  background:var(--jb-lime)!important;
+body:not(.v74-public-only) .accent{
+  background:#c9ff28!important;
   color:#111!important;
   -webkit-text-fill-color:#111!important;
-  border-color:#a6cd00!important;
+  border-color:#a8d500!important;
 }
 
-/* ===== CENTRAL DE COMANDO ===== */
+/* ========== CENTRAL ========== */
 body:not(.v74-public-only) .v10-court,
 body:not(.v74-public-only) .v10-queue-item,
 body:not(.v74-public-only) .v10-next-action,
 body:not(.v74-public-only) .v10-podium-row div{
-  background:#fff!important;
-  color:#111!important;
-  border:1px solid var(--jb-border)!important;
+  background:#20262b!important;
+  color:#fff!important;
+  border:1px solid #394149!important;
 }
 body:not(.v74-public-only) .v10-court *,
 body:not(.v74-public-only) .v10-queue-item *,
 body:not(.v74-public-only) .v10-next-action *,
 body:not(.v74-public-only) .v10-podium-row div *{
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
 }
 
-/* ===== PERFIS PC/IPAD ===== */
+/* ========== PERFIL PC/IPAD ========== */
 body:not(.v74-public-only) .jb-device-view{
-  background:#fff!important;
-  border:1px solid var(--jb-border)!important;
+  background:#111519!important;
+  border:1px solid #394149!important;
 }
 body:not(.v74-public-only) .jb-device-view>span{
-  color:#4f5960!important;
-  -webkit-text-fill-color:#4f5960!important;
+  color:#c6ced4!important;
+  -webkit-text-fill-color:#c6ced4!important;
 }
 body:not(.v74-public-only) .jb-device-view button{
-  background:#fff!important;
-  color:#111!important;
-  -webkit-text-fill-color:#111!important;
-  border:1px solid #c9d0d5!important;
+  background:#20262b!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #4a545d!important;
 }
 body:not(.v74-public-only) .jb-device-view button.active{
-  background:var(--jb-lime)!important;
+  background:#c9ff28!important;
   color:#111!important;
   -webkit-text-fill-color:#111!important;
 }
 
-/* ===== PRESERVA LOGO ===== */
+/* ========== LOGO ========== */
 img,
 .brand-logo,
 .jb-logo,
@@ -3912,17 +3610,12 @@ img,
   opacity:1!important;
 }
 
-/* ===== REMOVE CAMADAS/GRADIENTES AZUIS ANTIGOS ===== */
-body:not(.v74-public-only) [style*="linear-gradient"],
-body:not(.v74-public-only) [style*="radial-gradient"]{
-  /* não sobrescreve inline por segurança; os seletores acima assumem precedência */
-}
-
-/* Portal público permanece independente */
+/* Portal público separado */
 body.v74-public-only,
 body.v74-public-only .app,
 body.v74-public-only #jbPagePublico{
-  background:#f7f8fa!important;
+  background:#171b1f!important;
+  color:#fff!important;
 }
 </style>
 

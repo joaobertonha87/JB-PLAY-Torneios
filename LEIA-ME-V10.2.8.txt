@@ -1,0 +1,16 @@
+JB TORNEIOS V10.2.8 — GRAFITE TOTAL
+
+Correção definitiva do tema:
+- removidas camadas anteriores de tema claro;
+- fundo total grafite #171b1f;
+- cards #20262b;
+- subcards #262d33;
+- textos principais brancos;
+- textos secundários cinza-claro;
+- tabelas escuras;
+- grupos escuros;
+- mata-mata escuro;
+- inputs e placares escuros;
+- lime JB somente nos destaques;
+- logo preservada nas cores originais;
+- tema aplicado em PC e iPad.
