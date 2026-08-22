@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Torneios V10.2.0 · PC / iPad</title>
+  <title>JB Torneios V10.2.2 · PC / iPad</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -3117,6 +3117,119 @@ html[data-jb-view="ipad"] .jb-device-view>span{
 
 /* O Portal Público não herda a escolha administrativa */
 body.v74-public-only .jb-device-view{display:none!important}
+</style>
+
+<style id="jb-v1021-ko-high-contrast">
+body:not(.v74-public-only) #knockoutArea .jb-ko-round-head h3,body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy strong,body:not(.v74-public-only) #knockoutArea .jb-score-summary strong{color:#fff!important;opacity:1!important;-webkit-text-fill-color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.8)!important;font-weight:1000!important}
+body:not(.v74-public-only) #knockoutArea .jb-ko-round-head small,body:not(.v74-public-only) #knockoutArea .jb-ko-round-head span,body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy small{color:#eef7fc!important;opacity:1!important;-webkit-text-fill-color:#eef7fc!important}
+body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy strong.bye{color:#fff!important;-webkit-text-fill-color:#fff!important;opacity:.9!important}
+body:not(.v74-public-only) #knockoutArea .jb-ko-team-row{background:#0b304a!important}
+</style>
+
+<style id="jb-v1022-comfort-theme">
+:root{
+  --jb-comfort-bg:#111820;
+  --jb-comfort-bg-2:#16212b;
+  --jb-comfort-surface:#1b2934;
+  --jb-comfort-surface-2:#223441;
+  --jb-comfort-border:rgba(255,255,255,.10);
+  --jb-comfort-text:#f4f7f9;
+  --jb-comfort-muted:#b9c5cd;
+}
+
+/* Fundo geral — neutro, profissional e menos cansativo */
+html,body,
+body:not(.v74-public-only),
+.app-shell,.app-main,.main,.content,.content-wrap,
+.page,.page-content,.screen,.workspace,.dashboard,
+main,#app,#root{
+  background:var(--jb-comfort-bg)!important;
+  color:var(--jb-comfort-text)!important;
+}
+
+/* Navegação e áreas estruturais */
+.sidebar,.side-menu,.nav-panel,.app-sidebar,
+header,.topbar,.top-bar,.app-header,
+.bottom-nav,.mobile-nav{
+  background:#0d141b!important;
+  border-color:var(--jb-comfort-border)!important;
+}
+
+/* Cards, painéis e módulos */
+.card,.panel,.box,.section,.module,.widget,
+.stat-card,.dashboard-card,.glass,.glass-card,
+.modal-content,.drawer,.sheet,
+#knockoutArea .jb-ko-round,
+#knockoutArea .jb-ko-match,
+#knockoutArea .jb-ko-team-row{
+  background:var(--jb-comfort-surface)!important;
+  border-color:var(--jb-comfort-border)!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.18)!important;
+}
+
+/* Variação para elementos internos */
+.card .card,.panel .panel,.box .box,
+.table-wrap,.list-item,.match-card,.group-card,
+#knockoutArea .jb-ko-team-row{
+  background:var(--jb-comfort-surface-2)!important;
+}
+
+/* Tipografia principal */
+body:not(.v74-public-only) h1,
+body:not(.v74-public-only) h2,
+body:not(.v74-public-only) h3,
+body:not(.v74-public-only) h4,
+body:not(.v74-public-only) strong,
+body:not(.v74-public-only) label{
+  color:var(--jb-comfort-text)!important;
+}
+
+/* Texto secundário */
+body:not(.v74-public-only) p,
+body:not(.v74-public-only) small,
+body:not(.v74-public-only) .muted,
+body:not(.v74-public-only) .subtitle,
+body:not(.v74-public-only) .hint{
+  color:var(--jb-comfort-muted)!important;
+}
+
+/* Campos com contraste confortável */
+body:not(.v74-public-only) input,
+body:not(.v74-public-only) textarea,
+body:not(.v74-public-only) select{
+  background:#f7f9fa!important;
+  color:#17212a!important;
+  border-color:#d6dde2!important;
+}
+
+/* Mata-mata: leitura máxima */
+body:not(.v74-public-only) #knockoutArea .jb-ko-round-head h3,
+body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy strong,
+body:not(.v74-public-only) #knockoutArea .jb-score-summary strong{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  text-shadow:0 1px 2px rgba(0,0,0,.65)!important;
+}
+body:not(.v74-public-only) #knockoutArea .jb-ko-round-head small,
+body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy small{
+  color:#d7e0e6!important;
+  -webkit-text-fill-color:#d7e0e6!important;
+}
+
+/* Botões comuns deixam de competir com a identidade visual.
+   O lime original continua onde já é usado como destaque/branding. */
+body:not(.v74-public-only) button:not(.primary):not(.active):not(.lime):not(.accent),
+body:not(.v74-public-only) .btn:not(.primary):not(.active):not(.lime):not(.accent){
+  background:#263846!important;
+  color:#f7fafb!important;
+  border-color:rgba(255,255,255,.12)!important;
+}
+
+/* Preserva imagens/logomarcas exatamente como estão */
+img, .brand-logo, .jb-logo, .logo, [class*="logo"]{
+  filter:none!important;
+  opacity:1!important;
+}
 </style>
 
 </head>
