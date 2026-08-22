@@ -3104,7 +3104,7 @@ body.v74-public-only .jb-device-view{display:none!important}
     <div class="jb-side-brand jb-side-brand-logo">
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
     </div>
-    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Sports UI V13.6</small></div>
+    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Sports UI V13.7</small></div>
     <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><span>Início</span></a>
@@ -3121,7 +3121,7 @@ body.v74-public-only .jb-device-view{display:none!important}
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB TORNEIOS V13.6</small>
+      <small>JB TORNEIOS V13.7</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -4989,6 +4989,59 @@ body.v74-public-only .jb-device-view{display:none!important}
     window.__jbV136ResizeTimer=setTimeout(jbV136LayoutBracket,120);
   });
 
+  function jbV137DrawBracketLines(){
+    var stage=document.getElementById('jbV137Bracket');
+    var svg=document.getElementById('jbV137BracketLines');
+    if(!stage||!svg)return;
+
+    var sr=stage.getBoundingClientRect();
+    var w=Math.max(1,stage.clientWidth), h=Math.max(1,stage.clientHeight);
+    svg.setAttribute('viewBox','0 0 '+w+' '+h);
+    svg.setAttribute('width',w);
+    svg.setAttribute('height',h);
+    svg.innerHTML='';
+
+    function pt(el,side){
+      var r=el.getBoundingClientRect();
+      return {
+        x:(side==='right'?r.right:r.left)-sr.left,
+        y:r.top-sr.top+(r.height/2)
+      };
+    }
+
+    [].slice.call(stage.querySelectorAll('.jb137-match[data-next-game]')).forEach(function(source){
+      var next=source.getAttribute('data-next-game');
+      if(!next)return;
+      var target=stage.querySelector('.jb137-match[data-game-no="'+next+'"]');
+      if(!target)return;
+
+      var a=pt(source,'right'), b=pt(target,'left');
+      var mid=a.x+Math.max(10,(b.x-a.x)/2);
+
+      var path=document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('d','M '+a.x+' '+a.y+' H '+mid+' V '+b.y+' H '+b.x);
+      path.setAttribute('class','jb137-connector '+(source.getAttribute('data-winner')==='1'?'done':''));
+      svg.appendChild(path);
+    });
+
+    var finalMatch=stage.querySelector('.jb137-match[data-final="1"]');
+    var champion=stage.querySelector('.jb137-champion');
+    if(finalMatch&&champion){
+      var a=pt(finalMatch,'right'), b=pt(champion,'left');
+      var mid=a.x+Math.max(10,(b.x-a.x)/2);
+      var path=document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('d','M '+a.x+' '+a.y+' H '+mid+' V '+b.y+' H '+b.x);
+      path.setAttribute('class','jb137-connector '+(state.knockout.championId?'done':''));
+      svg.appendChild(path);
+    }
+  }
+
+  window.jbV137DrawBracketLines=jbV137DrawBracketLines;
+  window.addEventListener('resize',function(){
+    clearTimeout(window.__jbV137Resize);
+    window.__jbV137Resize=setTimeout(jbV137DrawBracketLines,100);
+  });
+
   function renderKnockout(){
     if(!state.knockout){
       knockoutArea.className='empty';
@@ -4998,141 +5051,103 @@ body.v74-public-only .jb-device-view{display:none!important}
 
     knockoutArea.className='';
 
-    var roundStarts=jbV136RoundStarts();
-    var totalGames=0;
-    state.knockout.rounds.forEach(function(r){totalGames+=(r.matches||[]).length});
+    var roundStarts=[];
+    var nextNo=1;
+    (state.knockout.rounds||[]).forEach(function(r){
+      roundStarts.push(nextNo);
+      nextNo+=(r.matches||[]).length;
+    });
 
-    const roundsHtml=state.knockout.rounds.map((round,ri)=>{
-      var startNo=roundStarts[ri];
-      var endNo=startNo+round.matches.length-1;
+    var firstCount=Math.max(1,((state.knockout.rounds||[])[0]||{matches:[]}).matches.length||1);
+    var stageHeight=Math.max(360,Math.min(760,firstCount*82));
+
+    function waitLabel(ri,mi,side){
+      if(ri<=0)return 'Aguardando dupla';
+      var prevStart=roundStarts[ri-1];
+      var src=prevStart+(mi*2)+(side==='a'?0:1);
+      return 'Vencedor Jogo '+src;
+    }
+
+    var rounds=(state.knockout.rounds||[]).map(function(round,ri){
+      var count=Math.max(1,(round.matches||[]).length);
+      var matches=(round.matches||[]).map(function(m,mi){
+        var a=getTeam(m.aId), b=getTeam(m.bId);
+        var winnerId=getKnockoutWinner(m);
+        var gameNo=roundStarts[ri]+mi;
+        var nextGame=ri<state.knockout.rounds.length-1
+          ? roundStarts[ri+1]+Math.floor(mi/2)
+          : '';
+
+        var aText=a?esc(teamLabel(a)):waitLabel(ri,mi,'a');
+        var bText=b?esc(teamLabel(b)):waitLabel(ri,mi,'b');
+        var canScore=!!(a&&b);
+        var y=((mi+.5)/count)*100;
+
+        return `
+          <div class="jb137-match"
+               style="top:${y}%"
+               data-game-no="${gameNo}"
+               ${nextGame?`data-next-game="${nextGame}"`:''}
+               data-winner="${winnerId?'1':'0'}"
+               ${ri===state.knockout.rounds.length-1?'data-final="1"':''}>
+            <div class="jb137-game">JOGO ${gameNo}${nextGame?` · vencedor → J${nextGame}`:''}</div>
+
+            <div class="jb137-team ${winnerId===m.aId&&m.aId?'winner':''}">
+              <span title="${aText}">${aText}</span>
+              <input
+                class="jb137-score"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                ${!canScore?'disabled':''}
+                value="${esc(m.aScore)}"
+                placeholder="—"
+                aria-label="Placar ${aText}"
+                oninput="updateKOScore(${ri},${mi},'aScore',this.value,this)"
+                onchange="finishKOScore(${ri});setTimeout(jbV137DrawBracketLines,20)"
+                onblur="finishKOScore(${ri});setTimeout(jbV137DrawBracketLines,20)">
+            </div>
+
+            <div class="jb137-team ${winnerId===m.bId&&m.bId?'winner':''}">
+              <span title="${bText}">${bText}</span>
+              <input
+                class="jb137-score"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                ${!canScore?'disabled':''}
+                value="${esc(m.bScore)}"
+                placeholder="—"
+                aria-label="Placar ${bText}"
+                oninput="updateKOScore(${ri},${mi},'bScore',this.value,this)"
+                onchange="finishKOScore(${ri});setTimeout(jbV137DrawBracketLines,20)"
+                onblur="finishKOScore(${ri});setTimeout(jbV137DrawBracketLines,20)">
+            </div>
+          </div>`;
+      }).join('');
+
       return `
-      <div class="round jb-ko-round" data-round-index="${ri}">
-        <div class="jb-ko-round-head">
-          <small>FASE ${ri+1}</small>
-          <h3>${esc(round.name)}</h3>
-          <span>${round.matches.length} jogo${round.matches.length!==1?'s':''}</span>
-        </div>
-
-        <div class="jb-ko-round-range">
-          Jogos ${startNo}${endNo!==startNo?'–'+endNo:''}
-        </div>
-
-        <div class="jb-ko-match-list">
-          ${round.matches.map((m,mi)=>{
-            const a=getTeam(m.aId), b=getTeam(m.bId);
-            const winnerId=getKnockoutWinner(m);
-            const isRealBye=ri===0 && ((m.aId&&!m.bId)||(!m.aId&&m.bId));
-            const canScore=!!(a&&b);
-            const gameNo=roundStarts[ri]+mi;
-            const nextGame=ri<state.knockout.rounds.length-1
-              ? roundStarts[ri+1]+Math.floor(mi/2)
-              : null;
-
-            const aText=a
-              ? esc(teamLabel(a))
-              : (isRealBye ? 'BYE' : jbV136WaitingLabel(ri,mi,'a',roundStarts));
-            const bText=b
-              ? esc(teamLabel(b))
-              : (isRealBye ? 'BYE' : jbV136WaitingLabel(ri,mi,'b',roundStarts));
-
-            return `
-              <div class="ko-match jb-ko-match ${isRealBye?'jb-ko-is-bye':''}"
-                   data-game-no="${gameNo}"
-                   ${nextGame?'data-next-game="'+nextGame+'"':''}
-                   data-winner="${winnerId?'1':'0'}"
-                   ${ri===state.knockout.rounds.length-1?'data-final="1"':''}>
-                <div class="jb-ko-game-label">
-                  <span>JOGO ${gameNo}</span>
-                  ${nextGame?`<em>→ Jogo ${nextGame}</em>`:'<em>→ Campeão</em>'}
-                </div>
-
-                <div class="jb-ko-team-row ${winnerId===m.aId&&m.aId?'winner':''}">
-                  <div class="jb-ko-team-copy">
-                    <small>${ri===0?'DUPLA A':'VAGA A'}</small>
-                    <strong class="${!a?'bye':''}">${aText}</strong>
-                  </div>
-                  <input class="score jb-ko-score"
-                    inputmode="numeric" pattern="[0-9]*"
-                    aria-label="Placar da Dupla A"
-                    ${!canScore?'disabled':''}
-                    placeholder="—"
-                    value="${esc(m.aScore)}"
-                    oninput="updateKOScore(${ri},${mi},'aScore',this.value,this)"
-                    onchange="finishKOScore(${ri})"
-                    onblur="finishKOScore(${ri})" />
-                </div>
-
-                <div class="jb-ko-versus">×</div>
-
-                <div class="jb-ko-team-row ${winnerId===m.bId&&m.bId?'winner':''}">
-                  <div class="jb-ko-team-copy">
-                    <small>${ri===0?'DUPLA B':'VAGA B'}</small>
-                    <strong class="${!b?'bye':''}">${bText}</strong>
-                  </div>
-                  <input class="score jb-ko-score"
-                    inputmode="numeric" pattern="[0-9]*"
-                    aria-label="Placar da Dupla B"
-                    ${!canScore?'disabled':''}
-                    placeholder="—"
-                    value="${esc(m.bScore)}"
-                    oninput="updateKOScore(${ri},${mi},'bScore',this.value,this)"
-                    onchange="finishKOScore(${ri})"
-                    onblur="finishKOScore(${ri})" />
-                </div>
-
-                ${isRealBye ? '<div class="jb-ko-bye-note">Classificação direta para a próxima fase</div>' : ''}
-              </div>`;
-          }).join('')}
-        </div>
-      </div>`;
+        <section class="jb137-round">
+          <header>
+            <strong>${esc(round.name)}</strong>
+            <small>${round.matches.length} jogo${round.matches.length!==1?'s':''}</small>
+          </header>
+          <div class="jb137-round-body">${matches}</div>
+        </section>`;
     }).join('');
 
-    const champion=getTeam(state.knockout.championId);
-    const runnerUp=getTeam(state.knockout.runnerUpId);
-    const thirdPlace=getTeam(state.knockout.thirdPlaceId);
-    const tournamentName=esc(el('title').value);
-
-    var sequenceHtml=state.knockout.rounds.map(function(round,ri){
-      var nums=(round.matches||[]).map(function(_,mi){return roundStarts[ri]+mi});
-      return '<span><b>'+esc(round.name)+':</b> '+nums.join(', ')+'</span>';
-    }).join('<i>•</i>');
+    var champion=getTeam(state.knockout.championId);
+    var runnerUp=getTeam(state.knockout.runnerUpId);
+    var thirdPlace=getTeam(state.knockout.thirdPlaceId);
+    var tournamentName=esc(el('title').value);
 
     knockoutArea.innerHTML=`
-      <div class="jb-v136-bracket-toolbar">
-        <div class="jb-v136-legend">
-          <span><i class="done"></i> Classificado / vencedor</span>
-          <span><i class="waiting"></i> Aguardando resultado</span>
-        </div>
-        <button type="button" class="secondary" onclick="renderKnockout()">Atualizar chave ↻</button>
-      </div>
+      <div class="jb137-bracket" id="jbV137Bracket" style="--jb137-h:${stageHeight}px">
+        <svg id="jbV137BracketLines" class="jb137-lines" aria-hidden="true"></svg>
+        <div class="jb137-rounds">${rounds}</div>
 
-      <div class="jb-v136-stage-wrap">
-        <div class="jb-v136-stage" id="jbV136BracketStage">
-          <svg class="jb-v136-svg" id="jbV136BracketSvg" aria-hidden="true"></svg>
-          <div class="bracket-rounds jb-ko-bracket">${roundsHtml}</div>
-
-          <div class="jb-v136-champion-column">
-            <div class="jb-v136-champion-card">
-              <div class="cup">🏆</div>
-              <small>CAMPEÃO</small>
-              <strong>${champion?esc(teamLabel(champion)):'A definir'}</strong>
-              <span>${tournamentName}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="jb-v136-guide">
-        <div>
-          <h4>ⓘ Como funciona</h4>
-          <p>Cada confronto possui um número único. O vencedor avança automaticamente para o jogo indicado à direita.</p>
-          <p>Exemplo: <b>Jogo 1 → vencedor ocupa a vaga correspondente no próximo jogo.</b></p>
-        </div>
-        <div>
-          <h4>Sequência dos jogos</h4>
-          <div class="jb-v136-sequence">${sequenceHtml}</div>
-          <small>Total programado no mata-mata: ${totalGames} jogos.</small>
-        </div>
+        <aside class="jb137-champion">
+          <small>CAMPEÃO</small>
+          <strong>${champion?esc(teamLabel(champion)):'A definir'}</strong>
+        </aside>
       </div>
 
       <div id="jbV7487ThirdSlot"></div>
@@ -5168,11 +5183,13 @@ body.v74-public-only .jb-device-view{display:none!important}
       window.v73AddThirdPlaceUI();
       var third=document.getElementById('v73ThirdPlace');
       var slot=document.getElementById('jbV7487ThirdSlot');
-      if(third && slot) slot.appendChild(third);
+      if(third&&slot)slot.appendChild(third);
     }
-    if(window.v73RenderPodium) window.v73RenderPodium();
+    if(window.v73RenderPodium)window.v73RenderPodium();
 
-    setTimeout(jbV136LayoutBracket,30);
+    requestAnimationFrame(function(){
+      requestAnimationFrame(jbV137DrawBracketLines);
+    });
   }
 
   function jbV794ScoreDone(m){
@@ -9819,7 +9836,7 @@ body.auth-open,
 
 <style id="jb-v132-device-pro">
 /* ==========================================================
-   JB TORNEIOS V13.6 — PC / iPad PRO
+   JB TORNEIOS V13.7 — PC / iPad PRO
    Dois perfis reais de exibição:
    - PC: mais denso e panorâmico
    - iPad: touch-first, cards maiores, menos densidade
@@ -10090,7 +10107,7 @@ html[data-jb-view="ipad"] #jbPageArquivos .v7-safety-actions{
 
 <style id="jb-v133-ipad10">
 /* ==========================================================
-   JB TORNEIOS V13.6 — iPad 10ª geração (2022)
+   JB TORNEIOS V13.7 — iPad 10ª geração (2022)
    Tela 10,9" — viewport de referência:
    retrato ~820x1180 CSS px
    paisagem ~1180x820 CSS px
@@ -11042,6 +11059,287 @@ html[data-jb-view="ipad"] #jbPageMata .jb-v136-guide>div+div{
     justify-content:flex-start!important;
     flex-wrap:wrap!important;
   }
+}
+</style>
+
+
+<style id="jb-v137-bracket-lines">
+/* JB Torneios V13.7 — Mata-mata minimalista em linhas */
+#jbPageMata{
+  overflow:auto!important;
+}
+#jbPageMata #knockoutArea{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  overflow:visible!important;
+  padding:8px 0 22px!important;
+}
+
+/* cabeçalho sem desalinhamento */
+#jbPageMata .section-title{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:end!important;
+  gap:18px!important;
+}
+#jbPageMata .knockout-controls{
+  display:flex!important;
+  align-items:flex-end!important;
+  justify-content:flex-end!important;
+  gap:8px!important;
+  flex-wrap:wrap!important;
+}
+#jbPageMata .knockout-controls .field{
+  min-width:180px!important;
+  max-width:240px!important;
+}
+
+/* chave ocupa somente a largura disponível; sem scroll horizontal */
+.jb137-bracket{
+  position:relative!important;
+  width:100%!important;
+  min-width:0!important;
+  height:var(--jb137-h)!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) clamp(92px,10vw,130px)!important;
+  gap:18px!important;
+  overflow:visible!important;
+  padding:0!important;
+  margin:4px 0 16px!important;
+}
+.jb137-rounds{
+  position:relative!important;
+  z-index:2!important;
+  display:grid!important;
+  grid-template-columns:repeat(var(--jb137-rounds,4),minmax(0,1fr))!important;
+  gap:clamp(18px,2.2vw,34px)!important;
+  width:100%!important;
+  min-width:0!important;
+  height:100%!important;
+}
+.jb137-round{
+  min-width:0!important;
+  width:100%!important;
+  height:100%!important;
+  padding:0!important;
+  margin:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+.jb137-round header{
+  height:38px!important;
+  display:flex!important;
+  align-items:flex-end!important;
+  justify-content:space-between!important;
+  gap:8px!important;
+  padding:0 2px 8px!important;
+  border-bottom:2px solid #c8ff00!important;
+}
+.jb137-round header strong{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:clamp(10px,1vw,14px)!important;
+  line-height:1!important;
+  text-transform:uppercase!important;
+  letter-spacing:.08em!important;
+  white-space:nowrap!important;
+}
+.jb137-round header small{
+  color:#87949b!important;
+  font-size:7px!important;
+  white-space:nowrap!important;
+}
+.jb137-round-body{
+  position:relative!important;
+  height:calc(100% - 38px)!important;
+  min-height:0!important;
+}
+
+/* confronto: sem card, só linhas */
+.jb137-match{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  transform:translateY(-50%)!important;
+  min-width:0!important;
+  padding:0!important;
+  margin:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  z-index:3!important;
+}
+.jb137-game{
+  height:13px!important;
+  color:#738089!important;
+  font-size:6px!important;
+  font-weight:900!important;
+  letter-spacing:.08em!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  padding-left:1px!important;
+}
+.jb137-team{
+  height:30px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 34px!important;
+  align-items:end!important;
+  gap:5px!important;
+  border-bottom:1px solid #7d8a91!important;
+  background:transparent!important;
+  padding:0 0 3px!important;
+  margin:0 0 5px!important;
+  min-width:0!important;
+}
+.jb137-team.winner{
+  border-bottom-color:#c8ff00!important;
+}
+.jb137-team span{
+  color:#f1f5f7!important;
+  -webkit-text-fill-color:#f1f5f7!important;
+  min-width:0!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+  font-size:clamp(8px,.78vw,11px)!important;
+  font-weight:800!important;
+  line-height:1.15!important;
+}
+.jb137-team.winner span{
+  color:#dfff68!important;
+  -webkit-text-fill-color:#dfff68!important;
+}
+.jb137-score{
+  width:34px!important;
+  min-width:34px!important;
+  max-width:34px!important;
+  height:26px!important;
+  min-height:26px!important;
+  padding:0!important;
+  border:1px solid #536169!important;
+  border-radius:6px!important;
+  background:#0c1418!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  text-align:center!important;
+  font-size:13px!important;
+  font-weight:950!important;
+  box-shadow:none!important;
+}
+.jb137-score:focus{
+  border-color:#c8ff00!important;
+  outline:1px solid rgba(200,255,0,.20)!important;
+}
+.jb137-score:disabled{
+  background:#0a0f12!important;
+  color:#536169!important;
+  -webkit-text-fill-color:#536169!important;
+  border-color:#293238!important;
+}
+
+/* somente as linhas da chave */
+.jb137-lines{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  overflow:visible!important;
+  pointer-events:none!important;
+  z-index:1!important;
+}
+.jb137-connector{
+  fill:none!important;
+  stroke:#657078!important;
+  stroke-width:1.4!important;
+  vector-effect:non-scaling-stroke!important;
+}
+.jb137-connector.done{
+  stroke:#c8ff00!important;
+  stroke-width:1.8!important;
+}
+
+/* campeão simples, sem card pesado */
+.jb137-champion{
+  position:relative!important;
+  z-index:3!important;
+  align-self:center!important;
+  min-width:0!important;
+  padding:0 0 6px!important;
+  border-bottom:2px solid #c8ff00!important;
+  background:transparent!important;
+  color:#fff!important;
+  text-align:left!important;
+}
+.jb137-champion small{
+  display:block!important;
+  color:#c8ff00!important;
+  font-size:7px!important;
+  letter-spacing:.12em!important;
+  font-weight:1000!important;
+  margin-bottom:5px!important;
+}
+.jb137-champion strong{
+  display:block!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:clamp(9px,1vw,13px)!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+
+/* 2, 3, 4 ou 5 rodadas: define a grade automaticamente via :has */
+.jb137-rounds:has(.jb137-round:nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.jb137-rounds:has(.jb137-round:nth-child(3):last-child){grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.jb137-rounds:has(.jb137-round:nth-child(4):last-child){grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.jb137-rounds:has(.jb137-round:nth-child(5):last-child){grid-template-columns:repeat(5,minmax(0,1fr))!important}
+
+/* iPad 10ª geração: mantém a chave inteira na tela */
+html[data-jb-view="ipad"] #jbPageMata #knockoutArea{
+  overflow:visible!important;
+}
+html[data-jb-view="ipad"] .jb137-bracket{
+  grid-template-columns:minmax(0,1fr) 92px!important;
+  gap:10px!important;
+}
+html[data-jb-view="ipad"] .jb137-rounds{
+  gap:12px!important;
+}
+html[data-jb-view="ipad"] .jb137-team{
+  grid-template-columns:minmax(0,1fr) 32px!important;
+}
+html[data-jb-view="ipad"] .jb137-score{
+  width:32px!important;
+  min-width:32px!important;
+  max-width:32px!important;
+}
+html[data-jb-view="ipad"] .jb137-round header small{
+  display:none!important;
+}
+html[data-jb-view="ipad"] .jb137-game{
+  font-size:5px!important;
+}
+
+/* telas menores: ainda sem barra horizontal */
+@media(max-width:900px){
+  #jbPageMata .section-title{
+    grid-template-columns:1fr!important;
+  }
+  #jbPageMata .knockout-controls{
+    justify-content:flex-start!important;
+  }
+  .jb137-bracket{
+    grid-template-columns:minmax(0,1fr) 78px!important;
+    gap:8px!important;
+  }
+  .jb137-rounds{gap:8px!important}
+  .jb137-round header strong{font-size:8px!important}
+  .jb137-team span{font-size:7px!important}
+  .jb137-game{display:none!important}
 }
 </style>
 
