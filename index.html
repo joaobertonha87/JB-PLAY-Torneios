@@ -8422,4 +8422,173 @@ body.v74-public-only [class*="standing"]{
 }
 </style>
 
+
+<style id="jb-v117-contrast">
+/* ==========================================================
+   JB TORNEIOS V11.7 — CONTRASTE TOTAL
+   Regra:
+   1) Verde-limão => texto/ícones PRETOS
+   2) Grafite/cinza => texto/ícones BRANCOS
+   Aplicado globalmente em menus, cards, botões e submenus.
+   ========================================================== */
+
+:root{
+  --jb-lime:#c8ff00;
+  --jb-black:#07090a;
+  --jb-white:#ffffff;
+  --jb-graphite:#151b1f;
+  --jb-graphite-2:#20282e;
+  --jb-border:#364149;
+}
+
+/* Base escura e texto claro */
+body, main, section, article, aside, nav,
+.card, .panel, .box, .tile, .modal-content,
+[class*="card"], [class*="panel"], [class*="tile"]{
+  color:var(--jb-white);
+}
+
+/* BOTÕES GRAFITE/CINZA = TEXTO BRANCO */
+button,
+.btn,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+a.btn,
+.button,
+[class*="button"],
+[class*="btn"]{
+  color:var(--jb-white)!important;
+  -webkit-text-fill-color:var(--jb-white)!important;
+}
+button *,
+.btn *,
+[role="button"] *,
+.button *,
+[class*="button"] *,
+[class*="btn"] *{
+  color:inherit!important;
+  -webkit-text-fill-color:inherit!important;
+}
+
+/* Estados/variantes conhecidas em cinza/grafite */
+.btn-secondary,.btn-dark,.btn-outline,.btn-ghost,
+.secondary,.ghost,.outline,
+[class*="secondary"],[class*="ghost"],[class*="outline"]{
+  color:var(--jb-white)!important;
+  -webkit-text-fill-color:var(--jb-white)!important;
+}
+
+/* VERDE-LIMÃO = TEXTO PRETO */
+.btn-primary,
+.btn-success,
+.active,
+.is-active,
+.selected,
+[aria-current="page"],
+[class*="lime"],
+[class*="primary"],
+[class*="success"]{
+  color:var(--jb-black)!important;
+  -webkit-text-fill-color:var(--jb-black)!important;
+}
+.btn-primary *,
+.btn-success *,
+.active *,
+.is-active *,
+.selected *,
+[aria-current="page"] *,
+[class*="lime"] *,
+[class*="primary"] *,
+[class*="success"] *{
+  color:inherit!important;
+  -webkit-text-fill-color:inherit!important;
+}
+
+/* Menu lateral ativo */
+nav a.active,
+.sidebar a.active,
+.sidebar .active,
+.menu .active,
+.nav-item.active,
+.nav-link.active,
+[class*="sidebar"] .active,
+[class*="menu"] .active{
+  color:var(--jb-black)!important;
+  -webkit-text-fill-color:var(--jb-black)!important;
+}
+
+/* Ícones SVG acompanham a cor do texto */
+button svg,.btn svg,[role="button"] svg,
+.active svg,.selected svg,[aria-current="page"] svg{
+  fill:currentColor!important;
+  stroke:currentColor!important;
+}
+
+/* Cards: títulos fortes brancos, textos secundários legíveis */
+.card h1,.card h2,.card h3,.card h4,.card h5,.card h6,
+[class*="card"] h1,[class*="card"] h2,[class*="card"] h3,
+[class*="card"] h4,[class*="card"] h5,[class*="card"] h6,
+.card strong,.card b,[class*="card"] strong,[class*="card"] b{
+  color:var(--jb-white)!important;
+  -webkit-text-fill-color:var(--jb-white)!important;
+}
+.card p,.card small,.card label,
+[class*="card"] p,[class*="card"] small,[class*="card"] label{
+  color:#d8dee2!important;
+  -webkit-text-fill-color:#d8dee2!important;
+}
+
+/* Inputs/selects escuros */
+input,select,textarea{
+  color:var(--jb-white)!important;
+  -webkit-text-fill-color:var(--jb-white)!important;
+}
+input::placeholder,textarea::placeholder{
+  color:#aeb8be!important;
+  opacity:1!important;
+}
+
+/* Força contraste em badges verdes */
+.badge-success,.badge-primary,
+[class*="badge"][class*="success"],
+[class*="badge"][class*="primary"],
+.status-live,.live{
+  color:var(--jb-black)!important;
+  -webkit-text-fill-color:var(--jb-black)!important;
+}
+
+/* Classes específicas JB que usam destaque ativo */
+.jb-active,.jb-lime,.jb-highlight,
+.v760-active,.v74-active,.v73-active{
+  color:var(--jb-black)!important;
+  -webkit-text-fill-color:var(--jb-black)!important;
+}
+.jb-active *,.jb-lime *,.jb-highlight *,
+.v760-active *,.v74-active *,.v73-active *{
+  color:inherit!important;
+  -webkit-text-fill-color:inherit!important;
+}
+
+/* Reforço final:
+   elementos cujo próprio fundo inline seja o verde padrão/variações comuns */
+[style*="#c8ff00" i],
+[style*="#cfff00" i],
+[style*="#ccff00" i],
+[style*="#bfff00" i],
+[style*="lime" i]{
+  color:var(--jb-black)!important;
+  -webkit-text-fill-color:var(--jb-black)!important;
+}
+[style*="#c8ff00" i] *,
+[style*="#cfff00" i] *,
+[style*="#ccff00" i] *,
+[style*="#bfff00" i] *,
+[style*="lime" i] *{
+  color:inherit!important;
+  -webkit-text-fill-color:inherit!important;
+}
+</style>
+
 </html>
