@@ -3104,7 +3104,7 @@ body.v74-public-only .jb-device-view{display:none!important}
     <div class="jb-side-brand jb-side-brand-logo">
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
     </div>
-    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Unified Edition</small></div>
+    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Visual Total</small></div>
     <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><span>Início</span></a>
@@ -7945,6 +7945,365 @@ body.v74-public-only p,
 body.v74-public-only small{
   color:#aab5bc!important;
   -webkit-text-fill-color:#aab5bc!important;
+}
+</style>
+
+
+<style id="jb-v115-visual-total">
+:root{
+  --jb115-bg:#080b0d;
+  --jb115-card:#11171b;
+  --jb115-card2:#151d22;
+  --jb115-card3:#1a2329;
+  --jb115-line:#2b363d;
+  --jb115-text:#f7f9fa;
+  --jb115-muted:#aab5bc;
+  --jb115-lime:#c7ff16;
+}
+
+/* =========================================================
+   FUNDO ÚNICO PARA TODAS AS ABAS / SUBABAS
+   ========================================================= */
+html,body,
+body:not(.v74-public-only),
+body:not(.v74-public-only) .app,
+body:not(.v74-public-only) .jb-page,
+body:not(.v74-public-only) [id^="jbPage"],
+body:not(.v74-public-only) #jbPageDashboard,
+body:not(.v74-public-only) #jbPageInscritos,
+body:not(.v74-public-only) #jbPageDuplas,
+body:not(.v74-public-only) #jbPageGroups,
+body:not(.v74-public-only) #jbPageJogos,
+body:not(.v74-public-only) #jbPageCentral,
+body:not(.v74-public-only) #jbPageMata,
+body:not(.v74-public-only) #jbPagePublico,
+body:not(.v74-public-only) #jbPageNuvem,
+body:not(.v74-public-only) #jbPagePodio,
+body:not(.v74-public-only) #jbPageHistorico,
+body:not(.v74-public-only) #jbPageArquivos{
+  background:#080b0d!important;
+  background-color:#080b0d!important;
+  background-image:none!important;
+  color:#f7f9fa!important;
+}
+
+/* neutraliza qualquer wrapper interno azul/branco */
+body:not(.v74-public-only) [id^="jbPage"] > *,
+body:not(.v74-public-only) [id^="jbPage"] .wrap,
+body:not(.v74-public-only) [id^="jbPage"] .container,
+body:not(.v74-public-only) [id^="jbPage"] .content,
+body:not(.v74-public-only) [id^="jbPage"] .content-wrap,
+body:not(.v74-public-only) [id^="jbPage"] .workspace{
+  background-color:transparent!important;
+  background-image:none!important;
+}
+
+/* =========================================================
+   CARDS / PAINÉIS — TODA A FERRAMENTA
+   ========================================================= */
+body:not(.v74-public-only) .card,
+body:not(.v74-public-only) .panel,
+body:not(.v74-public-only) .box,
+body:not(.v74-public-only) .group,
+body:not(.v74-public-only) .round,
+body:not(.v74-public-only) .category-manager,
+body:not(.v74-public-only) .jb-theme-card,
+body:not(.v74-public-only) .jb-metric-card,
+body:not(.v74-public-only) .jb-access-card,
+body:not(.v74-public-only) .jb-dash-progress-card,
+body:not(.v74-public-only) .jb-v7-assistant,
+body:not(.v74-public-only) .v74-cloud-card,
+body:not(.v74-public-only) .v74-status,
+body:not(.v74-public-only) .v74-qr,
+body:not(.v74-public-only) .v73-public-card,
+body:not(.v74-public-only) .v760-hero,
+body:not(.v74-public-only) .v760-metric,
+body:not(.v74-public-only) .v760-filter,
+body:not(.v74-public-only) .v10-panel,
+body:not(.v74-public-only) .v10-kpis>div,
+body:not(.v74-public-only) .v10-history-summary>div,
+body:not(.v74-public-only) .v10-history-card,
+body:not(.v74-public-only) .v10-court,
+body:not(.v74-public-only) .v10-queue-item,
+body:not(.v74-public-only) .v10-next-action,
+body:not(.v74-public-only) .jb-v7-game-toolbar,
+body:not(.v74-public-only) .jb-v7-games-summary>div,
+body:not(.v74-public-only) #groupsArea .group,
+body:not(.v74-public-only) .match,
+body:not(.v74-public-only) .match-card,
+body:not(.v74-public-only) #knockoutArea .jb-ko-round,
+body:not(.v74-public-only) #knockoutArea .jb-ko-match,
+body:not(.v74-public-only) #knockoutArea .jb-ko-team-row{
+  background:#11171b!important;
+  background-color:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border:1px solid #2b363d!important;
+  box-shadow:none!important;
+}
+
+/* =========================================================
+   REMOVE CARD BRANCO / FUNDO AZUL INLINE OU DE CLASSES LEGADAS
+   ========================================================= */
+body:not(.v74-public-only) .bg-white,
+body:not(.v74-public-only) .white,
+body:not(.v74-public-only) .surface-white,
+body:not(.v74-public-only) .light-card,
+body:not(.v74-public-only) .paper,
+body:not(.v74-public-only) [style*="background:#fff"],
+body:not(.v74-public-only) [style*="background: #fff"],
+body:not(.v74-public-only) [style*="background:white"],
+body:not(.v74-public-only) [style*="background: white"],
+body:not(.v74-public-only) [style*="background:#ffffff"],
+body:not(.v74-public-only) [style*="background: #ffffff"],
+body:not(.v74-public-only) [style*="background:#071d38"],
+body:not(.v74-public-only) [style*="background: #071d38"],
+body:not(.v74-public-only) [style*="background:#0c4c75"],
+body:not(.v74-public-only) [style*="background: #0c4c75"],
+body:not(.v74-public-only) [style*="background:#0d659e"],
+body:not(.v74-public-only) [style*="background: #0d659e"]{
+  background:#11171b!important;
+  background-color:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+}
+
+/* =========================================================
+   DUPLAS
+   ========================================================= */
+body:not(.v74-public-only) #jbPageDuplas,
+body:not(.v74-public-only) #jbPageDuplas .card,
+body:not(.v74-public-only) #jbPageDuplas .panel,
+body:not(.v74-public-only) #jbPageDuplas .box{
+  background:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b363d!important;
+}
+
+/* =========================================================
+   GRUPOS
+   ========================================================= */
+body:not(.v74-public-only) #jbPageGroups,
+body:not(.v74-public-only) #jbPageGroups #groupsArea,
+body:not(.v74-public-only) #jbPageGroups .group,
+body:not(.v74-public-only) #jbPageGroups .team{
+  background:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b363d!important;
+}
+
+/* =========================================================
+   JOGOS / PLACARES
+   ========================================================= */
+body:not(.v74-public-only) #jbPageJogos,
+body:not(.v74-public-only) #jbPageJogos .jb-games-group,
+body:not(.v74-public-only) #jbPageJogos .match,
+body:not(.v74-public-only) #jbPageJogos .jb-v7-game-toolbar,
+body:not(.v74-public-only) #jbPageJogos .jb-v7-games-summary>div{
+  background:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b363d!important;
+}
+
+/* =========================================================
+   CENTRAL DE JOGOS
+   ========================================================= */
+body:not(.v74-public-only) #jbPageCentral,
+body:not(.v74-public-only) #jbPageCentral .v10-command-grid,
+body:not(.v74-public-only) #jbPageCentral .v10-command-hero,
+body:not(.v74-public-only) #jbPageCentral .v10-kpis>div,
+body:not(.v74-public-only) #jbPageCentral .v10-panel,
+body:not(.v74-public-only) #jbPageCentral .v10-history-summary>div,
+body:not(.v74-public-only) #jbPageCentral .v10-history-card,
+body:not(.v74-public-only) #jbPageCentral .v10-court,
+body:not(.v74-public-only) #jbPageCentral .v10-queue-item,
+body:not(.v74-public-only) #jbPageCentral .v10-next-action{
+  background:#11171b!important;
+  background-color:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b363d!important;
+}
+body:not(.v74-public-only) #jbPageCentral .v10-court.free{
+  background:#172315!important;
+  border-color:#334825!important;
+}
+
+/* =========================================================
+   MATA-MATA
+   ========================================================= */
+body:not(.v74-public-only) #jbPageMata,
+body:not(.v74-public-only) #knockoutArea,
+body:not(.v74-public-only) #knockoutArea .jb-ko-round,
+body:not(.v74-public-only) #knockoutArea .jb-ko-match,
+body:not(.v74-public-only) #knockoutArea .jb-ko-team-row{
+  background:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b363d!important;
+}
+
+/* =========================================================
+   PORTAL PÚBLICO
+   ========================================================= */
+body:not(.v74-public-only) #jbPagePublico,
+body:not(.v74-public-only) #jbPagePublico .v760-shell,
+body:not(.v74-public-only) #jbPagePublico .v760-hero,
+body:not(.v74-public-only) #jbPagePublico .v760-metric,
+body:not(.v74-public-only) #jbPagePublico .v760-filter,
+body:not(.v74-public-only) #jbPagePublico .v73-public-card,
+body:not(.v74-public-only) #jbPagePublico #v73PublicContent,
+body:not(.v74-public-only) #jbPagePublico #v73PublicContent>*{
+  background:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b363d!important;
+}
+
+/* =========================================================
+   PÓDIO
+   ========================================================= */
+body:not(.v74-public-only) #jbPagePodio,
+body:not(.v74-public-only) #jbPagePodio .card,
+body:not(.v74-public-only) #jbPagePodio .podium,
+body:not(.v74-public-only) #jbPagePodio [class*="podium"]{
+  background:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b363d!important;
+}
+
+/* =========================================================
+   HISTÓRICO
+   ========================================================= */
+body:not(.v74-public-only) #jbPageHistorico,
+body:not(.v74-public-only) #jbPageHistorico .card,
+body:not(.v74-public-only) #jbPageHistorico .v10-history-card,
+body:not(.v74-public-only) #jbPageHistorico .v10-history-summary>div{
+  background:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b363d!important;
+}
+
+/* =========================================================
+   SALVAR / PDF
+   ========================================================= */
+body:not(.v74-public-only) #jbPageArquivos,
+body:not(.v74-public-only) #jbPageArquivos .card,
+body:not(.v74-public-only) #jbPageArquivos .panel,
+body:not(.v74-public-only) #jbPageArquivos .box{
+  background:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b363d!important;
+}
+
+/* =========================================================
+   CAMPOS / BOTÕES / TABELAS
+   ========================================================= */
+body:not(.v74-public-only) input,
+body:not(.v74-public-only) textarea,
+body:not(.v74-public-only) select,
+body:not(.v74-public-only) option{
+  background:#0c1114!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #344149!important;
+}
+body:not(.v74-public-only) input::placeholder,
+body:not(.v74-public-only) textarea::placeholder{
+  color:#7f8d96!important;
+  -webkit-text-fill-color:#7f8d96!important;
+}
+body:not(.v74-public-only) button,
+body:not(.v74-public-only) .btn{
+  background:#182126!important;
+  background-image:none!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #37444c!important;
+  box-shadow:none!important;
+}
+body:not(.v74-public-only) button.ok,
+body:not(.v74-public-only) button.primary,
+body:not(.v74-public-only) .btn.ok,
+body:not(.v74-public-only) .btn.primary,
+body:not(.v74-public-only) .accent,
+body:not(.v74-public-only) .lime,
+body:not(.v74-public-only) .v10-auto-btn,
+body:not(.v74-public-only) .jb-dash-primary{
+  background:#c7ff16!important;
+  color:#091014!important;
+  -webkit-text-fill-color:#091014!important;
+  border-color:#c7ff16!important;
+}
+body:not(.v74-public-only) table,
+body:not(.v74-public-only) tbody,
+body:not(.v74-public-only) tr,
+body:not(.v74-public-only) td{
+  background:#101619!important;
+  color:#eef2f4!important;
+  border-color:#222d33!important;
+}
+body:not(.v74-public-only) thead,
+body:not(.v74-public-only) thead tr,
+body:not(.v74-public-only) th{
+  background:#151d22!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border-color:#2a353b!important;
+}
+body:not(.v74-public-only) tbody tr:nth-child(even) td{
+  background:#12191d!important;
+}
+
+/* =========================================================
+   TIPOGRAFIA — ALTO CONTRASTE
+   ========================================================= */
+body:not(.v74-public-only) h1,
+body:not(.v74-public-only) h2,
+body:not(.v74-public-only) h3,
+body:not(.v74-public-only) h4,
+body:not(.v74-public-only) h5,
+body:not(.v74-public-only) h6,
+body:not(.v74-public-only) strong,
+body:not(.v74-public-only) b,
+body:not(.v74-public-only) label,
+body:not(.v74-public-only) .title,
+body:not(.v74-public-only) .name{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body:not(.v74-public-only) p,
+body:not(.v74-public-only) small,
+body:not(.v74-public-only) .muted,
+body:not(.v74-public-only) .subtitle,
+body:not(.v74-public-only) .hint,
+body:not(.v74-public-only) .meta{
+  color:#aab5bc!important;
+  -webkit-text-fill-color:#aab5bc!important;
+}
+
+/* Portal público aberto externamente */
+body.v74-public-only,
+body.v74-public-only .app,
+body.v74-public-only #jbPagePublico,
+body.v74-public-only .v760-shell,
+body.v74-public-only .v760-hero,
+body.v74-public-only .v760-metric,
+body.v74-public-only .v760-filter,
+body.v74-public-only .v73-public-card,
+body.v74-public-only #v73PublicContent,
+body.v74-public-only #v73PublicContent>*{
+  background:#080b0d!important;
+  background-color:#080b0d!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b363d!important;
 }
 </style>
 
