@@ -3806,7 +3806,7 @@ table,thead,tbody,tr,td,th{background-color:transparent!important;} thead th{bac
   'use strict';
   var KEY='jb_v74_cloud_config';
   var DEFAULT_URL='https://bhmshotrdnubgpvsduzh.supabase.co';
-  var DEFAULT_KEY='sb_publishable_lu4JYnYCDCVInY8nc-FgNQ_f653Z0bh';
+  var DEFAULT_KEY='sb_publishable_lu4JYnYCDCVlnY8nC-FgNQ_f653Z6bh';
   try{
     var c={};
     try{c=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){c={}}
@@ -6989,7 +6989,7 @@ function safeParse(v,d){try{return JSON.parse(v)}catch(e){return d}}
 function getCfg(){
   var c=safeParse(localStorage.getItem(CFG_KEY)||'',{})||{};
   var DEFAULT_URL='https://bhmshotrdnubgpvsduzh.supabase.co';
-  var DEFAULT_KEY='sb_publishable_lu4JYnYCDCVInY8nc-FgNQ_f653Z0bh';
+  var DEFAULT_KEY='sb_publishable_lu4JYnYCDCVlnY8nC-FgNQ_f653Z6bh';
   c.url=normUrl(c.url||DEFAULT_URL);
   if(!/^https:\/\/.+\.supabase\.co$/i.test(c.url))c.url=DEFAULT_URL;
   // Para o projeto JB oficial, usa sempre a chave pública oficial desta versão.
@@ -7433,7 +7433,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <script id="jb-v781-supabase-bootstrap">
 (function(){
   var URL='https://bhmshotrdnubgpvsduzh.supabase.co';
-  var KEY='sb_publishable_lu4JYnYCDCVInY8nc-FgNQ_f653Z0bh';
+  var KEY='sb_publishable_lu4JYnYCDCVlnY8nC-FgNQ_f653Z6bh';
   try{
     var k='jb_v74_cloud_config', cur={};
     try{cur=JSON.parse(localStorage.getItem(k)||'{}')||{}}catch(e){}
@@ -7454,7 +7454,7 @@ function el(id){return document.getElementById(id)}
 function parse(v,d){try{return JSON.parse(v)}catch(e){return d}}
 function cloudCfg(){
   var DEFAULT_URL='https://bhmshotrdnubgpvsduzh.supabase.co';
-  var DEFAULT_KEY='sb_publishable_lu4JYnYCDCVInY8nc-FgNQ_f653Z0bh';
+  var DEFAULT_KEY='sb_publishable_lu4JYnYCDCVlnY8nC-FgNQ_f653Z6bh';
   var c={};
   try{c=parse(localStorage.getItem('jb_v74_cloud_config')||'',{})||{}}catch(e){c={}}
   c.url=String(c.url||DEFAULT_URL).trim().replace(/\/+$/,'');
@@ -7914,7 +7914,7 @@ if(isPublic()){
 })();
 </script>
 
-<script id="jb-v1008-cloud-health">(function(){'use strict';function p(v,d){try{return JSON.parse(v)}catch(e){return d}}function e(i){return document.getElementById(i)}function h(){var s=p(localStorage.getItem('jb_v780_session')||'',null),c=p(localStorage.getItem('jb_v74_cloud_config')||'',{});if(!c.url||!c.key){c.url='https://bhmshotrdnubgpvsduzh.supabase.co';c.key='sb_publishable_lu4JYnYCDCVInY8nc-FgNQ_f653Z0bh';c.auto=true;try{localStorage.setItem('jb_v74_cloud_config',JSON.stringify(c))}catch(x){}}var top=e('jbV9CloudState');if(!navigator.onLine){if(top)top.textContent='Offline';return}if(s&&s.access_token&&s.user&&s.user.id){fetch(String(c.url).replace(/\/+$/,'')+'/auth/v1/user',{headers:{apikey:c.key,Authorization:'Bearer '+s.access_token}}).then(function(r){if(r.ok){if(top)top.textContent='Sincronizado';var cloud=e('v74CloudStatus');if(cloud){cloud.className='v74-status online';cloud.innerHTML='<b>CONTA JB CONECTADA</b><small>PC, iPad e iPhone sincronizam pela mesma Conta JB.</small>'}}}).catch(function(){})}}window.addEventListener('load',function(){setTimeout(h,400)});window.addEventListener('online',function(){setTimeout(h,300)});document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(h,250)});setInterval(h,10000)})();</script>
+<script id="jb-v1008-cloud-health">(function(){'use strict';function p(v,d){try{return JSON.parse(v)}catch(e){return d}}function e(i){return document.getElementById(i)}function h(){var s=p(localStorage.getItem('jb_v780_session')||'',null),c=p(localStorage.getItem('jb_v74_cloud_config')||'',{});if(!c.url||!c.key){c.url='https://bhmshotrdnubgpvsduzh.supabase.co';c.key='sb_publishable_lu4JYnYCDCVlnY8nC-FgNQ_f653Z6bh';c.auto=true;try{localStorage.setItem('jb_v74_cloud_config',JSON.stringify(c))}catch(x){}}var top=e('jbV9CloudState');if(!navigator.onLine){if(top)top.textContent='Offline';return}if(s&&s.access_token&&s.user&&s.user.id){fetch(String(c.url).replace(/\/+$/,'')+'/auth/v1/user',{headers:{apikey:c.key,Authorization:'Bearer '+s.access_token}}).then(function(r){if(r.ok){if(top)top.textContent='Sincronizado';var cloud=e('v74CloudStatus');if(cloud){cloud.className='v74-status online';cloud.innerHTML='<b>CONTA JB CONECTADA</b><small>PC, iPad e iPhone sincronizam pela mesma Conta JB.</small>'}}}).catch(function(){})}}window.addEventListener('load',function(){setTimeout(h,400)});window.addEventListener('online',function(){setTimeout(h,300)});document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(h,250)});setInterval(h,10000)})();</script>
 <script id="jb-v1020-device-view-runtime">
 (function(){
 'use strict';
@@ -7962,7 +7962,7 @@ window.addEventListener('resize',function(){
 </script>
 
 <style id="jb-v105-unified-dark">
-/* JB TORNEIOS V10.5.1 — unified commercial dark UI */
+/* JB TORNEIOS V10.5.2 — unified commercial dark UI */
 :root{--jb-bg:#090d10;--jb-bg2:#0d1216;--jb-panel:#11181d;--jb-panel2:#151e24;--jb-border:#29343c;--jb-text:#f7f9fa;--jb-muted:#aab5bd;--jb-lime:#b9f20d;--jb-lime2:#d6ff00;--jb-danger:#ff5d6c;--jb-shadow:0 12px 32px rgba(0,0,0,.28)}
 html,body{background:var(--jb-bg)!important;color:var(--jb-text)!important;color-scheme:dark}
 body,#app,.app,.app-shell,.shell,.main,.main-content,.content,.content-wrap,.page,.page-content,.workspace,.view,.screen,[class*="page"],[class*="screen"]{background:var(--jb-bg)!important;background-image:none!important;color:var(--jb-text)!important}
