@@ -1,0 +1,15 @@
+JB TORNEIOS V10.5.1 — LOGIN / SUPABASE CORRIGIDO
+
+Correções:
+- restaura automaticamente a configuração oficial do Supabase do JB Torneios;
+- substitui chave pública antiga/inválida salva no navegador;
+- a autenticação e a nuvem passam a usar a mesma configuração;
+- mantém e-mail, senha e lógica de sincronização existentes;
+- adiciona migração automática do localStorage;
+- atualiza o cache/PWA para evitar carregar configuração antiga;
+- mantém integralmente o visual Dark Commercial da V10.5.
+
+Após publicar:
+1. abra a página novamente;
+2. faça uma recarga forçada;
+3. tente o login com a mesma conta.
