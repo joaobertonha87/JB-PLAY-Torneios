@@ -1,1 +1,0 @@
-JB Play V10.0.8 — correção de nuvem: restaura automaticamente a configuração Supabase, atualiza o status real da Conta JB e reconecta PC/iPad/iPhone automaticamente.
