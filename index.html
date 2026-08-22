@@ -2711,7 +2711,7 @@ body:not(.v74-public-only) .jb-metric-card strong b {
   color:#ffffff !important;
 }
 </style>
-<meta name="jb-play-version" content="10.0.7">
+<meta name="jb-play-version" content="13.8">
 
 <style id="jb-v1010-manual-groups-style">
 .jb-manual-groups-panel{margin-top:14px!important}
@@ -3059,6 +3059,38 @@ body.v74-public-only .jb-device-view{display:none!important}
 })();
 </script>
 
+
+<style id="jb-v138-approved-bracket">
+/* V13.8 — layout mata-mata aprovado */
+#jbPageMata{background:#05090c!important}
+#jbPageMata .jb-page-head,#jbPageMata .section-title{max-width:none!important;width:100%!important;margin-left:0!important;margin-right:0!important}
+#jbPageMata .section-title{grid-template-columns:minmax(320px,1fr) auto!important;align-items:center!important;padding:14px 0 18px!important}
+#jbPageMata #knockoutArea{overflow:visible!important;width:100%!important;padding:0 0 18px!important}
+#jbPageMata .jb-v136-stage-wrap{overflow:visible!important;width:100%!important;padding:4px 0 10px!important}
+#jbPageMata .jb-v136-stage{width:100%!important;min-width:0!important;padding:4px 0 8px!important}
+#jbPageMata .jb-ko-bracket{display:grid!important;grid-template-columns:1.42fr 1.15fr 1fr .95fr!important;gap:38px!important;width:calc(100% - 190px)!important;min-width:0!important;align-items:stretch!important}
+#jbPageMata .jb-ko-round{width:auto!important;min-width:0!important;padding:0!important;border-right:0!important}
+#jbPageMata .jb-ko-round-head{min-height:58px!important;border-bottom:1px solid #344148!important}
+#jbPageMata .jb-ko-round-head h3{font-size:16px!important}
+#jbPageMata .jb-ko-match-list{height:calc(100% - 70px)!important;justify-content:space-around!important;gap:9px!important}
+#jbPageMata .jb-ko-match{background:transparent!important;border:0!important;border-radius:0!important}
+#jbPageMata .jb-ko-game-label{border:0!important;padding:2px 2px 4px!important}
+#jbPageMata .jb-ko-team-row{min-height:38px!important;padding:3px 4px!important;background:transparent!important;border-bottom:1px solid #536068!important;grid-template-columns:minmax(0,1fr) 42px!important}
+#jbPageMata .jb-ko-team-copy strong{font-size:11px!important;font-weight:900!important;color:#fff!important;-webkit-text-fill-color:#fff!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+#jbPageMata .jb-ko-team-row.winner{background:transparent!important;box-shadow:none!important;border-bottom-color:#c8ff00!important}
+#jbPageMata .jb-ko-team-row.winner .jb-ko-team-copy strong{color:#dfff4b!important;-webkit-text-fill-color:#dfff4b!important}
+#jbPageMata .jb-ko-score{width:42px!important;height:34px!important;min-height:34px!important;border-radius:8px!important}
+#jbPageMata .jb-ko-versus{height:5px!important;font-size:0!important}
+#jbPageMata .jb-ko-bye-note{display:none!important}
+#jbPageMata .jb-v136-champion-column{width:170px!important;min-width:170px!important;padding-left:28px!important}
+#jbPageMata .jb-v136-champion-card{width:156px!important;min-height:190px!important}
+#jbPageMata .jb-v136-guide{margin-top:14px!important}
+#jbPageMata #jbV7487PodiumSlot{margin-top:12px!important;width:100%!important}
+#jbPageMata #jbV7487PodiumSlot .v7487-podium-grid,#jbPageMata #jbV7487PodiumSlot [class*="podium-grid"]{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important;width:100%!important}
+#jbPageMata #jbV7487PodiumSlot .card,#jbPageMata #jbV7487PodiumSlot [class*="podium-card"]{background:#0d1215!important;color:#fff!important;border:1px solid #38454c!important;min-height:120px!important}
+@media(max-width:1366px){html[data-jb-view="pc"] #jbPageMata .jb-ko-bracket{gap:24px!important;width:calc(100% - 155px)!important}html[data-jb-view="pc"] #jbPageMata .jb-v136-champion-column{width:145px!important;min-width:145px!important;padding-left:14px!important}}
+html[data-jb-view="ipad"] #jbPageMata .jb-v136-stage-wrap{overflow-x:auto!important}html[data-jb-view="ipad"] #jbPageMata .jb-v136-stage{min-width:1120px!important}html[data-jb-view="ipad"] #jbPageMata .jb-ko-bracket{display:grid!important;grid-template-columns:repeat(4,250px)!important;gap:28px!important;width:auto!important;min-width:1080px!important}
+</style>
 </head>
 
 <body class="jb-auth-locked">
@@ -3121,7 +3153,7 @@ body.v74-public-only .jb-device-view{display:none!important}
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB TORNEIOS V13.7</small>
+      <small>JB TORNEIOS V13.8</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -5486,7 +5518,39 @@ body.v74-public-only .jb-device-view{display:none!important}
       @media print{.no-print{display:none}}
     `;
     w.document.open();
-    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'</body></html>');
+    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style>
+<style id="jb-v138-approved-bracket">
+/* V13.8 — layout mata-mata aprovado */
+#jbPageMata{background:#05090c!important}
+#jbPageMata .jb-page-head,#jbPageMata .section-title{max-width:none!important;width:100%!important;margin-left:0!important;margin-right:0!important}
+#jbPageMata .section-title{grid-template-columns:minmax(320px,1fr) auto!important;align-items:center!important;padding:14px 0 18px!important}
+#jbPageMata #knockoutArea{overflow:visible!important;width:100%!important;padding:0 0 18px!important}
+#jbPageMata .jb-v136-stage-wrap{overflow:visible!important;width:100%!important;padding:4px 0 10px!important}
+#jbPageMata .jb-v136-stage{width:100%!important;min-width:0!important;padding:4px 0 8px!important}
+#jbPageMata .jb-ko-bracket{display:grid!important;grid-template-columns:1.42fr 1.15fr 1fr .95fr!important;gap:38px!important;width:calc(100% - 190px)!important;min-width:0!important;align-items:stretch!important}
+#jbPageMata .jb-ko-round{width:auto!important;min-width:0!important;padding:0!important;border-right:0!important}
+#jbPageMata .jb-ko-round-head{min-height:58px!important;border-bottom:1px solid #344148!important}
+#jbPageMata .jb-ko-round-head h3{font-size:16px!important}
+#jbPageMata .jb-ko-match-list{height:calc(100% - 70px)!important;justify-content:space-around!important;gap:9px!important}
+#jbPageMata .jb-ko-match{background:transparent!important;border:0!important;border-radius:0!important}
+#jbPageMata .jb-ko-game-label{border:0!important;padding:2px 2px 4px!important}
+#jbPageMata .jb-ko-team-row{min-height:38px!important;padding:3px 4px!important;background:transparent!important;border-bottom:1px solid #536068!important;grid-template-columns:minmax(0,1fr) 42px!important}
+#jbPageMata .jb-ko-team-copy strong{font-size:11px!important;font-weight:900!important;color:#fff!important;-webkit-text-fill-color:#fff!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+#jbPageMata .jb-ko-team-row.winner{background:transparent!important;box-shadow:none!important;border-bottom-color:#c8ff00!important}
+#jbPageMata .jb-ko-team-row.winner .jb-ko-team-copy strong{color:#dfff4b!important;-webkit-text-fill-color:#dfff4b!important}
+#jbPageMata .jb-ko-score{width:42px!important;height:34px!important;min-height:34px!important;border-radius:8px!important}
+#jbPageMata .jb-ko-versus{height:5px!important;font-size:0!important}
+#jbPageMata .jb-ko-bye-note{display:none!important}
+#jbPageMata .jb-v136-champion-column{width:170px!important;min-width:170px!important;padding-left:28px!important}
+#jbPageMata .jb-v136-champion-card{width:156px!important;min-height:190px!important}
+#jbPageMata .jb-v136-guide{margin-top:14px!important}
+#jbPageMata #jbV7487PodiumSlot{margin-top:12px!important;width:100%!important}
+#jbPageMata #jbV7487PodiumSlot .v7487-podium-grid,#jbPageMata #jbV7487PodiumSlot [class*="podium-grid"]{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important;width:100%!important}
+#jbPageMata #jbV7487PodiumSlot .card,#jbPageMata #jbV7487PodiumSlot [class*="podium-card"]{background:#0d1215!important;color:#fff!important;border:1px solid #38454c!important;min-height:120px!important}
+@media(max-width:1366px){html[data-jb-view="pc"] #jbPageMata .jb-ko-bracket{gap:24px!important;width:calc(100% - 155px)!important}html[data-jb-view="pc"] #jbPageMata .jb-v136-champion-column{width:145px!important;min-width:145px!important;padding-left:14px!important}}
+html[data-jb-view="ipad"] #jbPageMata .jb-v136-stage-wrap{overflow-x:auto!important}html[data-jb-view="ipad"] #jbPageMata .jb-v136-stage{min-width:1120px!important}html[data-jb-view="ipad"] #jbPageMata .jb-ko-bracket{display:grid!important;grid-template-columns:repeat(4,250px)!important;gap:28px!important;width:auto!important;min-width:1080px!important}
+</style>
+</head><body>'+bodyHtml+'</body></html>');
     w.document.close();
     w.focus();
     setTimeout(function(){ w.print(); },350);
@@ -9836,7 +9900,7 @@ body.auth-open,
 
 <style id="jb-v132-device-pro">
 /* ==========================================================
-   JB TORNEIOS V13.7 — PC / iPad PRO
+   JB TORNEIOS V13.8 — PC / iPad PRO
    Dois perfis reais de exibição:
    - PC: mais denso e panorâmico
    - iPad: touch-first, cards maiores, menos densidade
@@ -10107,7 +10171,7 @@ html[data-jb-view="ipad"] #jbPageArquivos .v7-safety-actions{
 
 <style id="jb-v133-ipad10">
 /* ==========================================================
-   JB TORNEIOS V13.7 — iPad 10ª geração (2022)
+   JB TORNEIOS V13.8 — iPad 10ª geração (2022)
    Tela 10,9" — viewport de referência:
    retrato ~820x1180 CSS px
    paisagem ~1180x820 CSS px
