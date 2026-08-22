@@ -2711,7 +2711,7 @@ body:not(.v74-public-only) .jb-metric-card strong b {
   color:#ffffff !important;
 }
 </style>
-<meta name="jb-play-version" content="13.8">
+<meta name="jb-play-version" content="13.9">
 
 <style id="jb-v1010-manual-groups-style">
 .jb-manual-groups-panel{margin-top:14px!important}
@@ -3091,6 +3091,405 @@ body.v74-public-only .jb-device-view{display:none!important}
 @media(max-width:1366px){html[data-jb-view="pc"] #jbPageMata .jb-ko-bracket{gap:24px!important;width:calc(100% - 155px)!important}html[data-jb-view="pc"] #jbPageMata .jb-v136-champion-column{width:145px!important;min-width:145px!important;padding-left:14px!important}}
 html[data-jb-view="ipad"] #jbPageMata .jb-v136-stage-wrap{overflow-x:auto!important}html[data-jb-view="ipad"] #jbPageMata .jb-v136-stage{min-width:1120px!important}html[data-jb-view="ipad"] #jbPageMata .jb-ko-bracket{display:grid!important;grid-template-columns:repeat(4,250px)!important;gap:28px!important;width:auto!important;min-width:1080px!important}
 </style>
+
+
+<style id="jb-v139-matamata-final">
+/* =========================================================
+   JB TORNEIOS V13.9 — MATA-MATA FINAL
+   - chave usa toda a largura
+   - controles superiores alinhados à esquerda
+   - nomes e placares mais legíveis
+   - pódio obrigatoriamente abaixo da chave
+   ========================================================= */
+
+#jbPageMata{
+  display:block!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  background:#05090c!important;
+  padding-bottom:34px!important;
+}
+
+/* Cabeçalho principal alinhado */
+#jbPageMata .jb-page-head{
+  position:relative!important;
+  display:flex!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  gap:18px!important;
+  width:100%!important;
+  padding:4px 0 12px!important;
+  margin:0 0 6px!important;
+  background:transparent!important;
+}
+#jbPageMata .jb-page-head>div{
+  flex:1 1 auto!important;
+}
+#jbPageMata .jb-page-head .jb-back{
+  margin-left:auto!important;
+}
+
+/* Título + controles: tudo começa pela esquerda */
+#jbPageMata .section-title{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:flex-start!important;
+  gap:12px!important;
+  width:100%!important;
+  margin:0 0 12px!important;
+  padding:8px 0 14px!important;
+  border-bottom:1px solid #283238!important;
+}
+#jbPageMata .title-wrap{
+  width:100%!important;
+}
+#jbPageMata .knockout-controls{
+  width:100%!important;
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:flex-end!important;
+  justify-content:flex-start!important;
+  gap:9px!important;
+  margin:0!important;
+}
+#jbPageMata .knockout-controls .field{
+  flex:0 0 205px!important;
+  min-width:205px!important;
+  max-width:205px!important;
+}
+#jbPageMata .knockout-controls .field label{
+  color:#b9c4ca!important;
+  font-size:9px!important;
+  margin-bottom:5px!important;
+}
+#jbPageMata .knockout-controls select{
+  height:44px!important;
+  min-height:44px!important;
+  background:#10171b!important;
+  color:#fff!important;
+  border:1px solid #4d5a61!important;
+}
+#jbPageMata .v7483-third-button{
+  width:auto!important;
+  min-width:310px!important;
+  max-width:360px!important;
+  min-height:44px!important;
+  height:44px!important;
+  padding:5px 10px!important;
+  background:#10171b!important;
+  color:#fff!important;
+  border:1px solid #4d5a61!important;
+}
+#jbPageMata .v7483-third-copy b{
+  color:#fff!important;
+}
+#jbPageMata .v7483-third-copy small{
+  color:#87949b!important;
+  font-size:7px!important;
+}
+#jbPageMata .knockout-controls #generateKO{
+  min-height:44px!important;
+  height:44px!important;
+  background:#c8ff00!important;
+  color:#081015!important;
+  font-weight:950!important;
+}
+#jbPageMata .knockout-controls #resetKO{
+  min-height:44px!important;
+  height:44px!important;
+  background:#151d22!important;
+  color:#fff!important;
+  border:1px solid #4d5a61!important;
+}
+
+/* Área do mata-mata fica em fluxo normal */
+#jbPageMata #knockoutArea{
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  overflow:visible!important;
+  padding:4px 0 28px!important;
+}
+
+/* CHAVE: ocupa toda a largura da página */
+#jbPageMata .jb137-bracket{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 170px!important;
+  column-gap:34px!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  height:var(--jb137-h)!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+}
+#jbPageMata .jb137-rounds{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:clamp(30px,3.1vw,58px)!important;
+  width:100%!important;
+  min-width:0!important;
+  height:100%!important;
+  align-items:stretch!important;
+}
+#jbPageMata .jb137-round{
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  height:100%!important;
+}
+#jbPageMata .jb137-round header{
+  height:48px!important;
+  align-items:center!important;
+  padding:0 0 9px!important;
+  border-bottom:2px solid #c8ff00!important;
+}
+#jbPageMata .jb137-round header strong{
+  font-size:clamp(12px,1.05vw,16px)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-weight:950!important;
+}
+#jbPageMata .jb137-round header small{
+  color:#c8ff00!important;
+  font-size:8px!important;
+  font-weight:900!important;
+}
+
+/* Nomes bem mais visíveis */
+#jbPageMata .jb137-game{
+  height:16px!important;
+  color:#8d9aa1!important;
+  font-size:7px!important;
+  font-weight:900!important;
+}
+#jbPageMata .jb137-team{
+  height:36px!important;
+  grid-template-columns:minmax(0,1fr) 42px!important;
+  gap:8px!important;
+  align-items:end!important;
+  padding:0 0 4px!important;
+  margin-bottom:6px!important;
+  border-bottom:1.5px solid #78858c!important;
+}
+#jbPageMata .jb137-team span{
+  font-size:clamp(11px,.95vw,14px)!important;
+  line-height:1.15!important;
+  font-weight:900!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  text-shadow:0 1px 2px rgba(0,0,0,.35)!important;
+}
+#jbPageMata .jb137-team.winner{
+  border-bottom-color:#c8ff00!important;
+}
+#jbPageMata .jb137-team.winner span{
+  color:#dfff54!important;
+  -webkit-text-fill-color:#dfff54!important;
+}
+#jbPageMata .jb137-score{
+  width:42px!important;
+  min-width:42px!important;
+  max-width:42px!important;
+  height:31px!important;
+  min-height:31px!important;
+  border-radius:8px!important;
+  background:#182126!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #75858d!important;
+  font-size:15px!important;
+}
+
+/* Linhas da chave */
+#jbPageMata .jb137-connector{
+  stroke:#66747b!important;
+  stroke-width:1.4!important;
+}
+#jbPageMata .jb137-connector.done{
+  stroke:#c8ff00!important;
+  stroke-width:2!important;
+}
+
+/* Campeão à direita, como final da chave */
+#jbPageMata .jb137-champion{
+  align-self:center!important;
+  width:100%!important;
+  min-width:0!important;
+  padding:18px 14px!important;
+  border:1px solid #c8ff00!important;
+  border-radius:14px!important;
+  background:#0b1114!important;
+  text-align:center!important;
+}
+#jbPageMata .jb137-champion:before{
+  content:"🏆";
+  display:block;
+  font-size:34px;
+  margin-bottom:8px;
+}
+#jbPageMata .jb137-champion small{
+  font-size:9px!important;
+  margin-bottom:7px!important;
+}
+#jbPageMata .jb137-champion strong{
+  font-size:14px!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  line-height:1.25!important;
+}
+
+/* TERCEIRO LUGAR: abaixo da chave */
+#jbPageMata #jbV7487ThirdSlot{
+  display:block!important;
+  position:relative!important;
+  float:none!important;
+  clear:both!important;
+  width:100%!important;
+  max-width:100%!important;
+  margin:18px 0 0!important;
+}
+#jbPageMata #jbV7487ThirdSlot>*{
+  width:100%!important;
+  max-width:100%!important;
+}
+
+/* PÓDIO SEMPRE ABAIXO DA CHAVE */
+#jbPageMata #jbV7487PodiumSlot{
+  display:block!important;
+  position:relative!important;
+  float:none!important;
+  clear:both!important;
+  width:100%!important;
+  max-width:100%!important;
+  margin:18px 0 0!important;
+  padding:0!important;
+}
+#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium{
+  display:grid!important;
+  grid-template-columns:1.12fr 1fr 1fr!important;
+  gap:14px!important;
+  width:100%!important;
+  max-width:100%!important;
+  margin:0!important;
+  align-items:stretch!important;
+}
+#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium-card{
+  position:relative!important;
+  inset:auto!important;
+  float:none!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:138px!important;
+  margin:0!important;
+  padding:18px 16px!important;
+  border-radius:14px!important;
+  background:#0d1418!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium-card.first{
+  border:1px solid #c8ff00!important;
+  background:linear-gradient(135deg,rgba(200,255,0,.09),#0d1418 55%)!important;
+}
+#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium-card.second{
+  border:1px solid #78848b!important;
+  background:linear-gradient(135deg,rgba(180,190,198,.08),#0d1418 55%)!important;
+}
+#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium-card.third{
+  border:1px solid #b87333!important;
+  background:linear-gradient(135deg,rgba(184,115,51,.10),#0d1418 55%)!important;
+}
+#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium-card h3{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:17px!important;
+  margin:7px 0!important;
+}
+#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium-card .small{
+  color:#c3cbd0!important;
+}
+
+/* Remove qualquer layout antigo que tente jogar o pódio ao lado */
+#jbPageMata #knockoutArea > #jbV7487PodiumSlot,
+#jbPageMata #knockoutArea > #jbV7487ThirdSlot{
+  grid-column:1 / -1!important;
+}
+
+/* PC menor */
+@media(max-width:1400px){
+  #jbPageMata .jb137-bracket{
+    grid-template-columns:minmax(0,1fr) 145px!important;
+    column-gap:24px!important;
+  }
+  #jbPageMata .jb137-rounds{
+    gap:24px!important;
+  }
+  #jbPageMata .jb137-team span{
+    font-size:11px!important;
+  }
+}
+
+/* iPad: continua sem pódio lateral; chave pode respirar verticalmente */
+html[data-jb-view="ipad"] #jbPageMata{
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .section-title{
+  align-items:flex-start!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .knockout-controls{
+  justify-content:flex-start!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .jb137-bracket{
+  grid-template-columns:minmax(0,1fr) 110px!important;
+  column-gap:14px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .jb137-rounds{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:12px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .jb137-team{
+  grid-template-columns:minmax(0,1fr) 36px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .jb137-score{
+  width:36px!important;
+  min-width:36px!important;
+  max-width:36px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .jb137-team span{
+  font-size:9px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata #jbV7487PodiumSlot .jb-v7486-podium{
+  grid-template-columns:1fr 1fr 1fr!important;
+}
+
+/* Tela estreita: mantém controles à esquerda */
+@media(max-width:900px){
+  #jbPageMata .knockout-controls{
+    justify-content:flex-start!important;
+  }
+  #jbPageMata .knockout-controls .field{
+    flex:1 1 180px!important;
+    min-width:160px!important;
+    max-width:none!important;
+  }
+  #jbPageMata .v7483-third-button{
+    flex:1 1 260px!important;
+    min-width:0!important;
+    max-width:none!important;
+  }
+  #jbPageMata #jbV7487PodiumSlot .jb-v7486-podium{
+    grid-template-columns:1fr!important;
+  }
+}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
@@ -3136,7 +3535,7 @@ html[data-jb-view="ipad"] #jbPageMata .jb-v136-stage-wrap{overflow-x:auto!import
     <div class="jb-side-brand jb-side-brand-logo">
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
     </div>
-    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Sports UI V13.7</small></div>
+    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Sports UI V13.9</small></div>
     <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><span>Início</span></a>
@@ -3153,7 +3552,7 @@ html[data-jb-view="ipad"] #jbPageMata .jb-v136-stage-wrap{overflow-x:auto!import
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB TORNEIOS V13.8.1</small>
+      <small>JB TORNEIOS V13.9</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -5091,7 +5490,7 @@ html[data-jb-view="ipad"] #jbPageMata .jb-v136-stage-wrap{overflow-x:auto!import
     });
 
     var firstCount=Math.max(1,((state.knockout.rounds||[])[0]||{matches:[]}).matches.length||1);
-    var stageHeight=Math.max(360,Math.min(760,firstCount*82));
+    var stageHeight=Math.max(520,Math.min(820,firstCount*94));
 
     function waitLabel(ri,mi,side){
       if(ri<=0)return 'Aguardando dupla';
@@ -9868,7 +10267,7 @@ body.auth-open,
 
 <style id="jb-v132-device-pro">
 /* ==========================================================
-   JB TORNEIOS V13.8.1 — PC / iPad PRO
+   JB TORNEIOS V13.9 — PC / iPad PRO
    Dois perfis reais de exibição:
    - PC: mais denso e panorâmico
    - iPad: touch-first, cards maiores, menos densidade
@@ -10139,7 +10538,7 @@ html[data-jb-view="ipad"] #jbPageArquivos .v7-safety-actions{
 
 <style id="jb-v133-ipad10">
 /* ==========================================================
-   JB TORNEIOS V13.8.1 — iPad 10ª geração (2022)
+   JB TORNEIOS V13.9 — iPad 10ª geração (2022)
    Tela 10,9" — viewport de referência:
    retrato ~820x1180 CSS px
    paisagem ~1180x820 CSS px
