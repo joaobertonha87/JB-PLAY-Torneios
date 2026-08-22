@@ -1,0 +1,1 @@
+JB Torneios V10.5 — interface unificada Dark Commercial. Fundo carvão/preto, cards grafite, textos claros e verde-limão apenas como destaque. Substitua todos os arquivos no deploy e limpe o cache/PWA.
