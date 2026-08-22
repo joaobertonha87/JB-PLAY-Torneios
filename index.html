@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Torneios V10.2.2 · PC / iPad</title>
+  <title>JB Torneios V10.2.3 · PC / iPad</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -3229,6 +3229,133 @@ body:not(.v74-public-only) .btn:not(.primary):not(.active):not(.lime):not(.accen
 img, .brand-logo, .jb-logo, .logo, [class*="logo"]{
   filter:none!important;
   opacity:1!important;
+}
+</style>
+
+
+<style id="jb-v1023-contrast-system">
+/* Sistema de contraste V10.2.3
+   Superfície escura = texto claro
+   Superfície clara = texto escuro */
+
+/* CARDS/PANÉIS ESCUROS */
+body:not(.v74-public-only) .card,
+body:not(.v74-public-only) .panel,
+body:not(.v74-public-only) .box,
+body:not(.v74-public-only) .section,
+body:not(.v74-public-only) .module,
+body:not(.v74-public-only) .widget,
+body:not(.v74-public-only) .stat-card,
+body:not(.v74-public-only) .dashboard-card,
+body:not(.v74-public-only) .match-card,
+body:not(.v74-public-only) .group-card,
+body:not(.v74-public-only) .glass-card,
+body:not(.v74-public-only) #knockoutArea .jb-ko-round,
+body:not(.v74-public-only) #knockoutArea .jb-ko-match{
+ background:#1b2934!important;
+ color:#f7fafc!important;
+ border-color:rgba(255,255,255,.12)!important;
+}
+
+/* Tudo que for texto comum dentro de cards escuros */
+body:not(.v74-public-only) .card :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value),
+body:not(.v74-public-only) .panel :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value),
+body:not(.v74-public-only) .box :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value),
+body:not(.v74-public-only) .stat-card :is(h1,h2,h3,h4,strong,b,label,.title,.name,.value),
+body:not(.v74-public-only) .dashboard-card :is(h1,h2,h3,h4,strong,b,label,.title,.name,.value),
+body:not(.v74-public-only) .match-card :is(h1,h2,h3,h4,strong,b,label,.title,.name,.value),
+body:not(.v74-public-only) .group-card :is(h1,h2,h3,h4,strong,b,label,.title,.name,.value){
+ color:#f7fafc!important;
+ -webkit-text-fill-color:#f7fafc!important;
+}
+body:not(.v74-public-only) .card :is(p,small,.muted,.subtitle,.hint),
+body:not(.v74-public-only) .panel :is(p,small,.muted,.subtitle,.hint),
+body:not(.v74-public-only) .box :is(p,small,.muted,.subtitle,.hint){
+ color:#c5d0d7!important;
+ -webkit-text-fill-color:#c5d0d7!important;
+}
+
+/* CAMPOS E ÁREAS CLARAS: sempre texto escuro */
+body:not(.v74-public-only) input,
+body:not(.v74-public-only) textarea,
+body:not(.v74-public-only) select,
+body:not(.v74-public-only) option{
+ background:#f7f9fb!important;
+ color:#15232d!important;
+ -webkit-text-fill-color:#15232d!important;
+ border:1px solid #cbd5dc!important;
+}
+body:not(.v74-public-only) input::placeholder,
+body:not(.v74-public-only) textarea::placeholder{
+ color:#657580!important;
+ -webkit-text-fill-color:#657580!important;
+ opacity:1!important;
+}
+
+/* Cards que originalmente eram brancos */
+body:not(.v74-public-only) .white,
+body:not(.v74-public-only) .bg-white,
+body:not(.v74-public-only) [class*="white-card"],
+body:not(.v74-public-only) [class*="light-card"]{
+ background:#f4f7f9!important;
+ color:#172630!important;
+}
+body:not(.v74-public-only) .white *,
+body:not(.v74-public-only) .bg-white *,
+body:not(.v74-public-only) [class*="white-card"] *,
+body:not(.v74-public-only) [class*="light-card"] *{
+ color:#172630!important;
+ -webkit-text-fill-color:#172630!important;
+}
+
+/* Mata-mata: elimina azul sobre azul */
+body:not(.v74-public-only) #knockoutArea .jb-ko-team-row{
+ background:#263b49!important;
+ color:#fff!important;
+}
+body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy strong,
+body:not(.v74-public-only) #knockoutArea .jb-ko-round-head h3,
+body:not(.v74-public-only) #knockoutArea .jb-score-summary strong{
+ color:#fff!important;
+ -webkit-text-fill-color:#fff!important;
+ opacity:1!important;
+}
+body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy small,
+body:not(.v74-public-only) #knockoutArea .jb-ko-round-head small{
+ color:#d9e3e8!important;
+ -webkit-text-fill-color:#d9e3e8!important;
+ opacity:1!important;
+}
+
+/* Tabelas */
+body:not(.v74-public-only) table{
+ background:#1b2934!important;
+ color:#f4f7f9!important;
+}
+body:not(.v74-public-only) th{
+ background:#253744!important;
+ color:#fff!important;
+}
+body:not(.v74-public-only) td{
+ color:#eef3f6!important;
+ border-color:rgba(255,255,255,.10)!important;
+}
+
+/* Botões escuros */
+body:not(.v74-public-only) button:not(.primary):not(.active):not(.lime):not(.accent),
+body:not(.v74-public-only) .btn:not(.primary):not(.active):not(.lime):not(.accent){
+ background:#2a3d4b!important;
+ color:#fff!important;
+ -webkit-text-fill-color:#fff!important;
+}
+
+/* Preserva identidade JB */
+body:not(.v74-public-only) img,
+body:not(.v74-public-only) .brand-logo,
+body:not(.v74-public-only) .jb-logo,
+body:not(.v74-public-only) [class*="logo"]{
+ filter:none!important;
+ opacity:1!important;
 }
 </style>
 
