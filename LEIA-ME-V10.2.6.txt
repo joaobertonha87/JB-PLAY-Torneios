@@ -1,0 +1,18 @@
+JB TORNEIOS V10.2.6 — CONTRASTE MÁXIMO
+
+Correção visual completa baseada nas fotos:
+- remove o azul predominante da área administrativa;
+- fundo geral off-white;
+- títulos pretos;
+- textos secundários grafite;
+- cards brancos;
+- fase de grupos com linhas cinza-claro e nomes pretos;
+- tabelas com cabeçalho preto e corpo branco;
+- classificados em verde-claro com texto preto;
+- mata-mata com cards brancos/cinza-claro e nomes pretos;
+- placares brancos com borda preta;
+- botões secundários pretos com texto branco;
+- lime JB apenas como destaque;
+- menu lateral preto;
+- logo JB preservada nas cores atuais;
+- modos PC e iPad preservados.
