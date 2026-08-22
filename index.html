@@ -8307,4 +8307,119 @@ body.v74-public-only #v73PublicContent>*{
 }
 </style>
 
+
+<style id="jb-v116-card-fix">
+/* V11.6 — correção cirúrgica dos últimos cards claros */
+#jbPageJogos *,
+#jbPagePublico *,
+#jbPagePodio *{
+  --card:#11171b!important;
+  --panel:#11171b!important;
+  --surface:#11171b!important;
+  --surface-2:#151d22!important;
+}
+
+/* JOGOS / PLACARES */
+#jbPageJogos .match,
+#jbPageJogos .match-card,
+#jbPageJogos .game,
+#jbPageJogos .game-card,
+#jbPageJogos .jb-games-group,
+#jbPageJogos .jb-v7-game-toolbar,
+#jbPageJogos .jb-v7-games-summary>div,
+#jbPageJogos [class*="match"],
+#jbPageJogos [class*="game"]{
+ background:#11171b!important;background-image:none!important;
+ color:#f7f9fa!important;border-color:#2b363d!important;
+}
+#jbPageJogos [class*="team"],
+#jbPageJogos [class*="score"],
+#jbPageJogos [class*="player"]{
+ background:#151d22!important;color:#fff!important;border-color:#2b363d!important;
+}
+
+/* PORTAL PÚBLICO */
+#jbPagePublico,
+#jbPagePublico .v760-shell,
+#jbPagePublico .v760-hero,
+#jbPagePublico .v760-metric,
+#jbPagePublico .v760-filter,
+#jbPagePublico .v73-public-card,
+#jbPagePublico #v73PublicContent,
+#jbPagePublico #v73PublicContent>*,
+#jbPagePublico [class*="public"],
+#jbPagePublico [class*="result"],
+#jbPagePublico [class*="next"],
+#jbPagePublico [class*="standing"],
+#jbPagePublico [class*="classification"]{
+ background:#11171b!important;background-image:none!important;
+ color:#f7f9fa!important;border-color:#2b363d!important;
+}
+
+/* PÓDIO — campeão, vice e terceiro */
+#jbPagePodio .podium,
+#jbPagePodio [class*="podium"],
+#jbPagePodio [class*="podio"],
+#jbPagePodio [class*="place"],
+#jbPagePodio [class*="position"],
+#jbPagePodio [class*="winner"],
+#jbPagePodio [class*="champ"],
+#jbPagePodio [class*="second"],
+#jbPagePodio [class*="third"],
+#jbPagePodio .card{
+ background:#11171b!important;background-image:none!important;
+ color:#f7f9fa!important;border-color:#2b363d!important;
+}
+
+/* neutraliza fundos brancos inline especificamente nessas 3 páginas */
+#jbPageJogos [style*="background"],
+#jbPagePublico [style*="background"],
+#jbPagePodio [style*="background"]{
+ background-color:#11171b!important;
+ background-image:none!important;
+}
+
+/* mantém controles de placar distinguíveis */
+#jbPageJogos input,#jbPageJogos select,
+#jbPagePublico input,#jbPagePublico select,
+#jbPagePodio input,#jbPagePodio select{
+ background:#0c1114!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+ border-color:#344149!important;
+}
+
+/* texto: elimina branco-sobre-branco e cinza escuro */
+#jbPageJogos h1,#jbPageJogos h2,#jbPageJogos h3,#jbPageJogos h4,
+#jbPageJogos strong,#jbPageJogos b,#jbPageJogos label,
+#jbPagePublico h1,#jbPagePublico h2,#jbPagePublico h3,#jbPagePublico h4,
+#jbPagePublico strong,#jbPagePublico b,#jbPagePublico label,
+#jbPagePodio h1,#jbPagePodio h2,#jbPagePodio h3,#jbPagePodio h4,
+#jbPagePodio strong,#jbPagePodio b,#jbPagePodio label{
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+#jbPageJogos p,#jbPageJogos small,#jbPageJogos .muted,
+#jbPagePublico p,#jbPagePublico small,#jbPagePublico .muted,
+#jbPagePodio p,#jbPagePodio small,#jbPagePodio .muted{
+ color:#b8c2c8!important;-webkit-text-fill-color:#b8c2c8!important;
+}
+
+/* portal público quando aberto sozinho */
+body.v74-public-only,
+body.v74-public-only *{
+ --card:#11171b!important;--surface:#11171b!important;
+}
+body.v74-public-only .v760-shell,
+body.v74-public-only .v760-hero,
+body.v74-public-only .v760-metric,
+body.v74-public-only .v760-filter,
+body.v74-public-only .v73-public-card,
+body.v74-public-only #v73PublicContent,
+body.v74-public-only #v73PublicContent>*,
+body.v74-public-only [class*="public"],
+body.v74-public-only [class*="result"],
+body.v74-public-only [class*="standing"]{
+ background:#11171b!important;background-image:none!important;color:#fff!important;
+ border-color:#2b363d!important;
+}
+</style>
+
 </html>
