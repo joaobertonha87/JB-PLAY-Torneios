@@ -3039,768 +3039,6 @@ html[data-jb-view="ipad"] .jb-device-view>span{
 body.v74-public-only .jb-device-view{display:none!important}
 </style>
 
-
-
-
-
-
-
-
-
-
-
-<style id="jb-v1025-light-commercial-theme">
-/* V10.2.5 — interface clara comercial, alto contraste */
-:root{
- --bg:#f3f5f7!important;--panel:#ffffff!important;--panel-strong:#ffffff!important;--panel-soft:#f7f9fa!important;
- --text:#111820!important;--muted:#5f6b75!important;--line:#dce2e7!important;--line-strong:#cbd3d9!important;
- --jb-bg:#f3f5f7!important;--jb-bg2:#eef1f3!important;--jb-panel:#fff!important;--jb-panel2:#f7f9fa!important;
- --jb-line:#dce2e7!important;--jb-text:#111820!important;--jb-muted:#66737d!important;
- --v4-bg:#f3f5f7!important;--v4-panel:#fff!important;--v4-panel2:#f7f9fa!important;--v4-line:#dce2e7!important;
- --jb-comfort-surface:#fff!important;--jb-comfort-surface-2:#f7f9fa!important;--jb-comfort-border:#dce2e7!important;
- --jb-comfort-text:#111820!important;--jb-comfort-muted:#66737d!important;
-}
-html,body{background:#f3f5f7!important;color:#111820!important}
-body:not(.v74-public-only){color:#111820!important}
-body:not(.v74-public-only) .app{background:transparent!important}
-body:not(.v74-public-only) .topbar,
-body:not(.v74-public-only) .card,
-body:not(.v74-public-only) .group,
-body:not(.v74-public-only) .round,
-body:not(.v74-public-only) .panel,
-body:not(.v74-public-only) .box,
-body:not(.v74-public-only) .section,
-body:not(.v74-public-only) .module,
-body:not(.v74-public-only) .widget,
-body:not(.v74-public-only) .stat-card,
-body:not(.v74-public-only) .dashboard-card,
-body:not(.v74-public-only) .match-card,
-body:not(.v74-public-only) .group-card,
-body:not(.v74-public-only) .glass,
-body:not(.v74-public-only) .glass-card,
-body:not(.v74-public-only) #knockoutArea .jb-ko-round,
-body:not(.v74-public-only) #knockoutArea .jb-ko-match{
- background:#fff!important;color:#111820!important;border-color:#dce2e7!important;
- box-shadow:0 8px 24px rgba(17,24,32,.07)!important;
-}
-body:not(.v74-public-only) .hero{background:#fff!important;color:#111820!important;border:1px solid #dce2e7!important;box-shadow:0 10px 28px rgba(17,24,32,.07)!important}
-body:not(.v74-public-only) .hero:before{color:rgba(17,24,32,.025)!important}
-body:not(.v74-public-only) :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value){color:#111820!important;-webkit-text-fill-color:#111820!important;text-shadow:none!important}
-body:not(.v74-public-only) :is(p,small,.muted,.subtitle,.hint,.small,.card-kicker){color:#66737d!important;-webkit-text-fill-color:#66737d!important}
-body:not(.v74-public-only) input,body:not(.v74-public-only) textarea,body:not(.v74-public-only) select,body:not(.v74-public-only) option{background:#fff!important;color:#111820!important;-webkit-text-fill-color:#111820!important;border:1px solid #cfd7dd!important;box-shadow:none!important}
-body:not(.v74-public-only) input:focus,body:not(.v74-public-only) textarea:focus,body:not(.v74-public-only) select:focus{border-color:#92b91d!important;box-shadow:0 0 0 3px rgba(201,255,40,.18)!important}
-body:not(.v74-public-only) .quick-nav a{background:#fff!important;color:#111820!important;border-color:#dce2e7!important;box-shadow:0 5px 16px rgba(17,24,32,.05)!important}
-body:not(.v74-public-only) .quick-nav a:hover{border-color:#b5d34f!important;background:#fbfff0!important}
-/* sidebar grafite para manter aparência de app */
-.jb-sidebar{background:#171d22!important;border-right:1px solid #252d33!important;box-shadow:8px 0 24px rgba(0,0,0,.12)!important}
-.jb-side-brand{background:#20272d!important;border-color:#303941!important}
-.jb-side-brand strong,.jb-side-nav a{color:#fff!important;-webkit-text-fill-color:#fff!important}
-.jb-side-brand span,.jb-side-section{color:#aab4bb!important;-webkit-text-fill-color:#aab4bb!important}
-.jb-side-nav a:hover{background:#252d33!important;border-color:#354049!important}
-.jb-side-nav a.active{background:linear-gradient(135deg,#d8ff2d,#b6ef18)!important;color:#111820!important;-webkit-text-fill-color:#111820!important}
-.jb-side-nav a.active *{color:#111820!important;-webkit-text-fill-color:#111820!important}
-.jb-side-foot{background:#20272d!important;border-color:#303941!important}.jb-side-foot small{color:#aab4bb!important}
-/* botões */
-body:not(.v74-public-only) button,body:not(.v74-public-only) .btn{border-color:transparent!important}
-body:not(.v74-public-only) button:not(.secondary):not(.warn):not(.danger):not(.ok),body:not(.v74-public-only) .btn.primary{background:linear-gradient(135deg,#d8ff2d,#b6ef18)!important;color:#111820!important;-webkit-text-fill-color:#111820!important}
-body:not(.v74-public-only) button.secondary,body:not(.v74-public-only) .btn.secondary{background:#252d33!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
-/* tabelas */
-body:not(.v74-public-only) table{background:#fff!important;color:#111820!important;border-color:#dce2e7!important}
-body:not(.v74-public-only) th{background:#eef2f4!important;color:#27323a!important;-webkit-text-fill-color:#27323a!important;border-color:#dce2e7!important}
-body:not(.v74-public-only) td{background:#fff!important;color:#111820!important;-webkit-text-fill-color:#111820!important;border-color:#e3e8eb!important}
-body:not(.v74-public-only) tr.qual td{background:#f0f8d8!important;color:#111820!important;-webkit-text-fill-color:#111820!important}
-/* grupos */
-body:not(.v74-public-only) #groupsArea .team{background:#f7f9fa!important;color:#111820!important;border:1px solid #e0e6ea!important}
-/* mata-mata */
-body:not(.v74-public-only) #knockoutArea .jb-ko-team-row{background:#f5f7f8!important;color:#111820!important;border-color:#dce2e7!important}
-body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy strong,
-body:not(.v74-public-only) #knockoutArea .jb-ko-round-head h3,
-body:not(.v74-public-only) #knockoutArea .jb-score-summary strong{color:#111820!important;-webkit-text-fill-color:#111820!important;text-shadow:none!important}
-body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy small,
-body:not(.v74-public-only) #knockoutArea .jb-ko-round-head small{color:#66737d!important;-webkit-text-fill-color:#66737d!important}
-/* avisos/status */
-body:not(.v74-public-only) .pill{background:#f7f9fa!important;border-color:#dce2e7!important;color:#66737d!important}
-body:not(.v74-public-only) .pill b{color:#111820!important}
-body:not(.v74-public-only) .notice{background:#fff8dc!important;color:#594500!important;border-color:#ecd67b!important}
-body:not(.v74-public-only) .notice.success{background:#eaf8ef!important;color:#175c35!important;border-color:#b7e2c7!important}
-/* logos ficam intactas */
-body:not(.v74-public-only) img,body:not(.v74-public-only) .brand-logo,body:not(.v74-public-only) .jb-logo,body:not(.v74-public-only) [class*="logo"]{filter:none!important;opacity:1!important}
-/* dock mobile/iPad */
-.mobile-dock{background:#171d22!important;border-color:#303941!important}.mobile-dock a{color:#e8edf0!important}.mobile-dock a:first-child{background:#252d33!important;color:#d8ff2d!important}
-</style>
-
-
-
-
-
-
-
-
-<style id="jb-v1029-commercial-clean-dark">
-/* JB Torneios V10.4.0 — repaginação comercial clean dark */
-:root{
- --bg:#0b1014!important;--panel:#151b20!important;--panel-strong:#1a2127!important;--panel-soft:#12181d!important;
- --text:#f7f9fa!important;--muted:#aab3ba!important;--line:rgba(255,255,255,.10)!important;--line-strong:rgba(255,255,255,.16)!important;
- --accent:#b9f20d!important;--accent-soft:rgba(185,242,13,.11)!important;--shadow:0 12px 32px rgba(0,0,0,.24)!important;
- --jb-bg:#0b1014!important;--jb-bg2:#10161b!important;--jb-panel:#151b20!important;--jb-panel2:#1a2127!important;--jb-line:rgba(255,255,255,.10)!important;
- --jb-text:#f7f9fa!important;--jb-muted:#aab3ba!important;--jb-lime:#b9f20d!important;--jb-lime2:#9ed400!important;
- --v4-bg:#0b1014!important;--v4-panel:#151b20!important;--v4-panel2:#1a2127!important;--v4-line:rgba(255,255,255,.10)!important;--v4-lime:#b9f20d!important;--v4-lime2:#9ed400!important;
-}
-html,body{background:#0b1014!important;color:#f7f9fa!important}
-body:before,body:after{display:none!important}
-.app,.jb-page,.page,.page-shell,.page-content,.content,.main-content,.workspace,.dashboard-shell{background:transparent!important;color:#f7f9fa!important}
-.jb-sidebar{background:#0d1317!important;border-right:1px solid rgba(255,255,255,.09)!important;box-shadow:none!important}
-.jb-side-brand,.jb-side-brand-logo{background:#11181d!important;border-color:rgba(255,255,255,.09)!important;box-shadow:none!important}
-.jb-side-nav a{color:#e9edf0!important;background:transparent!important}
-.jb-side-nav a:hover{background:#171f25!important}
-.jb-side-nav a.active{background:#b9f20d!important;color:#0a0e11!important;box-shadow:none!important}
-.jb-side-icon{background:rgba(255,255,255,.05)!important}
-.jb-side-nav a.active .jb-side-icon{background:rgba(0,0,0,.10)!important}
-.jb-side-foot{background:#11181d!important;border-color:rgba(255,255,255,.09)!important}
-.topbar,.v9-topbar,.jb-v9-topbar{background:#10161b!important;border:1px solid rgba(255,255,255,.09)!important;box-shadow:none!important;color:#fff!important}
-.hero{background:#12191e!important;border:1px solid rgba(255,255,255,.09)!important;box-shadow:none!important}
-.hero:after{display:none!important}.hero:before,.app:before{opacity:.035!important}
-.hero h1,.hero h2,.section-title h2,.section-title h3,h1,h2,h3,h4,h5,h6{color:#f8fafb!important}
-.eyebrow,.card-kicker,.muted,small,.sub,.subtitle,.helper,.hint{color:#aab3ba!important}
-.quick-nav a,.card,.panel,.group,.group-card,.round,.bracket-round,.modal-card,.v10-card,.v10-panel,.v10-history-card,.v10-court,.v10-queue-item{
- background:#151b20!important;color:#f7f9fa!important;border:1px solid rgba(255,255,255,.09)!important;box-shadow:none!important
-}
-.quick-nav a:hover,.card:hover{border-color:rgba(185,242,13,.32)!important}
-.card:before{display:none!important}
-.metric,.pill,.team,.criteria div,.ko-match,.score,.notice,.save-status,.v10-stat,.v10-summary-card{background:#11171c!important;color:#f4f7f8!important;border-color:rgba(255,255,255,.09)!important}
-.title-line,.nav-icon,.status-dot{background:#b9f20d!important;box-shadow:none!important}
-.status-chip{background:rgba(185,242,13,.10)!important;color:#dfff79!important;border-color:rgba(185,242,13,.24)!important}
-button,.btn,.button,[role="button"]{border-radius:10px!important}
-button:not(.secondary):not(.warn):not(.danger):not(.ok),.btn-primary{background:#b9f20d!important;color:#0b0f11!important;border-color:#b9f20d!important;box-shadow:none!important}
-button.secondary,.btn-secondary{background:#202930!important;color:#fff!important;border:1px solid rgba(255,255,255,.12)!important;box-shadow:none!important}
-button:hover,.btn:hover{filter:brightness(1.06)!important;transform:none!important}
-input,textarea,select{background:#0f1519!important;color:#fff!important;border:1px solid rgba(255,255,255,.16)!important;box-shadow:none!important}
-input::placeholder,textarea::placeholder{color:#7f8a92!important}
-input:focus,textarea:focus,select:focus{border-color:#b9f20d!important;box-shadow:0 0 0 2px rgba(185,242,13,.12)!important}
-option{background:#11171c!important;color:#fff!important}
-table{background:#12181d!important;color:#f4f7f8!important;border-color:rgba(255,255,255,.09)!important}
-thead,th{background:#0d1317!important;color:#dfe5e8!important;border-color:rgba(255,255,255,.09)!important}
-td{color:#f2f5f6!important;border-color:rgba(255,255,255,.075)!important}
-tbody tr:nth-child(even) td{background:rgba(255,255,255,.018)!important}
-tr.qual td{background:rgba(185,242,13,.055)!important}
-tr.qual td:first-child{color:#d9ff66!important}
-.badge,.tag,.classification,.qualified{color:#0b0f11!important;background:#b9f20d!important}
-/* Corrige cartões brancos/azuis herdados das versões anteriores */
-[style*="background: white"],[style*="background:white"],[style*="background: #fff"],[style*="background:#fff"],[style*="background-color: white"],[style*="background-color:white"]{background:#151b20!important;color:#f7f9fa!important}
-[style*="color: #0"],[style*="color:#0"],[style*="color: black"],[style*="color:black"]{color:#f7f9fa!important}
-/* Mata-mata */
-.ko-board,.bracket,.bracket-grid,.knockout-board{background:transparent!important}
-.ko-match,.match-card,.bracket-match{background:#171e23!important;border:1px solid rgba(255,255,255,.10)!important;color:#fff!important}
-.ko-match .team,.match-card .team,.bracket-match .team{color:#fff!important}
-.ko-match .winner,.match-card .winner{color:#dfff79!important}
-/* Portal público no mesmo sistema visual */
-.v74-public-only,.public-shell,.public-page,.public-content{background:#0b1014!important;color:#f7f9fa!important}
-.v74-public-only .card,.v74-public-only .panel,.v74-public-only section{border-color:rgba(255,255,255,.09)!important}
-/* Modo iPad: leitura maior sem alterar lógica */
-html[data-jb-view="ipad"] body{font-size:16px!important}
-html[data-jb-view="ipad"] .app{padding-left:18px!important;padding-right:18px!important}
-html[data-jb-view="ipad"] .card,html[data-jb-view="ipad"] .group,html[data-jb-view="ipad"] .round{padding:18px!important}
-html[data-jb-view="ipad"] table{font-size:14px!important}
-html[data-jb-view="ipad"] button{min-height:46px!important}
-@media(max-width:1000px){.topbar{border-radius:13px!important}.card,.panel,.group,.round{border-radius:14px!important}}
-</style>
-
-
-<style id="jb-v1040-total-redesign">
-:root{
-  --jb-theme-primary:#bfff00!important;
-  --jb-theme-accent:#bfff00!important;
-  --jb-theme-bg:#0b0f12!important;
-  --jb-theme-card:#151b20!important;
-  --jb-theme-text:#f8fafc!important;
-  --jb-theme-text-dark:#f8fafc!important;
-
-  --jb-bg:#0b0f12;
-  --jb-shell:#0f1418;
-  --jb-panel:#141a1f;
-  --jb-panel-2:#192126;
-  --jb-panel-3:#20292f;
-  --jb-border:#2b353c;
-  --jb-border-soft:#222c32;
-  --jb-text:#f8fafc;
-  --jb-muted:#b7c1c8;
-  --jb-muted-2:#87949d;
-  --jb-lime:#bfff00;
-  --jb-lime-soft:rgba(191,255,0,.13);
-  --jb-danger:#ff6868;
-  --jb-shadow:0 14px 32px rgba(0,0,0,.18);
-}
-
-/* =========================
-   RESET VISUAL GLOBAL
-   ========================= */
-html,body{
-  background:#0b0f12!important;
-  color:var(--jb-text)!important;
-}
-body:not(.v74-public-only),
-body:not(.v74-public-only) .app,
-body:not(.v74-public-only) .app-shell,
-body:not(.v74-public-only) .app-main,
-body:not(.v74-public-only) main,
-body:not(.v74-public-only) .main,
-body:not(.v74-public-only) .content,
-body:not(.v74-public-only) .content-wrap,
-body:not(.v74-public-only) .workspace,
-body:not(.v74-public-only) .jb-page,
-body:not(.v74-public-only) [id^="jbPage"]{
-  background:#0b0f12!important;
-  background-image:none!important;
-  color:var(--jb-text)!important;
-}
-
-/* Remove o antigo hero grande e a navegação duplicada:
-   cada aba passa a ter somente seu próprio cabeçalho. */
-body:not(.v74-public-only) > .app > .hero,
-body:not(.v74-public-only) > .app > .quick-nav{
-  display:none!important;
-}
-
-/* =========================
-   ESTRUTURA / ESPAÇAMENTO
-   ========================= */
-body:not(.v74-public-only) .app{
-  padding:0 20px 36px!important;
-  max-width:none!important;
-}
-body:not(.v74-public-only) .jb-page{
-  padding:22px 0 36px!important;
-}
-body:not(.v74-public-only) .jb-page.active{
-  animation:jb1040fade .16s ease-out;
-}
-@keyframes jb1040fade{
-  from{opacity:.65;transform:translateY(3px)}
-  to{opacity:1;transform:none}
-}
-
-/* =========================
-   SIDEBAR
-   ========================= */
-body:not(.v74-public-only) .jb-sidebar{
-  background:#090d10!important;
-  border-right:1px solid var(--jb-border)!important;
-  box-shadow:none!important;
-}
-body:not(.v74-public-only) .jb-side-brand{
-  background:transparent!important;
-  border-color:var(--jb-border-soft)!important;
-}
-body:not(.v74-public-only) .jb-v9-side-product{
-  color:#fff!important;
-}
-body:not(.v74-public-only) .jb-v9-side-product span,
-body:not(.v74-public-only) .jb-v9-side-product b{
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-}
-body:not(.v74-public-only) .jb-v9-side-product small{
-  color:var(--jb-muted-2)!important;
-  -webkit-text-fill-color:var(--jb-muted-2)!important;
-}
-body:not(.v74-public-only) .jb-side-section{
-  color:#6f7c85!important;
-  letter-spacing:.14em!important;
-}
-body:not(.v74-public-only) .jb-side-nav{
-  gap:3px!important;
-}
-body:not(.v74-public-only) .jb-side-nav a{
-  min-height:43px!important;
-  border-radius:9px!important;
-  color:#dfe6ea!important;
-  background:transparent!important;
-  border:1px solid transparent!important;
-  transition:.15s ease!important;
-}
-body:not(.v74-public-only) .jb-side-nav a span{
-  color:inherit!important;
-  -webkit-text-fill-color:currentColor!important;
-}
-body:not(.v74-public-only) .jb-side-nav a:hover{
-  background:#12191d!important;
-  border-color:#202a30!important;
-}
-body:not(.v74-public-only) .jb-side-nav a.active{
-  background:var(--jb-lime-soft)!important;
-  color:#fff!important;
-  border-color:rgba(191,255,0,.16)!important;
-  box-shadow:inset 3px 0 0 var(--jb-lime)!important;
-}
-body:not(.v74-public-only) .jb-side-nav a.active .jb-side-icon{
-  filter:none!important;
-}
-body:not(.v74-public-only) .jb-side-foot{
-  background:#0d1215!important;
-  border:1px solid var(--jb-border-soft)!important;
-  color:var(--jb-muted)!important;
-}
-body:not(.v74-public-only) .jb-side-foot b{
-  color:#fff!important;
-}
-
-/* =========================
-   TOPBAR
-   ========================= */
-body:not(.v74-public-only) .jb-v9-topbar{
-  position:sticky!important;
-  top:0!important;
-  z-index:50!important;
-  min-height:64px!important;
-  background:rgba(10,14,17,.96)!important;
-  backdrop-filter:blur(14px)!important;
-  border-bottom:1px solid var(--jb-border)!important;
-  box-shadow:none!important;
-}
-body:not(.v74-public-only) .jb-v9-context small,
-body:not(.v74-public-only) .jb-v9-context span{
-  color:var(--jb-muted-2)!important;
-  -webkit-text-fill-color:var(--jb-muted-2)!important;
-}
-body:not(.v74-public-only) .jb-v9-context strong{
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-}
-body:not(.v74-public-only) .jb-v9-live-action,
-body:not(.v74-public-only) .jb-v9-account,
-body:not(.v74-public-only) .jb-v9-cloud-pill{
-  background:#12181c!important;
-  border:1px solid var(--jb-border)!important;
-  box-shadow:none!important;
-}
-body:not(.v74-public-only) .jb-v9-live-action *,
-body:not(.v74-public-only) .jb-v9-account *,
-body:not(.v74-public-only) .jb-v9-cloud-pill *{
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-}
-
-/* PC/iPad */
-body:not(.v74-public-only) .jb-device-view{
-  background:#0d1215!important;
-  border:1px solid var(--jb-border)!important;
-}
-body:not(.v74-public-only) .jb-device-view>span{
-  color:var(--jb-muted-2)!important;
-}
-body:not(.v74-public-only) .jb-device-view button{
-  background:#11171b!important;
-  color:#dfe6ea!important;
-  border:1px solid #283239!important;
-}
-body:not(.v74-public-only) .jb-device-view button *{
-  color:inherit!important;
-  -webkit-text-fill-color:currentColor!important;
-}
-body:not(.v74-public-only) .jb-device-view button.active{
-  background:#152011!important;
-  color:#fff!important;
-  border-color:var(--jb-lime)!important;
-  box-shadow:none!important;
-}
-
-/* =========================
-   CABEÇALHO DAS ABAS
-   ========================= */
-body:not(.v74-public-only) .jb-page-head{
-  margin-bottom:18px!important;
-  padding:0 2px!important;
-  background:transparent!important;
-  border:0!important;
-}
-body:not(.v74-public-only) .jb-page-head h2{
-  margin:0!important;
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-  font-size:28px!important;
-  line-height:1.08!important;
-  letter-spacing:-.03em!important;
-}
-body:not(.v74-public-only) .jb-page-head p{
-  margin-top:5px!important;
-  color:var(--jb-muted)!important;
-  -webkit-text-fill-color:var(--jb-muted)!important;
-  font-size:12px!important;
-}
-body:not(.v74-public-only) .jb-back{
-  background:#151c21!important;
-  color:#fff!important;
-  border:1px solid var(--jb-border)!important;
-}
-
-/* =========================
-   PAINÉIS / CARDS
-   ========================= */
-body:not(.v74-public-only) .card,
-body:not(.v74-public-only) .group,
-body:not(.v74-public-only) .panel,
-body:not(.v74-public-only) .box,
-body:not(.v74-public-only) .section,
-body:not(.v74-public-only) .module,
-body:not(.v74-public-only) .widget,
-body:not(.v74-public-only) .stat-card,
-body:not(.v74-public-only) .dashboard-card,
-body:not(.v74-public-only) .jb-theme-card,
-body:not(.v74-public-only) .v74-cloud-card,
-body:not(.v74-public-only) .v10-panel,
-body:not(.v74-public-only) .v10-history-card,
-body:not(.v74-public-only) .jb-v7-game-toolbar,
-body:not(.v74-public-only) .jb-v7-games-summary>div{
-  background:var(--jb-panel)!important;
-  background-image:none!important;
-  color:#fff!important;
-  border:1px solid var(--jb-border)!important;
-  box-shadow:none!important;
-  border-radius:14px!important;
-}
-body:not(.v74-public-only) .card :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value),
-body:not(.v74-public-only) .group :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value),
-body:not(.v74-public-only) .panel :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value),
-body:not(.v74-public-only) .box :is(h1,h2,h3,h4,h5,h6,strong,b,label,.title,.name,.value),
-body:not(.v74-public-only) .v10-panel :is(h1,h2,h3,h4,strong,b,label,.title,.name,.value){
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-}
-body:not(.v74-public-only) .card :is(p,small,.muted,.subtitle,.hint),
-body:not(.v74-public-only) .group :is(p,small,.muted,.subtitle,.hint),
-body:not(.v74-public-only) .panel :is(p,small,.muted,.subtitle,.hint){
-  color:var(--jb-muted)!important;
-  -webkit-text-fill-color:var(--jb-muted)!important;
-}
-
-/* =========================
-   DASHBOARD
-   ========================= */
-body:not(.v74-public-only) .jb-dash-hero{
-  background:linear-gradient(135deg,#151c21,#11171b)!important;
-  border:1px solid var(--jb-border)!important;
-  box-shadow:none!important;
-  border-radius:16px!important;
-}
-body:not(.v74-public-only) .jb-dash-kicker{
-  color:var(--jb-lime)!important;
-  -webkit-text-fill-color:var(--jb-lime)!important;
-}
-body:not(.v74-public-only) .jb-dash-hero h2,
-body:not(.v74-public-only) .jb-dash-hero-main h2{
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-}
-body:not(.v74-public-only) .jb-dash-status,
-body:not(.v74-public-only) .jb-dash-category{
-  background:#12181c!important;
-  color:#fff!important;
-  border:1px solid var(--jb-border)!important;
-}
-body:not(.v74-public-only) .jb-dash-primary{
-  background:var(--jb-lime)!important;
-  color:#0a0e11!important;
-  border:0!important;
-  box-shadow:none!important;
-}
-body:not(.v74-public-only) .jb-dash-metrics{
-  gap:10px!important;
-}
-body:not(.v74-public-only) .jb-metric-card,
-body:not(.v74-public-only) .jb-dash-progress-card,
-body:not(.v74-public-only) .jb-v7-assistant{
-  background:var(--jb-panel)!important;
-  border:1px solid var(--jb-border)!important;
-  box-shadow:none!important;
-  color:#fff!important;
-}
-body:not(.v74-public-only) .jb-metric-card *,
-body:not(.v74-public-only) .jb-dash-progress-card *,
-body:not(.v74-public-only) .jb-v7-assistant *{
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-}
-body:not(.v74-public-only) .jb-metric-card small,
-body:not(.v74-public-only) .jb-dash-progress-card span,
-body:not(.v74-public-only) .jb-v7-assistant p{
-  color:var(--jb-muted)!important;
-  -webkit-text-fill-color:var(--jb-muted)!important;
-}
-
-/* =========================
-   GRUPOS / JOGOS / TABELAS
-   ========================= */
-body:not(.v74-public-only) #groupsArea{
-  background:transparent!important;
-}
-body:not(.v74-public-only) #groupsArea.group-wrap{
-  display:flex!important;
-  flex-direction:column!important;
-  gap:14px!important;
-}
-body:not(.v74-public-only) #groupsArea .group{
-  width:100%!important;
-  background:var(--jb-panel)!important;
-  border:1px solid var(--jb-border)!important;
-  overflow:hidden!important;
-}
-body:not(.v74-public-only) #groupsArea .group>h3{
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-}
-body:not(.v74-public-only) #groupsArea .team,
-body:not(.v74-public-only) .match,
-body:not(.v74-public-only) .jb-games-group .match,
-body:not(.v74-public-only) .match-card{
-  background:var(--jb-panel-2)!important;
-  color:#fff!important;
-  border:1px solid var(--jb-border-soft)!important;
-}
-body:not(.v74-public-only) #groupsArea .team *,
-body:not(.v74-public-only) .match *,
-body:not(.v74-public-only) .match-card *{
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-}
-
-body:not(.v74-public-only) table{
-  background:var(--jb-panel)!important;
-  color:#fff!important;
-  border-color:var(--jb-border)!important;
-}
-body:not(.v74-public-only) thead th{
-  background:#0d1215!important;
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-  border-color:var(--jb-border)!important;
-}
-body:not(.v74-public-only) tbody td{
-  background:var(--jb-panel)!important;
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-  border-color:var(--jb-border-soft)!important;
-}
-body:not(.v74-public-only) tbody tr:nth-child(even) td{
-  background:#171f24!important;
-}
-body:not(.v74-public-only) tbody tr.qual td{
-  background:#202c15!important;
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-}
-body:not(.v74-public-only) tbody tr.qual td.pos{
-  color:var(--jb-lime)!important;
-  -webkit-text-fill-color:var(--jb-lime)!important;
-}
-
-/* =========================
-   FORMULÁRIOS
-   ========================= */
-body:not(.v74-public-only) input,
-body:not(.v74-public-only) textarea,
-body:not(.v74-public-only) select,
-body:not(.v74-public-only) option{
-  background:#0f1519!important;
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-  border:1px solid #37434b!important;
-  border-radius:9px!important;
-  box-shadow:none!important;
-}
-body:not(.v74-public-only) input::placeholder,
-body:not(.v74-public-only) textarea::placeholder{
-  color:#87949d!important;
-  -webkit-text-fill-color:#87949d!important;
-  opacity:1!important;
-}
-body:not(.v74-public-only) .score,
-body:not(.v74-public-only) .jb-ko-score{
-  background:#0c1114!important;
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-  border:1px solid #4a5861!important;
-}
-
-/* =========================
-   BOTÕES
-   ========================= */
-body:not(.v74-public-only) button,
-body:not(.v74-public-only) .btn{
-  text-shadow:none!important;
-  box-shadow:none!important;
-}
-body:not(.v74-public-only) button:not(.primary):not(.active):not(.lime):not(.accent):not(.ok),
-body:not(.v74-public-only) .btn:not(.primary):not(.active):not(.lime):not(.accent):not(.ok),
-body:not(.v74-public-only) .secondary{
-  background:#1b2328!important;
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-  border:1px solid #38434b!important;
-}
-body:not(.v74-public-only) button.primary,
-body:not(.v74-public-only) .btn.primary,
-body:not(.v74-public-only) .lime,
-body:not(.v74-public-only) .accent,
-body:not(.v74-public-only) .ok,
-body:not(.v74-public-only) .v10-auto-btn{
-  background:var(--jb-lime)!important;
-  color:#0a0e11!important;
-  -webkit-text-fill-color:#0a0e11!important;
-  border-color:#92c600!important;
-}
-
-/* =========================
-   MATA-MATA
-   ========================= */
-body:not(.v74-public-only) #knockoutArea{
-  background:transparent!important;
-}
-body:not(.v74-public-only) #knockoutArea .jb-ko-round,
-body:not(.v74-public-only) #knockoutArea .round{
-  background:var(--jb-panel)!important;
-  border:1px solid var(--jb-border)!important;
-  border-radius:14px!important;
-}
-body:not(.v74-public-only) #knockoutArea .jb-ko-round-head h3,
-body:not(.v74-public-only) #knockoutArea .jb-ko-round-head small,
-body:not(.v74-public-only) #knockoutArea .jb-ko-round-head span{
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-}
-body:not(.v74-public-only) #knockoutArea .jb-ko-match{
-  background:var(--jb-panel-2)!important;
-  border-color:var(--jb-border)!important;
-}
-body:not(.v74-public-only) #knockoutArea .jb-ko-team-row{
-  background:#10161a!important;
-  color:#fff!important;
-  border-color:#344048!important;
-}
-body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy strong,
-body:not(.v74-public-only) #knockoutArea .jb-ko-team-copy small,
-body:not(.v74-public-only) #knockoutArea .jb-ko-versus{
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-}
-body:not(.v74-public-only) #knockoutArea .jb-ko-game-label{
-  color:var(--jb-lime)!important;
-  -webkit-text-fill-color:var(--jb-lime)!important;
-}
-
-/* =========================
-   CENTRAL / HISTÓRICO / NUVEM
-   ========================= */
-body:not(.v74-public-only) .v10-command-hero,
-body:not(.v74-public-only) .v10-kpis>div,
-body:not(.v74-public-only) .v10-history-summary>div,
-body:not(.v74-public-only) .v10-court,
-body:not(.v74-public-only) .v10-queue-item,
-body:not(.v74-public-only) .v10-next-action,
-body:not(.v74-public-only) .v10-podium-row div,
-body:not(.v74-public-only) .v74-cloud-card{
-  background:var(--jb-panel)!important;
-  color:#fff!important;
-  border:1px solid var(--jb-border)!important;
-  box-shadow:none!important;
-}
-body:not(.v74-public-only) .v10-command-hero *,
-body:not(.v74-public-only) .v10-kpis>div *,
-body:not(.v74-public-only) .v10-history-summary>div *,
-body:not(.v74-public-only) .v10-court *,
-body:not(.v74-public-only) .v10-queue-item *,
-body:not(.v74-public-only) .v10-next-action *,
-body:not(.v74-public-only) .v74-cloud-card *{
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-}
-body:not(.v74-public-only) .v74-cloud-card small,
-body:not(.v74-public-only) .v10-panel small{
-  color:var(--jb-muted)!important;
-  -webkit-text-fill-color:var(--jb-muted)!important;
-}
-
-/* =========================
-   PORTAL PÚBLICO
-   ========================= */
-body.v74-public-only,
-body.v74-public-only .app,
-body.v74-public-only #jbPagePublico{
-  background:#0b0f12!important;
-  color:#fff!important;
-}
-body.v74-public-only .v73-public-card,
-body.v74-public-only .v760-hero,
-body.v74-public-only .v760-metric,
-body.v74-public-only .v760-filter,
-body.v74-public-only #v73PublicContent>*{
-  background:#141a1f!important;
-  color:#fff!important;
-  border-color:#2b353c!important;
-}
-body.v74-public-only :is(h1,h2,h3,h4,strong,b,label){
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-}
-body.v74-public-only :is(p,small,.muted){
-  color:#b7c1c8!important;
-  -webkit-text-fill-color:#b7c1c8!important;
-}
-
-/* =========================
-   IPAD
-   ========================= */
-html[data-jb-view="ipad"] .jb-page{
-  padding-top:16px!important;
-}
-html[data-jb-view="ipad"] .jb-page-head h2{
-  font-size:25px!important;
-}
-html[data-jb-view="ipad"] button{
-  min-height:46px!important;
-}
-html[data-jb-view="ipad"] input,
-html[data-jb-view="ipad"] textarea,
-html[data-jb-view="ipad"] select{
-  font-size:16px!important;
-}
-html[data-jb-view="ipad"] .v10-courts{
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;
-}
-
-/* =========================
-   LOGO
-   ========================= */
-img,
-.brand-logo,
-.jb-logo,
-.logo,
-[class*="logo"]{
-  filter:none!important;
-  opacity:1!important;
-}
-</style>
-
-
-<style id="jb-v1041-charcoal-final-override">
-:root{--bg:#171a1d!important;--bg-2:#1b1f23!important;--panel:#22272b!important;--panel-strong:#292f34!important;--text:#f7f9fa!important;--muted:#c1c9cf!important;}
-html,body,.app-shell,.jb-app-main,.jb-page,.page,.content,.main-content,#app{background:#171a1d!important;color:#f7f9fa!important;background-image:none!important;}
-.jb-sidebar,.topbar,.jb-page-head,.jb-dash-hero,.hero,.dashboard-hero,.control-center,[class*="hero"],[class*="banner"]{background:#1d2226!important;background-image:none!important;color:#f7f9fa!important;}
-.card,.panel,.section,.box,.stat,.stat-card,.jb-card,.jb-panel,.group-card,.match-card,.court-card,.v74-cloud-card,.event-brand-field,[class*="card"],[class*="panel"]{background:#242a2f!important;background-image:none!important;color:#f7f9fa!important;border-color:#3a4249!important;}
-h1,h2,h3,h4,h5,h6,p,span,label,small,strong,b,td,th,li,.title,.subtitle,.muted,[class*="title"],[class*="name"]{color:#f7f9fa!important;text-shadow:none!important;}
-.muted,small,.subtitle,.help,[class*="muted"],[class*="help"]{color:#c1c9cf!important;}
-input,textarea,select{background:#101316!important;color:#fff!important;border:1px solid #56616a!important;}
-input::placeholder,textarea::placeholder{color:#aeb8bf!important;}
-button,.btn,[role="button"]{background:#30373d!important;color:#fff!important;border-color:#59636b!important;background-image:none!important;}
-button.primary,.btn.primary,.primary,.accent,.active,[aria-current="page"]{background:#c9ff28!important;color:#101316!important;border-color:#c9ff28!important;}
-button.warn,.warn{background:#f2c94c!important;color:#171a1d!important;} button.danger,.danger{background:#d95468!important;color:#fff!important;} button.ok,.ok{background:#4fbf82!important;color:#101316!important;}
-table,thead,tbody,tr,td,th{background-color:transparent!important;} thead th{background:#30373d!important;color:#fff!important;} tbody tr{border-color:#3a4249!important;}
-.v74-status.offline,.v74-status.connecting,.v74-status.online,.v74-status.error,.v74-qr,.event-logo-preview,.jb-event-logo-dash{background:#20262b!important;color:#f7f9fa!important;border-color:#46515a!important;}
-.v74-note,.v74-public-banner{background:#20262b!important;color:#fff!important;}
-.jb-dash-hero,.jb-control-center,.jb-dashboard,.jb-home,.home-dashboard{background:#1d2226!important;background-image:none!important;}
-/* kill legacy blue/white surfaces */
-[style*="background: #fff"],[style*="background:#fff"],[style*="background: white"],[style*="background:white"]{background:#242a2f!important;color:#f7f9fa!important;}
-</style>
-
 <script id="jb-v1051-supabase-config-migration">
 (function(){
   'use strict';
@@ -3866,7 +3104,7 @@ table,thead,tbody,tr,td,th{background-color:transparent!important;} thead th{bac
     <div class="jb-side-brand jb-side-brand-logo">
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
     </div>
-    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Clean Dark Edition</small></div>
+    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Safe Edition</small></div>
     <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><span>Início</span></a>
@@ -6079,275 +5317,6 @@ table,thead,tbody,tr,td,th{background-color:transparent!important;} thead th{bac
     `;
     w.document.open();
     w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'
-<style id="jb-v1053-final-dark">
-:root{
- --jb-final-bg:#090d10;
- --jb-final-card:#12191e;
- --jb-final-card2:#182126;
- --jb-final-border:#2c3941;
- --jb-final-text:#f7fafc;
- --jb-final-muted:#b4c0c8;
- --jb-final-lime:#b9f20d;
-}
-
-/* Fundo definitivo em todas as abas */
-html,body,
-body:not(.v74-public-only),
-body:not(.v74-public-only) .app,
-body:not(.v74-public-only) .jb-page,
-body:not(.v74-public-only) #jbPageDashboard,
-body:not(.v74-public-only) #jbPageInscritos,
-body:not(.v74-public-only) #jbPageDuplas,
-body:not(.v74-public-only) #jbPageGroups,
-body:not(.v74-public-only) #jbPageJogos,
-body:not(.v74-public-only) #jbPageCentral,
-body:not(.v74-public-only) #jbPageMata,
-body:not(.v74-public-only) #jbPagePublico,
-body:not(.v74-public-only) #jbPageNuvem,
-body:not(.v74-public-only) #jbPagePodio,
-body:not(.v74-public-only) #jbPageHistorico,
-body:not(.v74-public-only) #jbPageArquivos{
- background:#090d10!important;
- background-color:#090d10!important;
- background-image:none!important;
- color:#f7fafc!important;
-}
-
-/* Remove painéis/hero azuis antigos */
-body:not(.v74-public-only) .jb-dash-hero,
-body:not(.v74-public-only) .v10-command-hero,
-body:not(.v74-public-only) .v760-hero,
-body:not(.v74-public-only) [class*="command-hero"],
-body:not(.v74-public-only) [class*="dashboard-hero"]{
- background:#12191e!important;
- background-color:#12191e!important;
- background-image:none!important;
- color:#fff!important;
- border:1px solid #2c3941!important;
- box-shadow:none!important;
-}
-
-/* CENTRAL DE JOGOS — correção exata da tela enviada */
-body:not(.v74-public-only) #jbPageCentral,
-body:not(.v74-public-only) #jbPageCentral .v10-command-grid,
-body:not(.v74-public-only) #jbPageCentral .v10-progress-panel{
- background:#090d10!important;
- background-image:none!important;
-}
-body:not(.v74-public-only) #jbPageCentral .v10-command-hero,
-body:not(.v74-public-only) #jbPageCentral .v10-kpis>div,
-body:not(.v74-public-only) #jbPageCentral .v10-panel,
-body:not(.v74-public-only) #jbPageCentral .v10-court,
-body:not(.v74-public-only) #jbPageCentral .v10-court.free,
-body:not(.v74-public-only) #jbPageCentral .v10-court.busy,
-body:not(.v74-public-only) #jbPageCentral .v10-queue-item,
-body:not(.v74-public-only) #jbPageCentral .v10-next-action,
-body:not(.v74-public-only) #jbPageCentral .v10-history-summary>div,
-body:not(.v74-public-only) #jbPageCentral .v10-history-card{
- background:#12191e!important;
- background-color:#12191e!important;
- background-image:none!important;
- color:#fff!important;
- border:1px solid #2c3941!important;
- box-shadow:none!important;
-}
-body:not(.v74-public-only) #jbPageCentral .v10-court{
- background:#182126!important;
-}
-body:not(.v74-public-only) #jbPageCentral .v10-court.free{
- background:#182416!important;
- border-color:#354b25!important;
-}
-body:not(.v74-public-only) #jbPageCentral :is(h1,h2,h3,h4,strong,b,label),
-body:not(.v74-public-only) #jbPageCentral .v10-kpis b,
-body:not(.v74-public-only) #jbPageCentral .v10-panel-head h3,
-body:not(.v74-public-only) #jbPageCentral .v10-panel-head strong,
-body:not(.v74-public-only) #jbPageCentral .v10-court b,
-body:not(.v74-public-only) #jbPageCentral .v10-queue-item b,
-body:not(.v74-public-only) #jbPageCentral .v10-history-summary b{
- color:#fff!important;
- -webkit-text-fill-color:#fff!important;
-}
-body:not(.v74-public-only) #jbPageCentral :is(p,small),
-body:not(.v74-public-only) #jbPageCentral .v10-kpis span,
-body:not(.v74-public-only) #jbPageCentral .v10-kpis small,
-body:not(.v74-public-only) #jbPageCentral .v10-court span,
-body:not(.v74-public-only) #jbPageCentral .v10-court small,
-body:not(.v74-public-only) #jbPageCentral .v10-queue-item small{
- color:#b4c0c8!important;
- -webkit-text-fill-color:#b4c0c8!important;
-}
-body:not(.v74-public-only) #jbPageCentral .v10-progress{
- background:#222d33!important;
-}
-body:not(.v74-public-only) #jbPageCentral .v10-progress i{
- background:#b9f20d!important;
- background-image:none!important;
-}
-
-/* Cards de todos os módulos */
-body:not(.v74-public-only) .card,
-body:not(.v74-public-only) .panel,
-body:not(.v74-public-only) .box,
-body:not(.v74-public-only) .group,
-body:not(.v74-public-only) .round,
-body:not(.v74-public-only) .category-manager,
-body:not(.v74-public-only) .jb-metric-card,
-body:not(.v74-public-only) .jb-access-card,
-body:not(.v74-public-only) .jb-dash-progress-card,
-body:not(.v74-public-only) .jb-v7-assistant,
-body:not(.v74-public-only) .v74-cloud-card,
-body:not(.v74-public-only) .v10-panel,
-body:not(.v74-public-only) .v10-history-card,
-body:not(.v74-public-only) .v10-history-summary>div,
-body:not(.v74-public-only) .v10-kpis>div,
-body:not(.v74-public-only) .v10-court,
-body:not(.v74-public-only) .v10-queue-item,
-body:not(.v74-public-only) .v10-next-action,
-body:not(.v74-public-only) .v73-public-card,
-body:not(.v74-public-only) .v760-metric,
-body:not(.v74-public-only) .v760-filter{
- background:#12191e!important;
- background-color:#12191e!important;
- background-image:none!important;
- color:#fff!important;
- border-color:#2c3941!important;
- box-shadow:none!important;
-}
-
-/* Mata qualquer fundo branco legado */
-body:not(.v74-public-only) .bg-white,
-body:not(.v74-public-only) .white,
-body:not(.v74-public-only) .surface-white,
-body:not(.v74-public-only) [style*="background: white"],
-body:not(.v74-public-only) [style*="background:white"],
-body:not(.v74-public-only) [style*="background: #fff"],
-body:not(.v74-public-only) [style*="background:#fff"],
-body:not(.v74-public-only) [style*="background: #ffffff"],
-body:not(.v74-public-only) [style*="background:#ffffff"]{
- background:#12191e!important;
- background-color:#12191e!important;
- background-image:none!important;
- color:#fff!important;
-}
-
-/* Tipografia */
-body:not(.v74-public-only) h1,
-body:not(.v74-public-only) h2,
-body:not(.v74-public-only) h3,
-body:not(.v74-public-only) h4,
-body:not(.v74-public-only) h5,
-body:not(.v74-public-only) h6,
-body:not(.v74-public-only) strong,
-body:not(.v74-public-only) b,
-body:not(.v74-public-only) label,
-body:not(.v74-public-only) legend{
- color:#fff!important;
- -webkit-text-fill-color:#fff!important;
- text-shadow:none!important;
-}
-body:not(.v74-public-only) p,
-body:not(.v74-public-only) small,
-body:not(.v74-public-only) .muted,
-body:not(.v74-public-only) .subtitle,
-body:not(.v74-public-only) .hint,
-body:not(.v74-public-only) .meta,
-body:not(.v74-public-only) .caption{
- color:#b4c0c8!important;
- -webkit-text-fill-color:#b4c0c8!important;
-}
-
-/* Inputs escuros */
-body:not(.v74-public-only) input,
-body:not(.v74-public-only) textarea,
-body:not(.v74-public-only) select,
-body:not(.v74-public-only) option{
- background:#0d1317!important;
- background-color:#0d1317!important;
- color:#fff!important;
- -webkit-text-fill-color:#fff!important;
- border:1px solid #3a4851!important;
-}
-
-/* Botões */
-body:not(.v74-public-only) button,
-body:not(.v74-public-only) .btn{
- background:#1b252b!important;
- background-image:none!important;
- color:#fff!important;
- -webkit-text-fill-color:#fff!important;
- border:1px solid #3b4850!important;
- box-shadow:none!important;
-}
-body:not(.v74-public-only) button.primary,
-body:not(.v74-public-only) .btn.primary,
-body:not(.v74-public-only) .ok,
-body:not(.v74-public-only) .accent,
-body:not(.v74-public-only) .lime,
-body:not(.v74-public-only) .v10-auto-btn{
- background:#b9f20d!important;
- color:#0b0f11!important;
- -webkit-text-fill-color:#0b0f11!important;
- border-color:#88b400!important;
-}
-
-/* Tabelas */
-body:not(.v74-public-only) table{
- background:#12191e!important;
- color:#fff!important;
-}
-body:not(.v74-public-only) thead,
-body:not(.v74-public-only) thead tr,
-body:not(.v74-public-only) th{
- background:#0b1014!important;
- color:#fff!important;
- -webkit-text-fill-color:#fff!important;
-}
-body:not(.v74-public-only) tbody tr,
-body:not(.v74-public-only) td{
- background:#12191e!important;
- color:#fff!important;
- -webkit-text-fill-color:#fff!important;
-}
-body:not(.v74-public-only) tbody tr:nth-child(even) td{
- background:#151e23!important;
-}
-body:not(.v74-public-only) tr.qual td{
- background:#202c15!important;
-}
-
-/* Topbar/sidebar */
-body:not(.v74-public-only) .jb-sidebar,
-body:not(.v74-public-only) .jb-v9-topbar{
- background:#080c0f!important;
- background-image:none!important;
- border-color:#2c3941!important;
-}
-
-/* Nuvem */
-body:not(.v74-public-only) #jbPageNuvem .v74-cloud-card,
-body:not(.v74-public-only) #jbPageNuvem .v74-status,
-body:not(.v74-public-only) #jbPageNuvem .v74-qr{
- background:#12191e!important;
- color:#fff!important;
- border-color:#2c3941!important;
-}
-
-/* Portal público */
-body.v74-public-only,
-body.v74-public-only .app,
-body.v74-public-only #jbPagePublico,
-body.v74-public-only .v760-shell,
-body.v74-public-only .v760-hero,
-body.v74-public-only .v73-public-card,
-body.v74-public-only .v760-metric,
-body.v74-public-only .v760-filter{
- background:#090d10!important;
- background-image:none!important;
- color:#fff!important;
- border-color:#2c3941!important;
-}
-</style>
 
 </body></html>');
     w.document.close();
@@ -8230,52 +7199,537 @@ window.addEventListener('resize',function(){
   apply(current,false);
 });
 })();
-</script>
+</script></body>
 
-<style id="jb-v105-unified-dark">
-/* JB TORNEIOS V10.5.3 — unified commercial dark UI */
-:root{--jb-bg:#090d10;--jb-bg2:#0d1216;--jb-panel:#11181d;--jb-panel2:#151e24;--jb-border:#29343c;--jb-text:#f7f9fa;--jb-muted:#aab5bd;--jb-lime:#b9f20d;--jb-lime2:#d6ff00;--jb-danger:#ff5d6c;--jb-shadow:0 12px 32px rgba(0,0,0,.28)}
-html,body{background:var(--jb-bg)!important;color:var(--jb-text)!important;color-scheme:dark}
-body,#app,.app,.app-shell,.shell,.main,.main-content,.content,.content-wrap,.page,.page-content,.workspace,.view,.screen,[class*="page"],[class*="screen"]{background:var(--jb-bg)!important;background-image:none!important;color:var(--jb-text)!important}
-/* sidebar/topbar */
-aside,.sidebar,.side-nav,.sidenav,.rail,.topbar,.top-bar,.app-header,.header,.navbar,[class*="sidebar"],[class*="topbar"]{background:#0b1014!important;background-image:none!important;color:var(--jb-text)!important;border-color:var(--jb-border)!important}
-/* surfaces */
-.card,.panel,.box,.tile,.stat,.stat-card,.hero,.dashboard-card,.group-card,.match-card,.court-card,.command-card,.quick-card,.section-card,.toolbar,.control-center,.tournament-card,[class*="card"],[class*="panel"],[class*="tile"]{background:var(--jb-panel)!important;background-image:none!important;color:var(--jb-text)!important;border-color:var(--jb-border)!important;box-shadow:var(--jb-shadow)!important}
-/* prevent legacy cyan/blue surfaces */
-[style*="background: linear-gradient"],[style*="background:linear-gradient"],[style*="background-image"]{background-image:none!important}
-/* typography */
-h1,h2,h3,h4,h5,h6,strong,b,label,legend,th,.title,.heading,.name,.team,.player,.round-title,[class*="title"],[class*="heading"]{color:var(--jb-text)!important;text-shadow:none!important}
-p,small,.muted,.subtitle,.hint,.meta,.caption,.eyebrow,[class*="subtitle"],[class*="muted"]{color:var(--jb-muted)!important}
-/* controls */
-input,textarea,select,.input,.select{background:#0c1216!important;color:var(--jb-text)!important;border:1px solid #35424b!important;box-shadow:none!important}
-input::placeholder,textarea::placeholder{color:#7f8b94!important}
-button,.btn,[role="button"],a.button{background:#172027!important;background-image:none!important;color:var(--jb-text)!important;border:1px solid #34414a!important;box-shadow:none!important}
-button:hover,.btn:hover,[role="button"]:hover{background:#202b32!important;border-color:#52616b!important}
-button.active,.btn.active,.active>.btn,.nav-item.active,.menu-item.active,[aria-current="page"],.primary,.btn-primary,.accent{background:#253600!important;color:#fff!important;border-color:var(--jb-lime)!important}
-/* navigation active lime */
-.sidebar .active,.sidenav .active,.side-nav .active,.nav-item.active,.menu-item.active{background:#263800!important;color:#fff!important;border-color:#6e9500!important}
-.sidebar .active svg,.sidenav .active svg,.nav-item.active svg{color:var(--jb-lime)!important}
-/* tables */
-table{background:var(--jb-panel)!important;color:var(--jb-text)!important;border-color:var(--jb-border)!important}
-thead,thead tr,th{background:#0d1419!important;color:#f8fafc!important;border-color:#303b43!important}
-tbody tr,td{background:#11181d!important;color:#eef3f7!important;border-color:#263139!important}
-tbody tr:nth-child(even) td{background:#131c21!important}
-/* badges/status */
-.badge,.pill,.chip,.status{background:#202a30!important;color:#eef3f7!important;border-color:#35434b!important}
-.success,.qualified,.status-success{background:#304700!important;color:#f7ffe0!important;border-color:#78a800!important}
-/* progress */
-progress,.progress,.progress-track{background:#20282d!important}
-.progress>*,.progress-bar,.bar,.fill{background:var(--jb-lime)!important;background-image:none!important}
-/* links and accents */
-a{color:#d8ff2d} a:hover{color:#efff9b}
-hr{border-color:var(--jb-border)!important}
-/* modal/dropdown */
-.modal,.dialog,.popover,.dropdown,.menu,[class*="modal"],[class*="dropdown"]{background:#11181d!important;color:#f7f9fa!important;border-color:#34414a!important}
-/* eliminate white legacy cards */
-.bg-white,.white,.surface-white,[style*="background: white"],[style*="background:white"],[style*="background:#fff"],[style*="background: #fff"],[style*="background:#ffffff"],[style*="background: #ffffff"]{background:#11181d!important;color:#f7f9fa!important}
-/* scrollbar */
-*{scrollbar-color:#3a464d #0b1014}
-/* retain JB lime identity only as accent */
-.accent-line,.lime,.brand-accent{color:var(--jb-lime)!important}
-</style></body>
+<style id="jb-v1054-clean-dark-rebuild">
+:root{
+  --jb1054-bg:#090d10;
+  --jb1054-bg2:#0c1216;
+  --jb1054-panel:#11181d;
+  --jb1054-panel2:#151e24;
+  --jb1054-panel3:#1b252b;
+  --jb1054-border:#2b373f;
+  --jb1054-text:#f8fafc;
+  --jb1054-muted:#b7c1c8;
+  --jb1054-lime:#b9f20d;
+}
+
+/* APP / ALL PAGES */
+html,body,
+body:not(.v74-public-only),
+body:not(.v74-public-only) .app,
+body:not(.v74-public-only) .jb-page,
+body:not(.v74-public-only) [id^="jbPage"]{
+  background:#090d10!important;
+  background-color:#090d10!important;
+  background-image:none!important;
+  color:#f8fafc!important;
+}
+
+/* neutralize legacy blue canvas and page-head gradients */
+body:not(.v74-public-only) .app,
+body:not(.v74-public-only) .jb-page,
+body:not(.v74-public-only) .jb-page-head,
+body:not(.v74-public-only) .content,
+body:not(.v74-public-only) .workspace,
+body:not(.v74-public-only) .main-content{
+  background:#090d10!important;
+  background-color:#090d10!important;
+  background-image:none!important;
+}
+
+/* top / side */
+body:not(.v74-public-only) .jb-sidebar,
+body:not(.v74-public-only) .jb-v9-topbar,
+body:not(.v74-public-only) .topbar,
+body:not(.v74-public-only) header{
+  background:#070b0e!important;
+  background-image:none!important;
+  border-color:#2b373f!important;
+  color:#fff!important;
+}
+
+/* DASHBOARD */
+body:not(.v74-public-only) #jbPageDashboard,
+body:not(.v74-public-only) #jbPageDashboard>*{
+  background-color:transparent!important;
+  background-image:none!important;
+}
+body:not(.v74-public-only) #jbPageDashboard .jb-dash-hero{
+  background:#11181d!important;
+  background-image:none!important;
+  border:1px solid #2b373f!important;
+  box-shadow:none!important;
+}
+body:not(.v74-public-only) #jbPageDashboard .jb-dash-hero:after{
+  display:none!important;
+}
+body:not(.v74-public-only) #jbPageDashboard .jb-metric-card,
+body:not(.v74-public-only) #jbPageDashboard .jb-dash-progress-card,
+body:not(.v74-public-only) #jbPageDashboard .jb-access-card,
+body:not(.v74-public-only) #jbPageDashboard .jb-v7-assistant,
+body:not(.v74-public-only) #jbPageDashboard .category-manager,
+body:not(.v74-public-only) #jbPageDashboard .card{
+  background:#11181d!important;
+  background-color:#11181d!important;
+  background-image:none!important;
+  color:#fff!important;
+  border:1px solid #2b373f!important;
+  box-shadow:none!important;
+}
+body:not(.v74-public-only) #jbPageDashboard .jb-access-card .ico{
+  background:#0c1216!important;
+  color:#b9f20d!important;
+}
+body:not(.v74-public-only) #jbPageDashboard .jb-access-card em{
+  background:#253500!important;
+  color:#dfff61!important;
+}
+body:not(.v74-public-only) #jbPageDashboard .jb-metric-card span,
+body:not(.v74-public-only) #jbPageDashboard .jb-metric-card small,
+body:not(.v74-public-only) #jbPageDashboard .jb-dash-progress-copy span,
+body:not(.v74-public-only) #jbPageDashboard .jb-access-card small,
+body:not(.v74-public-only) #jbPageDashboard .jb-v7-assistant-copy p{
+  color:#b7c1c8!important;
+  -webkit-text-fill-color:#b7c1c8!important;
+}
+body:not(.v74-public-only) #jbPageDashboard .jb-metric-card strong,
+body:not(.v74-public-only) #jbPageDashboard .jb-dash-progress-copy b,
+body:not(.v74-public-only) #jbPageDashboard .jb-dashboard-section-head h3,
+body:not(.v74-public-only) #jbPageDashboard .jb-access-card b,
+body:not(.v74-public-only) #jbPageDashboard .jb-v7-assistant-copy h3{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body:not(.v74-public-only) #jbPageDashboard .jb-dash-progress{
+  background:#202a30!important;
+}
+body:not(.v74-public-only) #jbPageDashboard .jb-dash-progress i{
+  background:#b9f20d!important;
+  background-image:none!important;
+}
+
+/* CENTRAL DE JOGOS */
+body:not(.v74-public-only) #jbPageCentral,
+body:not(.v74-public-only) #jbPageCentral>*,
+body:not(.v74-public-only) #jbPageCentral .v10-command-grid{
+  background:#090d10!important;
+  background-image:none!important;
+}
+body:not(.v74-public-only) #jbPageCentral .v10-command-hero,
+body:not(.v74-public-only) #jbPageCentral .v10-kpis>div,
+body:not(.v74-public-only) #jbPageCentral .v10-panel,
+body:not(.v74-public-only) #jbPageCentral .v10-history-summary>div,
+body:not(.v74-public-only) #jbPageCentral .v10-history-card,
+body:not(.v74-public-only) #jbPageCentral .v10-court,
+body:not(.v74-public-only) #jbPageCentral .v10-queue-item,
+body:not(.v74-public-only) #jbPageCentral .v10-next-action,
+body:not(.v74-public-only) #jbPageCentral .v72-command,
+body:not(.v74-public-only) #jbPageCentral .v72-court,
+body:not(.v74-public-only) #jbPageCentral .v72-qitem,
+body:not(.v74-public-only) #jbPageCentral .v72-phase-ready{
+  background:#11181d!important;
+  background-color:#11181d!important;
+  background-image:none!important;
+  color:#fff!important;
+  border:1px solid #2b373f!important;
+  box-shadow:none!important;
+}
+body:not(.v74-public-only) #jbPageCentral .v10-court.free,
+body:not(.v74-public-only) #jbPageCentral .v72-court.free{
+  background:#182416!important;
+  border-color:#354b25!important;
+}
+body:not(.v74-public-only) #jbPageCentral .v72-court.called{
+  background:#251f12!important;
+}
+body:not(.v74-public-only) #jbPageCentral .v72-court.playing{
+  background:#111d28!important;
+}
+body:not(.v74-public-only) #jbPageCentral .v72-recommend{
+  background:#151e24!important;
+  color:#fff!important;
+}
+
+/* GROUPS / GAMES / KNOCKOUT */
+body:not(.v74-public-only) #groupsArea .group,
+body:not(.v74-public-only) .jb-games-group .match,
+body:not(.v74-public-only) .match,
+body:not(.v74-public-only) .match-card,
+body:not(.v74-public-only) #knockoutArea .jb-ko-round,
+body:not(.v74-public-only) #knockoutArea .jb-ko-match,
+body:not(.v74-public-only) #knockoutArea .jb-ko-team-row{
+  background:#11181d!important;
+  background-color:#11181d!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b373f!important;
+  box-shadow:none!important;
+}
+
+/* CLOUD / OTHER MODULES */
+body:not(.v74-public-only) .v74-cloud-card,
+body:not(.v74-public-only) .v74-status,
+body:not(.v74-public-only) .v74-qr,
+body:not(.v74-public-only) .card,
+body:not(.v74-public-only) .panel,
+body:not(.v74-public-only) .box,
+body:not(.v74-public-only) .group,
+body:not(.v74-public-only) .round,
+body:not(.v74-public-only) .category-manager{
+  background:#11181d!important;
+  background-color:#11181d!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b373f!important;
+  box-shadow:none!important;
+}
+
+/* TABLES */
+body:not(.v74-public-only) table{
+  background:#11181d!important;
+  color:#fff!important;
+}
+body:not(.v74-public-only) thead,
+body:not(.v74-public-only) thead tr,
+body:not(.v74-public-only) th{
+  background:#0b1014!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body:not(.v74-public-only) tbody tr,
+body:not(.v74-public-only) td{
+  background:#11181d!important;
+  color:#f3f6f8!important;
+  -webkit-text-fill-color:#f3f6f8!important;
+}
+body:not(.v74-public-only) tbody tr:nth-child(even) td{
+  background:#151e24!important;
+}
+body:not(.v74-public-only) tr.qual td{
+  background:#202c15!important;
+}
+
+/* FORM CONTROLS */
+body:not(.v74-public-only) input,
+body:not(.v74-public-only) textarea,
+body:not(.v74-public-only) select,
+body:not(.v74-public-only) option{
+  background:#0c1216!important;
+  background-color:#0c1216!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #3a4851!important;
+}
+body:not(.v74-public-only) input::placeholder,
+body:not(.v74-public-only) textarea::placeholder{
+  color:#81909a!important;
+}
+
+/* BUTTONS */
+body:not(.v74-public-only) button,
+body:not(.v74-public-only) .btn{
+  background:#1b252b!important;
+  background-image:none!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #3b4850!important;
+  box-shadow:none!important;
+}
+body:not(.v74-public-only) button.primary,
+body:not(.v74-public-only) .btn.primary,
+body:not(.v74-public-only) .ok,
+body:not(.v74-public-only) .accent,
+body:not(.v74-public-only) .lime,
+body:not(.v74-public-only) .v10-auto-btn{
+  background:#b9f20d!important;
+  color:#091014!important;
+  -webkit-text-fill-color:#091014!important;
+  border-color:#88b400!important;
+}
+
+/* TYPOGRAPHY */
+body:not(.v74-public-only) h1,
+body:not(.v74-public-only) h2,
+body:not(.v74-public-only) h3,
+body:not(.v74-public-only) h4,
+body:not(.v74-public-only) h5,
+body:not(.v74-public-only) h6,
+body:not(.v74-public-only) strong,
+body:not(.v74-public-only) b,
+body:not(.v74-public-only) label{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body:not(.v74-public-only) p,
+body:not(.v74-public-only) small,
+body:not(.v74-public-only) .muted,
+body:not(.v74-public-only) .subtitle,
+body:not(.v74-public-only) .hint{
+  color:#b7c1c8!important;
+  -webkit-text-fill-color:#b7c1c8!important;
+}
+
+/* Explicitly kill white/blue inline backgrounds */
+body:not(.v74-public-only) [style*="background:#fff"],
+body:not(.v74-public-only) [style*="background: #fff"],
+body:not(.v74-public-only) [style*="background:white"],
+body:not(.v74-public-only) [style*="background: white"],
+body:not(.v74-public-only) [style*="background:#ffffff"],
+body:not(.v74-public-only) [style*="background: #ffffff"],
+body:not(.v74-public-only) [style*="background:#071d38"],
+body:not(.v74-public-only) [style*="background: #071d38"],
+body:not(.v74-public-only) [style*="background:#0c4c75"],
+body:not(.v74-public-only) [style*="background: #0c4c75"]{
+  background:#11181d!important;
+  background-color:#11181d!important;
+  background-image:none!important;
+  color:#fff!important;
+}
+
+/* PUBLIC */
+body.v74-public-only,
+body.v74-public-only .app,
+body.v74-public-only #jbPagePublico{
+  background:#090d10!important;
+  background-image:none!important;
+  color:#fff!important;
+}
+body.v74-public-only .v760-hero,
+body.v74-public-only .v73-public-card,
+body.v74-public-only .v760-metric,
+body.v74-public-only .v760-filter{
+  background:#11181d!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b373f!important;
+}
+</style>
+
+
+<style id="jb-v112-premium-safe">
+:root{
+  --jb11-bg:#080b0d;
+  --jb11-bg2:#0c1114;
+  --jb11-card:#11171b;
+  --jb11-card2:#151d22;
+  --jb11-border:#2b363d;
+  --jb11-text:#f7f9fa;
+  --jb11-muted:#aab5bc;
+  --jb11-lime:#c7ff16;
+}
+
+/* App shell */
+html, body{
+  background:#080b0d!important;
+}
+body:not(.v74-public-only),
+body:not(.v74-public-only) .app,
+body:not(.v74-public-only) .jb-page,
+body:not(.v74-public-only) [id^="jbPage"]{
+  background:#080b0d!important;
+  background-color:#080b0d!important;
+  background-image:none!important;
+  color:#f7f9fa!important;
+}
+
+/* Sidebar + topbar */
+body:not(.v74-public-only) .jb-sidebar,
+body:not(.v74-public-only) .jb-v9-topbar{
+  background:#090d10!important;
+  background-image:none!important;
+  border-color:#263139!important;
+  box-shadow:none!important;
+}
+
+/* Dashboard */
+body:not(.v74-public-only) #jbPageDashboard .jb-dash-hero{
+  background:
+    radial-gradient(circle at 85% 15%, rgba(199,255,22,.05), transparent 30%),
+    #11171b!important;
+  border:1px solid #2b363d!important;
+  box-shadow:none!important;
+}
+body:not(.v74-public-only) #jbPageDashboard .jb-metric-card,
+body:not(.v74-public-only) #jbPageDashboard .jb-dash-progress-card,
+body:not(.v74-public-only) #jbPageDashboard .jb-v7-assistant,
+body:not(.v74-public-only) #jbPageDashboard .jb-access-card{
+  background:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border:1px solid #2b363d!important;
+  box-shadow:none!important;
+}
+body:not(.v74-public-only) #jbPageDashboard .jb-access-card .ico{
+  background:#182126!important;
+  color:#c7ff16!important;
+  border:1px solid #2f3b42!important;
+}
+body:not(.v74-public-only) #jbPageDashboard .jb-access-card em{
+  background:rgba(199,255,22,.10)!important;
+  color:#c7ff16!important;
+}
+body:not(.v74-public-only) #jbPageDashboard .jb-dash-progress{
+  background:#222b30!important;
+}
+body:not(.v74-public-only) #jbPageDashboard .jb-dash-progress i{
+  background:#c7ff16!important;
+  background-image:none!important;
+}
+
+/* Central de Jogos */
+body:not(.v74-public-only) #jbPageCentral,
+body:not(.v74-public-only) #jbPageCentral .v10-command-grid{
+  background:#080b0d!important;
+  background-image:none!important;
+}
+body:not(.v74-public-only) #jbPageCentral .v10-command-hero,
+body:not(.v74-public-only) #jbPageCentral .v10-kpis>div,
+body:not(.v74-public-only) #jbPageCentral .v10-panel,
+body:not(.v74-public-only) #jbPageCentral .v10-history-summary>div,
+body:not(.v74-public-only) #jbPageCentral .v10-history-card,
+body:not(.v74-public-only) #jbPageCentral .v10-court,
+body:not(.v74-public-only) #jbPageCentral .v10-queue-item,
+body:not(.v74-public-only) #jbPageCentral .v10-next-action{
+  background:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border:1px solid #2b363d!important;
+  box-shadow:none!important;
+}
+body:not(.v74-public-only) #jbPageCentral .v10-court.free{
+  background:#172315!important;
+  border-color:#334825!important;
+}
+
+/* Generic panels/cards */
+body:not(.v74-public-only) .card,
+body:not(.v74-public-only) .panel,
+body:not(.v74-public-only) .box,
+body:not(.v74-public-only) .group,
+body:not(.v74-public-only) .round,
+body:not(.v74-public-only) .category-manager,
+body:not(.v74-public-only) .v74-cloud-card,
+body:not(.v74-public-only) .v74-status,
+body:not(.v74-public-only) .v74-qr,
+body:not(.v74-public-only) #groupsArea .group,
+body:not(.v74-public-only) .match,
+body:not(.v74-public-only) .match-card,
+body:not(.v74-public-only) #knockoutArea .jb-ko-round,
+body:not(.v74-public-only) #knockoutArea .jb-ko-match,
+body:not(.v74-public-only) #knockoutArea .jb-ko-team-row{
+  background:#11171b!important;
+  background-color:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b363d!important;
+  box-shadow:none!important;
+}
+
+/* Form controls: style only, never disable pointer events */
+body:not(.v74-public-only) input,
+body:not(.v74-public-only) textarea,
+body:not(.v74-public-only) select,
+body:not(.v74-public-only) option{
+  background:#0c1114!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #344149!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+}
+body:not(.v74-public-only) input[type="file"]{
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+
+/* Buttons remain interactive */
+body:not(.v74-public-only) button,
+body:not(.v74-public-only) .btn{
+  background:#182126!important;
+  background-image:none!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #37444c!important;
+  box-shadow:none!important;
+  pointer-events:auto!important;
+  cursor:pointer!important;
+}
+body:not(.v74-public-only) button.ok,
+body:not(.v74-public-only) button.primary,
+body:not(.v74-public-only) .btn.ok,
+body:not(.v74-public-only) .btn.primary,
+body:not(.v74-public-only) .accent,
+body:not(.v74-public-only) .lime,
+body:not(.v74-public-only) .v10-auto-btn,
+body:not(.v74-public-only) .jb-dash-primary{
+  background:#c7ff16!important;
+  color:#091014!important;
+  -webkit-text-fill-color:#091014!important;
+  border-color:#c7ff16!important;
+}
+
+/* Typography */
+body:not(.v74-public-only) h1,
+body:not(.v74-public-only) h2,
+body:not(.v74-public-only) h3,
+body:not(.v74-public-only) h4,
+body:not(.v74-public-only) h5,
+body:not(.v74-public-only) h6,
+body:not(.v74-public-only) strong,
+body:not(.v74-public-only) b,
+body:not(.v74-public-only) label{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body:not(.v74-public-only) p,
+body:not(.v74-public-only) small,
+body:not(.v74-public-only) .muted,
+body:not(.v74-public-only) .subtitle,
+body:not(.v74-public-only) .hint{
+  color:#aab5bc!important;
+  -webkit-text-fill-color:#aab5bc!important;
+}
+
+/* Tables */
+body:not(.v74-public-only) table,
+body:not(.v74-public-only) tbody,
+body:not(.v74-public-only) tr,
+body:not(.v74-public-only) td{
+  background:#101619!important;
+  color:#eef2f4!important;
+  border-color:#222d33!important;
+}
+body:not(.v74-public-only) thead,
+body:not(.v74-public-only) thead tr,
+body:not(.v74-public-only) th{
+  background:#151d22!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border-color:#2a353b!important;
+}
+body:not(.v74-public-only) tbody tr:nth-child(even) td{
+  background:#12191d!important;
+}
+body:not(.v74-public-only) tr.qual td{
+  background:#202c15!important;
+}
+
+/* Active nav */
+body:not(.v74-public-only) .jb-side-nav a.active{
+  background:rgba(199,255,22,.12)!important;
+  color:#c7ff16!important;
+  border-color:rgba(199,255,22,.22)!important;
+  box-shadow:inset 3px 0 0 #c7ff16!important;
+}
+
+/* Public portal */
+body.v74-public-only,
+body.v74-public-only .app,
+body.v74-public-only #jbPagePublico{
+  background:#080b0d!important;
+  color:#fff!important;
+}
+</style>
+
 </html>

@@ -1,0 +1,13 @@
+JB TORNEIOS V10.5.4 — CLEAN DARK REBUILD
+
+Mudança importante:
+- removidos os últimos temas tardios que estavam vencendo o CSS;
+- novo tema colocado no FINAL ABSOLUTO do documento;
+- dashboard: sem azul e sem cards brancos;
+- central de jogos: sem azul e sem cards brancos;
+- grupos, jogos, mata-mata, nuvem, pódio e demais abas padronizadas;
+- fundo #090d10;
+- cards #11181d / #151e24;
+- textos brancos e secundários cinza-claro;
+- verde-limão somente nos destaques;
+- login/Supabase da V10.5.2 preservados.
