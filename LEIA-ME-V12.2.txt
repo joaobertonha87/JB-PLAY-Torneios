@@ -1,0 +1,33 @@
+JB TORNEIOS V12.2 — PREMIUM TOTAL EDITION
+
+Base funcional:
+- V11.3 Premium Functional Fix (scripts validados).
+
+Alteração visual total:
+- layout preto profundo + grafite;
+- verde-limão apenas em ações e destaques;
+- todo botão verde-limão usa texto PRETO;
+- todo botão grafite/cinza usa texto BRANCO;
+- menu superior corrigido;
+- sidebar corrigida;
+- Modo Evento sem azul;
+- Central de Comando v72 sem cards brancos;
+- Duplas, Grupos, Jogos/Placares, Mata-mata, Portal Público,
+  Pódio, Histórico e Salvar/PDF padronizados;
+- inputs escuros e legíveis;
+- textos principais brancos e secundários cinza-claro;
+- nenhuma rotina JavaScript de tema foi adicionada.
+
+Funcionalidade preservada:
+- criar torneio;
+- cadastrar/contabilizar inscritos;
+- carregar logomarca;
+- sorteios;
+- grupos;
+- placares;
+- mata-mata;
+- portal público;
+- login/Supabase;
+- PWA.
+
+Todos os scripts inline foram validados por sintaxe.
