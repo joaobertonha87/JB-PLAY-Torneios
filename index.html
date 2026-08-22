@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Play V10.1.0 · Grupos Manuais</title>
+  <title>JB Play V10.1.2 · Mata-mata Dinâmico</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -4159,140 +4159,228 @@ body:not(.v74-public-only) .jb-metric-card strong b {
 
   function buildFirstRound(qualifiers){
     const size=nextPowerOfTwo(qualifiers.length);
-    const blank=(aId,bId)=>({aId:aId||null,bId:bId||null,aScore:'',bScore:''});
-    const groupOrder=[...new Set(qualifiers.map(q=>q.group))];
-    const groupIndex=(g)=>Math.max(0,groupOrder.indexOf(g));
-
-    // ============================================================
-    // REGRA GERAL JB — CRUZAMENTO ENTRE GRUPOS
-    // ============================================================
-    // 1) Nunca confronta duas duplas do mesmo grupo na primeira rodada
-    //    quando existir alternativa matemática.
-    // 2) BYEs são priorizados para melhores colocados (1º, depois 2º...).
-    // 3) Quando nem todos os 1º colocados podem receber BYE, os BYEs
-    //    são distribuídos de forma espaçada entre os grupos.
-    // 4) O jogo "irmão" de um BYE evita conter outra dupla do mesmo
-    //    grupo, reduzindo reencontro logo na rodada seguinte.
-    // 5) A regra funciona para qualquer número de grupos e qualquer
-    //    quantidade de classificados por grupo.
+    const matchCount=size/2;
     const byeCount=Math.max(0,size-qualifiers.length);
+    const blank=(aId,bId)=>({aId:aId||null,bId:bId||null,aScore:'',bScore:''});
+    const officialGroups=(state.groups||[]).map(g=>g.name).filter(Boolean);
+    const groupOrder=officialGroups.length?officialGroups:[...new Set(qualifiers.map(q=>q.group))];
+    const groupIndex=(g)=>{const i=groupOrder.indexOf(g);return i<0?999:i;};
 
-    function spreadPick(items,count){
-      if(count<=0)return [];
-      if(count>=items.length)return items.slice();
-      if(count===1)return [items[0]];
-      const out=[], used=new Set();
-      for(let k=0;k<count;k++){
-        const idx=Math.round(k*(items.length-1)/(count-1));
-        if(!used.has(idx)){used.add(idx);out.push(items[idx]);}
-      }
-      // completa caso arredondamento tenha repetido posição
-      for(let i=0;out.length<count && i<items.length;i++){
-        if(!used.has(i)){used.add(i);out.push(items[i]);}
-      }
-      return out;
+    // ============================================================
+    // REGRA JB — 4 GRUPOS / 2 CLASSIFICADOS
+    // ============================================================
+    // 8 classificados = chave completa de quartas, SEM BYE:
+    // 1º A × 2º C | 1º B × 2º D | 1º C × 2º A | 1º D × 2º B
+    const isFourGroupsTwoEach=(
+      officialGroups.length===4 &&
+      qualifiers.length===8 &&
+      officialGroups.every(g=>
+        qualifiers.some(q=>q.group===g && Number(q.position)===1) &&
+        qualifiers.some(q=>q.group===g && Number(q.position)===2)
+      )
+    );
+
+    if(isFourGroupsTwoEach){
+      const q=(group,pos)=>qualifiers.find(x=>x.group===group && Number(x.position)===pos);
+      const A=officialGroups[0], B=officialGroups[1], C=officialGroups[2], D=officialGroups[3];
+      const pairs=[
+        [q(A,1),q(C,2)],
+        [q(B,1),q(D,2)],
+        [q(C,1),q(A,2)],
+        [q(D,1),q(B,2)]
+      ];
+      return {
+        size:8,
+        pairings:pairs.map(pair=>blank(pair[0].team.id,pair[1].team.id)),
+        specialRule:'four-groups-two-qualifiers-opposite-cross',
+        byeCount:0,
+        byes:[]
+      };
     }
 
-    // Escolhe BYEs por prioridade de colocação e distribuição por grupos.
-    const byes=[];
-    let remainingBye=byeCount;
-    const maxPos=Math.max.apply(null,qualifiers.map(q=>Number(q.position)||1));
-    for(let pos=1;pos<=maxPos && remainingBye>0;pos++){
-      const tier=qualifiers
-        .filter(q=>(Number(q.position)||1)===pos && !byes.includes(q))
-        .sort((a,b)=>groupIndex(a.group)-groupIndex(b.group));
-      const chosen=spreadPick(tier,Math.min(remainingBye,tier.length));
-      chosen.forEach(q=>byes.push(q));
-      remainingBye-=chosen.length;
-    }
+    // ============================================================
+    // REGRA UNIVERSAL DE BYE
+    // ============================================================
+    // A chave é sempre a próxima potência de 2.
+    // BYE = vagas da chave - classificados reais.
+    // Logo:
+    //  8 classificados -> chave 8  -> 0 BYE
+    //  6 classificados -> chave 8  -> 2 BYEs
+    // 10 classificados -> chave 16 -> 6 BYEs
+    // 16 classificados -> chave 16 -> 0 BYE
+    //
+    // Não é permitido criar BYE artificial quando a primeira rodada
+    // já possui o número exato de duplas.
 
-    // Segurança: se ainda faltarem BYEs, completa pelos melhores seeds.
-    if(remainingBye>0){
-      qualifiers
-        .slice()
-        .sort((a,b)=>(a.position-b.position)||groupIndex(a.group)-groupIndex(b.group))
-        .forEach(q=>{
-          if(remainingBye>0 && !byes.includes(q)){byes.push(q);remainingBye--;}
+    // Ranking dos seeds: posição no grupo primeiro, depois campanha.
+    const seedRank=qualifiers.slice().sort((a,b)=>
+      (Number(a.position)||99)-(Number(b.position)||99) ||
+      (Number(b.winPct)||0)-(Number(a.winPct)||0) ||
+      (Number(b.sgPerMatch)||0)-(Number(a.sgPerMatch)||0) ||
+      (Number(b.gpPerMatch)||0)-(Number(a.gpPerMatch)||0) ||
+      groupIndex(a.group)-groupIndex(b.group)
+    );
+
+    // BYEs favorecem os melhores cabeças de chave.
+    // Em empate de colocação/campanha, distribui entre grupos pela ordem.
+    const byeSeeds=seedRank.slice(0,byeCount);
+    const byeIds=new Set(byeSeeds.map(q=>q.team.id));
+    const pool=seedRank.filter(q=>!byeIds.has(q.team.id));
+
+    // Pareamento real sem reencontro de grupo sempre que possível.
+    // Usa baldes por grupo para não "prender" duas duplas do mesmo grupo
+    // no fim do algoritmo.
+    function pairCrossGroups(items){
+      const buckets=new Map();
+      items.forEach(q=>{
+        if(!buckets.has(q.group))buckets.set(q.group,[]);
+        buckets.get(q.group).push(q);
+      });
+      buckets.forEach(arr=>arr.sort((a,b)=>
+        (Number(a.position)||99)-(Number(b.position)||99) ||
+        (Number(b.winPct)||0)-(Number(a.winPct)||0) ||
+        (Number(b.sgPerMatch)||0)-(Number(a.sgPerMatch)||0)
+      ));
+
+      const pairs=[];
+      while(true){
+        const active=[...buckets.entries()].filter(([,arr])=>arr.length);
+        const remaining=active.reduce((s,[,arr])=>s+arr.length,0);
+        if(remaining<2)break;
+
+        // Escolhe primeiro o grupo com mais duplas restantes.
+        active.sort((x,y)=>
+          y[1].length-x[1].length ||
+          groupIndex(x[0])-groupIndex(y[0])
+        );
+        const [ga,arrA]=active[0];
+        const a=arrA.shift();
+
+        // Parceiro: outro grupo, privilegiando colocação diferente
+        // (ex.: 1º contra 2º) e seed mais baixo.
+        let candidates=[...buckets.entries()]
+          .filter(([g,arr])=>g!==ga && arr.length)
+          .map(([g,arr])=>({g,arr,q:arr[0]}));
+
+        if(!candidates.length){
+          // Mesmo grupo somente quando não existe alternativa matemática.
+          candidates=[...buckets.entries()]
+            .filter(([,arr])=>arr.length)
+            .map(([g,arr])=>({g,arr,q:arr[0]}));
+        }
+
+        candidates.sort((x,y)=>{
+          const sx=(x.g===ga?100000:0)
+            + ((Number(x.q.position)||1)===(Number(a.position)||1)?500:0)
+            - (Number(x.q.position)||1)*20
+            - (Number(x.q.winPct)||0)*3
+            + groupIndex(x.g)*0.001;
+          const sy=(y.g===ga?100000:0)
+            + ((Number(y.q.position)||1)===(Number(a.position)||1)?500:0)
+            - (Number(y.q.position)||1)*20
+            - (Number(y.q.winPct)||0)*3
+            + groupIndex(y.g)*0.001;
+          return sx-sy;
         });
-    }
 
-    const pool=qualifiers.filter(q=>!byes.includes(q));
-
-    // Encontra pareamento com o menor número possível de reencontros.
-    function pairCost(a,b){
-      let c=0;
-      if(a.group===b.group)c+=10000;            // fortemente proibitivo
-      c+=Math.abs((a.position||1)-(b.position||1))*3;
-      c+=Math.abs(groupIndex(a.group)-groupIndex(b.group))*0.01;
-      return c;
-    }
-    function bestPairing(items){
-      if(!items.length)return {cost:0,pairs:[]};
-      if(items.length===1)return {cost:5000,pairs:[[items[0],null]]};
-      const first=items[0];
-      let best=null;
-      for(let i=1;i<items.length;i++){
-        const other=items[i];
-        const rest=items.filter((_,idx)=>idx!==0&&idx!==i);
-        const sub=bestPairing(rest);
-        if(!sub)continue;
-        const cost=pairCost(first,other)+sub.cost;
-        if(!best||cost<best.cost)best={cost:cost,pairs:[[first,other],...sub.pairs]};
+        const chosen=candidates[0];
+        const b=chosen.arr.shift();
+        pairs.push([a,b]);
       }
-      return best;
+
+      // Segurança (só ocorreria com quantidade ímpar por erro de dados).
+      const left=[...buckets.values()].flat();
+      if(left.length)pairs.push([left[0],null]);
+      return pairs;
     }
 
-    let paired=(bestPairing(pool)||{pairs:[]}).pairs;
+    const realPairs=pairCrossGroups(pool);
 
-    // Distribui os BYEs em "blocos" de duas partidas.
-    // Cada BYE fica ao lado de um confronto que não contenha seu grupo,
-    // sempre que houver uma escolha possível.
-    const blocks=[];
-    const unusedPairs=paired.slice();
+    // Quantidade matemática esperada de jogos reais na primeira rodada.
+    const expectedRealMatches=(qualifiers.length-byeCount)/2;
+    if(realPairs.length!==expectedRealMatches){
+      console.warn('JB Play: ajuste de pareamento',realPairs.length,expectedRealMatches);
+    }
 
-    byes.forEach(bye=>{
-      let bestIdx=-1,bestCost=Infinity;
-      unusedPairs.forEach((pair,idx)=>{
-        const containsSame=pair.some(q=>q&&q.group===bye.group);
-        let c=containsSame?10000:0;
-        // privilegia confrontos de seeds mais baixos contra o cabeça com BYE
-        c+=pair.reduce((s,q)=>s+(q?(10-(Number(q.position)||1)):0),0)*0.001;
-        if(c<bestCost){bestCost=c;bestIdx=idx;}
-      });
-      const sibling=bestIdx>=0?unusedPairs.splice(bestIdx,1)[0]:null;
-      blocks.push({
-        bye:bye,
-        sibling:sibling
-      });
+    const byeMatches=byeSeeds.map(q=>({
+      kind:'bye',
+      group:q.group,
+      match:blank(q.team.id,null)
+    }));
+    const normalMatches=realPairs.map(pair=>({
+      kind:'game',
+      groups:pair.filter(Boolean).map(q=>q.group),
+      match:blank(pair[0]&&pair[0].team.id,pair[1]&&pair[1].team.id)
+    }));
+
+    // Distribui os jogos reais pelos blocos da chave e preenche o restante
+    // com os BYEs. Nunca cria partida [null,null].
+    const blockCount=Math.max(1,size/4);
+    const blocks=Array.from({length:blockCount},()=>[]);
+
+    // Jogos reais primeiro, espalhados pela chave.
+    normalMatches.forEach((entry,i)=>{
+      const idx=normalMatches.length<=1
+        ? Math.floor(blockCount/2)
+        : Math.round(i*(blockCount-1)/(normalMatches.length-1));
+      let target=idx;
+      for(let step=0;step<blockCount;step++){
+        const j=(idx+step)%blockCount;
+        if(blocks[j].length<2){target=j;break;}
+      }
+      blocks[target].push(entry);
     });
 
-    // Pares restantes viram blocos normais (2 jogos consecutivos).
-    while(unusedPairs.length){
-      const p1=unusedPairs.shift();
-      const p2=unusedPairs.length?unusedPairs.shift():null;
-      blocks.push({bye:null,sibling:p1,extra:p2});
-    }
-
-    const pairings=[];
-    blocks.forEach(block=>{
-      if(block.bye){
-        pairings.push(blank(block.bye.team.id,null));
-        if(block.sibling)pairings.push(blank(block.sibling[0].team.id,block.sibling[1]&&block.sibling[1].team.id));
-        else pairings.push(blank(null,null));
-      }else{
-        if(block.sibling)pairings.push(blank(block.sibling[0].team.id,block.sibling[1]&&block.sibling[1].team.id));
-        if(block.extra)pairings.push(blank(block.extra[0].team.id,block.extra[1]&&block.extra[1].team.id));
-      }
+    // BYEs completam as vagas, dando preferência a blocos que ainda têm
+    // apenas um jogo e evitando, quando possível, grupo igual ao jogo irmão.
+    byeMatches.forEach(entry=>{
+      let best=-1,bestScore=Infinity;
+      blocks.forEach((block,i)=>{
+        if(block.length>=2)return;
+        let score=block.length*10;
+        if(block.length===1 && block[0].kind==='game' &&
+           block[0].groups && block[0].groups.includes(entry.group))score+=1000;
+        if(score<bestScore){bestScore=score;best=i;}
+      });
+      if(best<0)best=blocks.findIndex(b=>b.length<2);
+      blocks[best].push(entry);
     });
 
-    while(pairings.length<size/2)pairings.push(blank(null,null));
-    if(pairings.length>size/2)pairings.length=size/2;
+    // Achata a chave. Se algum bloco tiver uma só entrada, completa
+    // movendo uma entrada de outro bloco; nunca adiciona BYE inexistente.
+    for(let i=0;i<blocks.length;i++){
+      if(blocks[i].length===1){
+        const donor=blocks.findIndex((b,j)=>j!==i && b.length>2);
+        if(donor>=0)blocks[i].push(blocks[donor].pop());
+      }
+    }
+
+    let pairings=blocks.flat().map(x=>x.match);
+
+    // Caso size=2, há apenas uma partida.
+    if(size===2){
+      if(qualifiers.length===2)pairings=[blank(qualifiers[0].team.id,qualifiers[1].team.id)];
+      else pairings=[blank(qualifiers[0].team.id,null)];
+    }
+
+    // Defesa final: exatamente size/2 partidas e exatamente byeCount BYEs.
+    if(pairings.length!==matchCount){
+      const allEntries=[...normalMatches,...byeMatches].map(x=>x.match);
+      pairings=allEntries.slice(0,matchCount);
+    }
+
+    const actualByeCount=pairings.filter(m=>(!!m.aId)!=(!!m.bId)).length;
+    const emptyMatches=pairings.filter(m=>!m.aId&&!m.bId).length;
+    if(actualByeCount!==byeCount || emptyMatches){
+      console.error('JB Play: inconsistência de BYE', {byeCount,actualByeCount,emptyMatches,size,qualifiers:qualifiers.length});
+    }
 
     return {
       size:size,
       pairings:pairings,
-      specialRule:'general-cross-group',
-      byes:byes.map(q=>({group:q.group,position:q.position,teamId:q.team.id}))
+      specialRule:'dynamic-cross-group-bye-only-if-needed',
+      byeCount:byeCount,
+      byes:byeSeeds.map(q=>({group:q.group,position:q.position,teamId:q.team.id}))
     };
   }
   function generateKnockout(){
@@ -4333,7 +4421,14 @@ body:not(.v74-public-only) .jb-metric-card strong b {
     propagateKnockout(0);
     renderKnockout();
     save();
-    showNotice('Mata-mata gerado com cruzamento protegido entre grupos e distribuição automática de BYEs.', true);
+    showNotice(
+      (state.groups.length===4 && qualifiers.length===8)
+        ? 'Mata-mata gerado: 1º A × 2º C, 1º B × 2º D, 1º C × 2º A e 1º D × 2º B — sem BYE.'
+        : (first.byeCount>0
+            ? 'Mata-mata gerado com '+first.byeCount+' BYE'+(first.byeCount>1?'s':'')+' — somente porque faltam duplas para completar a primeira rodada.'
+            : 'Mata-mata gerado com chave completa, sem BYE, e cruzamento protegido entre grupos.'),
+      true
+    );
   }
 
   function propagateKnockout(fromRound){

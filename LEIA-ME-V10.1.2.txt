@@ -1,0 +1,24 @@
+JB PLAY V10.1.2 — MATA-MATA DINÂMICO
+
+REGRA UNIVERSAL DE BYE
+- BYE só existe quando faltam duplas para completar a primeira rodada da chave.
+- A chave usa a próxima potência de 2.
+- 8 classificados = chave de 8 = 0 BYE.
+- 6 classificados = chave de 8 = 2 BYEs.
+- 10 classificados = chave de 16 = 6 BYEs.
+- 16 classificados = chave de 16 = 0 BYE.
+- Nenhum BYE artificial é criado.
+
+CRUZAMENTOS
+- Mantida a regra de 4 grupos × 2 classificados:
+  1º A × 2º C
+  1º B × 2º D
+  1º C × 2º A
+  1º D × 2º B
+- Para outras quantidades, evita confronto de duplas do mesmo grupo na primeira rodada sempre que houver alternativa matemática.
+- BYEs favorecem os melhores cabeças de chave.
+- Nenhuma dupla é descartada ou duplicada.
+
+INTEGRAÇÃO
+- O mesmo state.knockout alimenta tela, súmulas e Portal Público.
+- Avanço automático de BYE continua funcionando.
