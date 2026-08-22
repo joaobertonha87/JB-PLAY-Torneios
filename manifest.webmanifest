@@ -3,8 +3,8 @@
   "short_name": "JB Torneios",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0b0f12",
-  "theme_color": "#0b0f12",
+  "background_color": "#171a1d",
+  "theme_color": "#171a1d",
   "icons": [
     {
       "src": "icon-192.png",
