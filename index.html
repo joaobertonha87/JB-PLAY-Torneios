@@ -2711,7 +2711,7 @@ body:not(.v74-public-only) .jb-metric-card strong b {
   color:#ffffff !important;
 }
 </style>
-<meta name="jb-play-version" content="13.9.3">
+<meta name="jb-play-version" content="14.0">
 
 <style id="jb-v1010-manual-groups-style">
 .jb-manual-groups-panel{margin-top:14px!important}
@@ -3095,7 +3095,7 @@ html[data-jb-view="ipad"] #jbPageMata .jb-v136-stage-wrap{overflow-x:auto!import
 
 <style id="jb-v139-matamata-final">
 /* =========================================================
-   JB TORNEIOS V13.9.3 — MATA-MATA FINAL
+   JB TORNEIOS V14.0 — MATA-MATA FINAL
    - chave usa toda a largura
    - controles superiores alinhados à esquerda
    - nomes e placares mais legíveis
@@ -3494,7 +3494,7 @@ html[data-jb-view="ipad"] #jbPageMata #jbV7487PodiumSlot .jb-v7486-podium{
 
 <style id="jb-v1391-pc-bracket-fix">
 /* =========================================================
-   JB TORNEIOS V13.9.3 — CORREÇÃO EXCLUSIVA DA VISUALIZAÇÃO PC
+   JB TORNEIOS V14.0 — CORREÇÃO EXCLUSIVA DA VISUALIZAÇÃO PC
    Mantém o iPad como estava e reorganiza o chaveamento no PC.
    ========================================================= */
 
@@ -3841,7 +3841,7 @@ html[data-jb-view="pc"] .jb-ipad-menu-close{
 
 <style id="jb-v1393-ipad-landscape-bracket">
 /* =========================================================
-   JB TORNEIOS V13.9.3
+   JB TORNEIOS V14.0
    Correção Mata-mata — iPad 10ª geração em PAISAGEM
    Mantém o menu iPad e evita chave espremida.
    ========================================================= */
@@ -4038,6 +4038,798 @@ html[data-jb-view="pc"] .jb-ipad-menu-close{
 }
 </style>
 
+
+
+<style id="jb-v140-premium-clean">
+/* =========================================================
+   JB TORNEIOS V14.0 — PREMIUM CLEAN
+   Interface inspirada no layout aprovado:
+   dark clean, lime apenas em ação/seleção, ícones vetoriais,
+   mata-mata amplo e responsivo em PC e iPad.
+   ========================================================= */
+
+:root{
+  --v14-bg:#071015;
+  --v14-bg-2:#09141b;
+  --v14-panel:#0b151c;
+  --v14-panel-2:#0e1a22;
+  --v14-line:#26343d;
+  --v14-line-soft:#1a2730;
+  --v14-text:#f4f7f9;
+  --v14-muted:#89979f;
+  --v14-lime:#c9ff00;
+  --v14-lime-soft:#ddff58;
+  --v14-red:#ff5a47;
+  --v14-radius:12px;
+}
+
+/* BASE GLOBAL */
+html,body{
+  background:
+    radial-gradient(circle at 80% 0%,rgba(45,82,100,.12),transparent 30%),
+    linear-gradient(135deg,#060d12 0%,#081117 50%,#071015 100%)!important;
+  color:var(--v14-text)!important;
+}
+body{
+  padding-left:190px!important;
+}
+.app{
+  max-width:none!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0 0 40px!important;
+  background:transparent!important;
+}
+
+/* SIDEBAR */
+.jb-sidebar{
+  width:190px!important;
+  padding:12px 10px!important;
+  background:linear-gradient(180deg,#071017 0%,#081119 100%)!important;
+  border-right:1px solid var(--v14-line)!important;
+  box-shadow:none!important;
+}
+.jb-side-brand{
+  min-height:120px!important;
+  padding:12px!important;
+  margin:0 0 10px!important;
+  border:1px solid var(--v14-line)!important;
+  border-radius:14px!important;
+  background:#09131a!important;
+  box-shadow:none!important;
+}
+.jb-side-brand:after{display:none!important}
+.jb-side-brand img{
+  max-height:82px!important;
+  max-width:150px!important;
+  object-fit:contain!important;
+}
+.jb-v9-side-product{
+  display:block!important;
+  padding:10px 8px 8px!important;
+  border-bottom:1px solid var(--v14-line)!important;
+  margin-bottom:8px!important;
+}
+.jb-v9-side-product span{
+  display:block!important;
+  color:var(--v14-lime)!important;
+  font-size:8px!important;
+  font-weight:900!important;
+  letter-spacing:.14em!important;
+}
+.jb-v9-side-product b{
+  display:block!important;
+  color:#fff!important;
+  font-size:15px!important;
+  margin-top:3px!important;
+}
+.jb-v9-side-product small{
+  display:block!important;
+  color:var(--v14-muted)!important;
+  font-size:8px!important;
+  margin-top:3px!important;
+}
+.jb-side-section{
+  color:#71818a!important;
+  font-size:8px!important;
+  letter-spacing:.15em!important;
+  padding:6px 8px 5px!important;
+}
+.jb-side-nav{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:2px!important;
+}
+.jb-side-nav a{
+  min-height:38px!important;
+  padding:5px 8px!important;
+  gap:8px!important;
+  border-radius:8px!important;
+  border:0!important;
+  background:transparent!important;
+  color:#e7edf0!important;
+  font-size:10.5px!important;
+  font-weight:760!important;
+  box-shadow:none!important;
+}
+.jb-side-nav a:hover{
+  background:#0e1b23!important;
+}
+.jb-side-nav a.active{
+  background:var(--v14-lime)!important;
+  color:#061015!important;
+  box-shadow:none!important;
+}
+.jb-side-icon{
+  width:29px!important;
+  height:29px!important;
+  min-width:29px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:7px!important;
+  background:#111e26!important;
+  color:#91a2aa!important;
+  font-size:0!important;
+}
+.jb-side-nav a.active .jb-side-icon{
+  background:rgba(0,0,0,.12)!important;
+  color:#071015!important;
+}
+.jb-side-icon svg{
+  width:16px!important;
+  height:16px!important;
+  stroke:currentColor!important;
+  fill:none!important;
+  stroke-width:2!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+}
+.jb-side-foot{
+  display:none!important;
+}
+
+/* TOPBAR */
+.jb-v9-topbar{
+  position:sticky!important;
+  top:0!important;
+  z-index:100!important;
+  min-height:58px!important;
+  height:auto!important;
+  margin:0!important;
+  padding:8px 18px!important;
+  border:0!important;
+  border-bottom:1px solid var(--v14-line)!important;
+  border-radius:0!important;
+  background:rgba(6,14,19,.96)!important;
+  color:#fff!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
+}
+.jb-v9-top-left{
+  gap:10px!important;
+}
+.jb-v9-appmark{
+  width:37px!important;
+  height:37px!important;
+  min-height:37px!important;
+  padding:6px!important;
+  border-radius:9px!important;
+  background:#0d171d!important;
+  border:1px solid var(--v14-line)!important;
+}
+.jb-v9-context small{
+  color:#7d8d96!important;
+  font-size:7px!important;
+}
+.jb-v9-context strong{
+  color:#fff!important;
+  font-size:13px!important;
+}
+.jb-v9-context span{
+  color:#82919a!important;
+  font-size:8px!important;
+}
+.jb-v9-top-actions{
+  margin-left:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:6px!important;
+  flex-wrap:wrap!important;
+}
+.jb-device-view,
+.jb-v9-live-action,
+.jb-v9-cloud-pill,
+.jb-v9-account,
+.jb-ipad-menu-btn{
+  min-height:36px!important;
+  height:36px!important;
+  border:1px solid var(--v14-line)!important;
+  border-radius:8px!important;
+  background:#0b151c!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+.jb-device-view{
+  padding:3px!important;
+}
+.jb-device-view>span{
+  display:none!important;
+}
+.jb-device-view button{
+  min-height:28px!important;
+  height:28px!important;
+  border-radius:6px!important;
+  font-size:8px!important;
+}
+.jb-device-view button.active,
+.jb-device-view button[aria-pressed="true"]{
+  background:var(--v14-lime)!important;
+  color:#061015!important;
+}
+.jb-v9-live-action{
+  color:#fff!important;
+  padding:0 10px!important;
+}
+.jb-v9-live-action i{
+  width:7px!important;
+  height:7px!important;
+}
+.jb-v9-cloud-pill{
+  padding:0 10px!important;
+}
+.jb-v9-cloud-pill small,
+.jb-v9-account small{
+  color:#60737e!important;
+}
+.jb-v9-cloud-pill b,
+.jb-v9-account b{
+  color:#e8eef1!important;
+}
+.jb-v9-account{
+  padding:0 9px!important;
+}
+.jb-v9-account>span{
+  width:23px!important;
+  height:23px!important;
+  border-radius:6px!important;
+  background:#13232d!important;
+  color:var(--v14-lime)!important;
+}
+
+/* WORKSPACES */
+.jb-page{
+  width:100%!important;
+  max-width:none!important;
+  padding:18px 20px 34px!important;
+  background:transparent!important;
+}
+.jb-page-head{
+  min-height:52px!important;
+  margin:0 0 10px!important;
+  padding:0 0 12px!important;
+  border-bottom:1px solid var(--v14-line)!important;
+  align-items:center!important;
+}
+.jb-page-head h2{
+  color:#fff!important;
+  font-size:21px!important;
+}
+.jb-page-head p{
+  color:var(--v14-muted)!important;
+  font-size:9px!important;
+}
+.jb-back{
+  min-height:34px!important;
+  background:#0c171e!important;
+  color:#fff!important;
+  border:1px solid var(--v14-line)!important;
+  border-radius:8px!important;
+}
+
+/* PANELS / CARDS GERAIS */
+.card,.panel,.settings-card,.jb-card,.glass-card,
+.jb-dash-hero,.jb-metric-card,.jb-action-card,.jb-public-hero,
+.v73-podium-shell,.save-card{
+  background:var(--v14-panel)!important;
+  color:#fff!important;
+  border:1px solid var(--v14-line)!important;
+  border-radius:var(--v14-radius)!important;
+  box-shadow:none!important;
+}
+input,textarea,select{
+  background:#0a141a!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #35434b!important;
+  border-radius:8px!important;
+}
+input::placeholder,textarea::placeholder{
+  color:#6f7e86!important;
+  -webkit-text-fill-color:#6f7e86!important;
+}
+button.secondary{
+  background:#0d181f!important;
+  color:#fff!important;
+  border:1px solid #3a4850!important;
+}
+button.ok,.ok{
+  background:var(--v14-lime)!important;
+  color:#071015!important;
+  border-color:var(--v14-lime)!important;
+}
+
+/* DASHBOARD NO MESMO VOCABULÁRIO VISUAL */
+#jbPageDashboard{
+  padding-top:18px!important;
+}
+.jb-dash-hero{
+  min-height:132px!important;
+  padding:20px!important;
+  background:
+    radial-gradient(circle at 90% 20%,rgba(201,255,0,.07),transparent 27%),
+    #0a141b!important;
+}
+.jb-dash-hero:after{display:none!important}
+.jb-dash-kicker{
+  color:var(--v14-lime)!important;
+}
+.jb-dash-hero h2{
+  font-size:25px!important;
+  color:#fff!important;
+}
+.jb-dash-status{
+  background:#101d25!important;
+  color:#dce4e8!important;
+  border:1px solid var(--v14-line)!important;
+}
+.jb-dash-category{
+  background:rgba(201,255,0,.10)!important;
+  color:var(--v14-lime-soft)!important;
+  border:1px solid rgba(201,255,0,.25)!important;
+}
+.jb-dash-metrics{
+  gap:8px!important;
+}
+.jb-metric-card{
+  min-height:88px!important;
+  padding:13px!important;
+  background:#0b151c!important;
+}
+.jb-metric-card:before{
+  width:2px!important;
+  background:var(--v14-lime)!important;
+}
+
+/* ===========================
+   MATA-MATA — LAYOUT APROVADO
+   =========================== */
+#jbPageMata{
+  padding:0 0 32px!important;
+  overflow-x:hidden!important;
+}
+#jbPageMata .jb-page-head{
+  margin:0 20px!important;
+  padding-top:12px!important;
+}
+#jbPageMata .section-title{
+  display:block!important;
+  margin:0!important;
+  padding:10px 20px 12px!important;
+  border-bottom:1px solid var(--v14-line)!important;
+}
+#jbPageMata .title-wrap{
+  display:none!important;
+}
+#jbPageMata .knockout-controls{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  flex-wrap:wrap!important;
+  gap:8px!important;
+  width:100%!important;
+}
+#jbPageMata .knockout-controls .field{
+  flex:0 0 auto!important;
+  min-width:185px!important;
+  max-width:220px!important;
+  margin:0!important;
+}
+#jbPageMata .knockout-controls .field label{
+  display:none!important;
+}
+#jbPageMata .knockout-controls select{
+  height:38px!important;
+  min-height:38px!important;
+  padding:0 12px!important;
+  font-size:10px!important;
+}
+#jbPageMata .v7483-third-button{
+  min-width:190px!important;
+  max-width:235px!important;
+  height:38px!important;
+  min-height:38px!important;
+  padding:0 10px!important;
+  border-radius:8px!important;
+  background:#0b151c!important;
+  color:#fff!important;
+  border:1px solid var(--v14-line)!important;
+}
+#jbPageMata .v7483-third-copy small{
+  display:none!important;
+}
+#jbPageMata .v7483-third-copy b{
+  font-size:10px!important;
+  color:#fff!important;
+}
+#jbPageMata #generateKO,
+#jbPageMata #resetKO{
+  height:38px!important;
+  min-height:38px!important;
+  border-radius:8px!important;
+  padding:0 14px!important;
+  font-size:10px!important;
+}
+#jbPageMata #generateKO{
+  background:#0b151c!important;
+  color:#fff!important;
+  border:1px solid var(--v14-line)!important;
+}
+#jbPageMata #generateKO:before{
+  content:"⤨ ";
+  color:var(--v14-lime)!important;
+}
+#jbPageMata #resetKO{
+  background:#0b151c!important;
+  color:var(--v14-red)!important;
+  border:1px solid #45302d!important;
+}
+
+#jbPageMata #knockoutArea{
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  padding:14px 20px 0!important;
+  overflow:visible!important;
+}
+
+/* Chave inteira: quatro fases + campeão em uma linha */
+#jbPageMata .jb137-bracket{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) clamp(130px,13vw,190px)!important;
+  column-gap:18px!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+}
+#jbPageMata .jb137-rounds{
+  display:grid!important;
+  grid-template-columns:
+    minmax(155px,1.18fr)
+    minmax(145px,1.08fr)
+    minmax(135px,1fr)
+    minmax(130px,.92fr)!important;
+  gap:clamp(15px,1.7vw,28px)!important;
+  width:100%!important;
+  min-width:0!important;
+}
+#jbPageMata .jb137-round{
+  min-width:0!important;
+  border-right:1px solid var(--v14-line-soft)!important;
+  padding-right:8px!important;
+}
+#jbPageMata .jb137-round:last-child{
+  border-right:0!important;
+}
+#jbPageMata .jb137-round header{
+  height:52px!important;
+  display:block!important;
+  padding:6px 0 9px!important;
+  border-bottom:2px solid var(--v14-lime)!important;
+  background:transparent!important;
+}
+#jbPageMata .jb137-round header strong{
+  display:block!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:clamp(10px,.9vw,14px)!important;
+  letter-spacing:.025em!important;
+  line-height:1.15!important;
+  white-space:normal!important;
+}
+#jbPageMata .jb137-round header small{
+  display:block!important;
+  margin-top:4px!important;
+  color:#a4b0b6!important;
+  font-size:7px!important;
+}
+
+#jbPageMata .jb137-game{
+  height:13px!important;
+  padding-left:0!important;
+  color:#829097!important;
+  font-size:6px!important;
+  font-weight:800!important;
+}
+#jbPageMata .jb137-team{
+  height:32px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 38px!important;
+  align-items:center!important;
+  gap:5px!important;
+  margin:0!important;
+  padding:0 3px 0 8px!important;
+  border:1px solid #27343c!important;
+  border-radius:5px!important;
+  background:#0a141a!important;
+}
+#jbPageMata .jb137-team + .jb137-team{
+  margin-top:2px!important;
+}
+#jbPageMata .jb137-team.winner{
+  border-color:#36432b!important;
+  background:#0b1717!important;
+}
+#jbPageMata .jb137-team span{
+  min-width:0!important;
+  color:#f0f4f6!important;
+  -webkit-text-fill-color:#f0f4f6!important;
+  font-size:clamp(8px,.75vw,11px)!important;
+  font-weight:760!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#jbPageMata .jb137-team.winner span{
+  color:var(--v14-lime)!important;
+  -webkit-text-fill-color:var(--v14-lime)!important;
+}
+#jbPageMata .jb137-score{
+  width:34px!important;
+  min-width:34px!important;
+  max-width:34px!important;
+  height:25px!important;
+  min-height:25px!important;
+  border-radius:5px!important;
+  background:#111d24!important;
+  border:1px solid #5c6b73!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:12px!important;
+  font-weight:900!important;
+}
+
+/* Linhas da chave */
+#jbPageMata .jb137-connector{
+  stroke:#617179!important;
+  stroke-width:1.25!important;
+}
+#jbPageMata .jb137-connector.done{
+  stroke:var(--v14-lime)!important;
+  stroke-width:1.7!important;
+}
+
+/* Campeão — sempre na lateral, nunca sobre a chave */
+#jbPageMata .jb137-champion{
+  position:relative!important;
+  inset:auto!important;
+  width:100%!important;
+  max-width:180px!important;
+  min-height:148px!important;
+  justify-self:end!important;
+  align-self:center!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:14px 10px!important;
+  margin:0!important;
+  border:1px solid var(--v14-lime)!important;
+  border-radius:12px!important;
+  background:#091319!important;
+  text-align:center!important;
+  box-shadow:0 0 24px rgba(201,255,0,.06)!important;
+}
+#jbPageMata .jb137-champion:before{
+  content:"🏆"!important;
+  font-size:31px!important;
+  margin-bottom:7px!important;
+}
+#jbPageMata .jb137-champion small{
+  color:#dfe7ea!important;
+  font-size:7px!important;
+  margin-bottom:6px!important;
+}
+#jbPageMata .jb137-champion strong{
+  color:var(--v14-lime)!important;
+  -webkit-text-fill-color:var(--v14-lime)!important;
+  font-size:13px!important;
+  line-height:1.2!important;
+  white-space:normal!important;
+}
+
+/* Pódio em faixa única abaixo */
+#jbPageMata #jbV7487ThirdSlot{
+  width:100%!important;
+  margin:12px 0 0!important;
+  clear:both!important;
+}
+#jbPageMata #jbV7487PodiumSlot{
+  width:100%!important;
+  margin:14px 0 0!important;
+  padding:10px!important;
+  clear:both!important;
+  border:1px solid var(--v14-line)!important;
+  border-radius:11px!important;
+  background:#091319!important;
+}
+#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium{
+  display:grid!important;
+  grid-template-columns:1.05fr 1fr 1fr!important;
+  gap:10px!important;
+  width:100%!important;
+  margin:0!important;
+}
+#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium-card{
+  min-height:88px!important;
+  padding:12px 14px!important;
+  border-radius:8px!important;
+  background:#0a141a!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium-card.first{
+  border:1px solid #8aa000!important;
+}
+#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium-card.second{
+  border:1px solid #53616a!important;
+}
+#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium-card.third{
+  border:1px solid #875021!important;
+}
+#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium-card h3{
+  font-size:14px!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+#jbPageMata #jbV7487PodiumSlot .jb-v7486-podium-card .small{
+  color:#9aa6ac!important;
+}
+
+/* ===== PC ===== */
+html[data-jb-view="pc"] body{
+  padding-left:190px!important;
+}
+html[data-jb-view="pc"] .jb-sidebar{
+  display:flex!important;
+}
+html[data-jb-view="pc"] #jbPageMata .jb137-rounds{
+  grid-template-columns:
+    minmax(175px,1.2fr)
+    minmax(165px,1.1fr)
+    minmax(150px,1fr)
+    minmax(145px,.95fr)!important;
+}
+
+/* ===== IPAD ===== */
+html[data-jb-view="ipad"] body{
+  padding-left:0!important;
+}
+html[data-jb-view="ipad"] .jb-sidebar{
+  width:245px!important;
+}
+html[data-jb-view="ipad"] .jb-ipad-menu-btn{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:6px!important;
+  padding:0 10px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata{
+  padding-left:0!important;
+  padding-right:0!important;
+}
+html[data-jb-view="ipad"] #jbPageMata #knockoutArea{
+  padding-left:12px!important;
+  padding-right:12px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .jb137-bracket{
+  grid-template-columns:minmax(0,1fr) 115px!important;
+  column-gap:10px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .jb137-rounds{
+  grid-template-columns:
+    minmax(135px,1.2fr)
+    minmax(126px,1.08fr)
+    minmax(116px,1fr)
+    minmax(110px,.94fr)!important;
+  gap:9px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .jb137-round{
+  padding-right:5px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .jb137-team{
+  grid-template-columns:minmax(0,1fr) 31px!important;
+  padding-left:5px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .jb137-score{
+  width:29px!important;
+  min-width:29px!important;
+  max-width:29px!important;
+  height:23px!important;
+  min-height:23px!important;
+  font-size:10px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .jb137-team span{
+  font-size:7.5px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .jb137-champion{
+  max-width:115px!important;
+  min-height:128px!important;
+  padding:10px 7px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .jb137-champion:before{
+  font-size:25px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .jb137-champion strong{
+  font-size:9px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .knockout-controls{
+  display:flex!important;
+  gap:6px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .knockout-controls .field{
+  min-width:155px!important;
+  max-width:175px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata .v7483-third-button{
+  min-width:165px!important;
+  max-width:190px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata #generateKO,
+html[data-jb-view="ipad"] #jbPageMata #resetKO{
+  padding:0 10px!important;
+}
+
+/* iPad paisagem — aproveitar a tela inteira sem sobreposição */
+@media (orientation:landscape) and (min-width:900px) and (max-width:1400px){
+  html[data-jb-view="ipad"] #jbPageMata .jb137-bracket{
+    grid-template-columns:minmax(0,1fr) 122px!important;
+    column-gap:12px!important;
+  }
+  html[data-jb-view="ipad"] #jbPageMata .jb137-rounds{
+    grid-template-columns:
+      minmax(145px,1.22fr)
+      minmax(137px,1.10fr)
+      minmax(126px,1fr)
+      minmax(120px,.94fr)!important;
+    gap:10px!important;
+  }
+}
+
+/* Tablets menores: permite scroll LOCAL da chave, nunca espreme */
+@media(max-width:900px){
+  html[data-jb-view="ipad"] #jbPageMata #knockoutArea{
+    overflow-x:auto!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+  html[data-jb-view="ipad"] #jbPageMata .jb137-bracket{
+    min-width:820px!important;
+  }
+}
+
+/* TELAS PEQUENAS */
+@media(max-width:650px){
+  body{padding-left:0!important}
+  .jb-sidebar{display:none!important}
+  .jb-v9-topbar{padding:7px 9px!important}
+  .jb-v9-context small{display:none!important}
+  .jb-v9-cloud-pill,.jb-v9-account{display:none!important}
+}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
@@ -4084,7 +4876,7 @@ html[data-jb-view="pc"] .jb-ipad-menu-close{
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
       <button type="button" id="jbIpadMenuClose" class="jb-ipad-menu-close" aria-label="Fechar menu">×</button>
     </div>
-    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Sports UI V13.9.3</small></div>
+    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Clean UI V14.0</small></div>
     <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><span>Início</span></a>
@@ -4101,7 +4893,7 @@ html[data-jb-view="pc"] .jb-ipad-menu-close{
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB TORNEIOS V13.9.3</small>
+      <small>JB TORNEIOS V14.0</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -8409,6 +9201,33 @@ window.addEventListener('resize',function(){
 })();
 </script>
 
+
+
+<script id="jb-v140-icons">
+(function(){
+  'use strict';
+  var icons={
+    dashboard:'<svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10.5V20h13v-9.5"/><path d="M9.5 20v-6h5v6"/></svg>',
+    inscritos:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-4 2.5-6 6-6s6 2 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.5c3.5.2 5.5 2 5.5 5.5"/></svg>',
+    duplas:'<svg viewBox="0 0 24 24"><path d="m8 12 2 2a3 3 0 0 0 4 0l5-5"/><path d="m16 12-2 2a3 3 0 0 1-4 0L5 9"/><path d="M4 8 2.5 6.5 6 3l2 2"/><path d="M20 8 21.5 6.5 18 3l-2 2"/></svg>',
+    grupos:'<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
+    jogos:'<svg viewBox="0 0 24 24"><path d="M8 4h8l-1 7a3 3 0 0 1-6 0L8 4Z"/><path d="M6 6H4v2a4 4 0 0 0 4 4"/><path d="M18 6h2v2a4 4 0 0 1-4 4"/><path d="M12 14v4"/><path d="M8 21h8"/><path d="M9 18h6"/></svg>',
+    central:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 18v3"/><path d="M7 9h10"/><path d="M7 13h6"/></svg>',
+    mata:'<svg viewBox="0 0 24 24"><path d="M4 5h5v4h5"/><path d="M4 19h5v-4h5"/><path d="M14 7v10"/><path d="M14 12h6"/></svg>',
+    publico:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18"/><path d="M12 3a15 15 0 0 0 0 18"/></svg>',
+    nuvem:'<svg viewBox="0 0 24 24"><path d="M7 18h11a4 4 0 0 0 .5-8 6.5 6.5 0 0 0-12-2A5 5 0 0 0 7 18Z"/></svg>',
+    podio:'<svg viewBox="0 0 24 24"><path d="M4 20v-5h5v5"/><path d="M9 20V9h6v11"/><path d="M15 20v-8h5v8"/><circle cx="12" cy="5" r="2"/></svg>',
+    historico:'<svg viewBox="0 0 24 24"><path d="M4 4v6h6"/><path d="M5.5 9A8 8 0 1 1 5 15"/><path d="M12 7v5l3 2"/></svg>',
+    arquivos:'<svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v5h5"/><path d="M9 13h6"/><path d="M9 17h5"/></svg>'
+  };
+  document.querySelectorAll('.jb-side-nav a[data-page-link]').forEach(function(a){
+    var key=a.getAttribute('data-page-link');
+    var span=a.querySelector('.jb-side-icon');
+    if(span && icons[key]) span.innerHTML=icons[key];
+  });
+})();
+</script>
+
 </body>
 
 <style id="jb-v1054-clean-dark-rebuild">
@@ -10878,7 +11697,7 @@ body.auth-open,
 
 <style id="jb-v132-device-pro">
 /* ==========================================================
-   JB TORNEIOS V13.9.3 — PC / iPad PRO
+   JB TORNEIOS V14.0 — PC / iPad PRO
    Dois perfis reais de exibição:
    - PC: mais denso e panorâmico
    - iPad: touch-first, cards maiores, menos densidade
@@ -11149,7 +11968,7 @@ html[data-jb-view="ipad"] #jbPageArquivos .v7-safety-actions{
 
 <style id="jb-v133-ipad10">
 /* ==========================================================
-   JB TORNEIOS V13.9.3 — iPad 10ª geração (2022)
+   JB TORNEIOS V14.0 — iPad 10ª geração (2022)
    Tela 10,9" — viewport de referência:
    retrato ~820x1180 CSS px
    paisagem ~1180x820 CSS px
