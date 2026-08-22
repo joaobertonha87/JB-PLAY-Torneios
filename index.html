@@ -3104,7 +3104,7 @@ body.v74-public-only .jb-device-view{display:none!important}
     <div class="jb-side-brand jb-side-brand-logo">
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
     </div>
-    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Visual Total</small></div>
+    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Dark Edition</small></div>
     <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><span>Início</span></a>
@@ -3121,7 +3121,7 @@ body.v74-public-only .jb-device-view{display:none!important}
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB TORNEIOS V10.4.0</small>
+      <small>JB TORNEIOS V12.0</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -5316,7 +5316,73 @@ body.v74-public-only .jb-device-view{display:none!important}
       @media print{.no-print{display:none}}
     `;
     w.document.open();
-    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'</body></html>');
+    w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css+'</style></head><body>'+bodyHtml+'</body><style id="jb-v120-premium-image2">
+/* JB TORNEIOS V12.0 — PREMIUM IMAGE 2 */
+:root{--bg:#090c0e;--bg2:#0d1114;--surface:#12181c;--surface2:#171f24;--surface3:#1d272d;--border:#334047;--border2:#435159;--text:#f7f9fa;--muted:#aeb9bf;--lime:#c8ff00;--lime2:#aee600;--black:#07090a;--danger:#ff5d6c;--radius:18px;}
+html,body{background:var(--bg)!important;color:var(--text)!important;background-image:none!important;}
+body,.app,.jb-page,.hero,main,section{background-color:transparent!important;background-image:none!important;}
+.app{background:linear-gradient(180deg,var(--bg2),var(--bg))!important;min-height:100vh!important;}
+.jb-sidebar{background:#0b0f12!important;border-right:1px solid var(--border)!important;box-shadow:18px 0 45px rgba(0,0,0,.22)!important;}
+.jb-v9-topbar,.topbar{background:rgba(12,17,20,.97)!important;border-bottom:1px solid var(--border)!important;backdrop-filter:blur(16px)!important;}
+.jb-v9-context strong,.jb-v9-context small,.jb-v9-context span,.jb-v9-topbar *{color:var(--text)!important;-webkit-text-fill-color:var(--text)!important;}
+.jb-side-nav a{background:transparent!important;color:#dbe2e6!important;-webkit-text-fill-color:#dbe2e6!important;border:1px solid transparent!important;border-radius:13px!important;}
+.jb-side-nav a:hover{background:var(--surface2)!important;border-color:var(--border)!important;}
+.jb-side-nav a.active{background:var(--lime)!important;color:var(--black)!important;-webkit-text-fill-color:var(--black)!important;box-shadow:0 8px 24px rgba(200,255,0,.15)!important;}
+.jb-side-nav a.active *{color:var(--black)!important;-webkit-text-fill-color:var(--black)!important;}
+.jb-side-product span,.jb-side-product b,.jb-side-section,.jb-side-foot *{color:var(--text)!important;-webkit-text-fill-color:var(--text)!important;}
+.hero{background:linear-gradient(145deg,#11181c,#0c1114)!important;border:1px solid var(--border)!important;border-radius:22px!important;}
+.hero h1,.hero h1 span,.hero .eyebrow,.hero .subtitle,.metric *{color:var(--text)!important;-webkit-text-fill-color:var(--text)!important;}
+.hero .eyebrow,.jb-dash-kicker,.card-kicker{color:var(--lime)!important;-webkit-text-fill-color:var(--lime)!important;}
+.quick-nav{background:var(--surface)!important;border:1px solid var(--border)!important;}
+.quick-nav a{color:var(--text)!important;-webkit-text-fill-color:var(--text)!important;}
+/* all pages and common surfaces */
+.jb-page,.jb-page.active,[data-page],#jbPageDashboard,#jbPageInscritos,#jbPageDuplas,#jbPageGrupos,#jbPageJogos,#jbPageCentral,#jbPageMata,#jbPagePublico,#jbPageNuvem,#jbPagePodio,#jbPageHistorico,#jbPageArquivos{background:transparent!important;background-image:none!important;color:var(--text)!important;}
+.card,.panel,.box,.tile,.modal-content,.jb-dash-hero,.jb-metric-card,.jb-dash-progress-card,.jb-v7-assistant,.jb-access-card,.category-manager,.jb-page-shell,.jb-command-card,.jb-court-card,.jb-public-card,.jb-podium-card,[class*="card"],[class*="panel"],[class*="surface"],[class*="court"],[class*="podium"],[class*="public"]{background:var(--surface)!important;background-image:none!important;border-color:var(--border)!important;color:var(--text)!important;box-shadow:none!important;}
+/* neutralize legacy white/blue inline surfaces */
+.bg-white,.white,.surface-white,[style*="background:#fff" i],[style*="background: #fff" i],[style*="background:white" i],[style*="background: white" i],[style*="background:#ffffff" i],[style*="background: #ffffff" i],[style*="background:#071d38" i],[style*="background:#0c4c75" i],[style*="background:#0d659e" i],[style*="background:#087" i]{background:var(--surface)!important;background-image:none!important;color:var(--text)!important;}
+/* typography */
+h1,h2,h3,h4,h5,h6,strong,b,label,legend,th,td,p,small,span,div,li{border-color:var(--border);}
+h1,h2,h3,h4,h5,h6,.card h1,.card h2,.card h3,.card h4,.card h5,.card h6,[class*="card"] h1,[class*="card"] h2,[class*="card"] h3,[class*="card"] h4{color:var(--text)!important;-webkit-text-fill-color:var(--text)!important;}
+p,small,.rule-copy,.subtitle,[class*="caption"],[class*="muted"]{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important;}
+/* dashboard */
+.jb-dash-hero{border-radius:22px!important;}
+.jb-dash-hero-main h2,.jb-dash-status-row *,.jb-metric-card span,.jb-metric-card strong,.jb-metric-card small,.jb-dash-progress-copy *,.jb-v7-assistant-copy *,.jb-dashboard-section-head *,.jb-access-card b,.jb-access-card small,.jb-access-card .ico,.jb-card-arrow{color:var(--text)!important;-webkit-text-fill-color:var(--text)!important;}
+.jb-metric-card,.jb-access-card{transition:transform .18s ease,border-color .18s ease,background .18s ease!important;}
+.jb-metric-card:hover,.jb-access-card:hover{transform:translateY(-2px)!important;border-color:#59676f!important;background:var(--surface2)!important;}
+.jb-access-card em,.jb-dash-status,.jb-dash-category{background:var(--surface3)!important;color:var(--text)!important;-webkit-text-fill-color:var(--text)!important;border-color:var(--border2)!important;}
+.jb-dash-progress{background:#222b30!important;}.jb-dash-progress i{background:var(--lime)!important;}
+/* controls */
+input,select,textarea{background:#0d1215!important;color:var(--text)!important;-webkit-text-fill-color:var(--text)!important;border:1px solid var(--border2)!important;box-shadow:none!important;}
+input::placeholder,textarea::placeholder{color:#87949b!important;-webkit-text-fill-color:#87949b!important;opacity:1!important;}
+option{background:#11171b!important;color:#fff!important;}
+button,.btn,[role="button"],a.btn,.button,[class*="btn"],[class*="button"]{background:var(--surface3)!important;color:var(--text)!important;-webkit-text-fill-color:var(--text)!important;border-color:var(--border2)!important;box-shadow:none!important;}
+button *, .btn *,[role="button"] *{color:inherit!important;-webkit-text-fill-color:inherit!important;}
+button:hover,.btn:hover,[role="button"]:hover{filter:brightness(1.12)!important;}
+/* only action/active states are lime */
+.ok,.btn-primary,.btn-success,.jb-dash-primary,.jb-v9-live-action,.active:not(.jb-page),.is-active,.selected,[aria-current="page"],[class*="lime"],[class*="success"]{background:var(--lime)!important;color:var(--black)!important;-webkit-text-fill-color:var(--black)!important;border-color:var(--lime)!important;}
+.ok *,.btn-primary *,.btn-success *,.jb-dash-primary *,.jb-v9-live-action *,.active:not(.jb-page) *,.is-active *,.selected *,[aria-current="page"] *,[class*="lime"] *,[class*="success"] *{color:var(--black)!important;-webkit-text-fill-color:var(--black)!important;}
+/* do not turn whole active page lime */
+.jb-page.active{background:transparent!important;color:var(--text)!important;border-color:transparent!important;}
+.jb-page.active *{ -webkit-text-fill-color:initial; }
+/* restore readable descendants in dark cards */
+.card *,.panel *,.box *,.tile *,.jb-metric-card *,.jb-access-card *,.jb-command-card *,.jb-court-card *,.jb-public-card *,.jb-podium-card *{border-color:var(--border);}
+/* tables, rows, score cards */
+table,thead,tbody,tr,td,th,.table,.row,[class*="match"],[class*="game"],[class*="ranking"],[class*="stand"]{background-color:transparent!important;background-image:none!important;}
+thead,th{background:#182126!important;color:#fff!important;-webkit-text-fill-color:#fff!important;}
+tbody tr,.match-card,.game-card,[class*="match-card"],[class*="game-card"]{background:var(--surface)!important;color:#fff!important;border-color:var(--border)!important;}
+td{color:#e7ecef!important;-webkit-text-fill-color:#e7ecef!important;}
+/* portal, podium, central hard fixes */
+#jbPagePublico [class*="card"],#jbPagePublico [class*="box"],#jbPagePublico [class*="panel"],#jbPagePodio [class*="card"],#jbPagePodio [class*="box"],#jbPageCentral [class*="card"],#jbPageCentral [class*="box"],#jbPageJogos [class*="card"],#jbPageJogos [class*="box"]{background:var(--surface)!important;color:#fff!important;border-color:var(--border)!important;}
+#jbPagePublico h1,#jbPagePublico h2,#jbPagePublico h3,#jbPagePublico strong,#jbPagePodio h1,#jbPagePodio h2,#jbPagePodio h3,#jbPagePodio strong,#jbPageCentral h1,#jbPageCentral h2,#jbPageCentral h3,#jbPageCentral strong,#jbPageJogos h1,#jbPageJogos h2,#jbPageJogos h3,#jbPageJogos strong{color:#fff!important;-webkit-text-fill-color:#fff!important;}
+/* login */
+.jb-auth-screen,.jb-cloud-auth-screen{background:rgba(5,7,8,.94)!important;}.jb-auth-card,.jb-cloud-auth-card{background:#101619!important;border:1px solid var(--border)!important;color:#fff!important;box-shadow:0 30px 90px rgba(0,0,0,.45)!important;}.jb-auth-card *,.jb-cloud-auth-card *{border-color:var(--border)!important;}.jb-auth-title,.jb-auth-sub,.jb-auth-field label,.jb-auth-foot,.jb-cloud-auth-card h1,.jb-cloud-auth-card p,.jb-cloud-auth-card small,.jb-cloud-auth-card label{color:#fff!important;-webkit-text-fill-color:#fff!important;}.jb-auth-btn,.jb-cloud-auth-card .ok{background:var(--lime)!important;color:#07100a!important;-webkit-text-fill-color:#07100a!important;}
+/* focus and accessibility */
+:focus-visible{outline:2px solid var(--lime)!important;outline-offset:2px!important;}
+hr{border-color:var(--border)!important;}
+@media(max-width:900px){.jb-sidebar{background:#0b0f12!important}.app{background:var(--bg)!important}.jb-dash-hero,.card,[class*="card"]{border-radius:15px!important;}}
+</style>
+
+</html>');
     w.document.close();
     w.focus();
     setTimeout(function(){ w.print(); },350);

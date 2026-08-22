@@ -1,0 +1,19 @@
+JB TORNEIOS V12.0 — PREMIUM DARK EDITION
+Referência visual: Imagem 2 aprovada.
+
+ALTERAÇÕES VISUAIS
+- Fundo preto/grafite em toda a aplicação.
+- Cards e painéis em grafite, sem fundos azuis ou brancos.
+- Tipografia branca/cinza-clara de alto contraste.
+- Verde-limão reservado para ação principal, estado ativo e destaque.
+- Texto preto em superfícies verde-limão.
+- Texto branco em superfícies grafite/cinza.
+- Portal Público, Jogos/Placares, Pódio e Central de Comando recebem correções específicas.
+- Login e formulários no mesmo padrão premium escuro.
+
+FUNCIONALIDADE
+- JavaScript e lógica original foram preservados; a alteração é de camada visual/CSS.
+
+CACHE
+- sw.js V12 limpa caches antigos na ativação e prioriza conteúdo novo da rede.
+- Após publicar, faça uma atualização forçada uma vez.
