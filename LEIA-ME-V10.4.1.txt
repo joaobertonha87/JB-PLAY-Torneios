@@ -1,1 +1,0 @@
-JB Torneios V10.4.1 — correção visual global. Fundo azul removido da tela inicial e demais áreas; tema único cinza-chumbo escuro, cards grafite, textos claros de alto contraste e destaque lime preservado. Substitua todos os arquivos no deploy para evitar cache de versões antigas.
