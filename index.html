@@ -3104,7 +3104,7 @@ body.v74-public-only .jb-device-view{display:none!important}
     <div class="jb-side-brand jb-side-brand-logo">
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
     </div>
-    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Functional Edition</small></div>
+    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Unified Edition</small></div>
     <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><span>Início</span></a>
@@ -7727,6 +7727,224 @@ body.v74-public-only .app,
 body.v74-public-only #jbPagePublico{
   background:#080b0d!important;
   color:#fff!important;
+}
+</style>
+
+
+<style id="jb-v114-theme-unificado">
+:root{
+  --jb114-bg:#080b0d;
+  --jb114-card:#11171b;
+  --jb114-card2:#151d22;
+  --jb114-line:#2b363d;
+  --jb114-text:#f7f9fa;
+  --jb114-muted:#aab5bc;
+  --jb114-lime:#c7ff16;
+}
+
+/* TODOS OS MENUS E SUBMENUS */
+body:not(.v74-public-only),
+body:not(.v74-public-only) .app,
+body:not(.v74-public-only) .jb-page,
+body:not(.v74-public-only) [id^="jbPage"]{
+  background:#080b0d!important;
+  background-color:#080b0d!important;
+  background-image:none!important;
+  color:#f7f9fa!important;
+}
+
+/* Portal público dentro da área logada deve seguir exatamente o mesmo tema */
+body:not(.v74-public-only) #jbPagePublico,
+body:not(.v74-public-only) #jbPagePublico .v760-shell,
+body:not(.v74-public-only) #jbPagePublico .v760-hero,
+body:not(.v74-public-only) #jbPagePublico .v760-metric,
+body:not(.v74-public-only) #jbPagePublico .v760-filter,
+body:not(.v74-public-only) #jbPagePublico .v73-public-card,
+body:not(.v74-public-only) #jbPagePublico #v73PublicContent,
+body:not(.v74-public-only) #jbPagePublico #v73PublicContent > *{
+  background:#11171b!important;
+  background-color:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b363d!important;
+  box-shadow:none!important;
+}
+
+/* Remove qualquer branco/azul residual do portal */
+body:not(.v74-public-only) #jbPagePublico [style*="background:#fff"],
+body:not(.v74-public-only) #jbPagePublico [style*="background: #fff"],
+body:not(.v74-public-only) #jbPagePublico [style*="background:white"],
+body:not(.v74-public-only) #jbPagePublico [style*="background: white"],
+body:not(.v74-public-only) #jbPagePublico [style*="background:#ffffff"],
+body:not(.v74-public-only) #jbPagePublico [style*="background: #ffffff"],
+body:not(.v74-public-only) #jbPagePublico [style*="linear-gradient"],
+body:not(.v74-public-only) #jbPagePublico .bg-white,
+body:not(.v74-public-only) #jbPagePublico .white{
+  background:#11171b!important;
+  background-color:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+}
+
+/* Cabeçalhos de todas as abas */
+body:not(.v74-public-only) .jb-page-head{
+  background:transparent!important;
+  background-image:none!important;
+  border-color:#2b363d!important;
+}
+body:not(.v74-public-only) .jb-page-head h2,
+body:not(.v74-public-only) .jb-page-head h3{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body:not(.v74-public-only) .jb-page-head p{
+  color:#aab5bc!important;
+  -webkit-text-fill-color:#aab5bc!important;
+}
+
+/* Cards / painéis de todos os módulos */
+body:not(.v74-public-only) .card,
+body:not(.v74-public-only) .panel,
+body:not(.v74-public-only) .box,
+body:not(.v74-public-only) .group,
+body:not(.v74-public-only) .round,
+body:not(.v74-public-only) .category-manager,
+body:not(.v74-public-only) .v74-cloud-card,
+body:not(.v74-public-only) .v74-status,
+body:not(.v74-public-only) .v74-qr,
+body:not(.v74-public-only) .v10-panel,
+body:not(.v74-public-only) .v10-kpis>div,
+body:not(.v74-public-only) .v10-history-summary>div,
+body:not(.v74-public-only) .v10-history-card,
+body:not(.v74-public-only) .v10-court,
+body:not(.v74-public-only) .v10-queue-item,
+body:not(.v74-public-only) .v10-next-action,
+body:not(.v74-public-only) #groupsArea .group,
+body:not(.v74-public-only) .match,
+body:not(.v74-public-only) .match-card,
+body:not(.v74-public-only) #knockoutArea .jb-ko-round,
+body:not(.v74-public-only) #knockoutArea .jb-ko-match,
+body:not(.v74-public-only) #knockoutArea .jb-ko-team-row{
+  background:#11171b!important;
+  background-color:#11171b!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b363d!important;
+  box-shadow:none!important;
+}
+
+/* Inputs e selects */
+body:not(.v74-public-only) input,
+body:not(.v74-public-only) textarea,
+body:not(.v74-public-only) select,
+body:not(.v74-public-only) option{
+  background:#0c1114!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #344149!important;
+}
+
+/* Botões */
+body:not(.v74-public-only) button,
+body:not(.v74-public-only) .btn{
+  background:#182126!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #37444c!important;
+  box-shadow:none!important;
+}
+body:not(.v74-public-only) button.ok,
+body:not(.v74-public-only) button.primary,
+body:not(.v74-public-only) .btn.ok,
+body:not(.v74-public-only) .btn.primary,
+body:not(.v74-public-only) .accent,
+body:not(.v74-public-only) .lime,
+body:not(.v74-public-only) .v10-auto-btn,
+body:not(.v74-public-only) .jb-dash-primary{
+  background:#c7ff16!important;
+  color:#091014!important;
+  -webkit-text-fill-color:#091014!important;
+  border-color:#c7ff16!important;
+}
+
+/* Tipografia */
+body:not(.v74-public-only) h1,
+body:not(.v74-public-only) h2,
+body:not(.v74-public-only) h3,
+body:not(.v74-public-only) h4,
+body:not(.v74-public-only) h5,
+body:not(.v74-public-only) h6,
+body:not(.v74-public-only) strong,
+body:not(.v74-public-only) b,
+body:not(.v74-public-only) label{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body:not(.v74-public-only) p,
+body:not(.v74-public-only) small,
+body:not(.v74-public-only) .muted,
+body:not(.v74-public-only) .subtitle,
+body:not(.v74-public-only) .hint{
+  color:#aab5bc!important;
+  -webkit-text-fill-color:#aab5bc!important;
+}
+
+/* Tabelas */
+body:not(.v74-public-only) table,
+body:not(.v74-public-only) tbody,
+body:not(.v74-public-only) tr,
+body:not(.v74-public-only) td{
+  background:#101619!important;
+  color:#eef2f4!important;
+  border-color:#222d33!important;
+}
+body:not(.v74-public-only) thead,
+body:not(.v74-public-only) thead tr,
+body:not(.v74-public-only) th{
+  background:#151d22!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border-color:#2a353b!important;
+}
+
+/* Sidebar */
+body:not(.v74-public-only) .jb-side-nav a.active{
+  background:rgba(199,255,22,.12)!important;
+  color:#c7ff16!important;
+  border-color:rgba(199,255,22,.22)!important;
+  box-shadow:inset 3px 0 0 #c7ff16!important;
+}
+
+/* Portal público em modo público externo também escuro e igual */
+body.v74-public-only,
+body.v74-public-only .app,
+body.v74-public-only #jbPagePublico,
+body.v74-public-only .v760-shell,
+body.v74-public-only .v760-hero,
+body.v74-public-only .v760-metric,
+body.v74-public-only .v760-filter,
+body.v74-public-only .v73-public-card,
+body.v74-public-only #v73PublicContent,
+body.v74-public-only #v73PublicContent > *{
+  background:#080b0d!important;
+  background-color:#080b0d!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#2b363d!important;
+  box-shadow:none!important;
+}
+body.v74-public-only h1,
+body.v74-public-only h2,
+body.v74-public-only h3,
+body.v74-public-only strong,
+body.v74-public-only b{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.v74-public-only p,
+body.v74-public-only small{
+  color:#aab5bc!important;
+  -webkit-text-fill-color:#aab5bc!important;
 }
 </style>
 

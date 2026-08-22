@@ -1,0 +1,11 @@
+JB TORNEIOS V11.4 — TEMA UNIFICADO
+
+Correção visual:
+- Portal Público agora usa o mesmo tema do menu Início;
+- todos os menus e submenus usam a mesma paleta;
+- fundo preto/grafite;
+- cards escuros;
+- textos brancos/cinza-claro;
+- verde-limão só em destaques;
+- portal interno e portal público externo padronizados;
+- nenhuma alteração funcional na lógica da V11.3.
