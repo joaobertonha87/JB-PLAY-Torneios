@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Play V10.1.3 · Mata-mata Completo</title>
+  <title>JB Torneios V10.2.0 · PC / iPad</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -777,7 +777,7 @@ tr.qual td{background:rgba(201,255,40,.045)!important}
 
 
 <style id="jb-torneios-v43-exact-brand">
-/* ===== V4.3 — IDENTIDADE 100% JB PLAY ===== */
+/* ===== V4.3 — IDENTIDADE 100% JB TORNEIOS ===== */
 .jb-side-brand-logo{
   min-height:158px!important;
   display:grid!important;
@@ -852,7 +852,7 @@ tr.qual td{background:rgba(201,255,40,.045)!important}
   filter:drop-shadow(0 0 18px rgba(201,255,40,.18))!important;
 }
 
-/* Match JB Play dashboard geometry */
+/* Match JB Torneios dashboard geometry */
 .jb-sidebar{
   width:235px!important;
   padding:14px 12px!important;
@@ -2949,6 +2949,176 @@ body:not(.v74-public-only) .jb-metric-card strong b {
 }
 </style>
 
+
+<style id="jb-v1020-device-view">
+.jb-device-view{
+  display:flex!important;align-items:center!important;gap:5px!important;
+  padding:4px!important;border:1px solid rgba(255,255,255,.08)!important;
+  background:#0b263b!important;border-radius:11px!important
+}
+.jb-device-view>span{
+  color:#7890a2!important;font-size:6px!important;font-weight:1000!important;
+  letter-spacing:.10em!important;padding:0 5px!important
+}
+.jb-device-view button{
+  min-height:32px!important;height:32px!important;padding:0 9px!important;
+  border-radius:8px!important;border:0!important;background:transparent!important;
+  color:#95aaba!important;font-size:8px!important;font-weight:900!important;
+  display:flex!important;align-items:center!important;gap:4px!important
+}
+.jb-device-view button.active{
+  background:#c9ff28!important;color:#102b3e!important;
+  box-shadow:0 5px 15px rgba(201,255,40,.13)!important
+}
+
+/* PC: mantém visão densa, boa para monitor */
+html[data-jb-view="pc"] body{
+  --jb-view-scale:1;
+}
+html[data-jb-view="pc"] .jb-page{
+  font-size:100%!important;
+}
+html[data-jb-view="pc"] .app{
+  max-width:1540px!important;
+}
+
+/* iPad: não é apenas zoom; reestrutura medidas e controles */
+html[data-jb-view="ipad"] body{
+  padding-left:96px!important;
+}
+html[data-jb-view="ipad"] .jb-sidebar{
+  width:96px!important;
+  padding:10px 7px!important;
+}
+html[data-jb-view="ipad"] .jb-side-brand{
+  height:64px!important;min-height:64px!important;flex-basis:64px!important;
+}
+html[data-jb-view="ipad"] .jb-side-brand img{max-height:52px!important}
+html[data-jb-view="ipad"] .jb-side-nav a{
+  min-height:48px!important;max-height:none!important;
+  font-size:10px!important;border-radius:11px!important;
+  justify-content:center!important
+}
+html[data-jb-view="ipad"] .jb-side-icon{
+  width:30px!important;height:30px!important;min-width:30px!important;font-size:16px!important
+}
+html[data-jb-view="ipad"] .jb-side-nav a span:last-child{
+  display:none!important;
+}
+html[data-jb-view="ipad"] .jb-v9-side-product,
+html[data-jb-view="ipad"] .jb-side-section,
+html[data-jb-view="ipad"] .jb-side-foot{
+  display:none!important;
+}
+html[data-jb-view="ipad"] .app{
+  max-width:none!important;
+  width:100%!important;
+  padding:10px 12px 28px!important;
+}
+html[data-jb-view="ipad"] .jb-page{
+  padding-left:8px!important;padding-right:8px!important;
+}
+html[data-jb-view="ipad"] .jb-page-head h2{
+  font-size:25px!important;
+}
+html[data-jb-view="ipad"] .jb-page-head p{
+  font-size:12px!important;
+}
+html[data-jb-view="ipad"] .card,
+html[data-jb-view="ipad"] .group,
+html[data-jb-view="ipad"] .round,
+html[data-jb-view="ipad"] .v10-panel{
+  border-radius:17px!important;
+}
+html[data-jb-view="ipad"] button,
+html[data-jb-view="ipad"] .secondary{
+  min-height:47px!important;
+  font-size:13px!important;
+}
+html[data-jb-view="ipad"] input,
+html[data-jb-view="ipad"] select,
+html[data-jb-view="ipad"] textarea{
+  font-size:16px!important;
+  min-height:48px!important;
+}
+html[data-jb-view="ipad"] textarea{
+  line-height:1.45!important;
+}
+html[data-jb-view="ipad"] .stats,
+html[data-jb-view="ipad"] .jb-v7-games-summary,
+html[data-jb-view="ipad"] .v10-kpis{
+  gap:10px!important;
+}
+html[data-jb-view="ipad"] .metric,
+html[data-jb-view="ipad"] .jb-v7-games-summary>div,
+html[data-jb-view="ipad"] .v10-kpis>div{
+  min-height:82px!important;padding:14px!important
+}
+html[data-jb-view="ipad"] .metric strong,
+html[data-jb-view="ipad"] .jb-v7-games-summary strong,
+html[data-jb-view="ipad"] .v10-kpis b{
+  font-size:28px!important
+}
+html[data-jb-view="ipad"] .match{
+  grid-template-columns:minmax(0,1fr) 64px 18px 64px minmax(0,1fr)!important;
+  font-size:13px!important;gap:8px!important;padding:13px 0!important
+}
+html[data-jb-view="ipad"] .score{
+  min-height:48px!important;font-size:19px!important
+}
+html[data-jb-view="ipad"] table{
+  font-size:13px!important
+}
+html[data-jb-view="ipad"] th,
+html[data-jb-view="ipad"] td{
+  padding:12px 10px!important;font-size:12px!important
+}
+html[data-jb-view="ipad"] .jb-ko-round{
+  width:380px!important;min-width:380px!important
+}
+html[data-jb-view="ipad"] .jb-ko-team-copy strong{
+  font-size:14px!important
+}
+html[data-jb-view="ipad"] .jb-ko-score{
+  width:66px!important;height:50px!important;font-size:20px!important
+}
+html[data-jb-view="ipad"] .v10-courts{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important
+}
+html[data-jb-view="ipad"] .v10-court{
+  min-height:115px!important;padding:14px!important
+}
+html[data-jb-view="ipad"] .v10-court b{
+  font-size:13px!important
+}
+html[data-jb-view="ipad"] .v10-queue-item{
+  min-height:66px!important;padding:12px!important
+}
+html[data-jb-view="ipad"] .v10-queue-item b{
+  font-size:12px!important
+}
+
+/* No iPad, topo mais simples para caber os controles */
+html[data-jb-view="ipad"] .jb-v9-topbar{
+  min-height:62px!important;padding:8px 10px!important
+}
+html[data-jb-view="ipad"] .jb-v9-context small{
+  display:none!important
+}
+html[data-jb-view="ipad"] .jb-device-view>span{
+  display:none!important
+}
+
+/* Telas estreitas: seletor continua acessível */
+@media(max-width:850px){
+  .jb-device-view>span{display:none!important}
+  .jb-device-view button{padding:0 7px!important}
+}
+
+/* O Portal Público não herda a escolha administrativa */
+body.v74-public-only .jb-device-view{display:none!important}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
@@ -2994,7 +3164,7 @@ body:not(.v74-public-only) .jb-metric-card strong b {
     <div class="jb-side-brand jb-side-brand-logo">
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
     </div>
-    <div class="jb-v9-side-product"><span>JB PLAY</span><b>TOURNAMENT OS</b><small>Commercial Edition</small></div>
+    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Commercial Edition</small></div>
     <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><span>Início</span></a>
@@ -3012,7 +3182,7 @@ body:not(.v74-public-only) .jb-metric-card strong b {
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB PLAY V10.0.5</small>
+      <small>JB TORNEIOS V10.0.5</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -3023,7 +3193,7 @@ body:not(.v74-public-only) .jb-metric-card strong b {
       <div class="pwaLogo">
         <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
       </div>
-      <h2>JB Play</h2>
+      <h2>JB Torneios</h2>
       <p>Organizador inteligente de torneios internos</p>
     </div>
   </div>
@@ -3035,12 +3205,18 @@ body:not(.v74-public-only) .jb-metric-card strong b {
           <img src="jb-logo-lime.png" alt="">
         </button>
         <div class="jb-v9-context">
-          <small>JB PLAY · TOURNAMENT OS</small>
+          <small>JB TORNEIOS · TOURNAMENT OS</small>
           <strong id="jbV9TopTournament">Torneio atual</strong>
           <span id="jbV9TopPage">Painel de controle</span>
         </div>
       </div>
       <div class="jb-v9-top-actions">
+<div class="jb-device-view" id="jbDeviceView">
+  <span>VISUALIZAÇÃO</span>
+  <button type="button" data-jb-view="pc" onclick="jbSetViewMode('pc')" title="Visualização para PC">🖥️ <b>PC</b></button>
+  <button type="button" data-jb-view="ipad" onclick="jbSetViewMode('ipad')" title="Visualização ampliada para iPad">📱 <b>iPad</b></button>
+</div>
+
         <button type="button" class="jb-v9-live-action" data-open-page="evento"><i></i><span>Modo Evento</span></button>
         <div class="jb-v9-cloud-pill"><i></i><div><small>NUVEM</small><b id="jbV9CloudState">Sincronizado</b></div></div>
         <button type="button" class="jb-v9-account" data-open-page="nuvem" aria-label="Conta JB">
@@ -4439,7 +4615,7 @@ body:not(.v74-public-only) .jb-metric-card strong b {
     // Quantidade matemática esperada de jogos reais na primeira rodada.
     const expectedRealMatches=(qualifiers.length-byeCount)/2;
     if(realPairs.length!==expectedRealMatches){
-      console.warn('JB Play: ajuste de pareamento',realPairs.length,expectedRealMatches);
+      console.warn('JB Torneios: ajuste de pareamento',realPairs.length,expectedRealMatches);
     }
 
     const byeMatches=byeSeeds.map(q=>({
@@ -4512,7 +4688,7 @@ body:not(.v74-public-only) .jb-metric-card strong b {
     const actualByeCount=pairings.filter(m=>(!!m.aId)!=(!!m.bId)).length;
     const emptyMatches=pairings.filter(m=>!m.aId&&!m.bId).length;
     if(actualByeCount!==byeCount || emptyMatches){
-      console.error('JB Play: inconsistência de BYE', {byeCount,actualByeCount,emptyMatches,size,qualifiers:qualifiers.length});
+      console.error('JB Torneios: inconsistência de BYE', {byeCount,actualByeCount,emptyMatches,size,qualifiers:qualifiers.length});
     }
 
     return {
@@ -4568,7 +4744,7 @@ body:not(.v74-public-only) .jb-metric-card strong b {
       actualByes!==expectedByes ||
       emptyMatches>0
     ){
-      console.error('JB Play — chave inválida', {
+      console.error('JB Torneios — chave inválida', {
         qualifiers:qualifiers.length,
         firstIds:firstIds.length,
         uniqueIds:uniqueIds.length,
@@ -6442,7 +6618,7 @@ async function enterPublic(code){
     var b=document.createElement('div');
     b.className='v74-public-banner';
     b.id='v74PublicBanner';
-    b.innerHTML='<div><b>JB PLAY · TORNEIO AO VIVO</b><small>Portal público · acompanhamento em tempo real</small></div><span id="v74PublicSync" class="v74-public-sync wait">CONECTANDO...</span>';
+    b.innerHTML='<div><b>JB TORNEIOS · TORNEIO AO VIVO</b><small>Portal público · acompanhamento em tempo real</small></div><span id="v74PublicSync" class="v74-public-sync wait">CONECTANDO...</span>';
     host.insertBefore(b,host.firstChild);
   }
  async function refresh(){var n=$id('v74PublicSync');try{var row=await fetchPublic(code);applyCloudSnapshot(row,true);if(n){n.className='v74-public-sync ok';n.textContent='ATUALIZADO '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}}catch(e){if(n){n.className='v74-public-sync err';n.textContent='SEM CONEXÃO'}var h=$id('v73PublicContent');if(h&&!h.innerHTML.trim())h.innerHTML='<div class="v73-public-card"><h3>Não foi possível abrir o torneio</h3><p>'+esc(e.message||String(e))+'</p><p>Confira a configuração de nuvem neste navegador ou tente novamente.</p></div>'}}
@@ -7016,9 +7192,9 @@ var labels={dashboard:'Painel',central:'Central de Comando',historico:'Históric
 function syncNative(){
  try{
   var active=q('.jb-page.active'), page=active&&active.getAttribute('data-page');
-  if(id('jbV9TopPage'))id('jbV9TopPage').textContent=labels[page]||'JB Play';
-  var tournament=(id('title')&&id('title').value)||'JB Play';
-  document.title=tournament+' · '+(labels[page]||'JB Play');
+  if(id('jbV9TopPage'))id('jbV9TopPage').textContent=labels[page]||'JB Torneios';
+  var tournament=(id('title')&&id('title').value)||'JB Torneios';
+  document.title=tournament+' · '+(labels[page]||'JB Torneios');
   qa('.jb-page').forEach(function(pg){
    var b=pg.querySelector('.jb-back');
    if(b)b.style.visibility=pg.getAttribute('data-page')==='dashboard'?'hidden':'visible';
@@ -7166,5 +7342,52 @@ if(isPublic()){
 })();
 </script>
 
-<script id="jb-v1008-cloud-health">(function(){'use strict';function p(v,d){try{return JSON.parse(v)}catch(e){return d}}function e(i){return document.getElementById(i)}function h(){var s=p(localStorage.getItem('jb_v780_session')||'',null),c=p(localStorage.getItem('jb_v74_cloud_config')||'',{});if(!c.url||!c.key){c.url='https://bhmshotrdnubgpvsduzh.supabase.co';c.key='sb_publishable_lu4JYnYCDCVInY8nc-FgNQ_f653Z0bh';c.auto=true;try{localStorage.setItem('jb_v74_cloud_config',JSON.stringify(c))}catch(x){}}var top=e('jbV9CloudState');if(!navigator.onLine){if(top)top.textContent='Offline';return}if(s&&s.access_token&&s.user&&s.user.id){fetch(String(c.url).replace(/\/+$/,'')+'/auth/v1/user',{headers:{apikey:c.key,Authorization:'Bearer '+s.access_token}}).then(function(r){if(r.ok){if(top)top.textContent='Sincronizado';var cloud=e('v74CloudStatus');if(cloud){cloud.className='v74-status online';cloud.innerHTML='<b>CONTA JB CONECTADA</b><small>PC, iPad e iPhone sincronizam pela mesma Conta JB.</small>'}}}).catch(function(){})}}window.addEventListener('load',function(){setTimeout(h,400)});window.addEventListener('online',function(){setTimeout(h,300)});document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(h,250)});setInterval(h,10000)})();</script></body>
+<script id="jb-v1008-cloud-health">(function(){'use strict';function p(v,d){try{return JSON.parse(v)}catch(e){return d}}function e(i){return document.getElementById(i)}function h(){var s=p(localStorage.getItem('jb_v780_session')||'',null),c=p(localStorage.getItem('jb_v74_cloud_config')||'',{});if(!c.url||!c.key){c.url='https://bhmshotrdnubgpvsduzh.supabase.co';c.key='sb_publishable_lu4JYnYCDCVInY8nc-FgNQ_f653Z0bh';c.auto=true;try{localStorage.setItem('jb_v74_cloud_config',JSON.stringify(c))}catch(x){}}var top=e('jbV9CloudState');if(!navigator.onLine){if(top)top.textContent='Offline';return}if(s&&s.access_token&&s.user&&s.user.id){fetch(String(c.url).replace(/\/+$/,'')+'/auth/v1/user',{headers:{apikey:c.key,Authorization:'Bearer '+s.access_token}}).then(function(r){if(r.ok){if(top)top.textContent='Sincronizado';var cloud=e('v74CloudStatus');if(cloud){cloud.className='v74-status online';cloud.innerHTML='<b>CONTA JB CONECTADA</b><small>PC, iPad e iPhone sincronizam pela mesma Conta JB.</small>'}}}).catch(function(){})}}window.addEventListener('load',function(){setTimeout(h,400)});window.addEventListener('online',function(){setTimeout(h,300)});document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(h,250)});setInterval(h,10000)})();</script>
+<script id="jb-v1020-device-view-runtime">
+(function(){
+'use strict';
+var KEY='jb_torneios_view_mode_v1020';
+
+function valid(v){return v==='pc'||v==='ipad'}
+function detect(){
+  var w=Math.min(window.screen&&screen.width||innerWidth,window.screen&&screen.height||innerHeight);
+  var touch=('ontouchstart' in window)||(navigator.maxTouchPoints>1);
+  // iPad / tablet-like devices; explicit user choice always wins later.
+  return touch && w>=700 ? 'ipad' : 'pc';
+}
+function apply(v,saveIt){
+  if(!valid(v))v='pc';
+  document.documentElement.setAttribute('data-jb-view',v);
+  document.querySelectorAll('[data-jb-view]').forEach(function(b){
+    b.classList.toggle('active',b.getAttribute('data-jb-view')===v);
+  });
+  if(saveIt!==false){
+    try{localStorage.setItem(KEY,v)}catch(e){}
+  }
+  try{
+    window.dispatchEvent(new CustomEvent('jb:view-mode-change',{detail:{mode:v}}));
+  }catch(e){}
+  // Recalcula módulos que dependem do espaço disponível.
+  setTimeout(function(){
+    if(window.v10Refresh)window.v10Refresh();
+    if(window.renderKnockout)window.renderKnockout();
+    if(window.jbSyncDashboard)window.jbSyncDashboard();
+  },50);
+}
+window.jbSetViewMode=function(v){apply(v,true)};
+
+var stored=null;
+try{stored=localStorage.getItem(KEY)}catch(e){}
+apply(valid(stored)?stored:detect(),false);
+
+window.addEventListener('resize',function(){
+  // Não troca automaticamente após o usuário escolher;
+  // apenas reaplica para garantir atualização visual.
+  var current=document.documentElement.getAttribute('data-jb-view')||'pc';
+  apply(current,false);
+});
+})();
+</script>
+
+</body>
 </html>
