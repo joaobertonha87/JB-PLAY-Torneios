@@ -1,0 +1,13 @@
+JB TORNEIOS V12.5 — PLACAR DARK FIX
+
+Correção específica da janela "Lançar placar":
+- fundo do modal grafite/preto;
+- nomes das duplas em branco;
+- títulos em branco;
+- textos auxiliares em cinza-claro;
+- cards dos sets escuros;
+- inputs escuros com números brancos;
+- botão Confirmar resultado verde-limão com texto preto;
+- Cancelar e Limpar placar grafite com texto branco;
+- placar exibido nos cards também escuro e legível;
+- scripts preservados e validados.
