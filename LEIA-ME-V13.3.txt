@@ -1,0 +1,16 @@
+JB TORNEIOS V13.3 — iPad 10ª geração (2022)
+
+Otimizado para a tela de 10,9" do iPad 10:
+- referência portrait ~820x1180 CSS px;
+- referência landscape ~1180x820 CSS px;
+- topbar compactada para caber sem sobreposição;
+- sidebar recolhida no modo iPad;
+- botões com área de toque confortável;
+- dashboard adaptado para portrait e landscape;
+- grupos em uma coluna;
+- tabelas com rolagem horizontal controlada;
+- modal de placar redimensionado para iPad 10;
+- central de comando em 2 colunas no retrato e 3 no paisagem;
+- mata-mata vertical no retrato e horizontal no paisagem;
+- modo evento, portal, pódio e Salvar/PDF ajustados;
+- scripts preservados e validados.

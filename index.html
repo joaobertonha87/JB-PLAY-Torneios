@@ -3104,7 +3104,7 @@ body.v74-public-only .jb-device-view{display:none!important}
     <div class="jb-side-brand jb-side-brand-logo">
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
     </div>
-    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Sports UI V13.1</small></div>
+    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Sports UI V13.3</small></div>
     <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><span>Início</span></a>
@@ -3121,7 +3121,7 @@ body.v74-public-only .jb-device-view{display:none!important}
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB TORNEIOS V13.1</small>
+      <small>JB TORNEIOS V13.3</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -9660,6 +9660,648 @@ body.auth-open,
 .login-card .success,.auth-card .success{
   color:var(--v131-lime)!important;
   -webkit-text-fill-color:var(--v131-lime)!important;
+}
+</style>
+
+
+<style id="jb-v132-device-pro">
+/* ==========================================================
+   JB TORNEIOS V13.3 — PC / iPad PRO
+   Dois perfis reais de exibição:
+   - PC: mais denso e panorâmico
+   - iPad: touch-first, cards maiores, menos densidade
+   ========================================================== */
+
+/* ---------- PC MODE ---------- */
+html[data-jb-view="pc"] body:not(.v74-public-only) .app{
+  padding-left:280px!important;
+  padding-right:24px!important;
+  padding-top:94px!important;
+}
+html[data-jb-view="pc"] body:not(.v74-public-only) .jb-sidebar{
+  width:248px!important;
+  transform:none!important;
+}
+html[data-jb-view="pc"] body:not(.v74-public-only) .jb-v9-topbar{
+  left:248px!important;
+}
+html[data-jb-view="pc"] #jbPageDashboard .jb-access-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:12px!important;
+}
+html[data-jb-view="pc"] #jbPageDashboard .jb-dash-metrics{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:12px!important;
+}
+html[data-jb-view="pc"] #jbPageCentral .v10-kpis{
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+}
+html[data-jb-view="pc"] #jbPageCentral .v10-courts{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+html[data-jb-view="pc"] #jbPageMata #knockoutArea{
+  overflow-x:auto!important;
+  display:flex!important;
+  gap:14px!important;
+}
+html[data-jb-view="pc"] #jbPageGroups #groupsArea{
+  gap:14px!important;
+}
+html[data-jb-view="pc"] #jbPageJogos .match,
+html[data-jb-view="pc"] #jbPageJogos .match-card{
+  padding:12px 14px!important;
+}
+html[data-jb-view="pc"] button,
+html[data-jb-view="pc"] input,
+html[data-jb-view="pc"] select,
+html[data-jb-view="pc"] textarea{
+  min-height:40px!important;
+}
+
+/* ---------- iPAD MODE ---------- */
+html[data-jb-view="ipad"] body:not(.v74-public-only) .app{
+  padding-left:20px!important;
+  padding-right:20px!important;
+  padding-top:88px!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-sidebar{
+  transform:translateX(-100%)!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-v9-topbar{
+  left:0!important;
+  padding-left:16px!important;
+  padding-right:16px!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-v9-context strong{
+  font-size:14px!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-v9-top-actions{
+  gap:8px!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) button,
+html[data-jb-view="ipad"] body:not(.v74-public-only) .btn,
+html[data-jb-view="ipad"] body:not(.v74-public-only) input,
+html[data-jb-view="ipad"] body:not(.v74-public-only) select,
+html[data-jb-view="ipad"] body:not(.v74-public-only) textarea{
+  min-height:48px!important;
+  font-size:16px!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-page{
+  max-width:none!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-page-head{
+  gap:14px!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-page-head h2{
+  font-size:26px!important;
+}
+html[data-jb-view="ipad"] #jbPageDashboard .jb-dash-hero{
+  padding:24px!important;
+}
+html[data-jb-view="ipad"] #jbPageDashboard .jb-dash-hero h2{
+  font-size:38px!important;
+}
+html[data-jb-view="ipad"] #jbPageDashboard .jb-dash-metrics{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
+}
+html[data-jb-view="ipad"] #jbPageDashboard .jb-access-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
+}
+html[data-jb-view="ipad"] #jbPageDashboard .jb-access-card{
+  min-height:156px!important;
+  padding:20px!important;
+}
+html[data-jb-view="ipad"] #jbPageInscritos textarea{
+  min-height:260px!important;
+}
+html[data-jb-view="ipad"] #jbPageDuplas #teamsArea .group{
+  padding:16px!important;
+}
+html[data-jb-view="ipad"] #jbPageDuplas #teamsArea .team{
+  min-height:54px!important;
+  font-size:16px!important;
+}
+
+/* Grupos no iPad: uma coluna, tabela confortável */
+html[data-jb-view="ipad"] #jbPageGroups #groupsArea,
+html[data-jb-view="ipad"] #jbPageGroups #groupsArea.group-wrap{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:18px!important;
+}
+html[data-jb-view="ipad"] #jbPageGroups #groupsArea .group{
+  padding:18px!important;
+}
+html[data-jb-view="ipad"] #jbPageGroups table{
+  font-size:14px!important;
+}
+html[data-jb-view="ipad"] #jbPageGroups th,
+html[data-jb-view="ipad"] #jbPageGroups td{
+  padding:12px 10px!important;
+}
+
+/* Jogos/Placares no iPad: cards maiores */
+html[data-jb-view="ipad"] #jbPageJogos .jb-games-group{
+  margin-bottom:18px!important;
+}
+html[data-jb-view="ipad"] #jbPageJogos .match,
+html[data-jb-view="ipad"] #jbPageJogos .match-card{
+  padding:16px!important;
+  min-height:86px!important;
+  border-radius:14px!important;
+}
+html[data-jb-view="ipad"] #jbPageJogos .match strong,
+html[data-jb-view="ipad"] #jbPageJogos .match-card strong{
+  font-size:16px!important;
+}
+
+/* Modal de placar touch-first */
+html[data-jb-view="ipad"] #jbScoreModal .jb-score-dialog{
+  width:min(92vw,820px)!important;
+  max-height:88vh!important;
+  padding:22px!important;
+}
+html[data-jb-view="ipad"] #jbScoreTeams .jb-score-confirm{
+  grid-template-columns:1fr!important;
+  gap:12px!important;
+}
+html[data-jb-view="ipad"] #jbScoreFields .jb-score-grid{
+  grid-template-columns:1fr 90px 32px 90px!important;
+  gap:10px!important;
+}
+html[data-jb-view="ipad"] #jbScoreFields input{
+  min-height:52px!important;
+  font-size:20px!important;
+  text-align:center!important;
+}
+html[data-jb-view="ipad"] #jbScoreModal .jb-score-actions{
+  position:sticky!important;
+  bottom:0!important;
+  background:#0d1114!important;
+  padding-top:12px!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr 1.2fr!important;
+  gap:10px!important;
+}
+
+/* Central de comando iPad: 2 colunas de quadras */
+html[data-jb-view="ipad"] #jbPageCentral .v10-kpis{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+html[data-jb-view="ipad"] #jbPageCentral .v10-command-grid{
+  grid-template-columns:1fr!important;
+}
+html[data-jb-view="ipad"] #jbPageCentral .v10-courts{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
+}
+html[data-jb-view="ipad"] #jbPageCentral .v10-court{
+  min-height:150px!important;
+  padding:16px!important;
+}
+html[data-jb-view="ipad"] #jbPageCentral .v10-command-actions{
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:10px!important;
+}
+
+/* Mata-mata iPad: uma rodada abaixo da outra */
+html[data-jb-view="ipad"] #jbPageMata #knockoutArea{
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:visible!important;
+  gap:16px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata #knockoutArea .jb-ko-round{
+  min-width:0!important;
+  width:100%!important;
+}
+html[data-jb-view="ipad"] #jbPageMata #knockoutArea .jb-ko-match{
+  padding:14px!important;
+}
+
+/* Portal público iPad */
+html[data-jb-view="ipad"] #jbPagePublico #v73PublicContent{
+  display:block!important;
+}
+html[data-jb-view="ipad"] #jbPagePublico .v73-public-card{
+  margin-bottom:14px!important;
+  padding:16px!important;
+}
+
+/* Pódio iPad */
+html[data-jb-view="ipad"] #jbPagePodio .card,
+html[data-jb-view="ipad"] #jbPagePodio [class*="podium"]{
+  min-height:140px!important;
+}
+
+/* Salvar/PDF iPad */
+html[data-jb-view="ipad"] #jbPageArquivos .save-panel,
+html[data-jb-view="ipad"] #jbPageArquivos .card{
+  padding:18px!important;
+}
+html[data-jb-view="ipad"] #jbPageArquivos .v71-safety-actions,
+html[data-jb-view="ipad"] #jbPageArquivos .v7-safety-actions{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:10px!important;
+}
+
+/* Segurança para landscape iPad */
+@media (min-width:900px) and (max-width:1366px){
+  html[data-jb-view="ipad"] #jbPageDashboard .jb-access-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  html[data-jb-view="ipad"] #jbPageCentral .v10-courts{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+/* Segurança para portrait iPad */
+@media (max-width:900px){
+  html[data-jb-view="ipad"] #jbPageDashboard .jb-dash-metrics,
+  html[data-jb-view="ipad"] #jbPageDashboard .jb-access-grid,
+  html[data-jb-view="ipad"] #jbPageCentral .v10-kpis,
+  html[data-jb-view="ipad"] #jbPageCentral .v10-courts{
+    grid-template-columns:1fr!important;
+  }
+  html[data-jb-view="ipad"] #jbScoreModal .jb-score-actions{
+    grid-template-columns:1fr!important;
+  }
+}
+</style>
+
+
+<style id="jb-v133-ipad10">
+/* ==========================================================
+   JB TORNEIOS V13.3 — iPad 10ª geração (2022)
+   Tela 10,9" — viewport de referência:
+   retrato ~820x1180 CSS px
+   paisagem ~1180x820 CSS px
+   ========================================================== */
+
+/* Base exclusiva para o modo iPad */
+html[data-jb-view="ipad"] body:not(.v74-public-only){
+  min-width:0!important;
+  overflow-x:hidden!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .app{
+  width:100%!important;
+  max-width:100%!important;
+  padding:84px 16px 30px!important;
+  margin:0!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-sidebar{
+  transform:translateX(-100%)!important;
+  width:0!important;
+  overflow:hidden!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-v9-topbar{
+  left:0!important;
+  right:0!important;
+  height:68px!important;
+  min-height:68px!important;
+  padding:0 14px!important;
+  gap:10px!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-v9-appmark{
+  width:40px!important;
+  height:40px!important;
+  flex:0 0 40px!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-v9-context{
+  min-width:0!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-v9-context strong{
+  max-width:230px!important;
+  overflow:hidden!important;
+  white-space:nowrap!important;
+  text-overflow:ellipsis!important;
+  font-size:13px!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-v9-context small,
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-v9-context span{
+  font-size:10px!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-v9-top-actions{
+  gap:6px!important;
+  flex-wrap:nowrap!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-v9-cloud-pill{
+  display:none!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-v9-account{
+  min-width:44px!important;
+  padding:0 10px!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-device-view{
+  padding:3px!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-device-view button{
+  min-width:72px!important;
+  min-height:42px!important;
+  padding:0 10px!important;
+  font-size:13px!important;
+}
+
+/* Página */
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-page{
+  width:100%!important;
+  max-width:100%!important;
+  padding:0!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-page-head{
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  margin-bottom:16px!important;
+  padding-bottom:14px!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-page-head h2{
+  font-size:24px!important;
+  line-height:1.08!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-page-head p{
+  font-size:11px!important;
+  line-height:1.35!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) .jb-back{
+  min-height:42px!important;
+  padding:0 12px!important;
+  flex:0 0 auto!important;
+}
+
+/* Touch targets */
+html[data-jb-view="ipad"] body:not(.v74-public-only) button,
+html[data-jb-view="ipad"] body:not(.v74-public-only) .btn,
+html[data-jb-view="ipad"] body:not(.v74-public-only) input,
+html[data-jb-view="ipad"] body:not(.v74-public-only) select{
+  min-height:46px!important;
+}
+html[data-jb-view="ipad"] body:not(.v74-public-only) textarea{
+  font-size:16px!important;
+}
+
+/* Dashboard */
+html[data-jb-view="ipad"] #jbPageDashboard .jb-dash-hero{
+  min-height:180px!important;
+  padding:20px!important;
+  border-radius:18px!important;
+}
+html[data-jb-view="ipad"] #jbPageDashboard .jb-dash-hero h2{
+  font-size:32px!important;
+}
+html[data-jb-view="ipad"] #jbPageDashboard .jb-dash-metrics{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px!important;
+}
+html[data-jb-view="ipad"] #jbPageDashboard .jb-metric-card{
+  min-height:104px!important;
+  padding:16px!important;
+}
+html[data-jb-view="ipad"] #jbPageDashboard .jb-metric-card strong{
+  font-size:28px!important;
+}
+html[data-jb-view="ipad"] #jbPageDashboard .jb-access-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px!important;
+}
+html[data-jb-view="ipad"] #jbPageDashboard .jb-access-card{
+  min-height:138px!important;
+  padding:16px!important;
+}
+
+/* Inscritos */
+html[data-jb-view="ipad"] #jbPageInscritos textarea{
+  min-height:300px!important;
+  line-height:1.5!important;
+}
+html[data-jb-view="ipad"] #jbPageInscritos .card,
+html[data-jb-view="ipad"] #jbPageInscritos .panel{
+  padding:16px!important;
+}
+
+/* Duplas */
+html[data-jb-view="ipad"] #jbPageDuplas #teamsArea{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:12px!important;
+}
+html[data-jb-view="ipad"] #jbPageDuplas #teamsArea .group{
+  width:100%!important;
+  padding:16px!important;
+}
+html[data-jb-view="ipad"] #jbPageDuplas #teamsArea .team{
+  min-height:52px!important;
+  padding:12px!important;
+  font-size:15px!important;
+}
+
+/* Grupos: 1 grupo por linha */
+html[data-jb-view="ipad"] #jbPageGroups #groupsArea,
+html[data-jb-view="ipad"] #jbPageGroups #groupsArea.group-wrap{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:16px!important;
+}
+html[data-jb-view="ipad"] #jbPageGroups #groupsArea .group{
+  width:100%!important;
+  padding:16px!important;
+  overflow-x:auto!important;
+}
+html[data-jb-view="ipad"] #jbPageGroups table{
+  min-width:720px!important;
+  font-size:13px!important;
+}
+html[data-jb-view="ipad"] #jbPageGroups th,
+html[data-jb-view="ipad"] #jbPageGroups td{
+  padding:10px 9px!important;
+  white-space:nowrap!important;
+}
+
+/* Jogos/placares */
+html[data-jb-view="ipad"] #jbPageJogos .jb-games-group{
+  margin-bottom:16px!important;
+}
+html[data-jb-view="ipad"] #jbPageJogos .match,
+html[data-jb-view="ipad"] #jbPageJogos .match-card{
+  min-height:82px!important;
+  padding:14px!important;
+}
+html[data-jb-view="ipad"] #jbPageJogos .match strong,
+html[data-jb-view="ipad"] #jbPageJogos .match-card strong{
+  font-size:15px!important;
+}
+
+/* Modal de placar específico do iPad 10 */
+html[data-jb-view="ipad"] #jbScoreModal .jb-score-dialog{
+  width:calc(100vw - 40px)!important;
+  max-width:780px!important;
+  max-height:86vh!important;
+  padding:18px!important;
+  border-radius:18px!important;
+}
+html[data-jb-view="ipad"] #jbScoreTeams .jb-score-confirm{
+  grid-template-columns:1fr 34px 1fr!important;
+  gap:10px!important;
+}
+html[data-jb-view="ipad"] #jbScoreTeams .jb-score-team-card{
+  min-height:84px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+}
+html[data-jb-view="ipad"] #jbScoreFields .jb-set-card{
+  padding:12px!important;
+}
+html[data-jb-view="ipad"] #jbScoreFields .jb-score-grid{
+  grid-template-columns:minmax(0,1fr) 78px 28px 78px!important;
+  gap:8px!important;
+}
+html[data-jb-view="ipad"] #jbScoreFields input{
+  min-height:50px!important;
+  font-size:20px!important;
+}
+html[data-jb-view="ipad"] #jbScoreModal .jb-score-actions{
+  position:sticky!important;
+  bottom:-18px!important;
+  background:#0d1114!important;
+  padding:12px 0 4px!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr 1.25fr!important;
+  gap:8px!important;
+}
+
+/* Central de comando */
+html[data-jb-view="ipad"] #jbPageCentral .v10-command-hero{
+  padding:16px!important;
+  gap:12px!important;
+}
+html[data-jb-view="ipad"] #jbPageCentral .v10-command-actions{
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:8px!important;
+}
+html[data-jb-view="ipad"] #jbPageCentral .v10-kpis{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px!important;
+}
+html[data-jb-view="ipad"] #jbPageCentral .v10-command-grid{
+  grid-template-columns:1fr!important;
+}
+html[data-jb-view="ipad"] #jbPageCentral .v10-courts{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px!important;
+}
+html[data-jb-view="ipad"] #jbPageCentral .v10-court{
+  min-height:140px!important;
+  padding:14px!important;
+}
+
+/* Mata-mata: vertical */
+html[data-jb-view="ipad"] #jbPageMata #knockoutArea{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:14px!important;
+  overflow:visible!important;
+}
+html[data-jb-view="ipad"] #jbPageMata #knockoutArea .jb-ko-round{
+  width:100%!important;
+  min-width:0!important;
+  padding:14px!important;
+}
+html[data-jb-view="ipad"] #jbPageMata #knockoutArea .jb-ko-match{
+  padding:12px!important;
+}
+
+/* Modo Evento */
+html[data-jb-view="ipad"] #jbPageEvento .jb-v7-live-metrics{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+html[data-jb-view="ipad"] #jbPageEvento .jb-v7-live-grid{
+  grid-template-columns:1fr!important;
+}
+html[data-jb-view="ipad"] #jbPageEvento .jb-v7-live-court{
+  min-height:138px!important;
+}
+
+/* Portal público */
+html[data-jb-view="ipad"] #jbPagePublico .v73-athlete-filter{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:8px!important;
+}
+html[data-jb-view="ipad"] #jbPagePublico #v73PublicContent .v73-public-card{
+  padding:14px!important;
+}
+
+/* Pódio */
+html[data-jb-view="ipad"] #jbPagePodio .card,
+html[data-jb-view="ipad"] #jbPagePodio [class*="podium"]{
+  min-height:130px!important;
+  padding:16px!important;
+}
+
+/* Salvar/PDF */
+html[data-jb-view="ipad"] #jbPageArquivos .v71-safety-actions,
+html[data-jb-view="ipad"] #jbPageArquivos .v7-safety-actions{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:8px!important;
+}
+html[data-jb-view="ipad"] #jbPageArquivos .save-panel{
+  padding:16px!important;
+}
+
+/* iPad 10 em retrato (~820x1180) */
+@media (orientation:portrait) and (min-width:760px) and (max-width:900px){
+  html[data-jb-view="ipad"] #jbPageDashboard .jb-dash-metrics,
+  html[data-jb-view="ipad"] #jbPageDashboard .jb-access-grid,
+  html[data-jb-view="ipad"] #jbPageCentral .v10-kpis,
+  html[data-jb-view="ipad"] #jbPageCentral .v10-courts,
+  html[data-jb-view="ipad"] #jbPageEvento .jb-v7-live-metrics{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  html[data-jb-view="ipad"] .jb-v9-live-action span,
+  html[data-jb-view="ipad"] .jb-v9-account div{
+    display:none!important;
+  }
+}
+
+/* iPad 10 em paisagem (~1180x820) */
+@media (orientation:landscape) and (min-width:1000px) and (max-width:1250px){
+  html[data-jb-view="ipad"] body:not(.v74-public-only) .app{
+    padding-left:18px!important;
+    padding-right:18px!important;
+  }
+  html[data-jb-view="ipad"] #jbPageDashboard .jb-dash-metrics{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+  html[data-jb-view="ipad"] #jbPageDashboard .jb-access-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+  html[data-jb-view="ipad"] #jbPageCentral .v10-kpis{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+  html[data-jb-view="ipad"] #jbPageCentral .v10-courts{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+  html[data-jb-view="ipad"] #jbPageEvento .jb-v7-live-metrics{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+  html[data-jb-view="ipad"] #jbPageMata #knockoutArea{
+    flex-direction:row!important;
+    overflow-x:auto!important;
+  }
+  html[data-jb-view="ipad"] #jbPageMata #knockoutArea .jb-ko-round{
+    min-width:310px!important;
+    width:auto!important;
+  }
 }
 </style>
 
