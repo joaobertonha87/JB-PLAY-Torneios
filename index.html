@@ -3104,7 +3104,7 @@ body.v74-public-only .jb-device-view{display:none!important}
     <div class="jb-side-brand jb-side-brand-logo">
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
     </div>
-    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Total Edition V12.3</small></div>
+    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Total Edition V12.4</small></div>
     <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><span>Início</span></a>
@@ -3121,7 +3121,7 @@ body.v74-public-only .jb-device-view{display:none!important}
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB TORNEIOS V12.3</small>
+      <small>JB TORNEIOS V12.4</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -8312,6 +8312,239 @@ body:not(.v74-public-only) .panel h2,
 body:not(.v74-public-only) .panel h3{
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
+}
+</style>
+
+
+<style id="jb-v124-groups-games">
+:root{
+  --v124-bg:#050708;
+  --v124-card:#0d1114;
+  --v124-card2:#12181c;
+  --v124-line:#293238;
+  --v124-line2:#3a464d;
+  --v124-white:#fff;
+  --v124-muted:#aeb8be;
+  --v124-lime:#c8ff00;
+  --v124-black:#050708;
+}
+
+/* ===============================
+   GRUPOS: UM ABAIXO DO OUTRO
+   =============================== */
+#jbPageGroups{
+  background:var(--v124-bg)!important;
+  background-image:none!important;
+}
+#jbPageGroups #groupsArea,
+#jbPageGroups #groupsArea.group-wrap,
+#jbPageGroups .groups-grid,
+#jbPageGroups [class*="groups-grid"]{
+  display:flex!important;
+  flex-direction:column!important;
+  grid-template-columns:none!important;
+  gap:18px!important;
+  width:100%!important;
+}
+#jbPageGroups #groupsArea.group-wrap .group,
+#jbPageGroups #groupsArea .group{
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  margin:0!important;
+  background:var(--v124-card)!important;
+  background-image:none!important;
+  border:1px solid var(--v124-line)!important;
+  color:#fff!important;
+  box-sizing:border-box!important;
+  overflow:visible!important;
+}
+#jbPageGroups .group .matches,
+#jbPageGroups .group .standings,
+#jbPageGroups .group table{
+  width:100%!important;
+  max-width:100%!important;
+}
+#jbPageGroups .group .match,
+#jbPageGroups .group .team{
+  background:var(--v124-card2)!important;
+  color:#fff!important;
+  border-color:var(--v124-line2)!important;
+}
+#jbPageGroups .group h3,
+#jbPageGroups .group h4,
+#jbPageGroups .group strong,
+#jbPageGroups .group b{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Evita qualquer sobreposição */
+#jbPageGroups .group,
+#jbPageGroups .match,
+#jbPageGroups .team,
+#jbPageGroups table,
+#jbPageGroups tbody,
+#jbPageGroups tr,
+#jbPageGroups td{
+  position:relative!important;
+  z-index:auto!important;
+  float:none!important;
+}
+
+/* ===============================
+   JOGOS / PLACARES:
+   cards e modal nunca brancos
+   =============================== */
+#jbPageJogos{
+  background:var(--v124-bg)!important;
+  background-image:none!important;
+}
+#jbPageJogos .match,
+#jbPageJogos .match-card,
+#jbPageJogos .game,
+#jbPageJogos .game-card,
+#jbPageJogos .jb-games-group,
+#jbPageJogos .jb-v7-game-toolbar,
+#jbPageJogos .jb-v7-games-summary>div,
+#jbPageJogos [class*="match"],
+#jbPageJogos [class*="game-card"]{
+  background:var(--v124-card)!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:var(--v124-line)!important;
+}
+
+/* modal de placar */
+.modal,
+.modal-content,
+.score-modal,
+.score-dialog,
+.result-modal,
+[role="dialog"],
+#scoreModal,
+#matchModal,
+#resultModal{
+  background:rgba(0,0,0,.72)!important;
+  color:#fff!important;
+}
+.modal-content,
+.score-modal .modal-content,
+.score-dialog,
+.result-modal .modal-content,
+[role="dialog"] > div,
+#scoreModal > div,
+#matchModal > div,
+#resultModal > div{
+  background:var(--v124-card)!important;
+  background-image:none!important;
+  color:#fff!important;
+  border:1px solid var(--v124-line2)!important;
+  box-shadow:0 24px 70px rgba(0,0,0,.55)!important;
+}
+.modal-content h1,.modal-content h2,.modal-content h3,.modal-content h4,
+.modal-content strong,.modal-content b,.modal-content label,
+.score-dialog h1,.score-dialog h2,.score-dialog h3,.score-dialog strong,.score-dialog b{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+.modal-content p,.modal-content small,.modal-content span,
+.score-dialog p,.score-dialog small,.score-dialog span{
+  color:var(--v124-muted)!important;
+  -webkit-text-fill-color:var(--v124-muted)!important;
+}
+
+/* inputs/placares */
+.modal-content input,
+.modal-content select,
+.score-dialog input,
+.score-dialog select,
+#jbPageJogos input,
+#jbPageJogos select{
+  background:#0a0e10!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid var(--v124-line2)!important;
+}
+
+/* botoes cinza = branco */
+.modal-content button,
+.score-dialog button,
+#jbPageJogos button{
+  background:#151c20!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid var(--v124-line2)!important;
+}
+.modal-content button *,
+.score-dialog button *,
+#jbPageJogos button *{
+  color:inherit!important;
+  -webkit-text-fill-color:inherit!important;
+}
+
+/* confirmar resultado = verde com preto */
+.modal-content .ok,
+.modal-content .primary,
+.modal-content button.primary,
+.modal-content button.ok,
+.score-dialog .ok,
+.score-dialog .primary,
+#confirmScore,
+#confirmResult,
+#saveScore,
+#saveResult{
+  background:var(--v124-lime)!important;
+  color:var(--v124-black)!important;
+  -webkit-text-fill-color:var(--v124-black)!important;
+  border-color:var(--v124-lime)!important;
+}
+.modal-content .ok *,
+.modal-content .primary *,
+.score-dialog .ok *,
+.score-dialog .primary *,
+#confirmScore *,
+#confirmResult *,
+#saveScore *,
+#saveResult *{
+  color:var(--v124-black)!important;
+  -webkit-text-fill-color:var(--v124-black)!important;
+}
+
+/* elimina branco inline de qualquer card/modal de jogos */
+#jbPageJogos [style*="background:#fff"],
+#jbPageJogos [style*="background: #fff"],
+#jbPageJogos [style*="background:white"],
+#jbPageJogos [style*="background: white"],
+.modal-content[style*="background:#fff"],
+.modal-content[style*="background: #fff"],
+.modal-content[style*="background:white"],
+.modal-content[style*="background: white"],
+[role="dialog"] [style*="background:#fff"],
+[role="dialog"] [style*="background: #fff"]{
+  background:var(--v124-card)!important;
+  background-color:var(--v124-card)!important;
+  background-image:none!important;
+  color:#fff!important;
+}
+
+/* ===============================
+   garante contraste geral
+   =============================== */
+#jbPageGroups button,
+#jbPageGroups .btn{
+  background:#151c20!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border-color:var(--v124-line2)!important;
+}
+#jbPageGroups button.primary,
+#jbPageGroups .btn.primary,
+#jbPageGroups .ok{
+  background:var(--v124-lime)!important;
+  color:var(--v124-black)!important;
+  -webkit-text-fill-color:var(--v124-black)!important;
+  border-color:var(--v124-lime)!important;
 }
 </style>
 
