@@ -3096,7 +3096,7 @@ html[data-jb-view="ipad"] #jbPageMata .jb-v136-stage-wrap{overflow-x:auto!import
 
 <style id="jb-v139-matamata-final">
 /* =========================================================
-   JB TORNEIOS V15.2.2 — MATA-MATA FINAL
+   JB TORNEIOS V15.3.2 — MATA-MATA FINAL
    - chave usa toda a largura
    - controles superiores alinhados à esquerda
    - nomes e placares mais legíveis
@@ -3495,7 +3495,7 @@ html[data-jb-view="ipad"] #jbPageMata #jbV7487PodiumSlot .jb-v7486-podium{
 
 <style id="jb-v1391-pc-bracket-fix">
 /* =========================================================
-   JB TORNEIOS V15.2.2 — CORREÇÃO EXCLUSIVA DA VISUALIZAÇÃO PC
+   JB TORNEIOS V15.3.2 — CORREÇÃO EXCLUSIVA DA VISUALIZAÇÃO PC
    Mantém o iPad como estava e reorganiza o chaveamento no PC.
    ========================================================= */
 
@@ -3842,7 +3842,7 @@ html[data-jb-view="pc"] .jb-ipad-menu-close{
 
 <style id="jb-v1393-ipad-landscape-bracket">
 /* =========================================================
-   JB TORNEIOS V15.2.2
+   JB TORNEIOS V15.3.2
    Correção Mata-mata — iPad 10ª geração em PAISAGEM
    Mantém o menu iPad e evita chave espremida.
    ========================================================= */
@@ -4043,7 +4043,7 @@ html[data-jb-view="pc"] .jb-ipad-menu-close{
 
 <style id="jb-v140-premium-clean">
 /* =========================================================
-   JB TORNEIOS V15.2.2 — PREMIUM CLEAN
+   JB TORNEIOS V15.3.2 — PREMIUM CLEAN
    Interface inspirada no layout aprovado:
    dark clean, lime apenas em ação/seleção, ícones vetoriais,
    mata-mata amplo e responsivo em PC e iPad.
@@ -4835,7 +4835,7 @@ html[data-jb-view="ipad"] #jbPageMata #resetKO{
 
 <style id="jb-v141-unified-responsive">
 /* =========================================================
-   JB TORNEIOS V15.2.2 — RESPONSIVE UNIFICADO
+   JB TORNEIOS V15.3.2 — RESPONSIVE UNIFICADO
    Um único layout automático para Windows, iPad e smartphones.
    Não depende mais de data-jb-view nem de botão PC/iPad.
    ========================================================= */
@@ -5258,7 +5258,7 @@ html[data-jb-view="ipad"] #jbPageMata #resetKO{
 
 <style id="jb-v143-bracket-rebuild">
 /* =========================================================
-   JB TORNEIOS V15.2.2 — MATA-MATA RECONSTRUÍDO
+   JB TORNEIOS V15.3.2 — MATA-MATA RECONSTRUÍDO
    Refeito do zero para eliminar sobreposição e desalinhamento.
    ========================================================= */
 
@@ -5633,7 +5633,7 @@ html[data-jb-view="ipad"] #jbPageMata #resetKO{
 
 
 <style id="jb-v1432-final-visual">
-/* JB Torneios V15.2.2 — Mata-mata: contraste + menu colorido */
+/* JB Torneios V15.3.2 — Mata-mata: contraste + menu colorido */
 
 /* Placares: fundo escuro, número branco e contorno verde-limão.
    Seletores amplos para vencer regras antigas do tema. */
@@ -5748,7 +5748,7 @@ nav.sidebar a.active > :first-child {
 
 
 <style id="jb-v1433-score-final-fix">
-/* V15.2 — correção definitiva dos CAMPOS DE RESULTADO no Mata-mata */
+/* V15.3 — correção definitiva dos CAMPOS DE RESULTADO no Mata-mata */
 
 /* Inputs/boxes de placar do bracket */
 .jb143-bracket .jb143-score,
@@ -5929,7 +5929,7 @@ button:active{transform:scale(.985)}
 
 
 <style id="jb-v151-ipad-fullwidth">
-/* V15.2 — iPad/tablet: ocupar 100% da viewport sem cortar o lado direito */
+/* V15.3 — iPad/tablet: ocupar 100% da viewport sem cortar o lado direito */
 html,body{
   width:100%!important;
   max-width:100%!important;
@@ -6051,7 +6051,7 @@ html,body{
 
 <style id="jb-v152-ipad-landscape">
 /* =========================================================
-   JB TORNEIOS V15.2 — iPad PAISAGEM
+   JB TORNEIOS V15.3 — iPad PAISAGEM
    Corrige troca retrato -> paisagem sem cortar a lateral.
    ========================================================= */
 
@@ -6205,6 +6205,195 @@ html,body{
 }
 </style>
 
+
+
+<style id="jb-v153-ipad-landscape-fullapp">
+/* =========================================================
+   JB TORNEIOS V15.3
+   iPad DEITADO = experiência tipo notebook, usando a tela toda.
+   iPad em pé permanece com o layout anterior.
+   ========================================================= */
+
+@media (orientation:landscape) and (min-width:900px) and (max-width:1366px) and (pointer:coarse){
+
+  html,body{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+    overflow-x:hidden!important;
+    background:#071018!important;
+  }
+
+  /* Sidebar volta a ter largura de app/desktop no modo deitado */
+  .jb-sidebar{
+    position:fixed!important;
+    left:0!important;
+    top:0!important;
+    bottom:0!important;
+    width:190px!important;
+    min-width:190px!important;
+    max-width:190px!important;
+    height:100dvh!important;
+    padding:12px 10px!important;
+    z-index:9000!important;
+  }
+
+  /* Exibe novamente os textos do menu no modo paisagem */
+  .jb-sidebar .label,
+  .jb-sidebar .nav-label,
+  .jb-sidebar a span:not(:first-child){
+    display:inline!important;
+    font-size:10px!important;
+  }
+
+  .jb-sidebar a,
+  .jb-sidebar button,
+  .jb-nav-item{
+    width:100%!important;
+    min-width:0!important;
+    justify-content:flex-start!important;
+  }
+
+  /* Conteúdo ocupa EXATAMENTE o restante da viewport */
+  main,
+  .main,
+  .content,
+  .main-content,
+  .jb-main,
+  .jb-app-main{
+    position:relative!important;
+    margin-left:190px!important;
+    width:calc(100dvw - 190px)!important;
+    max-width:calc(100dvw - 190px)!important;
+    min-width:0!important;
+    padding:0 18px 28px!important;
+    overflow-x:hidden!important;
+  }
+
+  .app,
+  .app-shell,
+  .shell,
+  .layout,
+  #app{
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  .jb-page,
+  .page,
+  .page-content,
+  .content-inner{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+  }
+
+  /* Cabeçalho ocupa linha inteira, sem deixar vazio à esquerda/direita */
+  .topbar,
+  .jb-v9-topbar,
+  header.app-header,
+  .page-topbar{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+
+  /* Dashboard usa toda a largura útil */
+  .dashboard-grid,
+  .stats-grid,
+  .cards-grid,
+  .jb-dash-metrics,
+  .v10-kpis{
+    width:100%!important;
+    max-width:100%!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:12px!important;
+  }
+
+  .jb-dash-hero{
+    width:100%!important;
+    max-width:100%!important;
+  }
+
+  /* Ações rápidas e cartões */
+  .management-actions,
+  .quick-actions,
+  .action-grid{
+    width:100%!important;
+    max-width:100%!important;
+    display:grid!important;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr))!important;
+    gap:12px!important;
+  }
+
+  /* Mata-mata: página ocupa toda a tela.
+     Se a chave inteira não couber, somente ela pode deslizar horizontalmente. */
+  #jbPageMata{
+    width:100%!important;
+    max-width:100%!important;
+    overflow-x:hidden!important;
+  }
+
+  #jbPageMata #knockoutArea,
+  .jb143-shell,
+  .jb143-scroll{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+  }
+
+  .jb143-scroll{
+    overflow-x:auto!important;
+    overflow-y:visible!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+
+  .jb143-canvas{
+    min-width:1040px!important;
+    max-width:none!important;
+  }
+
+  /* Ajuste específico iPad 10ª geração / 1180px de largura */
+  @media (min-width:1100px) and (max-width:1200px){
+    .jb-sidebar{
+      width:170px!important;
+      min-width:170px!important;
+      max-width:170px!important;
+    }
+
+    main,
+    .main,
+    .content,
+    .main-content,
+    .jb-main,
+    .jb-app-main{
+      margin-left:170px!important;
+      width:calc(100dvw - 170px)!important;
+      max-width:calc(100dvw - 170px)!important;
+      padding-left:14px!important;
+      padding-right:14px!important;
+    }
+
+    .dashboard-grid,
+    .stats-grid,
+    .cards-grid,
+    .jb-dash-metrics,
+    .v10-kpis{
+      gap:9px!important;
+    }
+  }
+}
+</style>
+
 </head>
 
 <body class="jb-auth-locked">
@@ -6251,7 +6440,7 @@ html,body{
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
       <button type="button" id="jbIpadMenuClose" class="jb-ipad-menu-close" aria-label="Fechar menu">×</button>
     </div>
-    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Bracket Rebuild V15.2.2</small></div>
+    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Bracket Rebuild V15.3.2</small></div>
     <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><span>Início</span></a>
@@ -6268,7 +6457,7 @@ html,body{
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB TORNEIOS V15.2.2</small>
+      <small>JB TORNEIOS V15.3.2</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -9028,7 +9217,7 @@ html,body{
 
   if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')){
     window.addEventListener('load', function(){
-      /* V15.2: service worker desativado para evitar cache antigo */
+      /* V15.3: service worker desativado para evitar cache antigo */
     });
   }
 })();
@@ -9054,7 +9243,7 @@ html,body{
 <script id="jb-v451-sw">
 if('serviceWorker' in navigator){
   window.addEventListener('load',function(){
-    /* V15.2: service worker desativado para evitar cache antigo */
+    /* V15.3: service worker desativado para evitar cache antigo */
   });
 }
 </script>
@@ -11042,6 +11231,41 @@ setInterval(status,5000);
     document.addEventListener('DOMContentLoaded', syncIpadOrientation, {once:true});
   } else {
     syncIpadOrientation();
+  }
+})();
+</script>
+
+
+
+<script id="jb-v153-ipad-landscape-fullapp-js">
+(function(){
+  'use strict';
+
+  function isIPadLandscape(){
+    return window.matchMedia('(orientation: landscape) and (min-width:900px) and (max-width:1366px) and (pointer:coarse)').matches;
+  }
+
+  function sync(){
+    document.body.classList.toggle('jb-v153-ipad-landscape', isIPadLandscape());
+
+    clearTimeout(window.__jbV153Timer);
+    window.__jbV153Timer=setTimeout(function(){
+      try{ if(window.jb15UpdateStatus) window.jb15UpdateStatus(); }catch(e){}
+      try{ if(window.jb143RenderKnockout) window.jb143RenderKnockout(); }catch(e){}
+      try{ if(window.jbV137DrawBracketLines) window.jbV137DrawBracketLines(); }catch(e){}
+    },160);
+  }
+
+  window.addEventListener('resize',sync,{passive:true});
+  window.addEventListener('orientationchange',function(){
+    setTimeout(sync,80);
+    setTimeout(sync,260);
+  },{passive:true});
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',sync,{once:true});
+  }else{
+    sync();
   }
 })();
 </script>
@@ -13515,7 +13739,7 @@ body.auth-open,
 
 <style id="jb-v132-device-pro">
 /* ==========================================================
-   JB TORNEIOS V15.2.2 — PC / iPad PRO
+   JB TORNEIOS V15.3.2 — PC / iPad PRO
    Dois perfis reais de exibição:
    - PC: mais denso e panorâmico
    - iPad: touch-first, cards maiores, menos densidade
@@ -13786,7 +14010,7 @@ html[data-jb-view="ipad"] #jbPageArquivos .v7-safety-actions{
 
 <style id="jb-v133-ipad10">
 /* ==========================================================
-   JB TORNEIOS V15.2.2 — iPad 10ª geração (2022)
+   JB TORNEIOS V15.3.2 — iPad 10ª geração (2022)
    Tela 10,9" — viewport de referência:
    retrato ~820x1180 CSS px
    paisagem ~1180x820 CSS px
