@@ -3,7 +3,8 @@
   "short_name": "JB Torneios",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#071018",
-  "theme_color": "#071018",
-  "description": "Organização de torneios JB"
+  "background_color": "#06090b",
+  "theme_color": "#06090b",
+  "description": "Gestão profissional de torneios JB",
+  "orientation": "any"
 }
