@@ -4,8 +4,12 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
+  "display_override": [
+    "standalone",
+    "fullscreen"
+  ],
   "background_color": "#06090b",
   "theme_color": "#06090b",
-  "description": "JB Torneios V25 — Safety & Performance",
+  "description": "JB Torneios V25.1 — Native PWA Experience",
   "orientation": "any"
 }

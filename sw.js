@@ -1,1 +1,46 @@
-const CACHE='jb-torneios-v25-0';const CORE=['./','./index.html','./manifest.webmanifest'];self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE).catch(()=>{})))});self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;const q=e.request;if(q.mode==='navigate'){e.respondWith(fetch(q).then(r=>{const x=r.clone();caches.open(CACHE).then(c=>c.put('./index.html',x)).catch(()=>{});return r}).catch(()=>caches.match('./index.html')));return}e.respondWith(caches.match(q).then(cached=>cached||fetch(q).then(r=>{if(r&&r.ok){const x=r.clone();caches.open(CACHE).then(c=>c.put(q,x)).catch(()=>{})}return r})))})
+const CACHE='jb-torneios-v25-1';
+const CORE=['./','./index.html','./manifest.webmanifest'];
+
+self.addEventListener('install',event=>{
+  self.skipWaiting();
+  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE).catch(()=>{})));
+});
+
+self.addEventListener('activate',event=>{
+  event.waitUntil(
+    caches.keys()
+      .then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))
+      .then(()=>self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch',event=>{
+  if(event.request.method!=='GET')return;
+  const req=event.request;
+
+  if(req.mode==='navigate'){
+    event.respondWith(
+      fetch(req,{cache:'no-store'})
+        .then(res=>{
+          const copy=res.clone();
+          caches.open(CACHE).then(c=>c.put('./index.html',copy)).catch(()=>{});
+          return res;
+        })
+        .catch(()=>caches.match('./index.html'))
+    );
+    return;
+  }
+
+  event.respondWith(
+    caches.match(req).then(cached=>{
+      const network=fetch(req).then(res=>{
+        if(res && res.ok){
+          const copy=res.clone();
+          caches.open(CACHE).then(c=>c.put(req,copy)).catch(()=>{});
+        }
+        return res;
+      }).catch(()=>cached);
+      return cached || network;
+    })
+  );
+});
