@@ -2,9 +2,10 @@
   "name": "JB Torneios",
   "short_name": "JB Torneios",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#06090b",
   "theme_color": "#06090b",
-  "description": "JB Torneios V22.3.2 — Professional Polish",
+  "description": "JB Torneios V25 — Safety & Performance",
   "orientation": "any"
 }
