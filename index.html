@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Torneios V25.11.1 · Torneios e Categorias</title>
+  <title>JB Torneios V25.11.2 · Contraste Verde Final</title>
   <style id="jb-v25103-no-splash">#pwaSplash{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}</style>
 
   <link rel="manifest" href="manifest.webmanifest">
@@ -6448,7 +6448,7 @@ html,body{
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
       <button type="button" id="jbIpadMenuClose" class="jb-ipad-menu-close" aria-label="Fechar menu">×</button>
     </div>
-    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Painel Operacional V25.11.1</small></div>
+    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Painel Operacional V25.11.2</small></div>
     <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><strong class="jb-side-label">Início</strong></a>
@@ -6465,7 +6465,7 @@ html,body{
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><strong class="jb-side-label">Salvar / PDF</strong></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB TORNEIOS V25.11.1</small>
+      <small>JB TORNEIOS V25.11.2</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -15384,7 +15384,7 @@ function render(){
  if(focus){E('jb2511MatchKicker').textContent=focus.court?'EM QUADRA':'PRÓXIMO CONFRONTO';E('jb2511MatchTitle').textContent=focus.court?'Jogo em andamento':'Aguardando liberação';body.className='';body.innerHTML='<div class="jb2511-match"><span class="jb2511-team">'+safe(team(s,focus.m.aId))+'</span><span class="jb2511-versus">×</span><span class="jb2511-team">'+safe(team(s,focus.m.bId))+'</span></div><div class="jb2511-match-meta"><span>Grupo '+safe(focus.g.name||focus.gi+1)+' · Jogo '+(focus.mi+1)+'</span><span>'+(focus.court?'Quadra '+safe(focus.court):'Na fila')+'</span></div>'}else{E('jb2511MatchKicker').textContent='PRÓXIMO CONFRONTO';E('jb2511MatchTitle').textContent=total?'Fase concluída':'Aguardando jogos';body.className='jb2511-empty';body.textContent=total?'Nenhum jogo pendente nesta fase.':'Os confrontos aparecerão após a criação dos grupos.'}
  var free=Math.max(0,courts-playing.length);E('jb2511Playing').textContent=playing.length;E('jb2511Waiting').textContent=waiting.length;E('jb2511Courts').textContent=courts?free:'—';E('jb2511Situation').textContent=playing.length?playing.length+' jogo'+(playing.length===1?'':'s')+' em andamento':pending.length?pending.length+' jogo'+(pending.length===1?'':'s')+' na fila':total?'Etapa concluída':'Torneio em preparação';E('jb2511SituationText').textContent=playing.length?'Acompanhe placares e liberação das quadras.':pending.length?'Defina as quadras ou abra os placares.':total?'Siga para a próxima etapa do torneio.':'Cadastre os participantes para começar.';
  renderManager();
- document.documentElement.setAttribute('data-jb-build','25.11.1');
+ document.documentElement.setAttribute('data-jb-build','25.11.2');
 }
 window.jbV2511RenderDashboard=render;
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(render,350)},{once:true});else setTimeout(render,100);
@@ -20500,13 +20500,13 @@ function normalizeButtons(){
 function boot(){
   repairLegacyLinks();
   normalizeButtons();
-  document.documentElement.setAttribute('data-jb-build','25.11.1');
+  document.documentElement.setAttribute('data-jb-build','25.11.2');
   document.querySelectorAll('.jb-page-head .jb-back').forEach(function(button){
     button.textContent='← Voltar ao início';
     button.setAttribute('aria-label','Voltar ao painel inicial');
   });
   document.querySelectorAll('.jb21-version,.jb22-version').forEach(function(node){
-    node.textContent=String(node.textContent||'').replace(/V25\.8\.1|V25\.9\.0|V25\.10\.0|V25\.10\.1|V25\.10\.2|V25\.10\.3|V25\.10\.4|V25\.10\.5|V25\.11\.0/g,'V25.11.1');
+    node.textContent=String(node.textContent||'').replace(/V25\.8\.1|V25\.9\.0|V25\.10\.0|V25\.10\.1|V25\.10\.2|V25\.10\.3|V25\.10\.4|V25\.10\.5|V25\.11\.0|V25\.11\.1/g,'V25.11.2');
   });
   var initial=LEGACY_HASH[String(location.hash||'').replace(/^#/,'')]||'dashboard';
   if(!document.querySelector('.jb-page.active'))openReliable(initial,false);
@@ -20537,6 +20537,83 @@ document.addEventListener('keydown',function(event){
 window.jbOpenPageReliable=openReliable;
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});
 else boot();
+})();
+</script>
+
+<style id="jb-v25112-lime-contrast-final">
+/* V25.11.2 — regra final: qualquer ação verde-limão usa conteúdo preto */
+html body .jb-lime-black,
+html body .jb-lime-black:hover,
+html body .jb-lime-black:focus,
+html body .jb-lime-black:focus-visible,
+html body .jb-lime-black:active,
+html body .jb-lime-black:visited,
+html body .jb-lime-black *,
+html body .jb-lime-black:hover *,
+html body .jb-lime-black:focus *,
+html body .jb-lime-black:active *,
+html body .jb253-lime-action,
+html body .jb253-lime-action *{
+  color:#05090b!important;
+  -webkit-text-fill-color:#05090b!important;
+  text-shadow:none!important;
+  opacity:1!important;
+}
+html body .jb-lime-black svg,
+html body .jb-lime-black svg *,
+html body .jb-lime-black i,
+html body .jb-lime-black em,
+html body .jb253-lime-action svg,
+html body .jb253-lime-action svg *{
+  color:#05090b!important;
+  -webkit-text-fill-color:#05090b!important;
+  fill:#05090b!important;
+  stroke:#05090b!important;
+}
+</style>
+
+<script id="jb-v25112-lime-contrast-final-js">
+(function(){
+'use strict';
+function rgbLime(text){
+  text=String(text||'').toLowerCase();
+  if(text.indexOf('#c8f000')>=0||text.indexOf('#c8ff33')>=0||text.indexOf('#b8dd00')>=0||text.indexOf('#d8ff18')>=0)return true;
+  var re=/rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)/g,m;
+  while((m=re.exec(text))){var r=+m[1],g=+m[2],b=+m[3];if(r>=120&&g>=175&&b<=125&&(g-b)>=70)return true}
+  return false;
+}
+function isLime(el){
+  if(!el||el.nodeType!==1)return false;
+  if(el.classList.contains('jb2511-action')||el.classList.contains('jb2511-primary')||el.classList.contains('jb2511-head-action'))return true;
+  try{var c=getComputedStyle(el);return rgbLime(c.backgroundColor)||rgbLime(c.backgroundImage)}catch(e){return false}
+}
+function black(el){
+  if(!el)return;el.classList.add('jb-lime-black');
+  var nodes=[el].concat([].slice.call(el.querySelectorAll('*')));
+  nodes.forEach(function(n){
+    n.style.setProperty('color','#05090b','important');
+    n.style.setProperty('-webkit-text-fill-color','#05090b','important');
+    n.style.setProperty('text-shadow','none','important');
+    n.style.setProperty('opacity','1','important');
+    if(n.tagName==='SVG'||n.closest&&n.closest('svg')){n.style.setProperty('fill','#05090b','important');n.style.setProperty('stroke','#05090b','important')}
+  });
+}
+function apply(root){
+  root=root||document;
+  var list=root.querySelectorAll('button,a,[role="button"],input[type="button"],input[type="submit"],.jb253-lime-action');
+  for(var i=0;i<list.length;i++)if(isLime(list[i])||list[i].classList.contains('jb253-lime-action'))black(list[i]);
+  document.documentElement.setAttribute('data-jb-build','25.11.2');
+}
+function start(){
+  apply(document);
+  var queued=false,obs=new MutationObserver(function(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;apply(document)})});
+  if(document.body)obs.observe(document.body,{childList:true,subtree:true});
+  setInterval(function(){apply(document)},1500);
+}
+document.addEventListener('click',function(){setTimeout(function(){apply(document)},40)},true);
+window.addEventListener('pageshow',function(){setTimeout(function(){apply(document)},80)});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+window.jbApplyLimeBlackFinal=apply;
 })();
 </script>
 </body>
