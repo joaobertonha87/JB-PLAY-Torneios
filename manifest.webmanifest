@@ -1,15 +1,14 @@
 {
   "name": "JB Torneios",
   "short_name": "JB Torneios",
-  "start_url": "./",
+  "description": "Organizador inteligente de torneios internos de beach tennis",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "display_override": [
-    "standalone",
-    "fullscreen"
-  ],
   "background_color": "#06090b",
-  "theme_color": "#06090b",
-  "description": "JB Torneios V25.1 — Native PWA Experience",
-  "orientation": "any"
+  "theme_color": "#c8f000",
+  "icons": [
+    {"src": "icon-180.png", "sizes": "180x180", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"}
+  ]
 }
