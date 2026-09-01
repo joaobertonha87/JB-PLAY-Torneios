@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Torneios V25.10.0 · Premium Tabs</title>
+  <title>JB Torneios V25.10.1 · Sidebar Contrast</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -20224,7 +20224,65 @@ html body:not(.v74-public-only) .jb-page:not(#jbPageDashboard) .v74-cloud-card{
 }
 </style>
 
-<script id="jb-v2510-functional-recovery">
+<style id="jb-v25101-sidebar-contrast-final">
+/* V25.10.1 — contraste definitivo do menu lateral */
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a:not(.active),
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a:not(.active):visited,
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a:not(.active):hover,
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a:not(.active):focus,
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a:not(.active):active{
+  color:#f7fafb!important;
+  -webkit-text-fill-color:#f7fafb!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+  filter:none!important;
+}
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a:not(.active) > span:last-child{
+  color:#f7fafb!important;
+  -webkit-text-fill-color:#f7fafb!important;
+  opacity:1!important;
+  text-shadow:0 1px 2px rgba(0,0,0,.5)!important;
+  mix-blend-mode:normal!important;
+}
+
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active,
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active:visited,
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active:hover,
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active:focus,
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active:focus-visible,
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active:active{
+  background:#c8f000!important;
+  background-color:#c8f000!important;
+  background-image:none!important;
+  color:#050708!important;
+  -webkit-text-fill-color:#050708!important;
+  border-color:#d8ff32!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+  filter:none!important;
+  text-shadow:none!important;
+}
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active > span,
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active > span:last-child,
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active .jb-side-icon,
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active b,
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active small{
+  color:#050708!important;
+  -webkit-text-fill-color:#050708!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+  filter:none!important;
+  text-shadow:none!important;
+}
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active svg,
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active svg *{
+  color:#050708!important;
+  fill:#050708!important;
+  stroke:#050708!important;
+}
+</style>
+
+<script id="jb-v25101-functional-recovery">
 (function(){
 'use strict';
 
@@ -20297,13 +20355,13 @@ function normalizeButtons(){
 function boot(){
   repairLegacyLinks();
   normalizeButtons();
-  document.documentElement.setAttribute('data-jb-build','25.10.0');
+  document.documentElement.setAttribute('data-jb-build','25.10.1');
   document.querySelectorAll('.jb-page-head .jb-back').forEach(function(button){
     button.textContent='← Voltar ao início';
     button.setAttribute('aria-label','Voltar ao painel inicial');
   });
   document.querySelectorAll('.jb21-version,.jb22-version').forEach(function(node){
-    node.textContent=String(node.textContent||'').replace(/V25\.8\.1|V25\.9\.0/g,'V25.10.0');
+    node.textContent=String(node.textContent||'').replace(/V25\.8\.1|V25\.9\.0|V25\.10\.0/g,'V25.10.1');
   });
   var initial=LEGACY_HASH[String(location.hash||'').replace(/^#/,'')]||'dashboard';
   if(!document.querySelector('.jb-page.active'))openReliable(initial,false);
