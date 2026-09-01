@@ -1,4 +1,4 @@
-const CACHE='jb-torneios-v25-10-1';
+const CACHE='jb-torneios-v25-10-2';
 const CORE=['./','./index.html','./manifest.webmanifest','./icon-180.png','./icon-512.png','./jb-logo-lime.png','./jb-watermark-lime.png'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE).catch(()=>{})))});
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));

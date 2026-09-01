@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="JB Torneios Pro" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <title>JB Torneios V25.10.1 · Sidebar Contrast</title>
+  <title>JB Torneios V25.10.2 · Sidebar Labels</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-180.png">
@@ -6447,7 +6447,7 @@ html,body{
       <img src="jb-logo-lime.png" alt="João Bertonha Beach Tennis">
       <button type="button" id="jbIpadMenuClose" class="jb-ipad-menu-close" aria-label="Fechar menu">×</button>
     </div>
-    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Bracket Rebuild V25.8.1</small></div>
+    <div class="jb-v9-side-product"><span>JB TORNEIOS</span><b>TOURNAMENT OS</b><small>Premium Tabs V25.10.2</small></div>
     <div class="jb-side-section">OPERAÇÃO</div>
     <nav class="jb-side-nav">
       <a class="active" href="#inicio" data-page-link="dashboard"><span class="jb-side-icon">🏠</span><span>Início</span></a>
@@ -6464,7 +6464,7 @@ html,body{
       <a href="#gestao-arquivos" data-page-link="arquivos"><span class="jb-side-icon">💾</span><span>Salvar / PDF</span></a>
     </nav>
     <div class="jb-side-foot">
-      <small>JB TORNEIOS V25.8.1</small>
+      <small>JB TORNEIOS V25.10.2</small>
       <b>Tournament Control Center</b>
       <span>Online · Commercial UI</span>
     </div>
@@ -20224,8 +20224,8 @@ html body:not(.v74-public-only) .jb-page:not(#jbPageDashboard) .v74-cloud-card{
 }
 </style>
 
-<style id="jb-v25101-sidebar-contrast-final">
-/* V25.10.1 — contraste definitivo do menu lateral */
+<style id="jb-v25102-sidebar-labels-final">
+/* V25.10.2 — nomes do menu independentes das cores dos ícones */
 html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a:not(.active),
 html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a:not(.active):visited,
 html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a:not(.active):hover,
@@ -20280,9 +20280,35 @@ html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active svg *{
   fill:#050708!important;
   stroke:#050708!important;
 }
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a > .jb-side-label{
+  display:inline-flex!important;
+  align-items:center!important;
+  width:auto!important;
+  min-width:0!important;
+  visibility:visible!important;
+  opacity:1!important;
+  font:inherit!important;
+  font-size:inherit!important;
+  font-weight:850!important;
+  line-height:1.2!important;
+  letter-spacing:0!important;
+}
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a:not(.active) > .jb-side-label{
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+}
+html body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a.active > .jb-side-label{
+  color:#050708!important;
+  -webkit-text-fill-color:#050708!important;
+}
+@media(max-width:699px){
+  html:not(.jb-ipad-landscape-real) body:not(.v74-public-only) aside.jb-sidebar nav.jb-side-nav a > .jb-side-label{
+    display:none!important;
+  }
+}
 </style>
 
-<script id="jb-v25101-functional-recovery">
+<script id="jb-v25102-functional-recovery">
 (function(){
 'use strict';
 
@@ -20352,17 +20378,41 @@ function normalizeButtons(){
   });
 }
 
+function forceSidebarLabels(){
+  var compact=window.matchMedia&&window.matchMedia('(max-width:699px)').matches&&!document.documentElement.classList.contains('jb-ipad-landscape-real');
+  document.querySelectorAll('.jb-sidebar .jb-side-nav a[data-page-link]').forEach(function(link){
+    var label=null;
+    Array.prototype.forEach.call(link.children,function(child){
+      if(child.tagName==='SPAN'&&!child.classList.contains('jb-side-icon'))label=child;
+    });
+    if(!label)return;
+    label.classList.add('jb-side-label');
+    var active=link.classList.contains('active');
+    label.style.setProperty('color',active?'#050708':'#ffffff','important');
+    label.style.setProperty('-webkit-text-fill-color',active?'#050708':'#ffffff','important');
+    label.style.setProperty('visibility','visible','important');
+    label.style.setProperty('opacity','1','important');
+    if(compact)label.style.removeProperty('display');
+    else label.style.setProperty('display','inline-flex','important');
+  });
+}
+
 function boot(){
   repairLegacyLinks();
   normalizeButtons();
-  document.documentElement.setAttribute('data-jb-build','25.10.1');
+  document.documentElement.setAttribute('data-jb-build','25.10.2');
   document.querySelectorAll('.jb-page-head .jb-back').forEach(function(button){
     button.textContent='← Voltar ao início';
     button.setAttribute('aria-label','Voltar ao painel inicial');
   });
   document.querySelectorAll('.jb21-version,.jb22-version').forEach(function(node){
-    node.textContent=String(node.textContent||'').replace(/V25\.8\.1|V25\.9\.0|V25\.10\.0/g,'V25.10.1');
+    node.textContent=String(node.textContent||'').replace(/V25\.8\.1|V25\.9\.0|V25\.10\.0|V25\.10\.1/g,'V25.10.2');
   });
+  forceSidebarLabels();
+  var sideNav=document.querySelector('.jb-sidebar .jb-side-nav');
+  if(sideNav&&window.MutationObserver){
+    new MutationObserver(function(){forceSidebarLabels()}).observe(sideNav,{subtree:true,attributes:true,attributeFilter:['class']});
+  }
   var initial=LEGACY_HASH[String(location.hash||'').replace(/^#/,'')]||'dashboard';
   if(!document.querySelector('.jb-page.active'))openReliable(initial,false);
 }
@@ -20375,6 +20425,7 @@ document.addEventListener('click',function(event){
   event.preventDefault();
   event.stopImmediatePropagation();
   openReliable(page,true);
+  forceSidebarLabels();
 },{capture:true});
 
 window.addEventListener('hashchange',function(){
@@ -20390,6 +20441,7 @@ document.addEventListener('keydown',function(event){
 });
 
 window.jbOpenPageReliable=openReliable;
+window.jbForceSidebarLabels=forceSidebarLabels;
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});
 else boot();
 })();
