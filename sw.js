@@ -1,4 +1,4 @@
-const CACHE='jb-torneios-v25-8-6';
+const CACHE='jb-torneios-v25-8-7';
 const CORE=['./','./index.html','./jb-logo-lime.svg'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE).catch(()=>{})))});
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
