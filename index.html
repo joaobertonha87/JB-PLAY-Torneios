@@ -526,6 +526,134 @@
   }
 </style>
 
+<style id="jb-v25-9-device-modes">
+/* JB Torneios V25.9 — modos de dispositivo com escolha manual */
+.jb-device-mode-trigger{height:38px!important;min-height:38px!important;padding:0 11px!important;border:1px solid #2d3940!important;border-radius:11px!important;background:#10171b!important;color:#fff!important;display:inline-flex!important;align-items:center!important;gap:7px!important;font-size:10px!important;font-weight:900!important;white-space:nowrap!important}
+.jb-device-mode-trigger svg{width:17px!important;height:17px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important}.jb-device-mode-trigger small{color:#c8ff00!important;font-size:8px!important;font-weight:950!important;text-transform:uppercase!important}
+.jb-device-mode-overlay{position:fixed!important;inset:0!important;z-index:30000!important;padding:18px!important;background:rgba(0,0,0,.72)!important;backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important;display:none!important;place-items:center!important}.jb-device-mode-overlay.open{display:grid!important}.jb-device-mode-panel{width:min(100%,520px)!important;padding:22px!important;border:1px solid #344149!important;border-radius:24px!important;background:linear-gradient(155deg,#121a1e,#080d10)!important;color:#fff!important;box-shadow:0 30px 100px rgba(0,0,0,.72)!important}.jb-device-mode-head{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:15px!important;margin-bottom:18px!important}.jb-device-mode-head small{display:block!important;color:#c8ff00!important;font-size:9px!important;font-weight:950!important;letter-spacing:.15em!important}.jb-device-mode-head h2{margin:5px 0 0!important;color:#fff!important;font-size:23px!important}.jb-device-mode-close{width:38px!important;height:38px!important;min-height:38px!important;padding:0!important;border:1px solid #303b42!important;border-radius:12px!important;background:#161e22!important;color:#fff!important;font-size:22px!important}.jb-device-mode-options{display:grid!important;grid-template-columns:1fr 1fr!important;gap:9px!important}.jb-device-mode-option{min-height:92px!important;padding:14px!important;border:1px solid #29353b!important;border-radius:16px!important;background:#0e1519!important;color:#fff!important;text-align:left!important;display:grid!important;grid-template-columns:38px 1fr!important;align-items:center!important;gap:11px!important}.jb-device-mode-option>i{width:38px!important;height:38px!important;border-radius:12px!important;background:#182126!important;color:#c8ff00!important;display:grid!important;place-items:center!important;font-style:normal!important;font-size:19px!important}.jb-device-mode-option span{display:grid!important;gap:4px!important}.jb-device-mode-option b{color:#fff!important;font-size:12px!important}.jb-device-mode-option small{color:#8e9ba2!important;font-size:9px!important;line-height:1.35!important}.jb-device-mode-option.active{border-color:#c8ff00!important;background:rgba(200,255,0,.09)!important;box-shadow:inset 0 0 0 1px rgba(200,255,0,.16)!important}.jb-device-mode-option.active>i{background:#c8ff00!important;color:#071014!important}.jb-device-mode-foot{margin:14px 2px 0!important;color:#7f8c93!important;font-size:9px!important;line-height:1.45!important}body.v74-public-only .jb-device-mode-trigger,body.v74-public-only .jb-device-mode-overlay{display:none!important}
+
+/* PC e notebook: visão ampla e menu permanente. */
+html[data-jb-device-mode="desktop"] body:not(.v74-public-only){padding-left:220px!important;overflow-x:hidden!important}
+html[data-jb-device-mode="desktop"] body:not(.v74-public-only) .jb-sidebar{display:flex!important;position:fixed!important;left:0!important;top:0!important;bottom:0!important;width:220px!important;min-width:220px!important;max-width:220px!important;transform:none!important}
+html[data-jb-device-mode="desktop"] body:not(.v74-public-only) .app{width:100%!important;max-width:none!important;margin:0!important;padding:88px 20px 36px!important}
+html[data-jb-device-mode="desktop"] body:not(.v74-public-only) .jb-v9-topbar{left:220px!important;right:0!important;width:auto!important}
+html[data-jb-device-mode="desktop"] .jb-responsive-menu-btn,html[data-jb-device-mode="desktop"] .jb-ipad-menu-close,html[data-jb-device-mode="desktop"] .jb-ipad-menu-backdrop{display:none!important}
+html[data-jb-device-mode="desktop"] #jbPageDashboard .jb-access-grid{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+html[data-jb-device-mode="desktop"] #jbPageDashboard .jb-dash-metrics{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+
+/* iPad: tela inteira, controles de toque e menu em gaveta. */
+html[data-jb-device-mode="ipad"] body:not(.v74-public-only){padding-left:0!important;overflow-x:hidden!important}
+html[data-jb-device-mode="ipad"] body:not(.v74-public-only) .app{width:100%!important;max-width:none!important;margin:0!important;padding:82px 14px 32px!important}
+html[data-jb-device-mode="ipad"] body:not(.v74-public-only) .jb-v9-topbar{left:0!important;right:0!important;width:auto!important}
+html[data-jb-device-mode="ipad"] body:not(.v74-public-only) .jb-sidebar{display:flex!important;position:fixed!important;left:0!important;top:0!important;bottom:0!important;width:min(78vw,300px)!important;min-width:0!important;max-width:300px!important;transform:translateX(-105%)!important;z-index:9000!important}
+html[data-jb-device-mode="ipad"] body.jb-ipad-menu-open .jb-sidebar{transform:translateX(0)!important}
+html[data-jb-device-mode="ipad"] .jb-responsive-menu-btn{display:inline-flex!important}
+html[data-jb-device-mode="ipad"] button,html[data-jb-device-mode="ipad"] input,html[data-jb-device-mode="ipad"] select,html[data-jb-device-mode="ipad"] textarea{min-height:46px!important}
+html[data-jb-device-mode="ipad"] #jbPageDashboard .jb-access-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+html[data-jb-device-mode="ipad"] #jbPageDashboard .jb-dash-metrics{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+@media(orientation:portrait){html[data-jb-device-mode="ipad"] #jbPageDashboard .jb-access-grid,html[data-jb-device-mode="ipad"] #jbPageDashboard .jb-dash-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+
+/* iPhone: interface compacta, uma mão e conteúdo sem cortes. */
+html[data-jb-device-mode="iphone"] body:not(.v74-public-only){padding-left:0!important;overflow-x:hidden!important}
+html[data-jb-device-mode="iphone"] body:not(.v74-public-only) .app{width:min(100%,560px)!important;max-width:560px!important;margin:0 auto!important;padding:70px 10px calc(76px + env(safe-area-inset-bottom))!important}
+html[data-jb-device-mode="iphone"] body:not(.v74-public-only) .jb-v9-topbar{left:50%!important;right:auto!important;width:min(100%,560px)!important;transform:translateX(-50%)!important;min-height:58px!important;padding:7px 8px!important}
+html[data-jb-device-mode="iphone"] body:not(.v74-public-only) .jb-sidebar{display:flex!important;position:fixed!important;left:0!important;top:0!important;bottom:0!important;width:min(88vw,300px)!important;min-width:0!important;transform:translateX(-105%)!important;z-index:9000!important}
+html[data-jb-device-mode="iphone"] body.jb-ipad-menu-open .jb-sidebar{transform:translateX(0)!important}
+html[data-jb-device-mode="iphone"] .jb-responsive-menu-btn{display:inline-flex!important;min-width:52px!important;width:52px!important;padding:0!important}
+html[data-jb-device-mode="iphone"] .jb-responsive-menu-btn span,html[data-jb-device-mode="iphone"] .jb-v9-context small,html[data-jb-device-mode="iphone"] .jb-v9-context span,html[data-jb-device-mode="iphone"] .jb-v9-cloud-pill,html[data-jb-device-mode="iphone"] .jb-v9-account,html[data-jb-device-mode="iphone"] .jb-v9-live-action span{display:none!important}
+html[data-jb-device-mode="iphone"] .jb-device-mode-trigger{width:40px!important;min-width:40px!important;padding:0!important;justify-content:center!important}html[data-jb-device-mode="iphone"] .jb-device-mode-trigger span,html[data-jb-device-mode="iphone"] .jb-device-mode-trigger small{display:none!important}
+html[data-jb-device-mode="iphone"] .jb-page{width:100%!important;max-width:none!important;padding-left:0!important;padding-right:0!important}
+html[data-jb-device-mode="iphone"] #jbPageDashboard .jb-access-grid,html[data-jb-device-mode="iphone"] #jbPageDashboard .jb-dash-metrics,html[data-jb-device-mode="iphone"] .stats,html[data-jb-device-mode="iphone"] .v10-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+html[data-jb-device-mode="iphone"] button,html[data-jb-device-mode="iphone"] input,html[data-jb-device-mode="iphone"] select,html[data-jb-device-mode="iphone"] textarea{min-height:46px!important;font-size:16px!important}
+@media(max-width:370px){.jb-device-mode-options{grid-template-columns:1fr!important}}
+</style>
+
+<script id="jb-v25-9-device-modes-js">
+(function(){
+  'use strict';
+  var KEY='jb_torneios_device_mode_v1';
+  var MODES=['auto','iphone','ipad','desktop'];
+  var labels={auto:'Automático',iphone:'iPhone',ipad:'iPad',desktop:'PC / Notebook'};
+
+  function valid(value){return MODES.indexOf(value)>=0?value:'auto'}
+  function saved(){try{return valid(localStorage.getItem(KEY)||'auto')}catch(e){return 'auto'}}
+  function detected(){
+    var ua=navigator.userAgent||'';
+    var ipad=/iPad/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+    if(ipad)return 'ipad';
+    if(/iPhone|iPod/i.test(ua)||window.innerWidth<700)return 'iphone';
+    if(/Android/i.test(ua)&&window.innerWidth>=700)return 'ipad';
+    return 'desktop';
+  }
+  function currentLabel(mode){return mode==='auto'?'Auto · '+labels[detected()]:labels[mode]}
+  function refreshHeavyUI(){
+    clearTimeout(window.__jbDeviceRefresh);
+    window.__jbDeviceRefresh=setTimeout(function(){
+      try{if(window.v10Refresh)window.v10Refresh()}catch(e){}
+      try{if(window.renderKnockout)window.renderKnockout()}catch(e){}
+      try{if(window.jb143RenderKnockout)window.jb143RenderKnockout()}catch(e){}
+      try{if(window.jbV137DrawBracketLines)window.jbV137DrawBracketLines()}catch(e){}
+    },160);
+  }
+  function apply(mode,persist){
+    mode=valid(mode);
+    var root=document.documentElement;
+    root.setAttribute('data-jb-device-mode',mode);
+    if(mode==='desktop'){
+      root.classList.remove('jb-ipad-landscape-real');
+      root.setAttribute('data-jb-view','pc');
+    }else if(mode==='ipad'){
+      root.classList.remove('jb-ipad-landscape-real');
+      root.setAttribute('data-jb-view','ipad');
+    }else if(mode==='iphone'){
+      root.classList.remove('jb-ipad-landscape-real');
+      root.removeAttribute('data-jb-view');
+    }else{
+      root.removeAttribute('data-jb-view');
+      root.classList.toggle('jb-ipad-landscape-real',detected()==='ipad'&&window.innerWidth>=900&&window.innerWidth>window.innerHeight);
+    }
+    document.body.classList.remove('jb-ipad-menu-open');
+    if(persist){try{localStorage.setItem(KEY,mode)}catch(e){}}
+    var trigger=document.getElementById('jbDeviceModeTrigger');
+    if(trigger){trigger.querySelector('small').textContent=currentLabel(mode);trigger.setAttribute('aria-label','Modo de tela: '+currentLabel(mode))}
+    document.querySelectorAll('.jb-device-mode-option').forEach(function(button){
+      var active=button.getAttribute('data-device-mode')===mode;
+      button.classList.toggle('active',active);button.setAttribute('aria-pressed',active?'true':'false');
+    });
+    refreshHeavyUI();
+  }
+  function close(){var overlay=document.getElementById('jbDeviceModeOverlay');if(overlay){overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true')}}
+  function build(){
+    if(document.getElementById('jbDeviceModeTrigger'))return;
+    var actions=document.querySelector('.jb-v9-top-actions');
+    if(!actions)return;
+    var trigger=document.createElement('button');
+    trigger.type='button';trigger.id='jbDeviceModeTrigger';trigger.className='jb-device-mode-trigger';
+    trigger.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M8 21h8M12 18v3"></path></svg><span>Tela</span><small></small>';
+    actions.insertBefore(trigger,actions.firstChild);
+    var overlay=document.createElement('div');
+    overlay.id='jbDeviceModeOverlay';overlay.className='jb-device-mode-overlay';overlay.setAttribute('aria-hidden','true');
+    overlay.innerHTML='<section class="jb-device-mode-panel" role="dialog" aria-modal="true" aria-labelledby="jbDeviceModeTitle"><div class="jb-device-mode-head"><div><small>EXPERIÊNCIA RESPONSIVA</small><h2 id="jbDeviceModeTitle">Modo de dispositivo</h2></div><button type="button" class="jb-device-mode-close" aria-label="Fechar">×</button></div><div class="jb-device-mode-options"><button type="button" class="jb-device-mode-option" data-device-mode="auto"><i>✦</i><span><b>Automático</b><small>Escolhe o melhor layout para esta tela</small></span></button><button type="button" class="jb-device-mode-option" data-device-mode="iphone"><i>▯</i><span><b>iPhone</b><small>Compacto e otimizado para uma mão</small></span></button><button type="button" class="jb-device-mode-option" data-device-mode="ipad"><i>▭</i><span><b>iPad</b><small>Controles maiores e uso em paisagem</small></span></button><button type="button" class="jb-device-mode-option" data-device-mode="desktop"><i>▰</i><span><b>PC / Notebook</b><small>Visão ampla com menu permanente</small></span></button></div><p class="jb-device-mode-foot">A preferência fica salva somente neste dispositivo e pode ser alterada a qualquer momento.</p></section>';
+    document.body.appendChild(overlay);
+    trigger.addEventListener('click',function(){overlay.classList.add('open');overlay.setAttribute('aria-hidden','false')});
+    overlay.querySelector('.jb-device-mode-close').addEventListener('click',close);
+    overlay.addEventListener('click',function(event){
+      if(event.target===overlay)return close();
+      var option=event.target.closest('.jb-device-mode-option');
+      if(option){apply(option.getAttribute('data-device-mode'),true);close()}
+    });
+    document.addEventListener('keydown',function(event){if(event.key==='Escape')close()});
+    apply(saved(),false);
+  }
+  function sync(){apply(saved(),false)}
+  window.addEventListener('resize',function(){clearTimeout(window.__jbDeviceResize);window.__jbDeviceResize=setTimeout(sync,120)},{passive:true});
+  window.addEventListener('orientationchange',function(){setTimeout(sync,100);setTimeout(sync,350);setTimeout(sync,720)},{passive:true});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build,{once:true});else build();
+  window.addEventListener('load',function(){setTimeout(sync,80);setTimeout(sync,320)},{once:true});
+  window.jbSetDeviceMode=function(mode){apply(mode,true)};
+})();
+</script>
+
 
 <style id="jb-torneios-v42-visual">
 :root{
@@ -20161,3 +20289,4 @@ html body:not(.v74-public-only) #jbPageDashboard.active{display:flex!important;f
 @media (min-width:768px) and (max-width:1180px){#jbPageDashboard .jb-access-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}#jbPageDashboard .jb-access-card{min-height:72px!important;padding:10px!important}#jbPageDashboard .jb-access-card b{font-size:12px!important}}
 @media (max-width:767px){#jbPageDashboard .jb-access-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}#jbPageDashboard .jb-access-card{min-height:68px!important;padding:9px!important}}
 </style>
+<link rel="stylesheet" href="device-modes.css?v=25.9.0">
